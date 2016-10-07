@@ -1,5 +1,6 @@
 // GenMapper
 // App for mapping generations of simple churches
+// https://github.com/dvopalecky/gen-mapper
 // Copyright (c) 2016 Daniel Vopalecky, MIT license
 
 var margin = {top: 30, right: 30, bottom: 50, left: 30},
