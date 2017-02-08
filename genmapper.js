@@ -11,7 +11,7 @@ var textMargin = 6;
 
 var zoom = d3.zoom()
   .scaleExtent([0.15, 2])
-  .on("zoom", zoomed);  
+  .on("zoom", zoomed);
 
 var projectName = "Untitled project";
 
@@ -23,13 +23,13 @@ d3.select("#project-name")
       displayAlert("Project name can't be empty!");
     else {
       projectName = userInput;
-      d3.select("#project-name").text(projectName);  
+      d3.select("#project-name").text(projectName);
     }
   });
 
 var svg = d3.select("#main-svg")
       .attr("height", height + margin.top + margin.bottom)
-      .call(zoom);  
+      .call(zoom);
 var g = svg.append("g")
   .attr("class", "maingroup");
 var gLinks = g.append("g")
@@ -70,7 +70,7 @@ document.addEventListener('keyup', function(e) {
         }
         if (editGroupElement.style.display != "none") {
           editGroupElement.style.display = "none";
-        }  
+        }
       }
     }
 });
@@ -88,11 +88,11 @@ function zoomOut() {
 }
 
 function origPosition() {
-  zoom.scaleTo(svg, 1);  
+  zoom.scaleTo(svg, 1);
   var origX = margin.left + (document.getElementById("main-svg").clientWidth / 2);
   var origY = margin.top;
   var parsedTransform = parseTransform(g.attr("transform"));
-  zoom.translateBy(svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1]);  
+  zoom.translateBy(svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1]);
 }
 
 function onLoad() {
@@ -101,13 +101,13 @@ function onLoad() {
 
 function displayAlert(message){
   alertElement.style.display = "block";
-  document.getElementById("alert-message-text").innerHTML = message;  
+  document.getElementById("alert-message-text").innerHTML = message;
 }
 
 function closeAlert() {
   alertElement.style.display = null;
-  document.getElementById("alert-message-text").innerHTML = null;    
-}    
+  document.getElementById("alert-message-text").innerHTML = null;
+}
 
 function introSwitchVisibility(){
   var tmp = d3.select("#intro");
@@ -121,15 +121,15 @@ function popupEditGroupModal(d) {
   editGroupElement.style.display = "block";
   editNameElement.value = d.data.name;
   editNameElement.select();
-  editParentElement.innerHTML = d.parent ? d.parent.data.name : "N/A";  
-  editCoachElement.value = d.data.coach;  
-  editField1Element.value = d.data.fields[0];  
-  editField2Element.value = d.data.fields[1];  
-  editField3Element.value = d.data.fields[2];  
-  editField4Element.value = d.data.fields[3];  
+  editParentElement.innerHTML = d.parent ? d.parent.data.name : "N/A";
+  editCoachElement.value = d.data.coach;
+  editField1Element.value = d.data.fields[0];
+  editField2Element.value = d.data.fields[1];
+  editField3Element.value = d.data.fields[2];
+  editField4Element.value = d.data.fields[3];
   editField5Element.value = d.data.fields[4];
   editPlaceAndDateElement.value = d.data.footer;
-  editActiveElement.checked = d.data.active;    
+  editActiveElement.checked = d.data.active;
   var groupData = d.data;
   var group = d;
   d3.select("#edit-submit").on("click", function() {editGroup(groupData);});
@@ -141,14 +141,14 @@ function popupEditGroupModal(d) {
 
 function editGroup(groupData) {
   groupData.name = editNameElement.value;
-  groupData.coach = editCoachElement.value;  
-  groupData.fields[0] = editField1Element.value;  
-  groupData.fields[1] = editField2Element.value;  
-  groupData.fields[2] = editField3Element.value;  
-  groupData.fields[3] = editField4Element.value;  
+  groupData.coach = editCoachElement.value;
+  groupData.fields[0] = editField1Element.value;
+  groupData.fields[1] = editField2Element.value;
+  groupData.fields[2] = editField3Element.value;
+  groupData.fields[3] = editField4Element.value;
   groupData.fields[4] = editField5Element.value;
   groupData.footer = editPlaceAndDateElement.value;
-  groupData.active = editActiveElement.checked; 
+  groupData.active = editActiveElement.checked;
 
   editGroupElement.style.display = "none";
   redraw();
@@ -167,21 +167,21 @@ function printMap(printType) {
     minY = Math.min(minY, y);
     maxY = Math.max(maxY, y);
   }
-  
+
   // store original values
   var origWidth = svg.attr("width");
   var origHeight = svg.attr("height");
   var origTransform = g.attr("transform");
-  
+
   var totalHeight = Math.max(600, margin.top + (maxY - minY) + boxHeight + margin.top);
   var totalWidthLeft = Math.max(500, - minX + boxHeight * 1.5 / 2 + 20);
   var totalWidthRight = Math.max(500,maxX + boxHeight * 1.5 / 2 + 20);
-    
+
   var translateX, translateY;
   if (printType == "horizontal"){
     var printHeight = 700;
     var printWidth = 1200;
-    
+
     // resize for printing
     svg.attr("width", printWidth)
       .attr("height", printHeight);
@@ -189,32 +189,32 @@ function printMap(printType) {
     translateX = totalWidthLeft * printScale;
     translateY = margin.top * printScale;
     x = "translate(" + translateX + ", " + translateY + ") scale(" + printScale + "))";
-    g.attr("transform", "translate(" + translateX + ", " + translateY + ") scale(" + printScale + ")");    
+    g.attr("transform", "translate(" + translateX + ", " + translateY + ") scale(" + printScale + ")");
   }
   else {
-    
+
     // resize for printing
     svg.attr("width", totalHeight)
       .attr("height", totalWidthLeft + totalWidthRight);
     translateX = totalHeight - margin.top;
     translateY = totalWidthLeft;
-    g.attr("transform", "translate(" + translateX + ", " + translateY + ") rotate(90)");    
+    g.attr("transform", "translate(" + translateX + ", " + translateY + ") rotate(90)");
   }
-  
+
   // change CSS for printing
   d3.select("#left-menu").style("display", "none");
   d3.select("#main").style("float", "left");
   d3.selectAll("#main-svg").style("background", "white");
-  
+
   window.print();
-    
+
   // change CSS back after printing
   svg.attr("width", origWidth)
     .attr("height", origHeight);
   g.attr("transform", origTransform);
   d3.select("#left-menu").style("display", null);
   d3.select("#main").style("float", null);
-  d3.selectAll("#main-svg").style("background", null);     
+  d3.selectAll("#main-svg").style("background", null);
 }
 
 function redraw(){
@@ -224,17 +224,17 @@ function redraw(){
       .separation(function separation(a, b) {
         return a.parent == b.parent ? 1 : 1.2;
       });
-      
+
     var stratifiedData = d3.stratify()(data);
     nodes = tree(stratifiedData);
 
     // update the links between the nodes
     var link = gLinks.selectAll(".link")
         .data( nodes.descendants().slice(1));
-    
+
     link.exit()
       .remove();
-    
+
     link.enter()
       .append("path")
     .merge(link)
@@ -255,7 +255,7 @@ function redraw(){
     linkText.enter()
       .append("text")
     .merge(linkText)
-      .attr("class", function(d) { 
+      .attr("class", function(d) {
         return "link-text " + (d.data.active ? " link-text--active" : " link-text--inactive"); })
       .attr("x", function(d) { return d.x * (1 - LINK_TEXT_POSITION) + d.parent.x * LINK_TEXT_POSITION;})
       .attr("y", function(d) { return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION;})
@@ -264,22 +264,22 @@ function redraw(){
     // update nodes
     var node = gNodes.selectAll(".node")
         .data(nodes.descendants());
-    
+
     node.exit()
       .remove();
-    
+
     // update
-    node.attr("class", function(d) { 
+    node.attr("class", function(d) {
           return "node" + (d.data.active ? " node--active" : " node--inactive"); })
-        .attr("transform", function(d) { 
+        .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")"; })
         .on("click", function(d) {popupEditGroupModal(d);});
-        
+
     node.select("text")
       .text(function(d) { return d.data.name; });
 
     node.select(".removeNode")
-      .on("click", function(d) {removeNode(d);event.cancelBubble=true;}); 
+      .on("click", function(d) {removeNode(d);event.cancelBubble=true;});
 
     node.select(".addNode")
       .on("click", function(d) {addNode(d);event.cancelBubble=true;});
@@ -295,19 +295,19 @@ function redraw(){
     node.select(".field5")
       .text(function(d) { return d.data.fields[4]; });
     node.select(".box-footer")
-      .text(function(d) { return d.data.footer; });      
-    
+      .text(function(d) { return d.data.footer; });
+
     // NEW ELEMENTS
     var group = node.enter()
         .append("g")
-        .attr("class", function(d) { 
+        .attr("class", function(d) {
           return "node" + (d.data.active ? " node--active" : " node--inactive"); })
-        .attr("transform", function(d) { 
+        .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")"; })
         .on("click", function(d) {popupEditGroupModal(d);});
-    
-    group.append("title").text("Edit group");  
-    gRemoveNode = group.append("g")        
+
+    group.append("title").text("Edit group");
+    gRemoveNode = group.append("g")
       .attr("class", "removeNode")
       .on("click", function(d) {removeNode(d);event.cancelBubble=true;});
     gRemoveNode.append("rect")
@@ -323,18 +323,18 @@ function redraw(){
       .attr("x2", boxHeight / 2 + 19)
       .attr("y2", boxHeight * 0.25 + 6.5)
       .attr("stroke", "white")
-      .attr("stroke-width", 3);      
+      .attr("stroke-width", 3);
     gRemoveNode.append("line") // top-right diagonal in X sign
       .attr("x1", boxHeight / 2 + 19)
       .attr("y1", boxHeight * 0.25 - 6.5)
       .attr("x2", boxHeight / 2 + 6)
       .attr("y2", boxHeight * 0.25 + 6.5)
       .attr("stroke", "white")
-      .attr("stroke-width", 3);   
-    gAddNode = group.append("g")        
+      .attr("stroke-width", 3);
+    gAddNode = group.append("g")
       .attr("class", "addNode")
       .on("click", function(d) {addNode(d);event.cancelBubble=true;});
-    gAddNode.append("rect")  
+    gAddNode.append("rect")
       .attr("x", boxHeight / 2)
       .attr("y", boxHeight / 2)
       .attr("rx", 7)
@@ -354,10 +354,10 @@ function redraw(){
       .attr("x2", boxHeight / 2 + 12.5)
       .attr("y2", boxHeight * 0.75 + 7.5)
       .attr("stroke", "white")
-      .attr("stroke-width", 3); 
+      .attr("stroke-width", 3);
     group.append("text")
       .attr("y", -textMargin)
-      .text(function(d) { return d.data.name; }); 
+      .text(function(d) { return d.data.name; });
     group.append("rect") // field 1
       .attr("x", - boxHeight / 2)
       .attr("y", "0")
@@ -408,13 +408,13 @@ function redraw(){
       .attr("x", 0)
       .attr("y", boxHeight / 2 + textHeight / 2)
       .attr("class", "field5")
-      .text(function(d) { return d.data.fields[4]; });    
+      .text(function(d) { return d.data.fields[4]; });
     group.append("text")
       .attr("x", 0)
       .attr("y", boxHeight + textHeight + textMargin)
       .attr("class", "box-footer")
-      .text(function(d) { return d.data.footer; });    
-}    
+      .text(function(d) { return d.data.footer; });
+}
 
 function addNode(d) {
   // find smallest available new id
@@ -456,14 +456,14 @@ function removeNode(d){
       var nodeToDelete = _.where(data, {id: d.data.id});
       if (nodeToDelete){
           data = _.without(data, nodeToDelete[0]);
-      }  
-    }            
+      }
+    }
   }
   else {
     displayAlert("Sorry, delete not possible. Please delete all descendant groups first.");
   }
   document.getElementById("edit-group").style.display = "none";
-  redraw();        
+  redraw();
 }
 
 function parseCsvData(csvData){
@@ -501,9 +501,12 @@ function outputCsv(){
     ];
   }));
   var blob = new Blob([headerRow + out], {type: "text/csv;charset=utf-8"});
-  var saveName = prompt("Save as:", projectName + ".csv");
+  var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+               navigator.userAgent && !navigator.userAgent.match('CriOS');
+  var promptMessage = isSafari ? "Save as: \n(Note: Safari browser has issues with export, please see GenMapper -> Help for more info)" : "Save as:"
+  var saveName = prompt(promptMessage, projectName + ".csv");
   if(saveName === null) return;
-  saveAs(blob, saveName); 
+  saveAs(blob, saveName);
 }
 
 function parseTransform(a)
@@ -539,7 +542,7 @@ function importFile() {
         filename = file.name;
         fr = new FileReader();
         fr.onload = processFile;
-        fr.readAsBinaryString(file);            
+        fr.readAsBinaryString(file);
     }
 
     function processFile() {
@@ -552,17 +555,17 @@ function importFile() {
           var workbook = XLSX.read(filedata, {type: 'binary'});
           var worksheet = workbook.Sheets[workbook.SheetNames[0]];
           csvString = XLSX.utils.sheet_to_csv(worksheet);
-        } 
+        }
         else if(extension === "csv") {
-          csvString = filedata;  
-        } 
+          csvString = filedata;
+        }
         else {
           displayAlert("Wrong type of file. Please import xls, xlsx or csv files.");
           return;
         }
-        
+
         csvString = csvHeader + "\n" + csvString.substring(csvString.indexOf("\n") + 1); //replace first line with a default one
-        
+
         try {
           var tmpData = parseCsvData(csvString);
           var treeTest = d3.tree();
@@ -573,10 +576,10 @@ function importFile() {
         }
         catch(err) {
           if(err == "id must be >= 0."){
-            displayAlert("Error when importing file. Group id must be >= 0");  
+            displayAlert("Error when importing file. Group id must be >= 0");
           }
           else {
-            displayAlert("Error when importing file. Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree.");  
+            displayAlert("Error when importing file. Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree.");
           }
         }
     }

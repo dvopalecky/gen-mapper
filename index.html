@@ -27,9 +27,9 @@
 
   <section id="intro">
     <div id="intro-content">
-      <h2>GenMapper 0.1.0 Help</h2>
+      <h2>GenMapper 0.1.1 Help</h2>
       <p>Hello, this app should serve for mapping generations of simple churches. I pray it serves you to advance Jesus' kingdom.</p>
-      
+
       <img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend">
       <h3>Legend</h3>
       <p>There are 5 squares in the diagram. they stand for:<br>
@@ -48,6 +48,12 @@
       Note: If you don't export, all changes will be lost when refreshing or closing page.<br>
       You can import a .xlsx or .xls (MS Excel) or .csv (Comma separated values) files. Please use this <a href="example-map.xlsx" download>XLSX example spreadsheet</a>.<br>
       Export is currently available only to .csv format.<br>
+      <strong>Note:</strong> Some versions of Safari have problems with export to csv. If a new tab with blob is opened instead of file downloaded (see example below)
+      <img src="safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <br>
+      press Cmd + S, then enter a filename ending .csv, select Format: Page Source, and finally click Save.
+      <img src="safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <br>
       For Export to PDF, use the Print buttons and then save as PDF in Chrome or Safari.
       </p>
       <h3>Panning / Zooming</h3>
@@ -56,7 +62,7 @@
       <p>
         Thanks to Curtis Sergeant for the idea of generational mapping and for providing useful feedback.<br>
         JavaScript libraries used: <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a> and <a href="http://underscorejs.org/">Underscore.js</a><br><br>
-        Copyright (c) 2016 Daniel Vopalecky<br>
+        Copyright (c) 2016 - 2017 Daniel Vopalecky<br>
         Licensed with MIT Licence<br>
         <a href="https://github.com/dvopalecky/gen-mapper">Github repository</a><br>
         Please send suggestions and bugs to daniel.vopalecky@seznam.cz
@@ -118,11 +124,11 @@
             <td> <input type="checkbox" name="active" id="edit-active"></td>
           </tr>
         </table>
-      </form>    
+      </form>
       <div id="edit-buttons">
         <button id="edit-submit">Submit changes</button>
         <button id="edit-cancel">Cancel</button>
-        <button id="edit-delete">Delete group</button>      
+        <button id="edit-delete">Delete group</button>
       </div>
     </div>
   </section>
