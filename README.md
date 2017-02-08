@@ -8,6 +8,9 @@ For details about usage click the Help / About in the app.
 ## Example
 ![gen-mapper example](https://dvopalecky.github.io/gen-mapper/gen-mapper-example1.png)
 
+## Changelog
+see [here](changelog.md)
+
 ## License
 MIT
 
