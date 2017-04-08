@@ -51,16 +51,14 @@ redraw();
 
 var alertElement = document.getElementById("alert-message");
 var editGroupElement = document.getElementById("edit-group");
-var editNameElement = document.getElementById("edit-name");
+var editFieldElements = {};
+template.fields.forEach(function(field) {
+    if(field.type) {
+      editFieldElements[field.header] = document.getElementById("edit-" + field.header);
+    }
+  }
+);
 var editParentElement = document.getElementById("edit-parent");
-var editCoachElement = document.getElementById("edit-coach");
-var editField1Element = document.getElementById("edit-field1");
-var editField2Element = document.getElementById("edit-field2");
-var editField3Element = document.getElementById("edit-field3");
-var editField4Element = document.getElementById("edit-field4");
-var editField5Element = document.getElementById("edit-field5");
-var editPlaceDateElement = document.getElementById("edit-placeDate");
-var editActiveElement = document.getElementById("edit-active");
 
 document.addEventListener('keyup', function(e) {
     if (e.keyCode == 27) {
@@ -121,17 +119,19 @@ function introSwitchVisibility(){
 
 function popupEditGroupModal(d) {
   editGroupElement.style.display = "block";
-  editNameElement.value = d.data.name;
-  editNameElement.select();
+
+  template.fields.forEach(function(field) {
+      if(field.type == "text") {
+        editFieldElements[field.header].value = d.data[field.header];
+      } else if (field.type == "checkbox") {
+        editFieldElements[field.header].checked = d.data[field.header];
+      }
+    }
+  );
+  // select first element
+  editFieldElements[Object.keys(editFieldElements)[0]].select();
+
   editParentElement.innerHTML = d.parent ? d.parent.data.name : "N/A";
-  editCoachElement.value = d.data.coach;
-  editField1Element.value = d.data.field1;
-  editField2Element.value = d.data.field2;
-  editField3Element.value = d.data.field3;
-  editField4Element.value = d.data.field4;
-  editField5Element.value = d.data.field5;
-  editPlaceDateElement.value = d.data.placeDate;
-  editActiveElement.checked = d.data.active;
   var groupData = d.data;
   var group = d;
   d3.select("#edit-submit").on("click", function() {editGroup(groupData);});
@@ -142,15 +142,14 @@ function popupEditGroupModal(d) {
 }
 
 function editGroup(groupData) {
-  groupData.name = editNameElement.value;
-  groupData.coach = editCoachElement.value;
-  groupData.field1 = editField1Element.value;
-  groupData.field2 = editField2Element.value;
-  groupData.field3 = editField3Element.value;
-  groupData.field4 = editField4Element.value;
-  groupData.field5 = editField5Element.value;
-  groupData.placeDate = editPlaceDateElement.value;
-  groupData.active = editActiveElement.checked;
+  template.fields.forEach(function(field) {
+      if(field.type == "text") {
+        groupData[field.header] = editFieldElements[field.header].value
+      } else if (field.type == "checkbox") {
+        groupData[field.header] = editFieldElements[field.header].checked
+      }
+    }
+  );
 
   editGroupElement.style.display = "none";
   redraw();
