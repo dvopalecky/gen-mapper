@@ -1,7 +1,7 @@
 // GenMapper
 // App for mapping generations of simple churches
 // https://github.com/dvopalecky/gen-mapper
-// Copyright (c) 2016 Daniel Vopalecky, MIT license
+// Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
 
 var margin = {top: 30, right: 30, bottom: 50, left: 30},
     height = 800 - margin.top - margin.bottom;
@@ -14,6 +14,8 @@ var zoom = d3.zoom()
   .on("zoom", zoomed);
 
 var projectName = "Untitled project";
+
+addFieldsToEditWindow(template);
 
 d3.select("#project-name")
   .text(projectName)
@@ -39,8 +41,8 @@ var gLinksText = g.append("g")
 var gNodes = g.append("g")
   .attr("class", "group-nodes");
 
-var csvHeader = "id,parentId,name,coach,field1,field2,field3,field4,field5,placeDate,active";
-var initialCsv = csvHeader + "\n0,,Name,Coach,0,0,0,No,0,\"Place, Date\",TRUE";
+var csvHeader = template.fields.map(field => field.header).join(",");
+var initialCsv = csvHeader + "\n" + template.fields.map(field => field.initial).join(",");
 var data = parseCsvData(initialCsv);
 var nodes;
 
@@ -57,7 +59,7 @@ var editField2Element = document.getElementById("edit-field2");
 var editField3Element = document.getElementById("edit-field3");
 var editField4Element = document.getElementById("edit-field4");
 var editField5Element = document.getElementById("edit-field5");
-var editPlaceAndDateElement = document.getElementById("edit-place-and-date");
+var editPlaceDateElement = document.getElementById("edit-placeDate");
 var editActiveElement = document.getElementById("edit-active");
 
 document.addEventListener('keyup', function(e) {
@@ -128,7 +130,7 @@ function popupEditGroupModal(d) {
   editField3Element.value = d.data.fields[2];
   editField4Element.value = d.data.fields[3];
   editField5Element.value = d.data.fields[4];
-  editPlaceAndDateElement.value = d.data.footer;
+  editPlaceDateElement.value = d.data.footer;
   editActiveElement.checked = d.data.active;
   var groupData = d.data;
   var group = d;
@@ -147,7 +149,7 @@ function editGroup(groupData) {
   groupData.fields[2] = editField3Element.value;
   groupData.fields[3] = editField4Element.value;
   groupData.fields[4] = editField5Element.value;
-  groupData.footer = editPlaceAndDateElement.value;
+  groupData.footer = editPlaceDateElement.value;
   groupData.active = editActiveElement.checked;
 
   editGroupElement.style.display = "none";
@@ -437,7 +439,7 @@ function addNode(d) {
   data.push({
     "name":"Name",
     "fields": ["0", "0", "0", "No", "0"],
-    "footer": "Place, Date",
+    "footer": "Place & Date",
     "id": id,
     "parentId": d.data.id,
     "coach": "Coach",
@@ -583,4 +585,24 @@ function importFile() {
           }
         }
     }
+}
+
+function addFieldsToEditWindow(template)
+{
+  template.fields.forEach(function(field) {
+      if(field.type) {
+        var tr = d3.select('#edit-group-content')
+          .select('form')
+          .select('table')
+          .append('tr');
+        tr.append('td')
+          .text(field.description + ":");
+        tr.append('td')
+          .append('input')
+            .attr("type", field.type)
+            .attr("name", field.header)
+            .attr("id", "edit-" + field.header)
+      }
+    }
+  );
 }
