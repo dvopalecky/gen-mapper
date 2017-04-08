@@ -41,8 +41,8 @@ var gLinksText = g.append("g")
 var gNodes = g.append("g")
   .attr("class", "group-nodes");
 
-var csvHeader = template.fields.map(field => field.header).join(",");
-var initialCsv = csvHeader + "\n" + template.fields.map(field => field.initial).join(",");
+var csvHeader = template.fields.map(field => field.header).join(",") + "\n";
+var initialCsv = csvHeader + template.fields.map(field => field.initial).join(",");
 var data = parseCsvData(initialCsv);
 var nodes;
 
@@ -130,7 +130,7 @@ function popupEditGroupModal(d) {
   editField3Element.value = d.data.field3;
   editField4Element.value = d.data.field4;
   editField5Element.value = d.data.field5;
-  editPlaceDateElement.value = d.data.footer;
+  editPlaceDateElement.value = d.data.placeDate;
   editActiveElement.checked = d.data.active;
   var groupData = d.data;
   var group = d;
@@ -149,7 +149,7 @@ function editGroup(groupData) {
   groupData.field3 = editField3Element.value;
   groupData.field4 = editField4Element.value;
   groupData.field5 = editField5Element.value;
-  groupData.footer = editPlaceDateElement.value;
+  groupData.placeDate = editPlaceDateElement.value;
   groupData.active = editActiveElement.checked;
 
   editGroupElement.style.display = "none";
@@ -296,8 +296,8 @@ function redraw(){
       .text(function(d) { return d.data.field4; });
     node.select(".field5")
       .text(function(d) { return d.data.field5; });
-    node.select(".box-footer")
-      .text(function(d) { return d.data.footer; });
+    node.select(".box-placeDate")
+      .text(function(d) { return d.data.placeDate; });
 
     // NEW ELEMENTS
     var group = node.enter()
@@ -414,8 +414,8 @@ function redraw(){
     group.append("text")
       .attr("x", 0)
       .attr("y", boxHeight + textHeight + textMargin)
-      .attr("class", "box-footer")
-      .text(function(d) { return d.data.footer; });
+      .attr("class", "box-placeDate")
+      .text(function(d) { return d.data.placeDate; });
 }
 
 function addNode(d) {
@@ -443,7 +443,7 @@ function addNode(d) {
     "field3": "0",
     "field4": "No",
     "field5": "0",
-    "footer": "Place & Date",
+    "placeDate": "Place & Date",
     "id": id,
     "parentId": d.data.id,
     "coach": "Coach",
@@ -487,14 +487,13 @@ function parseCsvData(csvData){
       field3: d.field3,
       field4: d.field4,
       field5: d.field5,
-      footer: d.placeDate,
+      placeDate: d.placeDate,
       active: d.active.toUpperCase() == "TRUE" ? true : false
     };
   });
 }
 
 function outputCsv(){
-  var headerRow = "id,parentId,name,coach,field1,field2,field3,field4,field5,placeDate,active\n";
   var out = d3.csvFormatRows(data.map(function(d, i) {
     return [
       d.id,
@@ -506,11 +505,11 @@ function outputCsv(){
       d.field3,
       d.field4,
       d.field5,
-      d.footer,
+      d.placeDate,
       d.active ? "TRUE" : "FALSE"
     ];
   }));
-  var blob = new Blob([headerRow + out], {type: "text/csv;charset=utf-8"});
+  var blob = new Blob([csvHeader + out], {type: "text/csv;charset=utf-8"});
   var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
                navigator.userAgent && !navigator.userAgent.match('CriOS');
   var promptMessage = isSafari ? "Save as: \n(Note: Safari browser has issues with export, please see GenMapper -> Help for more info)" : "Save as:"
@@ -574,7 +573,7 @@ function importFile() {
           return;
         }
 
-        csvString = csvHeader + "\n" + csvString.substring(csvString.indexOf("\n") + 1); //replace first line with a default one
+        csvString = csvHeader + csvString.substring(csvString.indexOf("\n") + 1); //replace first line with a default one
 
         try {
           var tmpData = parseCsvData(csvString);
