@@ -435,19 +435,14 @@ function addNode(d) {
   if(id == -1)
     id = i+1;
 
-  data.push({
-    "name":"Name",
-    "field1": "0",
-    "field2": "0",
-    "field3": "0",
-    "field4": "No",
-    "field5": "0",
-    "placeDate": "Place & Date",
-    "id": id,
-    "parentId": d.data.id,
-    "coach": "Coach",
-    "active": true
-  });
+  newNodeData = {}
+  template.fields.forEach(function(field) {
+      newNodeData[field.header] = field.initial;
+    }
+  );
+  newNodeData['id'] = id;
+  newNodeData['parentId'] = d.data.id;
+  data.push(newNodeData);
 
   redraw();
 }
@@ -476,38 +471,28 @@ function parseCsvData(csvData){
     var parsedId = parseInt(d.id);
     if (parsedId < 0 || isNaN(parsedId))
       throw "id must be integer >= 0.";
-    return {
-      id: parsedId,
-      parentId: d.parentId !== "" ? parseInt(d.parentId) : "",
-      name: d.name,
-      coach: d.coach,
-      field1: d.field1,
-      field2: d.field2,
-      field3: d.field3,
-      field4: d.field4,
-      field5: d.field5,
-      placeDate: d.placeDate,
-      active: d.active.toUpperCase() == "TRUE" ? true : false
-    };
+    parsedLine = {};
+    parsedLine['id'] = parsedId;
+    parsedLine['parentId'] = d.parentId !== "" ? parseInt(d.parentId) : "";
+    template.fields.forEach(function(field) {
+        if(field.type) {
+          parsedLine[field.header] = d[field.header];
+        }
+      }
+    );
+    return parsedLine;
   });
 }
 
 function outputCsv(){
   var out = d3.csvFormatRows(data.map(function(d, i) {
-    return [
-      d.id,
-      d.parentId,
-      d.name,
-      d.coach,
-      d.field1,
-      d.field2,
-      d.field3,
-      d.field4,
-      d.field5,
-      d.placeDate,
-      d.active ? "TRUE" : "FALSE"
-    ];
-  }));
+    output = [];
+    template.fields.forEach(function(field) {
+        output.push(d[field.header]);
+      }
+    );
+    return output;
+    }));
   var blob = new Blob([csvHeader + out], {type: "text/csv;charset=utf-8"});
   var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
                navigator.userAgent && !navigator.userAgent.match('CriOS');
