@@ -125,11 +125,11 @@ function popupEditGroupModal(d) {
   editNameElement.select();
   editParentElement.innerHTML = d.parent ? d.parent.data.name : "N/A";
   editCoachElement.value = d.data.coach;
-  editField1Element.value = d.data.fields[0];
-  editField2Element.value = d.data.fields[1];
-  editField3Element.value = d.data.fields[2];
-  editField4Element.value = d.data.fields[3];
-  editField5Element.value = d.data.fields[4];
+  editField1Element.value = d.data.field1;
+  editField2Element.value = d.data.field2;
+  editField3Element.value = d.data.field3;
+  editField4Element.value = d.data.field4;
+  editField5Element.value = d.data.field5;
   editPlaceDateElement.value = d.data.footer;
   editActiveElement.checked = d.data.active;
   var groupData = d.data;
@@ -144,11 +144,11 @@ function popupEditGroupModal(d) {
 function editGroup(groupData) {
   groupData.name = editNameElement.value;
   groupData.coach = editCoachElement.value;
-  groupData.fields[0] = editField1Element.value;
-  groupData.fields[1] = editField2Element.value;
-  groupData.fields[2] = editField3Element.value;
-  groupData.fields[3] = editField4Element.value;
-  groupData.fields[4] = editField5Element.value;
+  groupData.field1 = editField1Element.value;
+  groupData.field2 = editField2Element.value;
+  groupData.field3 = editField3Element.value;
+  groupData.field4 = editField4Element.value;
+  groupData.field5 = editField5Element.value;
   groupData.footer = editPlaceDateElement.value;
   groupData.active = editActiveElement.checked;
 
@@ -287,15 +287,15 @@ function redraw(){
       .on("click", function(d) {addNode(d);event.cancelBubble=true;});
 
     node.select(".field1")
-      .text(function(d) { return d.data.fields[0]; });
+      .text(function(d) { return d.data.field1; });
     node.select(".field2")
-      .text(function(d) { return d.data.fields[1]; });
+      .text(function(d) { return d.data.field2; });
     node.select(".field3")
-      .text(function(d) { return d.data.fields[2]; });
+      .text(function(d) { return d.data.field3; });
     node.select(".field4")
-      .text(function(d) { return d.data.fields[3]; });
+      .text(function(d) { return d.data.field4; });
     node.select(".field5")
-      .text(function(d) { return d.data.fields[4]; });
+      .text(function(d) { return d.data.field5; });
     node.select(".box-footer")
       .text(function(d) { return d.data.footer; });
 
@@ -387,30 +387,30 @@ function redraw(){
       .attr("y", textHeight + textMargin)
       .attr("class", "field1")
       .style("text-anchor", "start")
-      .text(function(d) { return d.data.fields[0]; });
+      .text(function(d) { return d.data.field1; });
     group.append("text")
       .attr("x", boxHeight / 2 - textMargin)
       .attr("y", textHeight + textMargin)
       .attr("class", "field2")
       .style("text-anchor", "end")
-      .text(function(d) { return d.data.fields[1]; });
+      .text(function(d) { return d.data.field2; });
     group.append("text")
       .attr("x", boxHeight / 2 - textMargin)
       .attr("y", boxHeight - textMargin)
       .attr("class", "field3")
       .style("text-anchor", "end")
-      .text(function(d) { return d.data.fields[2]; });
+      .text(function(d) { return d.data.field3; });
     group.append("text")
       .attr("x", - boxHeight / 2 + textMargin)
       .attr("y", boxHeight - textMargin)
       .attr("class", "field4")
       .style("text-anchor", "start")
-      .text(function(d) { return d.data.fields[3]; });
+      .text(function(d) { return d.data.field4; });
     group.append("text")
       .attr("x", 0)
       .attr("y", boxHeight / 2 + textHeight / 2)
       .attr("class", "field5")
-      .text(function(d) { return d.data.fields[4]; });
+      .text(function(d) { return d.data.field5; });
     group.append("text")
       .attr("x", 0)
       .attr("y", boxHeight + textHeight + textMargin)
@@ -438,7 +438,11 @@ function addNode(d) {
 
   data.push({
     "name":"Name",
-    "fields": ["0", "0", "0", "No", "0"],
+    "field1": "0",
+    "field2": "0",
+    "field3": "0",
+    "field4": "No",
+    "field5": "0",
     "footer": "Place & Date",
     "id": id,
     "parentId": d.data.id,
@@ -478,7 +482,11 @@ function parseCsvData(csvData){
       parentId: d.parentId !== "" ? parseInt(d.parentId) : "",
       name: d.name,
       coach: d.coach,
-      fields: [d.field1, d.field2, d.field3, d.field4, d.field5],
+      field1: d.field1,
+      field2: d.field2,
+      field3: d.field3,
+      field4: d.field4,
+      field5: d.field5,
       footer: d.placeDate,
       active: d.active.toUpperCase() == "TRUE" ? true : false
     };
@@ -493,11 +501,11 @@ function outputCsv(){
       d.parentId,
       d.name,
       d.coach,
-      d.fields[0],
-      d.fields[1],
-      d.fields[2],
-      d.fields[3],
-      d.fields[4],
+      d.field1,
+      d.field2,
+      d.field3,
+      d.field4,
+      d.field5,
       d.footer,
       d.active ? "TRUE" : "FALSE"
     ];
