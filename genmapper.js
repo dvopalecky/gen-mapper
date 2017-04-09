@@ -276,8 +276,6 @@ function redraw(){
           return "translate(" + d.x + "," + d.y + ")"; })
         .on("click", function(d) {popupEditGroupModal(d);});
 
-    node.select("text")
-      .text(function(d) { return d.data.name; });
 
     node.select(".removeNode")
       .on("click", function(d) {removeNode(d);event.cancelBubble=true;});
@@ -285,6 +283,8 @@ function redraw(){
     node.select(".addNode")
       .on("click", function(d) {addNode(d);event.cancelBubble=true;});
 
+    node.select(".name")
+      .text(function(d) { return d.data.name; });
     node.select(".field1")
       .text(function(d) { return d.data.field1; });
     node.select(".field2")
@@ -295,7 +295,7 @@ function redraw(){
       .text(function(d) { return d.data.field4; });
     node.select(".field5")
       .text(function(d) { return d.data.field5; });
-    node.select(".box-placeDate")
+    node.select(".placeDate")
       .text(function(d) { return d.data.placeDate; });
 
     // NEW ELEMENTS
@@ -358,6 +358,7 @@ function redraw(){
       .attr("stroke-width", 3);
     group.append("text")
       .attr("y", -textMargin)
+      .attr("class", "name")
       .text(function(d) { return d.data.name; });
     group.append("rect") // field 1
       .attr("x", - boxHeight / 2)
@@ -413,7 +414,7 @@ function redraw(){
     group.append("text")
       .attr("x", 0)
       .attr("y", boxHeight + textHeight + textMargin)
-      .attr("class", "box-placeDate")
+      .attr("class", "placeDate")
       .text(function(d) { return d.data.placeDate; });
 }
 
