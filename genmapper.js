@@ -3,7 +3,7 @@
 // https://github.com/dvopalecky/gen-mapper
 // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
 
-var margin = {top: 30, right: 30, bottom: 50, left: 30},
+var margin = {top: 50, right: 30, bottom: 50, left: 30},
     height = 800 - margin.top - margin.bottom;
 var boxHeight = 80;
 var textHeight = 14;
@@ -286,8 +286,14 @@ function redraw(){
     // update node elements which have SVG in template
     template.fields.forEach(function(field) {
         if(field.svg) {
-          node.select(".node-" + field.header)
-            .text(function(d) { return d.data[field.header]; });
+          element = node.select(".node-" + field.header)
+            .text(function(d) { return d.data[field.header] });
+          if(field.svg.type == 'image' && field.type == 'checkbox'){
+              element.style('display', function(d) { return d.data[field.header] ? "block" : "none" });
+          }
+          if(field.svg.type == 'rect' && field.type == 'checkbox'){
+              element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
+          }
         }
       }
     );
@@ -373,6 +379,12 @@ function redraw(){
             Object.keys(field.svg.style).forEach(function (styleKey) {
               element.style(styleKey, field.svg.style[styleKey]);
             });
+          }
+          if(field.svg.type == 'image'){
+              element.style('display', function(d) { return d.data[field.header] ? "block" : "none";});
+          }
+          if(field.svg.type == 'rect' && field.type == 'checkbox'){
+              element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
           }
           element.text(function(d) { return d.data[field.header]; });
         }

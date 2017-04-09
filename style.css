@@ -2,7 +2,7 @@
 
 /**** Basic elements ****/
 body{
-  font: 15px sans-serif; 
+  font: 15px sans-serif;
 }
 
 button {
@@ -114,11 +114,11 @@ aside p{
 }
 
 #edit-group-content {
-  max-width: 350px;
+  max-width: 400px;
 }
 
 #alert-message-content {
-  max-width: 350px;
+  max-width: 400px;
 }
 
 #edit-buttons {
@@ -184,7 +184,7 @@ aside p{
 }
 
 .addNode rect{
-  fill: #b3ffb3;  
+  fill: #b3ffb3;
 }
 
 .addNode {
@@ -200,15 +200,15 @@ aside p{
 }
 
 .removeNode {
-  display: none;  
+  display: none;
 }
 
 .removeNode:hover rect {
   fill:red;
 }
 
-.node text { 
-  font: 15px sans-serif; 
+.node text {
+  font: 15px sans-serif;
   text-anchor: middle;
 }
 
@@ -219,7 +219,7 @@ aside p{
 
 .node:hover g.addNode, .node:hover g.removeNode {
   display: block;
-} 
+}
 
 .node--active text, .link-text--active {
   stroke: black;
@@ -227,12 +227,16 @@ aside p{
 }
 
 .node--active > rect, .node--active > line {
-  stroke: black;  
+  stroke: black;
 }
 
 .node--inactive text, .link-text--inactive {
   stroke: #ddd;
   fill: #ddd;
+}
+
+.node--inactive image {
+  opacity: 0.15;
 }
 
 .node--inactive > rect, .node--inactive > line {
@@ -252,4 +256,4 @@ aside p{
 .invisible-rect {
   fill-opacity:0;
   stroke-opacity:0;
-} 
+}
