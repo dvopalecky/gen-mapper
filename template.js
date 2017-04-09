@@ -3,7 +3,7 @@ var textHeight = 14;
 var textMargin = 6;
 
 template = {
-  "name": "Church circles",
+  "name": "Four fields 0.1",
   "svg": {
     "node-big-rect": {
       "type": "rect",
@@ -75,6 +75,7 @@ template = {
       "initial": "Coach",
       "description": "Coach",
       "type": "text"
+      // svg defined currently in genmapper.js
     },
     {
       "header": "field1",
@@ -171,6 +172,7 @@ template = {
       "initial": true,
       "description": "Active",
       "type": "checkbox"
+      // svg defined currently in genmapper.js
     }
   ]
 };
