@@ -360,28 +360,15 @@ function redraw(){
       .attr("y", -textMargin)
       .attr("class", "name")
       .text(function(d) { return d.data.name; });
-    group.append("rect") // field 1
-      .attr("x", - boxHeight / 2)
-      .attr("y", "0")
-      .attr("rx", boxHeight * 0.1)
-      .attr("width", boxHeight)
-      .attr("height", boxHeight);
-    group.append("line")
-      .attr("x1", "0")
-      .attr("y1", "0")
-      .attr("x2", "0")
-      .attr("y2", boxHeight);
-    group.append("line")
-      .attr("x1", - boxHeight / 2)
-      .attr("y1", boxHeight / 2)
-      .attr("x2", boxHeight / 2)
-      .attr("y2", boxHeight / 2);
-    group.append("rect") // field 5
-      .attr("x", - boxHeight * 0.22)
-      .attr("y", boxHeight * 0.28)
-      .attr("width", boxHeight * 0.44)
-      .attr("height", boxHeight * 0.44)
-      .attr("rx", boxHeight * 0.1);
+
+    Object.keys(template.svg).forEach(function (svgElement) {
+      svgElementValue = template.svg[svgElement]
+      element = group.append(svgElementValue['type']);
+      element.attr('class', svgElement);
+      Object.keys(svgElementValue.attributes).forEach(function (attribute) {
+        element.attr(attribute, svgElementValue.attributes[attribute]);
+      });
+    });
     group.append("text")
       .attr("x", - boxHeight / 2 + textMargin)
       .attr("y", textHeight + textMargin)
