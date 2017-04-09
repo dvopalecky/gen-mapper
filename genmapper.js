@@ -283,20 +283,14 @@ function redraw(){
     node.select(".addNode")
       .on("click", function(d) {addNode(d);event.cancelBubble=true;});
 
-    node.select(".name")
-      .text(function(d) { return d.data.name; });
-    node.select(".field1")
-      .text(function(d) { return d.data.field1; });
-    node.select(".field2")
-      .text(function(d) { return d.data.field2; });
-    node.select(".field3")
-      .text(function(d) { return d.data.field3; });
-    node.select(".field4")
-      .text(function(d) { return d.data.field4; });
-    node.select(".field5")
-      .text(function(d) { return d.data.field5; });
-    node.select(".placeDate")
-      .text(function(d) { return d.data.placeDate; });
+    // update node elements which have SVG in template
+    template.fields.forEach(function(field) {
+        if(field.svg) {
+          node.select(".node-" + field.header)
+            .text(function(d) { return d.data[field.header]; });
+        }
+      }
+    );
 
     // NEW ELEMENTS
     var group = node.enter()
@@ -356,11 +350,8 @@ function redraw(){
       .attr("y2", boxHeight * 0.75 + 7.5)
       .attr("stroke", "white")
       .attr("stroke-width", 3);
-    group.append("text")
-      .attr("y", -textMargin)
-      .attr("class", "name")
-      .text(function(d) { return d.data.name; });
 
+    // append SVG elements without fields
     Object.keys(template.svg).forEach(function (svgElement) {
       svgElementValue = template.svg[svgElement]
       element = group.append(svgElementValue['type']);
@@ -369,40 +360,24 @@ function redraw(){
         element.attr(attribute, svgElementValue.attributes[attribute]);
       });
     });
-    group.append("text")
-      .attr("x", - boxHeight / 2 + textMargin)
-      .attr("y", textHeight + textMargin)
-      .attr("class", "field1")
-      .style("text-anchor", "start")
-      .text(function(d) { return d.data.field1; });
-    group.append("text")
-      .attr("x", boxHeight / 2 - textMargin)
-      .attr("y", textHeight + textMargin)
-      .attr("class", "field2")
-      .style("text-anchor", "end")
-      .text(function(d) { return d.data.field2; });
-    group.append("text")
-      .attr("x", boxHeight / 2 - textMargin)
-      .attr("y", boxHeight - textMargin)
-      .attr("class", "field3")
-      .style("text-anchor", "end")
-      .text(function(d) { return d.data.field3; });
-    group.append("text")
-      .attr("x", - boxHeight / 2 + textMargin)
-      .attr("y", boxHeight - textMargin)
-      .attr("class", "field4")
-      .style("text-anchor", "start")
-      .text(function(d) { return d.data.field4; });
-    group.append("text")
-      .attr("x", 0)
-      .attr("y", boxHeight / 2 + textHeight / 2)
-      .attr("class", "field5")
-      .text(function(d) { return d.data.field5; });
-    group.append("text")
-      .attr("x", 0)
-      .attr("y", boxHeight + textHeight + textMargin)
-      .attr("class", "placeDate")
-      .text(function(d) { return d.data.placeDate; });
+
+    // append SVG elements related to fields
+    template.fields.forEach(function(field) {
+        if(field.svg) {
+          element = group.append(field.svg['type']);
+          element.attr('class', "node-" + field.header);
+          Object.keys(field.svg.attributes).forEach(function (attribute) {
+            element.attr(attribute, field.svg.attributes[attribute]);
+          });
+          if(field.svg.style){
+            Object.keys(field.svg.style).forEach(function (styleKey) {
+              element.style(styleKey, field.svg.style[styleKey]);
+            });
+          }
+          element.text(function(d) { return d.data[field.header]; });
+        }
+      }
+    );
 }
 
 function addNode(d) {

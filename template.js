@@ -1,4 +1,6 @@
-boxHeight = 80;
+var boxHeight = 80;
+var textHeight = 14;
+var textMargin = 6;
 
 template = {
   "name": "Church circles",
@@ -59,7 +61,14 @@ template = {
       "header": "name",
       "initial": "Name",
       "description": "Name",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": 0,
+          "y": -textMargin
+        }
+      }
     },
     {
       "header": "coach",
@@ -71,37 +80,91 @@ template = {
       "header": "field1",
       "initial": 0,
       "description": "Field 1 (# unbelievers)",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": - boxHeight / 2 + textMargin,
+          "y": textHeight + textMargin
+        },
+        "style": {
+          "text-anchor": "start"
+        }
+      }
     },
     {
       "header": "field2",
       "initial": 0,
       "description": "Field 2 (# believers)",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": boxHeight / 2 - textMargin,
+          "y": textHeight + textMargin
+        },
+        "style": {
+          "text-anchor": "end"
+        }
+      }
     },
     {
       "header": "field3",
       "initial": 0,
       "description": "Field 3 (# accountable)",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": boxHeight / 2 - textMargin,
+          "y": boxHeight - textMargin
+        },
+        "style": {
+          "text-anchor": "end"
+        }
+      }
     },
     {
       "header": "field4",
       "initial": 0,
       "description": "Field 4 (church?)",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": - boxHeight / 2 + textMargin,
+          "y": boxHeight - textMargin
+        },
+        "style": {
+          "text-anchor": "start"
+        }
+      }
     },
     {
       "header": "field5",
       "initial": 0,
       "description": "Field 5 (# reproducing)",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": 0,
+          "y": boxHeight / 2 + textHeight / 2
+        }
+      }
     },
     {
       "header": "placeDate",
       "initial": "Place & Date",
       "description": "Place & Date",
-      "type": "text"
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": 0,
+          "y": boxHeight + textHeight + textMargin
+        }
+      }
     },
     {
       "header": "active",
