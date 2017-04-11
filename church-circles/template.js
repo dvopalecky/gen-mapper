@@ -138,7 +138,7 @@ template = {
       }
     },
     {
-      "header": "element-baptism",
+      "header": "elementBaptism",
       "initial": false,
       "description": "Element: Baptism",
       "type": "checkbox",
@@ -154,7 +154,7 @@ template = {
       }
     },
     {
-      "header": "element-word",
+      "header": "elementWord",
       "initial": false,
       "description": "Element: God's Word",
       "type": "checkbox",
@@ -170,7 +170,7 @@ template = {
       }
     },
     {
-      "header": "element-prayer",
+      "header": "elementPrayer",
       "initial": false,
       "description": "Element: Prayer",
       "type": "checkbox",
@@ -186,7 +186,7 @@ template = {
       }
     },
     {
-      "header": "element-lords-supper",
+      "header": "elementLordsSupper",
       "initial": false,
       "description": "Element: Lord's supper",
       "type": "checkbox",
@@ -202,7 +202,7 @@ template = {
       }
     },
     {
-      "header": "element-give",
+      "header": "elementGive",
       "initial": false,
       "description": "Element: Giving",
       "type": "checkbox",
@@ -218,7 +218,7 @@ template = {
       }
     },
     {
-      "header": "element-love",
+      "header": "elementLove",
       "initial": false,
       "description": "Element: Love",
       "type": "checkbox",
@@ -234,7 +234,7 @@ template = {
       }
     },
     {
-      "header": "element-worship",
+      "header": "elementWorship",
       "initial": false,
       "description": "Element: Worship",
       "type": "checkbox",
@@ -250,7 +250,7 @@ template = {
       }
     },
     {
-      "header": "element-leaders",
+      "header": "elementLeaders",
       "initial": false,
       "description": "Element: Leaders",
       "type": "checkbox",
@@ -266,7 +266,7 @@ template = {
       }
     },
     {
-      "header": "element-make-disciples",
+      "header": "elementMakeDisciples",
       "initial": false,
       "description": "Element: Make disciples",
       "type": "checkbox",
@@ -295,9 +295,9 @@ template = {
       }
     },
     {
-      "header": "three-thirds",
+      "header": "threeThirds",
       "initial": "1234567",
-      "description": "Elements of 3/3 process",
+      "description": "Elements of 3/3 process (see help for details)",
       "type": "text",
       "svg": {
         "type": "text",

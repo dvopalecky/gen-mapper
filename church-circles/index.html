@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>GenMapper</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 <div id="content">
@@ -30,14 +30,19 @@
       <h2>GenMapper 0.1.1 Help</h2>
       <p>Hello, this app should serve for mapping generations of simple churches. I pray it serves you to advance Jesus' kingdom.</p>
 
-      <img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend">
+      <img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend">
       <h3>Legend</h3>
-      <p>There are 5 squares in the diagram. they stand for:<br>
-        1 - # of unbelievers<br>
-        2 - # of believers<br>
-        3 - # of people in accountability group<br>
-        4 - is the group a church?<br>
-        5 - # of people helping start other groups<br>
+      <p>Each circle represents a group / church. Dashed circle means group, full circle means church.<br>
+        On the top the numbers describe: # total, # believers, # baptized<br>
+        Inside the circle are the elements that are practiced in the group.<br>
+        On the left there numbers 1 to 7 represent which elements of 3/3 process are practised:<br>
+        1 - Personal care
+        2 - Worship
+        3 - Accountability
+        4 - Vision casting
+        5 - Bible study
+        6 - Practice
+        7 - Set goals and prayer
       </p>
       <p>Click on the group to edit it.<br>
       Click on red button to remove group. (Works only for groups without descendants.)<br>
@@ -46,13 +51,13 @@
       <h3>Import / Export</h3>
       <p>
       Note: If you don't export, all changes will be lost when refreshing or closing page.<br>
-      You can import a .xlsx or .xls (MS Excel) or .csv (Comma separated values) files. Please use this <a href="example-map.xlsx" download>XLSX example spreadsheet</a>.<br>
+      You can import a .xlsx or .xls (MS Excel) or .csv (Comma separated values) files.<br>
       Export is currently available only to .csv format.<br>
       <strong>Note:</strong> Some versions of Safari have problems with export to csv. If a new tab with blob is opened instead of file downloaded (see example below)
-      <img src="safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <img src="../safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
       <br>
       press Cmd + S, then enter a filename ending .csv, select Format: Page Source, and finally click Save.
-      <img src="safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <img src="../safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
       <br>
       For Export to PDF, use the Print buttons and then save as PDF in Chrome or Safari.
       </p>
@@ -102,10 +107,10 @@
   </section>
 </div>
 <script src="template.js"></script>
-<script src="d3.min.js"></script>
-<script src="underscore-min.js"></script>
-<script src="genmapper.js"></script>
-<script src="FileSaver.min.js"></script>
-<script src="xlsx.core.min.js"></script>
+<script src="../d3.min.js"></script>
+<script src="../underscore-min.js"></script>
+<script src="../genmapper.js"></script>
+<script src="../FileSaver.min.js"></script>
+<script src="../xlsx.core.min.js"></script>
 </body>
 </html>
