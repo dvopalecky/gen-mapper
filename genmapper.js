@@ -228,7 +228,6 @@ function redraw(){
 
     var stratifiedData = d3.stratify()(data);
     nodes = tree(stratifiedData);
-
     // update the links between the nodes
     var link = gLinks.selectAll(".link")
         .data( nodes.descendants().slice(1));
@@ -293,6 +292,7 @@ function redraw(){
           }
           if(field.svg.type == 'rect' && field.type == 'checkbox'){
               element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
+              element.attr('stroke-width', function(d) { return d.data[field.header] ? "2" : "1" });
           }
         }
       }
@@ -385,6 +385,7 @@ function redraw(){
           }
           if(field.svg.type == 'rect' && field.type == 'checkbox'){
               element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
+              element.attr('stroke-width', function(d) { return d.data[field.header] ? "2" : "1" });
           }
           element.text(function(d) { return d.data[field.header]; });
         }
@@ -450,7 +451,9 @@ function parseCsvData(csvData){
     parsedLine['id'] = parsedId;
     parsedLine['parentId'] = d.parentId !== "" ? parseInt(d.parentId) : "";
     template.fields.forEach(function(field) {
-        if(field.type) {
+        if(field.type == 'checkbox') {
+          parsedLine[field.header] = d[field.header].toUpperCase() == "TRUE" ? true : false;
+        } else if(field.type) {
           parsedLine[field.header] = d[field.header];
         }
       }
@@ -463,7 +466,11 @@ function outputCsv(){
   var out = d3.csvFormatRows(data.map(function(d, i) {
     output = [];
     template.fields.forEach(function(field) {
-        output.push(d[field.header]);
+        if(field.type == 'checkbox') {
+          output.push(d[field.header] ? 'TRUE' : 'FALSE')
+        } else {
+          output.push(d[field.header]);
+        }
       }
     );
     return output;

@@ -73,13 +73,6 @@ template = {
       }
     },
     {
-      "header": "coach",
-      "initial": "",
-      "description": "Coach",
-      "type": "text"
-      // svg defined currently in genmapper.js
-    },
-    {
       "header": "attenders",
       "initial": 0,
       "description": "# of Attenders",
