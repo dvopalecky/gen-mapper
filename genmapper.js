@@ -496,7 +496,7 @@ function parseTransform(a)
 }
 
 function importFile() {
-    var input, file, fr, filename;
+    var input, extension, file, fr, filename;
 
     if (typeof window.FileReader !== 'function') {
         displayAlert("The file API isn't supported on this browser yet.");
@@ -517,7 +517,12 @@ function importFile() {
         filename = file.name;
         fr = new FileReader();
         fr.onload = processFile;
-        fr.readAsBinaryString(file);
+        extension = /(?:\.([^.]+))?$/.exec(filename)[1];
+        if(extension === "csv"){
+          fr.readAsText(file);
+        } else {
+          fr.readAsBinaryString(file);
+        }
     }
 
     function processFile() {
