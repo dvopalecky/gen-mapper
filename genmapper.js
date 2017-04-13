@@ -538,7 +538,7 @@ function importFile() {
           displayAlert("Wrong type of file. Please import xls, xlsx or csv files.");
           return;
         }
-
+        csvString = csvString.replace(/\r\n?/g,'\n');
         csvString = csvHeader + csvString.substring(csvString.indexOf("\n") + 1); //replace first line with a default one
 
         try {
