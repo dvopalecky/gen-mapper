@@ -11,6 +11,15 @@ For details about usage click the Help / About in the app.
 ## Changelog
 see [here](changelog.md)
 
+## Known issues
+* Firefox - clicking on (+) to add node or (-) to remove node opens the Edit window unnecessarily
+* Firefox - the position of root node when refreshing the window is not centered
+
+## Ideas for improvements
+* Hide / unhide the left menu
+* Keyboard shortcuts: Pressing Enter submits the edit form
+* Import of a subtree into given node
+
 ## License
 MIT
 
