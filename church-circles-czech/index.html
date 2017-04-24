@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GenMapper</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+<div id="content">
+  <aside id="left-menu">
+    <h1>GenMapper</h1>
+    <h2 id='project-name'>&nbsp;</h2>
+    <p>Help</p>
+    <button onclick="introSwitchVisibility()">Help / About</button>
+    <p>Zooming</p>
+    <button onclick='origPosition();'>Original Zoom &amp; Position</button>
+    <button onclick='zoomIn();'>Zoom In</button>
+    <button onclick='zoomOut();'>Zoom Out</button>
+    <p>Import / Export</p>
+    <button onclick="onLoad()">Import XLXS / CSV</button>
+    <input type="file" id="file-input" onchange="importFile()" style="display:none;">
+    <button onclick="outputCsv()">Export CSV</button>
+    <p>Printing</p>
+    <button onclick='printMap("vertical");'>Print Vertical Multipage</button>
+    <button onclick='printMap("horizontal");'>Print Horizontal One-page</button>
+  </aside>
+
+  <section id="intro">
+    <div id="intro-content">
+      <h2>GenMapper 0.2.1 Help</h2>
+      <p>Hello, this app should serve for mapping generations of simple churches. I pray it serves you to advance Jesus' kingdom.</p>
+
+      <img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend">
+      <h3>Legend</h3>
+      <p>Each circle represents a group / church. Dashed circle means group, full circle means church.<br>
+        On the top the numbers describe: # total, # believers, # baptized<br>
+        Inside the circle are the elements that are practiced in the group.<br>
+        On the left there numbers 1 to 7 represent which elements of 3/3 process are practised:<br>
+        1 - Personal care
+        2 - Worship
+        3 - Accountability
+        4 - Vision casting
+        5 - Bible study
+        6 - Practice
+        7 - Set goals and prayer
+      </p>
+      <p>Click on the group to edit it.<br>
+      Click on red button to remove group. (Works only for groups without descendants.)<br>
+      Click on green button to add child group.
+      </p>
+      <h3>Import / Export</h3>
+      <p>
+      Note: If you don't export, all changes will be lost when refreshing or closing page.<br>
+      You can import a .xlsx or .xls (MS Excel) or .csv (Comma separated values) files.<br>
+      Export is currently available only to .csv format.<br>
+      <strong>Note:</strong> Some versions of Safari have problems with export to csv. If a new tab with blob is opened instead of file downloaded (see example below)
+      <img src="../safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <br>
+      press Cmd + S, then enter a filename ending .csv, select Format: Page Source, and finally click Save.
+      <img src="../safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
+      <br>
+      For Export to PDF, use the Print buttons and then save as PDF in Chrome or Safari.
+      </p>
+      <h3>Panning / Zooming</h3>
+      <p>You can pan by draging the map and zoom by mouse wheel or using buttons on the left.</p>
+      <h3>Credits</h3>
+      <p>
+        Thanks to Curtis Sergeant for the idea of generational mapping and for providing useful feedback.<br>
+        JavaScript libraries used: <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a> and <a href="http://underscorejs.org/">Underscore.js</a><br><br>
+        Copyright (c) 2016 - 2017 Daniel Vopalecky<br>
+        Licensed with MIT Licence<br>
+        <a href="https://github.com/dvopalecky/gen-mapper">Github repository</a><br>
+        Please send suggestions and bugs to daniel.vopalecky@seznam.cz
+      </p>
+      <button onclick="introSwitchVisibility()">OK, let's start!</button>
+    </div>
+  </section>
+
+  <section id="alert-message">
+    <div id="alert-message-content">
+      <p id="alert-message-text"></p>
+      <button onclick="closeAlert()">OK</button>
+    </div>
+  </section>
+
+  <section id="edit-group">
+    <div id="edit-group-content">
+      <h1>Edit group</h1>
+      <form>
+        <table>
+          <tr>
+            <td>Parent:</td>
+            <td><p id="edit-parent"></p></td>
+          </tr>
+        </table>
+      </form>
+      <div id="edit-buttons">
+        <button id="edit-submit">Submit changes</button>
+        <button id="edit-cancel">Cancel</button>
+        <button id="edit-delete">Delete group</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="main">
+    <svg id="main-svg" width="100%"></svg>
+  </section>
+</div>
+<script src="template.js"></script>
+<script src="../d3.min.js"></script>
+<script src="../underscore-min.js"></script>
+<script src="../genmapper.js"></script>
+<script src="../FileSaver.min.js"></script>
+<script src="../xlsx.core.min.js"></script>
+</body>
+</html>

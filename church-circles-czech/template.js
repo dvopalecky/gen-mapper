@@ -3,7 +3,7 @@ var textHeight = 14;
 var textMargin = 6;
 
 template = {
-  "name": "Church circles 0.2",
+  "name": "Church circles Czech 0.1",
   "svg": {
     "node-big-rect": {
       "type": "rect",
@@ -18,7 +18,7 @@ template = {
     "node-attenders-image": {
       "type": "image",
       "attributes": {
-        "x": - boxHeight * 0.5,
+        "x": - boxHeight * 0.45,
         "y": - 2.5 * textHeight,
         "width": boxHeight / 4,
         "height": boxHeight / 4,
@@ -28,7 +28,7 @@ template = {
     "node-believers-image": {
       "type": "image",
       "attributes": {
-        "x": - boxHeight * 0.25,
+        "x": - boxHeight * 0.125,
         "y": - 2.5 * textHeight,
         "width": boxHeight / 4,
         "height": boxHeight / 4,
@@ -38,7 +38,7 @@ template = {
     "node-baptized-image": {
       "type": "image",
       "attributes": {
-        "x": boxHeight * 0.1,
+        "x": boxHeight * 0.2,
         "y": - 2.5 * textHeight,
         "width": boxHeight / 4,
         "height": boxHeight / 4,
@@ -73,18 +73,6 @@ template = {
       }
     },
     {
-      "header": "email",
-      "initial": null,
-      "description": "Email",
-      "type": "text"
-    },
-    {
-      "header": "link",
-      "initial": null,
-      "description": "Link",
-      "type": "text"
-    },
-    {
       "header": "attenders",
       "initial": 0,
       "description": "# of Attenders",
@@ -92,7 +80,7 @@ template = {
       "svg": {
         "type": "text",
         "attributes": {
-          "x": - boxHeight * 0.39,
+          "x": - boxHeight * 0.325,
           "y": - 0.5 * textMargin
         },
         "style": {
@@ -108,7 +96,7 @@ template = {
       "svg": {
         "type": "text",
         "attributes": {
-          "x": - boxHeight * 0.13,
+          "x": 0,
           "y": - 0.5 * textMargin
         },
         "style": {
@@ -124,23 +112,7 @@ template = {
       "svg": {
         "type": "text",
         "attributes": {
-          "x": boxHeight * 0.13,
-          "y": - 0.5 * textMargin
-        },
-        "style": {
-          "text-anchor": "center"
-        }
-      }
-    },
-    {
-      "header": "newlyBaptized",
-      "initial": 0,
-      "description": "# of New Baptized (since church start)",
-      "type": "text",
-      "svg": {
-        "type": "text",
-        "attributes": {
-          "x": boxHeight * 0.39,
+          "x": boxHeight * 0.325,
           "y": - 0.5 * textMargin
         },
         "style": {
@@ -322,6 +294,26 @@ template = {
         }
       }
     },
+    {
+      "header": "threeThirds",
+      "initial": "1234567",
+      "description": "Elements of 3/3 process (see help for details)",
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": boxHeight * -0.7,
+          "y": boxHeight * 0.6,
+          "transform": "rotate(90 -56 48)",
+          "rotate": -90
+        },
+        "style": {
+          "text-anchor": "center",
+          "letter-spacing": "0.35em"
+        }
+      }
+    },
+
     {
       "header": "active",
       "initial": true,
