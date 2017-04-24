@@ -125,6 +125,10 @@ aside p{
   padding-top: 10px;
 }
 
+#edit-group-content h1{
+  margin: 2px;
+}
+
 #edit-group-content button{
   width: 33%;
   height: 50px;
@@ -136,13 +140,12 @@ aside p{
 #edit-group-content input[type=text] {
     font-size: 14px;
     width: 100%;
-    padding: 5px 5px;
+    padding: 2px 2px;
     margin-left: 20px;
     box-sizing: border-box;
 }
 
 #edit-group-content input[type=checkbox] {
-  transform: scale(1.5);
   margin-left: 25px;
 }
 
