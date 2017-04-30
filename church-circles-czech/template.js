@@ -288,9 +288,9 @@ template = {
       }
     },
     {
-      "header": "placeDate",
-      "initial": "Place & Date",
-      "description": "Place & Date",
+      "header": "place",
+      "initial": "Place",
+      "description": "Place",
       "type": "text",
       "svg": {
         "type": "text",
