@@ -4,6 +4,12 @@ var textMargin = 6;
 
 template = {
   "name": "Church circles 0.2",
+  "settings": {
+    "nodeSize": {
+      "width": boxHeight * 1.5,
+      "height": boxHeight * 2.0
+    }
+  },
   "svg": {
     "node-big-rect": {
       "type": "rect",

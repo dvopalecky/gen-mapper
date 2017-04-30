@@ -47,7 +47,7 @@ var data = parseCsvData(initialCsv);
 var nodes;
 
 origPosition();
-redraw();
+redraw(template);
 
 var alertElement = document.getElementById("alert-message");
 var editGroupElement = document.getElementById("edit-group");
@@ -152,7 +152,7 @@ function editGroup(groupData) {
   );
 
   editGroupElement.style.display = "none";
-  redraw();
+  redraw(template);
 }
 
 function printMap(printType) {
@@ -218,10 +218,11 @@ function printMap(printType) {
   d3.selectAll("#main-svg").style("background", null);
 }
 
-function redraw(){
+function redraw(template){
     // declares a tree layout and assigns the size
     var tree = d3.tree()
-      .nodeSize([boxHeight * 1.5, boxHeight * 2])
+      .nodeSize([template.settings.nodeSize.width,
+                 template.settings.nodeSize.height])
       .separation(function separation(a, b) {
         return a.parent == b.parent ? 1 : 1.2;
       });
@@ -291,6 +292,7 @@ function redraw(){
               element.style('display', function(d) { return d.data[field.header] ? "block" : "none" });
           }
           if(field.svg.type == 'rect' && field.type == 'checkbox'){
+              // make rectangle/circle outline full if true or dashed if false
               element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
               element.attr('stroke-width', function(d) { return d.data[field.header] ? "2" : "1" });
           }
@@ -420,7 +422,7 @@ function addNode(d) {
   newNodeData['parentId'] = d.data.id;
   data.push(newNodeData);
 
-  redraw();
+  redraw(template);
 }
 
 function removeNode(d){
@@ -439,7 +441,7 @@ function removeNode(d){
     displayAlert("Sorry, delete not possible. Please delete all descendant groups first.");
   }
   document.getElementById("edit-group").style.display = "none";
-  redraw();
+  redraw(template);
 }
 
 function parseCsvData(csvData){
@@ -552,7 +554,7 @@ function importFile() {
           var stratifiedDataTest = d3.stratify()(tmpData);
           treeTest(stratifiedDataTest);
           data = tmpData;
-          redraw();
+          redraw(template);
         }
         catch(err) {
           if(err == "id must be >= 0."){

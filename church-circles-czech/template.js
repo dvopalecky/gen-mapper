@@ -4,6 +4,12 @@ var textMargin = 6;
 
 template = {
   "name": "Church circles Czech 0.1",
+  "settings": {
+    "nodeSize": {
+      "width": boxHeight * 1.5,
+      "height": boxHeight * 2.1
+    }
+  },
   "svg": {
     "node-big-rect": {
       "type": "rect",
@@ -291,6 +297,19 @@ template = {
         "attributes": {
           "x": 0,
           "y": boxHeight + 2 * textHeight
+        }
+      }
+    },
+    {
+      "header": "date",
+      "initial": "Date",
+      "description": "Date of Start (Finish)",
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": 0,
+          "y": boxHeight + 3 * textHeight
         }
       }
     },

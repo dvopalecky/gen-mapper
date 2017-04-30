@@ -4,6 +4,12 @@ var textMargin = 6;
 
 template = {
   "name": "Four fields 0.1",
+  "settings": {
+    "nodeSize": {
+      "width": boxHeight * 1.5,
+      "height": boxHeight * 2.1
+    }
+  },
   "svg": {
     "node-big-rect": {
       "type": "rect",
