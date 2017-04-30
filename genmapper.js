@@ -454,7 +454,8 @@ function parseCsvData(csvData){
     parsedLine['parentId'] = d.parentId !== "" ? parseInt(d.parentId) : "";
     template.fields.forEach(function(field) {
         if(field.type == 'checkbox') {
-          parsedLine[field.header] = d[field.header].toUpperCase() == "TRUE" ? true : false;
+          var fieldValue = d[field.header].toUpperCase()
+          parsedLine[field.header] = ['TRUE', '1'].includes(fieldValue) ? true : false;
         } else if(field.type) {
           parsedLine[field.header] = d[field.header];
         }
@@ -469,7 +470,7 @@ function outputCsv(){
     output = [];
     template.fields.forEach(function(field) {
         if(field.type == 'checkbox') {
-          output.push(d[field.header] ? 'TRUE' : 'FALSE')
+          output.push(d[field.header] ? '1' : '0')
         } else {
           output.push(d[field.header]);
         }
