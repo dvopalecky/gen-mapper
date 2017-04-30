@@ -329,6 +329,25 @@ template = {
       }
     },
     {
+      "header": "threeThirds",
+      "initial": "1234567",
+      "description": "Elements of 3/3 process (see help for details)",
+      "type": "text",
+      "svg": {
+        "type": "text",
+        "attributes": {
+          "x": boxHeight * -0.7,
+          "y": boxHeight * 0.6,
+          "transform": "rotate(90 -56 48)",
+          "rotate": -90
+        },
+        "style": {
+          "text-anchor": "center",
+          "letter-spacing": "0.35em"
+        }
+      }
+    },
+    {
       "header": "active",
       "initial": true,
       "description": "Active",

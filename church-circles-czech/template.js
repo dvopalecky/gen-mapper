@@ -332,7 +332,6 @@ template = {
         }
       }
     },
-
     {
       "header": "active",
       "initial": true,
