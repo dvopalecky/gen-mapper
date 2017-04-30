@@ -1,5 +1,11 @@
 # gen-mapper changelog
 
+## 0.2.2 (2017-04-30)
+- exports true/false fields as 1/0 into .csv
+- importing true/false (checkbox) fields: TRUE/true/1 values are considered as TRUE
+- Updated templates church-circles and church-circles-czech
+- minor changes in style
+
 ## 0.2.1 (2017-04-14)
 - Fix bug with importing .csv files which where opened by Excel
 - Add support for utf-8 characters in .csv import
