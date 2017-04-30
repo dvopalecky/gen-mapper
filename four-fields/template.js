@@ -3,11 +3,11 @@ var textHeight = 14;
 var textMargin = 6;
 
 template = {
-  "name": "Four fields 0.1",
+  "name": "Four fields 0.2",
   "settings": {
     "nodeSize": {
       "width": boxHeight * 1.5,
-      "height": boxHeight * 2.1
+      "height": boxHeight * 2.0
     }
   },
   "svg": {
