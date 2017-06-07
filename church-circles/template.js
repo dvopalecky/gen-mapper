@@ -3,7 +3,7 @@ var textHeight = 14;
 var textMargin = 6;
 
 template = {
-  "name": "Church circles 0.2",
+  "name": "Church circles 0.3",
   "settings": {
     "nodeSize": {
       "width": boxHeight * 1.5,
