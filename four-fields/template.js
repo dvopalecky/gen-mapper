@@ -3,7 +3,7 @@ var textHeight = 14;
 var textMargin = 6;
 
 template = {
-  "name": "Four fields 0.2",
+  "name": "Four fields 0.3",
   "settings": {
     "nodeSize": {
       "width": boxHeight * 1.5,
@@ -133,7 +133,7 @@ template = {
     },
     {
       "header": "field4",
-      "initial": 0,
+      "initial": "No",
       "description": "Field 4 (church?)",
       "type": "text",
       "svg": {
