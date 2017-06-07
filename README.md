@@ -5,6 +5,13 @@ App for mapping generations of simple churches
 The app can be found [here](https://dvopalecky.github.io/gen-mapper).
 For details about usage click the Help / About in the app.
 
+There are several variants of the App, e.g. Four Fields or Church Circles.
+These variants use templates so it's relatively easy to create a new variant for specific purpose.
+
+Currently the App use only front-end technologies: HTML, CSS, JavaScript.
+It can be also run offline. Downside is that the work must be stored in local .csv files.
+Backend support, i.e. saving work on the server, sharing etc. might be added later.
+
 ## Example
 ![gen-mapper example](https://dvopalecky.github.io/gen-mapper/gen-mapper-example1.png)
 
@@ -19,6 +26,7 @@ see [here](changelog.md)
 * Hide / unhide the left menu
 * Keyboard shortcuts: Pressing Enter submits the edit form
 * Import of a subtree into given node
+* Backend support: Saving work on server, sharing, etc.
 
 ## License
 MIT
