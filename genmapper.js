@@ -316,6 +316,10 @@ function redraw(template){
               if(d.data["churchType"] === "legacy") return 4;
               else return 2;
             });
+            element.attr('stroke', function(d) {
+              if(d.data["churchType"] === "legacy") return "green";
+              else return "black";
+            });
             element.attr('rx', function(d) {
               var churchType = d.data["churchType"];
               if(churchType === "newBelievers") {
@@ -423,6 +427,10 @@ function redraw(template){
             element.attr('stroke-width', function(d) {
               if(d.data["churchType"] === "legacy") return 4;
               else return 2;
+            });
+            element.attr('stroke', function(d) {
+              if(d.data["churchType"] === "legacy") return "green";
+              else return "black";
             });
             element.attr('rx', function(d) {
               var churchType = d.data["churchType"];

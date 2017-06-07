@@ -227,10 +227,6 @@ aside p{
   fill: black;
 }
 
-.node--active > rect, .node--active > line {
-  stroke: black;
-}
-
 .node--inactive text, .link-text--inactive {
   stroke: #000;
   fill: #000;
