@@ -5,7 +5,7 @@ App for mapping generations of simple churches
 The app can be found [here](https://dvopalecky.github.io/gen-mapper).
 For details about usage click the Help / About in the app.
 
-There are several variants of the App, e.g. Four Fields or Church Circles.
+There are several variants of the App, e.g. [Four Fields](https://dvopalecky.github.io/gen-mapper/four-fields/index.html) or [Church Circles](https://dvopalecky.github.io/gen-mapper/church-circles/index.html).
 These variants use templates so it's relatively easy to create a new variant for specific purpose.
 
 Currently the App use only front-end technologies: HTML, CSS, JavaScript.
