@@ -164,12 +164,31 @@ template = {
         "attributes": {
           "x": - boxHeight / 2,
           "y": 0,
-          "rx": boxHeight * 0.5,
+          "rx": 0,
           "width": boxHeight,
-          "height": boxHeight,
-          "stroke-dasharray": "7, 7"
+          "height": boxHeight
         }
       }
+    },
+    {
+      "header": "churchType",
+      "initial": "newBelievers",
+      "description": "Church Type",
+      "type": "radio",
+      "values": [
+        {
+          "header": "legacy",
+          "description": "Legacy"
+        },
+        {
+          "header": "existingBelievers",
+          "description": "Existing Believers"
+        },
+        {
+          "header": "newBelievers",
+          "description": "New Believers"
+        }
+      ]
     },
     {
       "header": "elementBaptism",

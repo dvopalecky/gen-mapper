@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.3 (2017-06-06)
+- church-circles template updated with "Church Type" field
+
 ## 0.2.2 (2017-04-30)
 - exports true/false fields as 1/0 into .csv
 - importing true/false (checkbox) fields: TRUE/true/1 values are considered as TRUE

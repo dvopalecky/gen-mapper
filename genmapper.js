@@ -53,7 +53,12 @@ var alertElement = document.getElementById("alert-message");
 var editGroupElement = document.getElementById("edit-group");
 var editFieldElements = {};
 template.fields.forEach(function(field) {
-    if(field.type) {
+    if(field.type === "radio") {
+      field.values.forEach(function(value) {
+        editFieldElements[field.header + '-' + value.header] =
+          document.getElementById("edit-" + field.header + "-" + value.header);
+      });
+    } else if(field.type) {
       editFieldElements[field.header] = document.getElementById("edit-" + field.header);
     }
   }
@@ -123,6 +128,11 @@ function popupEditGroupModal(d) {
   template.fields.forEach(function(field) {
       if(field.type == "text") {
         editFieldElements[field.header].value = d.data[field.header];
+      } else if (field.type == "radio") {
+        field.values.forEach(function(value){
+          var status = (value.header === d.data[field.header])
+          editFieldElements[field.header + "-" + value.header].checked = status;
+        });
       } else if (field.type == "checkbox") {
         editFieldElements[field.header].checked = d.data[field.header];
       }
@@ -145,6 +155,12 @@ function editGroup(groupData) {
   template.fields.forEach(function(field) {
       if(field.type == "text") {
         groupData[field.header] = editFieldElements[field.header].value
+      } else if (field.type == "radio") {
+        field.values.forEach(function(value){
+          if(editFieldElements[field.header + "-" + value.header].checked) {
+            groupData[field.header] = value.header;
+          }
+        });
       } else if (field.type == "checkbox") {
         groupData[field.header] = editFieldElements[field.header].checked
       }
@@ -292,9 +308,24 @@ function redraw(template){
               element.style('display', function(d) { return d.data[field.header] ? "block" : "none" });
           }
           if(field.svg.type == 'rect' && field.type == 'checkbox'){
-              // make rectangle/circle outline full if true or dashed if false
-              element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
-              element.attr('stroke-width', function(d) { return d.data[field.header] ? "2" : "1" });
+            // make rectangle/circle outline full if true or dashed if false
+            element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
+
+            // Hard coded values for 'churchType'- not a good practice
+            element.attr('stroke-width', function(d) {
+              if(d.data["churchType"] === "legacy") return 4;
+              else return 2;
+            });
+            element.attr('rx', function(d) {
+              var churchType = d.data["churchType"];
+              if(churchType === "newBelievers") {
+                return 0.5 * boxHeight;
+              } else if(churchType === "legacy" || churchType === "existingBelievers") {
+                return 0;
+              } else {
+                return 0.5 * boxHeight;
+              }
+            });
           }
         }
       }
@@ -386,8 +417,23 @@ function redraw(template){
               element.style('display', function(d) { return d.data[field.header] ? "block" : "none";});
           }
           if(field.svg.type == 'rect' && field.type == 'checkbox'){
-              element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
-              element.attr('stroke-width', function(d) { return d.data[field.header] ? "2" : "1" });
+            element.attr('stroke-dasharray', function(d) { return d.data[field.header] ? "" : "7, 7" });
+
+            // Hard coded values for 'churchType' - not a good practice
+            element.attr('stroke-width', function(d) {
+              if(d.data["churchType"] === "legacy") return 4;
+              else return 2;
+            });
+            element.attr('rx', function(d) {
+              var churchType = d.data["churchType"];
+              if(churchType === "newBelievers") {
+                return 0.5 * boxHeight;
+              } else if(churchType === "legacy" || churchType === "existingBelievers") {
+                return 0;
+              } else {
+                return 0.5 * boxHeight;
+              }
+            });
           }
           element.text(function(d) { return d.data[field.header]; });
         }
@@ -562,7 +608,9 @@ function importFile() {
             displayAlert("Error when importing file. Group id must be >= 0");
           }
           else {
-            displayAlert("Error when importing file. Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree.");
+            displayAlert("Error when importing file.<br><br>Please check that the file is in correct format" +
+              "(comma separated values), that the root group has no parent, and that all other" +
+              "relationships make a valid tree.<br><br>Also check that you use the correct version of the App.");
           }
         }
     }
@@ -578,11 +626,26 @@ function addFieldsToEditWindow(template)
           .append('tr');
         tr.append('td')
           .text(field.description + ":");
-        tr.append('td')
-          .append('input')
+        var td = tr.append('td');
+        if(field.type == 'radio') {
+          for (let value of field.values) {
+            td.append('input')
+              .attr("type", field.type)
+              .attr("name", field.header)
+              .attr("value", value.header)
+              .attr("id", "edit-" + field.header + "-" + value.header);
+            td.append('span')
+              .html(value.description);
+            td.append('br');
+          }
+        }
+        else {
+          td.append('input')
             .attr("type", field.type)
             .attr("name", field.header)
-            .attr("id", "edit-" + field.header)
+            .attr("name", field.header)
+            .attr("id", "edit-" + field.header);
+        }
       }
     }
   );

@@ -215,7 +215,6 @@ aside p{
 }
 
 .node:hover > rect, .node:hover > line {
-  stroke-width:2px;
   fill: lightskyblue;
 }
 

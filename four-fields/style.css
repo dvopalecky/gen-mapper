@@ -1,0 +1,5 @@
+/* CSS for Genmapper: Four Fields template */
+
+.node:hover > rect, .node:hover > line {
+  stroke-width: 2px;
+}
