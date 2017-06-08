@@ -1,0 +1,29 @@
+{
+  "name": "gen-mapper",
+  "version": "0.2.3",
+  "description": "App for mapping generations of simple churches",
+  "author": "Daniel Vopalecky <daniel.vopalecky@seznam.cz>",
+  "main": "genmapper.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvopalecky/gen-mapper"
+  },
+  "bugs": {
+     "url": "https://github.com/dvopalecky/gen-mapper/issues"
+  },
+  "keywords": [
+    "generation",
+    "map",
+    "tree"
+  ],
+  "dependencies": {
+    "d3": "4.2.2"
+  },
+  "private": true,
+  "license": "MIT",
+  "standard": {
+    "ignore": [
+      "underscore-min.js"
+    ]
+  }
+}
