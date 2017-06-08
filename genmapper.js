@@ -3,7 +3,7 @@
 // https://github.com/dvopalecky/gen-mapper
 // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
 
-/* global d3, XLSX, saveAs, FileReader, template, _, event, Blob */
+/* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
 const height = 800 - margin.top - margin.bottom
