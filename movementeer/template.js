@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'GCM 0.1',
+  'name': 'MOVEMENTeer 0.1',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -67,14 +67,27 @@ const template = {
       }
     },
     {
-      'header': 'coach',
-      'initial': 'Coach',
-      'description': 'Coach',
-      'type': 'text'
-      // svg defined currently in genmapper.js
+      'header': 'leaderType',
+      'initial': 'timothy',
+      'description': 'Leader',
+      'type': 'radio',
+      'values': [
+        {
+          'header': 'missionary',
+          'description': 'Full time missionary'
+        },
+        {
+          'header': 'existingBeliever',
+          'description': 'Existing lay believer'
+        },
+        {
+          'header': 'timothy',
+          'description': 'A Timothy'
+        }
+      ]
     },
     {
-      'header': 'field1',
+      'header': 'unbelievers',
       'initial': 0,
       'description': 'Field 1 (# unbelievers)',
       'type': 'text',
@@ -90,7 +103,7 @@ const template = {
       }
     },
     {
-      'header': 'field2',
+      'header': 'believers',
       'initial': 0,
       'description': 'Field 2 (# believers)',
       'type': 'text',
@@ -106,7 +119,7 @@ const template = {
       }
     },
     {
-      'header': 'field3',
+      'header': 'leaders',
       'initial': 0,
       'description': 'Field 3 (# leaders)',
       'type': 'text',
@@ -122,9 +135,9 @@ const template = {
       }
     },
     {
-      'header': 'field4',
+      'header': 'reproducing',
       'initial': '0',
-      'description': 'Field 4 (# new churches)',
+      'description': 'Field 4 (# reproducing)',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -156,6 +169,24 @@ const template = {
       'description': 'Active',
       'type': 'checkbox'
       // svg defined currently in genmapper.js
+    },
+    {
+      'header': 'newBelievers',
+      'initial': 0,
+      'description': '# New Belivers (since church group started)',
+      'type': 'text'
+    },
+    {
+      'header': 'church',
+      'initial': false,
+      'description': 'Is church?',
+      'type': 'checkbox'
+    },
+    {
+      'header': 'actionSteps',
+      'initial': '',
+      'description': 'Action step/s for this month',
+      'type': 'textbox'
     }
   ]
 }
