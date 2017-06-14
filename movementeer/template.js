@@ -11,12 +11,24 @@ const template = {
     }
   },
   'svg': {
-    'node-big-rect': {
+    'node-big-rect-1': {
       'type': 'rect',
       'attributes': {
         'x': -boxHeight / 2,
         'y': 0,
-        'rx': boxHeight * 0.1,
+        'stroke-width': 0,
+        'width': boxHeight,
+        'height': boxHeight,
+        'opacity': 0
+      }
+    },
+    'node-big-rect-2': {
+      'type': 'rect',
+      'attributes': {
+        'x': -boxHeight / 2,
+        'y': 0,
+        'rx': boxHeight * 0.5,
+        'stroke-width': 0,
         'width': boxHeight,
         'height': boxHeight
       }
@@ -180,7 +192,19 @@ const template = {
       'header': 'church',
       'initial': false,
       'description': 'Is church?',
-      'type': 'checkbox'
+      'type': 'checkbox',
+      'svg': {
+        'type': 'rect',
+        'attributes': {
+          'x': -boxHeight / 2,
+          'y': 0,
+          'rx': boxHeight * 0.5,
+          'width': boxHeight,
+          'height': boxHeight,
+          'stroke-dasharray': '7, 7',
+          'fill-opacity': 0
+        }
+      }
     },
     {
       'header': 'actionSteps',
