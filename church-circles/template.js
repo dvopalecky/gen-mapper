@@ -3,11 +3,11 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'Church circles 0.3',
+  'name': 'Church circles 0.4',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
-      'height': boxHeight * 2.0
+      'height': boxHeight * 2.1
     }
   },
   'svg': {
@@ -67,8 +67,8 @@ const template = {
     },
     {
       'header': 'name',
-      'initial': 'Name',
-      'description': 'Name',
+      'initial': "Leader's Name",
+      'description': "Leader's Name",
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -335,15 +335,28 @@ const template = {
       }
     },
     {
-      'header': 'placeDate',
-      'initial': 'Place & Date',
-      'description': 'Place & Date',
+      'header': 'place',
+      'initial': 'Place',
+      'description': 'Place',
       'type': 'text',
       'svg': {
         'type': 'text',
         'attributes': {
           'x': 0,
           'y': boxHeight + 2 * textHeight
+        }
+      }
+    },
+    {
+      'header': 'date',
+      'initial': 'Date',
+      'description': 'Date of Start (Finish)',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': boxHeight + 3 * textHeight
         }
       }
     },
