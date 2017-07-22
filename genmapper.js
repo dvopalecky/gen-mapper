@@ -201,7 +201,6 @@ function printMap (printType) {
     const printScale = Math.min(1, printWidth / (totalWidthLeft + totalWidthRight), printHeight / totalHeight)
     translateX = totalWidthLeft * printScale
     translateY = margin.top * printScale
-    x = 'translate(' + translateX + ', ' + translateY + ') scale(' + printScale + '))'
     g.attr('transform', 'translate(' + translateX + ', ' + translateY + ') scale(' + printScale + ')')
   } else {
     // resize for printing
@@ -546,13 +545,15 @@ function parseTransform (a) {
 }
 
 function importFile () {
-  let filename, fr
+  importFileFromInput('file-input', processFile)
+}
 
+function importFileFromInput (fileInputElementId, callback) {
   if (typeof window.FileReader !== 'function') {
     displayAlert("The file API isn't supported on this browser yet.")
     return
   }
-  const input = document.getElementById('file-input')
+  const input = document.getElementById(fileInputElementId)
   if (!input) {
     displayAlert("Um, couldn't find the fileinput element.")
   } else if (!input.files) {
@@ -561,9 +562,12 @@ function importFile () {
     displayAlert('Please select a file')
   } else {
     const file = input.files[0]
-    filename = file.name
-    fr = new FileReader()
-    fr.onload = processFile
+    const filename = file.name
+    const fr = new FileReader()
+    fr.onload = function () {
+      const filedata = fr.result
+      callback(filedata, filename)
+    }
     const extension = /(?:\.([^.]+))?$/.exec(filename)[1]
     if (extension === 'csv') {
       fr.readAsText(file)
@@ -571,43 +575,49 @@ function importFile () {
       fr.readAsBinaryString(file)
     }
   }
+}
 
-  function processFile () {
-    const regex = /(?:\.([^.]+))?$/
-    const extension = regex.exec(filename)[1]
-    const filedata = fr.result
-    let csvString
-
-    if (extension === 'xls' || extension === 'xlsx') {
-      const workbook = XLSX.read(filedata, {type: 'binary'})
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]]
-      csvString = XLSX.utils.sheet_to_csv(worksheet)
-    } else if (extension === 'csv') {
-      csvString = filedata
+function processFile (filedata, filename) {
+  const csvString = fileToCsvString(filedata, filename)
+  try {
+    mapCsv(csvString)
+  } catch (err) {
+    if (err === 'id must be >= 0.') {
+      displayAlert('Error when importing file. Group id must be >= 0')
     } else {
-      displayAlert('Wrong type of file. Please import xls, xlsx or csv files.')
-      return
-    }
-    csvString = csvString.replace(/\r\n?/g, '\n')
-    csvString = csvHeader + csvString.substring(csvString.indexOf('\n') + 1) // replace first line with a default one
-
-    try {
-      const tmpData = parseCsvData(csvString)
-      const treeTest = d3.tree()
-      const stratifiedDataTest = d3.stratify()(tmpData)
-      treeTest(stratifiedDataTest)
-      data = tmpData
-      redraw(template)
-    } catch (err) {
-      if (err === 'id must be >= 0.') {
-        displayAlert('Error when importing file. Group id must be >= 0')
-      } else {
-        displayAlert('Error when importing file.<br><br>Please check that the file is in correct format' +
-              '(comma separated values), that the root group has no parent, and that all other' +
-              'relationships make a valid tree.<br><br>Also check that you use the correct version of the App.')
-      }
+      displayAlert('Error when importing file.<br><br>Please check that the file is in correct format' +
+            '(comma separated values), that the root group has no parent, and that all other' +
+            'relationships make a valid tree.<br><br>Also check that you use the correct version of the App.')
     }
   }
+}
+
+function fileToCsvString (filedata, filename) {
+  const regex = /(?:\.([^.]+))?$/
+  const extension = regex.exec(filename)[1].toLowerCase()
+  let csvString
+
+  if (extension === 'xls' || extension === 'xlsx') {
+    const workbook = XLSX.read(filedata, {type: 'binary'})
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+    csvString = XLSX.utils.sheet_to_csv(worksheet)
+  } else if (extension === 'csv') {
+    csvString = filedata
+  } else {
+    displayAlert('Wrong type of file. Please import xls, xlsx or csv files.')
+    return
+  }
+  csvString = csvString.replace(/\r\n?/g, '\n')
+  return csvHeader + csvString.substring(csvString.indexOf('\n') + 1) // replace first line with a default one
+}
+
+function mapCsv (csvString) {
+  const tmpData = parseCsvData(csvString)
+  const treeTest = d3.tree()
+  const stratifiedDataTest = d3.stratify()(tmpData)
+  treeTest(stratifiedDataTest)
+  data = tmpData
+  redraw(template)
 }
 
 function addFieldsToEditWindow (template) {
