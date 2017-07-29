@@ -5,6 +5,8 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
+loadHTMLContent()
+
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
 const height = 800 - margin.top - margin.bottom
 
@@ -74,8 +76,58 @@ document.addEventListener('keyup', function (e) {
         editGroupElement.style.display = 'none'
       }
     }
+  } else if (e.keyCode === 13) {
+    // hitting enter is like submitting changes in the edit window
+    if (editGroupElement.style.display !== 'none') {
+      document.getElementById('edit-submit').click()
+    }
   }
 })
+
+function loadHTMLContent () {
+  document.getElementById('left-menu').innerHTML = '<h1>GenMapper</h1>' +
+  '<h2 id="project-name">&nbsp;</h2>' +
+  '<p>Help</p>' +
+  '<button onclick="introSwitchVisibility()">Help / About</button>' +
+  '<p>Zooming</p>' +
+  '<button onclick="origPosition();">Original Zoom &amp; Position</button>' +
+  '<button onclick="zoomIn();">Zoom In</button>' +
+  '<button onclick="zoomOut();">Zoom Out</button>' +
+  '<p>Import / Export</p>' +
+  '<button onclick="onLoad(\'file-input\')">Import XLXS / CSV</button>' +
+  '<input type="file" id="file-input" onchange="importFile()" style="display:none;">' +
+  '<button onclick="outputCsv()">Export CSV</button>' +
+  '<p>Printing</p>' +
+  '<button onclick="printMap(\'vertical\');">Print Vertical Multipage</button>' +
+  '<button onclick="printMap(\'horizontal\');">Print Horizontal One-page</button>'
+
+  document.getElementById('edit-group').innerHTML = '<div id="edit-group-content">' +
+  '  <h1>Edit group</h1>' +
+  '  <form>' +
+  '    <table>' +
+  '      <tr>' +
+  '        <td>Parent:<td>' +
+  '        <td><p id="edit-parent"></p></td>' +
+  '      </tr>' +
+  '    </table>' +
+  '  </form>' +
+  '  <div id="edit-buttons">' +
+  '    <button id="edit-submit">Submit changes</button>' +
+  '    <button id="edit-cancel">Cancel</button>' +
+  '    <button id="edit-delete">Delete group</button>' +
+  '    <button onclick="onLoad(\'file-input-subtree\')">Import Subtree</button>' +
+  '    <input type="file" id="file-input-subtree" style="display:none;">' +
+  '  </div>' +
+  '</div>'
+
+  document.getElementById('alert-message').innerHTML =
+  '<div id="alert-message-content">' +
+  '  <p id="alert-message-text"></p>' +
+  '  <button onclick="closeAlert()">OK</button>' +
+  '</div>'
+
+  document.getElementById('version').innerHTML = '0.2.4'
+}
 
 function zoomed () {
   g.attr('transform', d3.event.transform)
@@ -231,7 +283,7 @@ function printMap (printType) {
 }
 
 function redraw (template) {
-    // declares a tree layout and assigns the size
+  // declares a tree layout and assigns the size
   const tree = d3.tree()
       .nodeSize([template.settings.nodeSize.width,
         template.settings.nodeSize.height])
@@ -241,7 +293,7 @@ function redraw (template) {
 
   const stratifiedData = d3.stratify()(data)
   nodes = tree(stratifiedData)
-    // update the links between the nodes
+  // update the links between the nodes
   const link = gLinks.selectAll('.link')
         .data(nodes.descendants().slice(1))
 
@@ -259,7 +311,7 @@ function redraw (template) {
              ' ' + d.parent.x + ',' + (d.parent.y + boxHeight)
         })
 
-    // update the link text between the nodes
+  // update the link text between the nodes
   const LINK_TEXT_POSITION = 0.3 // 1 -> parent, 0 -> child
   const linkText = gLinksText.selectAll('.link-text')
         .data(nodes.descendants().slice(1))
@@ -275,14 +327,14 @@ function redraw (template) {
       .attr('y', function (d) { return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION })
       .text(function (d) { return d.data.coach })
 
-    // update nodes
+  // update nodes
   const node = gNodes.selectAll('.node')
         .data(nodes.descendants())
 
   node.exit()
       .remove()
 
-    // update
+  // UPDATE
   node.attr('class', function (d) {
     return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
   })
@@ -297,43 +349,16 @@ function redraw (template) {
   node.select('.addNode')
       .on('click', function (d) { addNode(d); event.cancelBubble = true })
 
-    // update node elements which have SVG in template
+  // update node elements which have SVG in template
   template.fields.forEach(function (field) {
     if (field.svg) {
       const element = node.select('.node-' + field.header)
-            .text(function (d) { return d.data[field.header] })
-      if (field.svg.type === 'image' && field.type === 'checkbox') {
-        element.style('display', function (d) { return d.data[field.header] ? 'block' : 'none' })
-      }
-      if (field.svg.type === 'rect' && field.type === 'checkbox') {
-            // make rectangle/circle outline full if true or dashed if false
-        element.attr('stroke-dasharray', function (d) { return d.data[field.header] ? '' : '7, 7' })
-
-            // Hard coded values for 'churchType'- not a good practice
-        element.attr('stroke-width', function (d) {
-          if (d.data['churchType'] === 'legacy') return 4
-          else return 2
-        })
-        element.attr('stroke', function (d) {
-          if (d.data['churchType'] === 'legacy') return 'green'
-          else return 'black'
-        })
-        element.attr('rx', function (d) {
-          const churchType = d.data['churchType']
-          if (churchType === 'newBelievers') {
-            return 0.5 * boxHeight
-          } else if (churchType === 'legacy' || churchType === 'existingBelievers') {
-            return 0
-          } else {
-            return 0.5 * boxHeight
-          }
-        })
-      }
+      appendSvgForFields(field, element)
     }
   }
     )
 
-    // NEW ELEMENTS
+  // NEW ELEMENTS
   const group = node.enter()
         .append('g')
         .attr('class', function (d) {
@@ -345,6 +370,69 @@ function redraw (template) {
         .on('click', function (d) { popupEditGroupModal(d) })
 
   group.append('title').text('Edit group')
+  appendRemoveButton(group)
+  appendAddButton(group)
+
+  // append SVG elements without fields
+  Object.keys(template.svg).forEach(function (svgElement) {
+    const svgElementValue = template.svg[svgElement]
+    const element = group.append(svgElementValue['type'])
+    element.attr('class', svgElement)
+    Object.keys(svgElementValue.attributes).forEach(function (attribute) {
+      element.attr(attribute, svgElementValue.attributes[attribute])
+    })
+  })
+
+  // append SVG elements related to fields
+  template.fields.forEach(function (field) {
+    if (field.svg) {
+      const element = group.append(field.svg['type'])
+      element.attr('class', 'node-' + field.header)
+      Object.keys(field.svg.attributes).forEach(function (attribute) {
+        element.attr(attribute, field.svg.attributes[attribute])
+      })
+      if (field.svg.style) {
+        Object.keys(field.svg.style).forEach(function (styleKey) {
+          element.style(styleKey, field.svg.style[styleKey])
+        })
+      }
+      appendSvgForFields(field, element)
+    }
+  }
+    )
+}
+
+function appendSvgForFields (field, element) {
+  element.text(function (d) { return d.data[field.header] })
+  if (field.svg.type === 'image') {
+    element.style('display', function (d) { return d.data[field.header] ? 'block' : 'none' })
+  }
+  if (field.svg.type === 'rect' && field.type === 'checkbox') {
+    element.attr('stroke-dasharray', function (d) { return d.data[field.header] ? '' : '7, 7' })
+
+        // Hard coded values for 'churchType' - not a good practice
+    element.attr('stroke-width', function (d) {
+      if (d.data['churchType'] === 'legacy') return 4
+      else return 2
+    })
+    element.attr('stroke', function (d) {
+      if (d.data['churchType'] === 'legacy') return 'green'
+      else return 'black'
+    })
+    element.attr('rx', function (d) {
+      const churchType = d.data['churchType']
+      if (churchType === 'newBelievers') {
+        return 0.5 * boxHeight
+      } else if (churchType === 'legacy' || churchType === 'existingBelievers') {
+        return 0
+      } else {
+        return 0.5 * boxHeight
+      }
+    })
+  }
+}
+
+function appendRemoveButton (group) {
   const gRemoveNode = group.append('g')
       .attr('class', 'removeNode')
       .on('click', function (d) { removeNode(d); event.cancelBubble = true })
@@ -369,6 +457,9 @@ function redraw (template) {
       .attr('y2', boxHeight * 0.25 + 6.5)
       .attr('stroke', 'white')
       .attr('stroke-width', 3)
+}
+
+function appendAddButton (group) {
   const gAddNode = group.append('g')
       .attr('class', 'addNode')
       .on('click', function (d) { addNode(d); event.cancelBubble = true })
@@ -393,60 +484,6 @@ function redraw (template) {
       .attr('y2', boxHeight * 0.75 + 7.5)
       .attr('stroke', 'white')
       .attr('stroke-width', 3)
-
-    // append SVG elements without fields
-  Object.keys(template.svg).forEach(function (svgElement) {
-    const svgElementValue = template.svg[svgElement]
-    const element = group.append(svgElementValue['type'])
-    element.attr('class', svgElement)
-    Object.keys(svgElementValue.attributes).forEach(function (attribute) {
-      element.attr(attribute, svgElementValue.attributes[attribute])
-    })
-  })
-
-    // append SVG elements related to fields
-  template.fields.forEach(function (field) {
-    if (field.svg) {
-      const element = group.append(field.svg['type'])
-      element.attr('class', 'node-' + field.header)
-      Object.keys(field.svg.attributes).forEach(function (attribute) {
-        element.attr(attribute, field.svg.attributes[attribute])
-      })
-      if (field.svg.style) {
-        Object.keys(field.svg.style).forEach(function (styleKey) {
-          element.style(styleKey, field.svg.style[styleKey])
-        })
-      }
-      if (field.svg.type === 'image') {
-        element.style('display', function (d) { return d.data[field.header] ? 'block' : 'none' })
-      }
-      if (field.svg.type === 'rect' && field.type === 'checkbox') {
-        element.attr('stroke-dasharray', function (d) { return d.data[field.header] ? '' : '7, 7' })
-
-            // Hard coded values for 'churchType' - not a good practice
-        element.attr('stroke-width', function (d) {
-          if (d.data['churchType'] === 'legacy') return 4
-          else return 2
-        })
-        element.attr('stroke', function (d) {
-          if (d.data['churchType'] === 'legacy') return 'green'
-          else return 'black'
-        })
-        element.attr('rx', function (d) {
-          const churchType = d.data['churchType']
-          if (churchType === 'newBelievers') {
-            return 0.5 * boxHeight
-          } else if (churchType === 'legacy' || churchType === 'existingBelievers') {
-            return 0
-          } else {
-            return 0.5 * boxHeight
-          }
-        })
-      }
-      element.text(function (d) { return d.data[field.header] })
-    }
-  }
-    )
 }
 
 function addNode (d) {
