@@ -17,7 +17,7 @@
     <button onclick='zoomIn();'>Zoom In</button>
     <button onclick='zoomOut();'>Zoom Out</button>
     <p>Import / Export</p>
-    <button onclick="onLoad()">Import XLXS / CSV</button>
+    <button onclick="onLoad('file-input')">Import XLXS / CSV</button>
     <input type="file" id="file-input" onchange="importFile()" style="display:none;">
     <button onclick="outputCsv()">Export CSV</button>
     <p>Printing</p>
@@ -98,6 +98,8 @@
         <button id="edit-submit">Submit changes</button>
         <button id="edit-cancel">Cancel</button>
         <button id="edit-delete">Delete group</button>
+        <button onclick="onLoad('file-input-subtree')">Import Subtree</button>
+        <input type="file" id="file-input-subtree" style="display:none;">
       </div>
     </div>
   </section>

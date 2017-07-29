@@ -97,8 +97,10 @@ function origPosition () {
   zoom.translateBy(svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1])
 }
 
-function onLoad () {
-  document.getElementById('file-input').click()
+function onLoad (fileInputElementId) {
+  const fileInput = document.getElementById(fileInputElementId)
+  fileInput.value = ''
+  fileInput.click()
 }
 
 function displayAlert (message) {
@@ -143,6 +145,7 @@ function popupEditGroupModal (d) {
     editGroupElement.style.display = 'none'
   })
   d3.select('#edit-delete').on('click', function () { removeNode(group) })
+  d3.select('#file-input-subtree').on('change', function () { importFileSubtree(group) })
 }
 
 function editGroup (groupData) {
@@ -447,33 +450,39 @@ function redraw (template) {
 }
 
 function addNode (d) {
-  // find smallest available new id
-  let id = -1
-  const ids = []
-  for (let i = 0; i < data.length; i++) {
-    ids.push(data[i].id)
-  }
-  ids.sort(function (a, b) { return a - b })
-
-  let i
-  for (i = 0; i < ids.length; i++) {
-    if (ids[i] !== i) {
-      id = i
-      break
-    }
-  }
-  if (id === -1) { id = i + 1 }
-
   const newNodeData = {}
   template.fields.forEach(function (field) {
     newNodeData[field.header] = field.initial
   }
   )
-  newNodeData['id'] = id
+  newNodeData['id'] = findNewId()
   newNodeData['parentId'] = d.data.id
   data.push(newNodeData)
-
   redraw(template)
+}
+
+function findNewId () {
+  const ids = _.map(data, function (row) { return row.id })
+  return findNewIdFromArray(ids)
+}
+
+/*
+ * Find smallest int >= 0 not in array
+ */
+function findNewIdFromArray (arr) {
+  // copy and sort
+  arr = arr.slice().sort(function (a, b) { return a - b })
+  let tmp = 0
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= 0) { // ids must be >= 0
+      if (arr[i] === tmp) {
+        tmp += 1
+      } else {
+        break
+      }
+    }
+  }
+  return tmp
 }
 
 function removeNode (d) {
@@ -496,7 +505,7 @@ function removeNode (d) {
 function parseCsvData (csvData) {
   return d3.csvParse(csvData, function (d) {
     const parsedId = parseInt(d.id)
-    if (parsedId < 0 || isNaN(parsedId)) { throw new Error('id must be integer >= 0.') }
+    if (parsedId < 0 || isNaN(parsedId)) { throw new Error('Group id must be integer >= 0.') }
     const parsedLine = {}
     parsedLine['id'] = parsedId
     parsedLine['parentId'] = d.parentId !== '' ? parseInt(d.parentId) : ''
@@ -545,7 +554,108 @@ function parseTransform (a) {
 }
 
 function importFile () {
-  importFileFromInput('file-input', processFile)
+  importFileFromInput('file-input', function (filedata, filename) {
+    const parsedCsv = parseAndValidateCsv(filedata, filename)
+    if (parsedCsv === null) { return }
+    data = parsedCsv
+    redraw(template)
+  })
+}
+
+function importFileSubtree (d) {
+  if (!window.confirm('Warning: Importing subtreee will overwrite this group (' + d.data.name + ') and all descendants. Do you want to continue?')) {
+    return
+  }
+  importFileFromInput('file-input-subtree', function (filedata, filename) {
+    const parsedCsv = parseAndValidateCsv(filedata, filename)
+    if (parsedCsv === null) { return }
+    csvIntoNode(d, parsedCsv)
+    redraw(template)
+    editGroupElement.style.display = 'none'
+  })
+}
+
+/**
+ * If error occurs, displays error and returns null
+ * If not, raises error
+ */
+function parseAndValidateCsv (filedata, filename) {
+  try {
+    const csvString = fileToCsvString(filedata, filename)
+    const parsedCsv = parseCsvData(csvString)
+    validTree(parsedCsv)
+    return parsedCsv
+  } catch (err) {
+    displayImportError(err)
+    return null
+  }
+}
+
+/**
+ * Checks if parsedCsv creates a valid tree.
+ * If not, raises error
+ */
+function validTree (parsedCsv) {
+  const treeTest = d3.tree()
+  const stratifiedDataTest = d3.stratify()(parsedCsv)
+  treeTest(stratifiedDataTest)
+}
+
+function displayImportError (err) {
+  if (err.toString().includes('>= 0.') || err.toString().includes('Wrong type')) {
+    displayAlert('Error when importing file. <br>' + err.toString())
+  } else {
+    displayAlert('Error when importing file.<br><br>Please check that the file is in correct format' +
+          '(comma separated values), that the root group has no parent, and that all other' +
+          'relationships make a valid tree.<br><br>Also check that you use the correct version of the App.')
+  }
+}
+
+function deleteAllDescendants (d) {
+  let idsToDelete = _.map(d.children, function (row) { return parseInt(row.id) })
+  while (idsToDelete.length > 0) {
+    const currentId = idsToDelete.pop()
+    const childrenIdsToDelete = _.map(_.where(data, {parentId: currentId}),
+      function (row) { return row.id })
+    idsToDelete = idsToDelete.concat(childrenIdsToDelete)
+    const nodeToDelete = _.where(data, {id: currentId})
+    if (nodeToDelete) { data = _.without(data, nodeToDelete[0]) }
+  }
+}
+
+function csvIntoNode (d, parsedCsv) {
+  deleteAllDescendants(d)
+
+  // replace node by root of imported
+  const nodeToDelete = _.where(data, {id: d.data.id})[0]
+  const rowRootOfImported = _.where(parsedCsv, {parentId: ''})[0]
+  const mapOldIdToNewId = {}
+  mapOldIdToNewId[rowRootOfImported.id] = nodeToDelete.id
+  parsedCsv = _.without(parsedCsv, rowRootOfImported)
+  rowRootOfImported.id = nodeToDelete.id
+  rowRootOfImported.parentId = nodeToDelete.parentId
+  data[_.indexOf(data, nodeToDelete)] = rowRootOfImported
+
+  const idsUnsorted = _.map(data, function (row) { return row.id })
+  const ids = idsUnsorted.sort(function (a, b) { return a - b })
+  // update ids of other nodes and push into data
+  while (parsedCsv.length > 0) {
+    const row = parsedCsv.pop()
+    if (!(row.id in mapOldIdToNewId)) {
+      const newId = findNewIdFromArray(ids)
+      mapOldIdToNewId[row.id] = newId
+      ids.push(newId)
+    }
+    if (!(row.parentId in mapOldIdToNewId)) {
+      const newId = findNewIdFromArray(ids)
+      mapOldIdToNewId[row.parentId] = newId
+      ids.push(newId)
+    }
+    // change id and parentId
+    row.id = mapOldIdToNewId[row.id]
+    row.parentId = mapOldIdToNewId[row.parentId]
+    data.push(row)
+  }
 }
 
 function importFileFromInput (fileInputElementId, callback) {
@@ -553,6 +663,7 @@ function importFileFromInput (fileInputElementId, callback) {
     displayAlert("The file API isn't supported on this browser yet.")
     return
   }
+
   const input = document.getElementById(fileInputElementId)
   if (!input) {
     displayAlert("Um, couldn't find the fileinput element.")
@@ -577,21 +688,6 @@ function importFileFromInput (fileInputElementId, callback) {
   }
 }
 
-function processFile (filedata, filename) {
-  const csvString = fileToCsvString(filedata, filename)
-  try {
-    mapCsv(csvString)
-  } catch (err) {
-    if (err === 'id must be >= 0.') {
-      displayAlert('Error when importing file. Group id must be >= 0')
-    } else {
-      displayAlert('Error when importing file.<br><br>Please check that the file is in correct format' +
-            '(comma separated values), that the root group has no parent, and that all other' +
-            'relationships make a valid tree.<br><br>Also check that you use the correct version of the App.')
-    }
-  }
-}
-
 function fileToCsvString (filedata, filename) {
   const regex = /(?:\.([^.]+))?$/
   const extension = regex.exec(filename)[1].toLowerCase()
@@ -604,20 +700,11 @@ function fileToCsvString (filedata, filename) {
   } else if (extension === 'csv') {
     csvString = filedata
   } else {
-    displayAlert('Wrong type of file. Please import xls, xlsx or csv files.')
-    return
+    throw new Error('Wrong type of file. Please import xls, xlsx or csv files.')
   }
   csvString = csvString.replace(/\r\n?/g, '\n')
-  return csvHeader + csvString.substring(csvString.indexOf('\n') + 1) // replace first line with a default one
-}
-
-function mapCsv (csvString) {
-  const tmpData = parseCsvData(csvString)
-  const treeTest = d3.tree()
-  const stratifiedDataTest = d3.stratify()(tmpData)
-  treeTest(stratifiedDataTest)
-  data = tmpData
-  redraw(template)
+  // replace first line with a default one
+  return csvHeader + csvString.substring(csvString.indexOf('\n') + 1)
 }
 
 function addFieldsToEditWindow (template) {
