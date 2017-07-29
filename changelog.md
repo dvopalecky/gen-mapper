@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.4 (2017-07-29)
+- Add import subtree feature
+
 ## 0.2.3 (2017-06-06)
 - church-circles template updated with "Church Type" field
 
