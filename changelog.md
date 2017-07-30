@@ -1,5 +1,9 @@
 # gen-mapper changelog
 
+## 0.2.5 (2017-07-30)
+- Pressing enter allows to submit Edit Group window
+- Refactored some code
+
 ## 0.2.4 (2017-07-29)
 - Add import subtree feature
 

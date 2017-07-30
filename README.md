@@ -24,8 +24,6 @@ see [here](changelog.md)
 
 ## Ideas for improvements
 * Hide / unhide the left menu
-* Keyboard shortcuts: Pressing Enter submits the edit form
-* Import of a subtree into given node
 * Backend support: Saving work on server, sharing, etc.
 
 ## License

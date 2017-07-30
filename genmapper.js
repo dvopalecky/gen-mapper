@@ -5,6 +5,7 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
+const version = '0.2.5'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
@@ -126,7 +127,7 @@ function loadHTMLContent () {
   '  <button onclick="closeAlert()">OK</button>' +
   '</div>'
 
-  document.getElementById('version').innerHTML = '0.2.4'
+  document.getElementById('version').innerHTML = version
 }
 
 function zoomed () {
