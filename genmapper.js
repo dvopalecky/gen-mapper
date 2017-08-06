@@ -5,7 +5,7 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
-const appVersion = '0.2.6'
+const appVersion = '0.2.7'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
@@ -526,15 +526,20 @@ function findNewIdFromArray (arr) {
 function removeNode (d) {
   if (!d.parent) {
     displayAlert('Sorry. Deleting root group is not possible.')
-  } else if (!d.children) {
-    if (window.confirm('Do you really want to delete ' + d.data.name + '?')) {
+  } else {
+    let confirmMessage
+    if (!d.children) {
+      confirmMessage = 'Do you really want to delete ' + d.data.name + '?'
+    } else {
+      confirmMessage = 'Do you really want to delete ' + d.data.name + ' and all descendants?'
+    }
+    if (window.confirm(confirmMessage)) {
+      deleteAllDescendants(d)
       const nodeToDelete = _.where(data, {id: d.data.id})
       if (nodeToDelete) {
         data = _.without(data, nodeToDelete[0])
       }
     }
-  } else {
-    displayAlert('Sorry, delete not possible. Please delete all descendant groups first.')
   }
   document.getElementById('edit-group').style.display = 'none'
   redraw(template)

@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.7 (2017-08-07)
+- delete group deletes also it's descendants
+
 ## 0.2.6 (2017-08-06)
 - fix a bug in Safari that prevented to load the app - JS variable name can't be
   the same as id in a page
