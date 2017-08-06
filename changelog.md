@@ -1,5 +1,9 @@
 # gen-mapper changelog
 
+## 0.2.6 (2017-08-06)
+- fix a bug in Safari that prevented to load the app - JS variable name can't be
+  the same as id in a page
+
 ## 0.2.5 (2017-07-30)
 - Pressing enter allows to submit Edit Group window
 - Refactored some code
