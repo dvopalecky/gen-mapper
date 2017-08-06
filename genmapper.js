@@ -115,8 +115,8 @@ function loadHTMLContent () {
   '  <div id="edit-buttons">' +
   '    <button id="edit-submit">Submit changes</button>' +
   '    <button id="edit-cancel">Cancel</button>' +
-  '    <button id="edit-delete">Delete group</button>' +
-  '    <button onclick="onLoad(\'file-input-subtree\')">Import Subtree</button>' +
+  '    <button id="edit-delete">Delete subtree</button>' +
+  '    <button onclick="onLoad(\'file-input-subtree\')">Import subtree</button>' +
   '    <input type="file" id="file-input-subtree" style="display:none;">' +
   '  </div>' +
   '</div>'
@@ -443,7 +443,7 @@ function appendRemoveButton (group) {
       .attr('rx', 7)
       .attr('width', 25)
       .attr('height', boxHeight / 2)
-      .append('title').text('Remove group')
+      .append('title').text('Remove group & subtree')
   gRemoveNode.append('line') // top-left diagonal in X sign
       .attr('x1', boxHeight / 2 + 6)
       .attr('y1', boxHeight * 0.25 - 6.5)
