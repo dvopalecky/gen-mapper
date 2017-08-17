@@ -1,9 +1,21 @@
 /* CSS for GenMapper: template specific */
 
-.node:hover > rect, .node:hover > line {
-  stroke-width: 2px;
+.node > rect {
+  stroke-width: 3px;
 }
 
-.node--active > rect, .node--active > line {
-  stroke: black;
+.node:hover > rect, .node:hover > line {
+  stroke-width: 4px;
+}
+
+.full-time-missionary {
+  stroke: #FD0402;
+}
+
+.existing-lay-believer {
+  stroke: #3D7AD3;
+}
+
+.leaders-disciple {
+  stroke: #5EA650;
 }
