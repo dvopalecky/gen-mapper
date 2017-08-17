@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.8 (2017-08-18)
+- improved templating. On user side nothing should change.
+
 ## 0.2.7 (2017-08-07)
 - delete group deletes also it's descendants
 

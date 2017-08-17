@@ -11,7 +11,7 @@ const template = {
     }
   },
   'svg': {
-    'node-big-rect': {
+    'big-rect': {
       'type': 'rect',
       'attributes': {
         'x': -boxHeight / 2,
@@ -21,7 +21,7 @@ const template = {
         'height': boxHeight
       }
     },
-    'node-vertical-line': {
+    'vertical-line': {
       'type': 'line',
       'attributes': {
         'x1': 0,
@@ -30,7 +30,7 @@ const template = {
         'y2': boxHeight
       }
     },
-    'node-horizontal-line': {
+    'horizontal-line': {
       'type': 'line',
       'attributes': {
         'x1': -boxHeight / 2,
@@ -39,7 +39,7 @@ const template = {
         'y2': boxHeight / 2
       }
     },
-    'node-central-rect': {
+    'central-rect': {
       'type': 'rect',
       'attributes': {
         'x': -boxHeight * 0.22,

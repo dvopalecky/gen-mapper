@@ -11,7 +11,9 @@ const template = {
     }
   },
   'svg': {
-    'node-big-rect': {
+    'big-rect': {
+      // Rect with opacity 0, so that one could hover over all the square even
+      // if the visible shape is circle
       'type': 'rect',
       'attributes': {
         'x': -boxHeight / 2,
@@ -21,7 +23,7 @@ const template = {
         'opacity': '0'
       }
     },
-    'node-attenders-image': {
+    'attenders-image': {
       'type': 'image',
       'attributes': {
         'x': -boxHeight * 0.5,
@@ -31,7 +33,7 @@ const template = {
         'href': 'icons/attenders.png'
       }
     },
-    'node-believers-image': {
+    'believers-image': {
       'type': 'image',
       'attributes': {
         'x': -boxHeight * 0.25,
@@ -41,7 +43,7 @@ const template = {
         'href': 'icons/believers.png'
       }
     },
-    'node-baptized-image': {
+    'baptized-image': {
       'type': 'image',
       'attributes': {
         'x': boxHeight * 0.1,
@@ -49,6 +51,16 @@ const template = {
         'width': boxHeight / 4,
         'height': boxHeight / 4,
         'href': 'icons/element-baptism.png'
+      }
+    },
+    'church-box': {
+      'type': 'rect',
+      'attributes': {
+        'x': -boxHeight / 2,
+        'y': 0,
+        'rx': 0.5 * boxHeight,
+        'width': boxHeight,
+        'height': boxHeight
       }
     }
   },
@@ -159,15 +171,10 @@ const template = {
       'initial': false,
       'description': 'Is church?',
       'type': 'checkbox',
-      'svg': {
-        'type': 'rect',
-        'attributes': {
-          'x': -boxHeight / 2,
-          'y': 0,
-          'rx': 0,
-          'width': boxHeight,
-          'height': boxHeight
-        }
+      'inheritsFrom': 'church-box',
+      'class': {
+        'checkedTrue': 'is-church',
+        'checkedFalse': 'is-not-church'
       }
     },
     {
@@ -175,14 +182,22 @@ const template = {
       'initial': 'newBelievers',
       'description': 'Church Type',
       'type': 'radio',
+      'inheritsFrom': 'church-box',
       'values': [
         {
           'header': 'legacy',
-          'description': 'Legacy'
+          'description': 'Legacy',
+          'class': 'church-legacy',
+          'attributes': {
+            'rx': 0
+          }
         },
         {
           'header': 'existingBelievers',
-          'description': 'Existing Believers'
+          'description': 'Existing Believers',
+          'attributes': {
+            'rx': 0
+          }
         },
         {
           'header': 'newBelievers',

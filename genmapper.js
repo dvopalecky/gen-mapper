@@ -5,7 +5,7 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
-const appVersion = '0.2.7'
+const appVersion = '0.2.8'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
@@ -335,30 +335,6 @@ function redraw (template) {
   node.exit()
       .remove()
 
-  // UPDATE
-  node.attr('class', function (d) {
-    return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
-  })
-        .attr('transform', function (d) {
-          return 'translate(' + d.x + ',' + d.y + ')'
-        })
-        .on('click', function (d) { popupEditGroupModal(d) })
-
-  node.select('.removeNode')
-      .on('click', function (d) { removeNode(d); event.cancelBubble = true })
-
-  node.select('.addNode')
-      .on('click', function (d) { addNode(d); event.cancelBubble = true })
-
-  // update node elements which have SVG in template
-  template.fields.forEach(function (field) {
-    if (field.svg) {
-      const element = node.select('.node-' + field.header)
-      appendSvgForFields(field, element)
-    }
-  }
-    )
-
   // NEW ELEMENTS
   const group = node.enter()
         .append('g')
@@ -378,10 +354,7 @@ function redraw (template) {
   Object.keys(template.svg).forEach(function (svgElement) {
     const svgElementValue = template.svg[svgElement]
     const element = group.append(svgElementValue['type'])
-    element.attr('class', svgElement)
-    Object.keys(svgElementValue.attributes).forEach(function (attribute) {
-      element.attr(attribute, svgElementValue.attributes[attribute])
-    })
+    element.attr('class', 'node-' + svgElement)
   })
 
   // append SVG elements related to fields
@@ -397,46 +370,102 @@ function redraw (template) {
           element.style(styleKey, field.svg.style[styleKey])
         })
       }
-      appendSvgForFields(field, element)
+      updateSvgForFields(field, element)
     }
-  }
-    )
+  })
+
+  // UPDATE including NEW
+  const nodeWithNew = node.merge(group)
+  nodeWithNew.attr('class', function (d) {
+    return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
+  })
+        .attr('transform', function (d) {
+          return 'translate(' + d.x + ',' + d.y + ')'
+        })
+        .on('click', function (d) { popupEditGroupModal(d) })
+
+  nodeWithNew.select('.removeNode')
+      .on('click', function (d) { removeNode(d); event.cancelBubble = true })
+
+  nodeWithNew.select('.addNode')
+      .on('click', function (d) { addNode(d); event.cancelBubble = true })
+
+  // refresh class and attributes in SVG elements without fields
+  // in order to remove any additional classes or settings from inherited fields
+  Object.keys(template.svg).forEach(function (svgElement) {
+    const svgElementValue = template.svg[svgElement]
+    const element = nodeWithNew.select('.node-' + svgElement)
+      .attr('class', 'node-' + svgElement)
+    Object.keys(svgElementValue.attributes).forEach(function (attribute) {
+      element.attr(attribute, svgElementValue.attributes[attribute])
+    })
+  })
+
+  // update node elements which have SVG in template
+  template.fields.forEach(function (field) {
+    if (field.svg) {
+      const element = nodeWithNew.select('.node-' + field.header)
+      updateSvgForFields(field, element)
+    }
+    if (field.inheritsFrom) {
+      const element = nodeWithNew.select('.node-' + field.inheritsFrom)
+
+      if (!element.empty()) {
+        if (field.type === 'checkbox') {
+          // add class to the element which the field inherits from
+          if (field.class) {
+            element.attr('class', function (d) {
+              const checked = d.data[field.header]
+              const class_ = checked ? field.class.checkedTrue : field.class.checkedFalse
+              return this.classList.value + ' ' + class_
+            })
+          }
+          if (typeof field.attributes !== 'undefined' &&
+              typeof field.attributes.rx !== 'undefined') {
+            element.attr('rx', function (d) {
+              const checked = d.data[field.header]
+              const rxObj = field.attributes.rx
+              const rx = checked ? rxObj.checkedTrue : rxObj.checkedFalse
+              return String(rx)
+            })
+          }
+        }
+        if (field.type === 'radio') {
+          // add class to the element which the field inherits from
+          element.attr('class', function (d) {
+            const fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
+            if (fieldValue.class) {
+              return this.classList.value + ' ' + fieldValue.class
+            } else {
+              return this.classList.value
+            }
+          })
+          element.attr('rx', function (d) {
+            const fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
+            console.log(d.data[field.header])
+            if (typeof fieldValue.attributes !== 'undefined' &&
+                typeof fieldValue.attributes.rx !== 'undefined') {
+              return String(fieldValue.attributes.rx)
+            } else {
+              return this.rx.baseVal.valueAsString
+            }
+          })
+        }
+      }
+    }
+  })
 }
 
-function appendSvgForFields (field, element) {
+function updateSvgForFields (field, element) {
   element.text(function (d) { return d.data[field.header] })
   if (field.svg.type === 'image') {
     element.style('display', function (d) { return d.data[field.header] ? 'block' : 'none' })
-  }
-  if (field.svg.type === 'rect' && field.type === 'checkbox') {
-    element.attr('stroke-dasharray', function (d) { return d.data[field.header] ? '' : '7, 7' })
-
-        // Hard coded values for 'churchType' - not a good practice
-    element.attr('stroke-width', function (d) {
-      if (d.data['churchType'] === 'legacy') return 4
-      else return 2
-    })
-    element.attr('stroke', function (d) {
-      if (d.data['churchType'] === 'legacy') return 'green'
-      else return 'black'
-    })
-    element.attr('rx', function (d) {
-      const churchType = d.data['churchType']
-      if (churchType === 'newBelievers') {
-        return 0.5 * boxHeight
-      } else if (churchType === 'legacy' || churchType === 'existingBelievers') {
-        return 0
-      } else {
-        return 0.5 * boxHeight
-      }
-    })
   }
 }
 
 function appendRemoveButton (group) {
   const gRemoveNode = group.append('g')
       .attr('class', 'removeNode')
-      .on('click', function (d) { removeNode(d); event.cancelBubble = true })
   gRemoveNode.append('rect')
       .attr('x', boxHeight / 2)
       .attr('y', 0)
@@ -463,7 +492,6 @@ function appendRemoveButton (group) {
 function appendAddButton (group) {
   const gAddNode = group.append('g')
       .attr('class', 'addNode')
-      .on('click', function (d) { addNode(d); event.cancelBubble = true })
   gAddNode.append('rect')
       .attr('x', boxHeight / 2)
       .attr('y', boxHeight / 2)

@@ -1,0 +1,31 @@
+/* CSS for GenMapper: template specific */
+
+.node-church-box {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.is-church {
+  stroke-dasharray: 0;
+}
+
+.is-not-church {
+  stroke-dasharray: 7,7;
+}
+
+.church-legacy {
+  stroke-width: 4;
+  stroke: green;
+}
+
+.full-time-missionary {
+  stroke: red;
+}
+
+.existing-lay-believer {
+  stroke: green;
+}
+
+.leaders-disciple {
+  stroke: blue;
+}

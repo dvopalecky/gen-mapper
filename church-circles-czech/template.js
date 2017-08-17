@@ -11,7 +11,7 @@ const template = {
     }
   },
   'svg': {
-    'node-big-rect': {
+    'big-rect': {
       'type': 'rect',
       'attributes': {
         'x': -boxHeight / 2,
@@ -21,7 +21,7 @@ const template = {
         'opacity': '0'
       }
     },
-    'node-attenders-image': {
+    'attenders-image': {
       'type': 'image',
       'attributes': {
         'x': -boxHeight * 0.45,
@@ -31,7 +31,7 @@ const template = {
         'href': 'icons/attenders.png'
       }
     },
-    'node-believers-image': {
+    'believers-image': {
       'type': 'image',
       'attributes': {
         'x': -boxHeight * 0.125,
@@ -41,7 +41,7 @@ const template = {
         'href': 'icons/believers.png'
       }
     },
-    'node-baptized-image': {
+    'baptized-image': {
       'type': 'image',
       'attributes': {
         'x': boxHeight * 0.2,

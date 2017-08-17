@@ -1,6 +1,6 @@
 {
   "name": "gen-mapper",
-  "version": "0.2.5",
+  "version": "0.2.8",
   "description": "App for mapping generations of simple churches",
   "author": "Daniel Vopalecky <daniel.vopalecky@seznam.cz>",
   "main": "index.html",
@@ -17,7 +17,7 @@
     "tree"
   ],
   "dependencies": {
-    "d3": "4.2.2"
+    "d3": "4.10.0"
   },
   "private": true,
   "license": "MIT",
