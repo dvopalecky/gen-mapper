@@ -1,5 +1,9 @@
 # gen-mapper changelog
 
+## 0.2.9 (2017-08-19)
+- fixed bug caused by invalid value in radio type column. Now made robust
+  against invalid values.
+
 ## 0.2.8 (2017-08-18)
 - improved templating. On user side nothing should change.
 

@@ -5,7 +5,7 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
 
-const appVersion = '0.2.8'
+const appVersion = '0.2.9'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}

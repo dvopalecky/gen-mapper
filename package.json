@@ -1,6 +1,6 @@
 {
   "name": "gen-mapper",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "App for mapping generations of simple churches",
   "author": "Daniel Vopalecky <daniel.vopalecky@seznam.cz>",
   "main": "index.html",
