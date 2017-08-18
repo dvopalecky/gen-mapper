@@ -3,11 +3,11 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'MOVEMENTeer 0.2',
+  'name': 'MOVEMENTeer 0.3',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
-      'height': boxHeight * 2.1
+      'height': boxHeight * 2.3
     }
   },
   'svg': {
@@ -195,13 +195,33 @@ const template = {
       'header': 'trainingUsed',
       'initial': '',
       'description': 'Training used',
-      'type': 'text'
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight + 4 * textHeight
+        },
+        'style': {
+          'text-anchor': 'end'
+        }
+      }
     },
     {
       'header': 'trainingPhase',
       'initial': '',
       'description': 'Training phase',
-      'type': 'text'
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': boxHeight * 0.1,
+          'y': boxHeight + 4 * textHeight
+        },
+        'style': {
+          'text-anchor': 'start'
+        }
+      }
     },
     {
       'header': 'elementBaptism',
@@ -375,8 +395,8 @@ const template = {
     },
     {
       'header': 'threeThirds',
-      'initial': '1234567',
-      'description': 'Elements of 3/3 process (see help for details)',
+      'initial': 'FBS',
+      'description': 'Elements of 3/3 process',
       'type': 'text',
       'svg': {
         'type': 'text',
