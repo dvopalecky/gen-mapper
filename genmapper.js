@@ -433,7 +433,7 @@ function redraw (template) {
         if (field.type === 'radio') {
           // add class to the element which the field inherits from
           element.attr('class', function (d) {
-            const fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
+            const fieldValue = getFieldValueForRadioType(field, d)
             if (fieldValue.class) {
               return this.classList.value + ' ' + fieldValue.class
             } else {
@@ -441,8 +441,7 @@ function redraw (template) {
             }
           })
           element.attr('rx', function (d) {
-            const fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
-            console.log(d.data[field.header])
+            const fieldValue = getFieldValueForRadioType(field, d)
             if (typeof fieldValue.attributes !== 'undefined' &&
                 typeof fieldValue.attributes.rx !== 'undefined') {
               return String(fieldValue.attributes.rx)
@@ -454,6 +453,14 @@ function redraw (template) {
       }
     }
   })
+}
+
+function getFieldValueForRadioType (field, d) {
+  let fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
+  if (typeof fieldValue === 'undefined') {
+    fieldValue = _.where(field.values, {header: field.initial})[0]
+  }
+  return fieldValue
 }
 
 function updateSvgForFields (field, element) {
