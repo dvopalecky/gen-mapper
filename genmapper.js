@@ -144,7 +144,7 @@ function zoomOut () {
 
 function origPosition () {
   zoom.scaleTo(svg, 1)
-  const origX = margin.left + (document.getElementById('main-svg').clientWidth / 2)
+  const origX = margin.left + (document.getElementById('main').clientWidth / 2)
   const origY = margin.top
   const parsedTransform = parseTransform(g.attr('transform'))
   zoom.translateBy(svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1])
