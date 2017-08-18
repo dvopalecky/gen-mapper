@@ -385,10 +385,10 @@ function redraw (template) {
         .on('click', function (d) { popupEditGroupModal(d) })
 
   nodeWithNew.select('.removeNode')
-      .on('click', function (d) { removeNode(d); event.cancelBubble = true })
+      .on('click', function (d) { removeNode(d); d3.event.stopPropagation() })
 
   nodeWithNew.select('.addNode')
-      .on('click', function (d) { addNode(d); event.cancelBubble = true })
+      .on('click', function (d) { addNode(d); d3.event.stopPropagation() })
 
   // refresh class and attributes in SVG elements without fields
   // in order to remove any additional classes or settings from inherited fields
