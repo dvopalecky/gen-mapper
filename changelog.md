@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.10 (2017-08-19)
+- fixed bugs so that gen-mapper is now Firefox friendly
+
 ## 0.2.9 (2017-08-19)
 - fixed bug caused by invalid value in radio type column. Now made robust
   against invalid values.

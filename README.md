@@ -19,8 +19,8 @@ Backend support, i.e. saving work on the server, sharing etc. might be added lat
 see [here](changelog.md)
 
 ## Known issues
-* Firefox - clicking on (+) to add node or (-) to remove node opens the Edit window unnecessarily
-* Firefox - the position of root node when refreshing the window is not centered
+* Safari - not displaying some icons
+* Firefox - letter spacing in top-bottom texts
 
 ## Ideas for improvements
 * Hide / unhide the left menu
