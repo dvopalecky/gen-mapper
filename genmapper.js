@@ -5,7 +5,7 @@
 
 /* global d3, XLSX, saveAs, FileReader, template, _, Blob, boxHeight */
 
-const appVersion = '0.2.10'
+const appVersion = '0.2.11'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
@@ -86,6 +86,8 @@ document.addEventListener('keyup', function (e) {
 
 document.getElementsByTagName('body')[0].onresize = setSvgHeight
 
+// Beginning of function definitions
+
 function setSvgHeight () {
   const windowHeight = document.documentElement.clientHeight
   const leftMenuHeight = document.getElementById('left-menu').clientHeight
@@ -116,8 +118,8 @@ function loadHTMLContent () {
   '  <form>' +
   '    <table>' +
   '      <tr>' +
-  '        <td>Parent:<td>' +
-  '        <td><p id="edit-parent"></p></td>' +
+  '        <td class="left-field">Parent:</td>' +
+  '        <td class="right-field"><p id="edit-parent"></p></td>' +
   '      </tr>' +
   '    </table>' +
   '  </form>' +
@@ -798,29 +800,31 @@ function addFieldsToEditWindow (template) {
   template.fields.forEach(function (field) {
     if (field.type) {
       const tr = d3.select('#edit-group-content')
-          .select('form')
-          .select('table')
-          .append('tr')
+        .select('form')
+        .select('table')
+        .append('tr')
       tr.append('td')
-          .text(field.description + ':')
+        .text(field.description + ':')
+        .attr('class', 'left-field')
       const td = tr.append('td')
+        .attr('class', 'right-field')
       if (field.type === 'radio') {
         for (let value of field.values) {
           td.append('input')
-              .attr('type', field.type)
-              .attr('name', field.header)
-              .attr('value', value.header)
-              .attr('id', 'edit-' + field.header + '-' + value.header)
+            .attr('type', field.type)
+            .attr('name', field.header)
+            .attr('value', value.header)
+            .attr('id', 'edit-' + field.header + '-' + value.header)
           td.append('span')
-              .html(value.description)
+            .html(value.description)
           td.append('br')
         }
       } else {
         td.append('input')
-            .attr('type', field.type)
-            .attr('name', field.header)
-            .attr('name', field.header)
-            .attr('id', 'edit-' + field.header)
+          .attr('type', field.type)
+          .attr('name', field.header)
+          .attr('name', field.header)
+          .attr('id', 'edit-' + field.header)
       }
     }
   }

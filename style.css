@@ -114,10 +114,6 @@ aside p{
   max-width: 800px;
 }
 
-#edit-group-content {
-  max-width: 400px;
-}
-
 #alert-message-content {
   max-width: 400px;
 }
@@ -127,8 +123,34 @@ aside p{
   padding-top: 10px;
 }
 
+#edit-group-content {
+  max-width: 400px;
+}
+
+#edit-group-content table {
+  width: 100%;
+  padding: 0px;
+  border-collapse: collapse;
+}
+
+#edit-group-content td{
+}
+
+#edit-group-content td.left-field {
+  vertical-align: top;
+  width: 60%;
+  padding-left: 20px;
+  text-indent: -20px;
+}
+
+#edit-group-content td.right-field {
+  vertical-align: top;
+  padding-left: 5px;
+  padding-bottom: 2px;
+}
+
 #edit-group-content h1{
-  margin: 2px;
+  margin: 0 0 7px 0;
 }
 
 #edit-group-content button{
@@ -140,23 +162,22 @@ aside p{
 }
 
 #edit-group-content input[type=text] {
-    font-size: 14px;
-    width: 100%;
-    padding: 2px 2px;
-    margin-left: 20px;
-    box-sizing: border-box;
-}
-
-#edit-group-content input[type=checkbox] {
-  margin-left: 25px;
-}
-
-#edit-group-content p {
+  font-family: sans-serif;
   font-size: 14px;
-  width: 100%;
-  padding: 5px 5px;
+  padding: 0px 2px;
+  border-width: 2px;
+  width: calc(100% - 8px);
+}
+
+#edit-group-content input[type=checkbox],
+#edit-group-content input[type=radio] {
+  margin: 0 .5em 0 0;
+}
+
+#edit-group-content #edit-parent {
+  font-size: 14px;
+  padding: 0px 0px 0px 4px;
   margin: 0;
-  margin-left: 20px;
   color: #888;
 }
 

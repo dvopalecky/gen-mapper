@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.11 (2017-08-19)
+- improved UI of the 'canvas' and edit window
+
 ## 0.2.10 (2017-08-19)
 - fixed bugs so that gen-mapper is now Firefox friendly
 
