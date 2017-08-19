@@ -3,13 +3,12 @@
 // https://github.com/dvopalecky/gen-mapper
 // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
 
-/* global d3, XLSX, saveAs, FileReader, template, _, event, Blob, boxHeight */
+/* global d3, XLSX, saveAs, FileReader, template, _, Blob, boxHeight */
 
 const appVersion = '0.2.10'
 loadHTMLContent()
 
 const margin = {top: 50, right: 30, bottom: 50, left: 30}
-const height = 800 - margin.top - margin.bottom
 
 const zoom = d3.zoom()
   .scaleExtent([0.15, 2])
@@ -29,9 +28,9 @@ d3.select('#project-name')
     }
   })
 
+setSvgHeight()
 const svg = d3.select('#main-svg')
-      .attr('height', height + margin.top + margin.bottom)
-      .call(zoom)
+  .call(zoom)
 const g = svg.append('g')
   .attr('class', 'maingroup')
 const gLinks = g.append('g')
@@ -84,6 +83,16 @@ document.addEventListener('keyup', function (e) {
     }
   }
 })
+
+document.getElementsByTagName('body')[0].onresize = setSvgHeight
+
+function setSvgHeight () {
+  const windowHeight = document.documentElement.clientHeight
+  const leftMenuHeight = document.getElementById('left-menu').clientHeight
+  const height = Math.max(windowHeight, leftMenuHeight + 10)
+  d3.select('#main-svg')
+    .attr('height', height)
+}
 
 function loadHTMLContent () {
   document.getElementById('left-menu').innerHTML = '<h1>GenMapper</h1>' +
