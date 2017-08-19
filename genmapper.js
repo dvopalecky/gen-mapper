@@ -97,7 +97,7 @@ function setSvgHeight () {
 }
 
 function loadHTMLContent () {
-  document.getElementById('left-menu').innerHTML = '<h1>GenMapper</h1>' +
+  document.getElementById('left-menu').innerHTML += '<h1>GenMapper</h1>' +
   '<h2 id="project-name">&nbsp;</h2>' +
   '<p>Help</p>' +
   '<button onclick="introSwitchVisibility()">Help / About</button>' +
@@ -113,7 +113,7 @@ function loadHTMLContent () {
   '<button onclick="printMap(\'vertical\');">Print Vertical Multipage</button>' +
   '<button onclick="printMap(\'horizontal\');">Print Horizontal One-page</button>'
 
-  document.getElementById('edit-group').innerHTML = '<div id="edit-group-content">' +
+  document.getElementById('edit-group').innerHTML += '<div id="edit-group-content">' +
   '  <h1>Edit group</h1>' +
   '  <form>' +
   '    <table>' +
