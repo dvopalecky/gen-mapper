@@ -208,29 +208,26 @@ class GenMapper {
     this.editParentElement.innerHTML = d.parent ? d.parent.data.name : 'N/A'
     const groupData = d.data
     const group = d
-    const genmapper = this
-    d3.select('#edit-submit').on('click', function () { genmapper.editGroup(groupData) })
-    d3.select('#edit-cancel').on('click', function () {
-      genmapper.editGroupElement.style.display = 'none'
-    })
-    d3.select('#edit-delete').on('click', function () { genmapper.removeNode(group) })
-    d3.select('#file-input-subtree').on('change', function () { genmapper.importFileSubtree(group) })
+    d3.select('#edit-submit').on('click', () => { this.editGroup(groupData) })
+    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.style.display = 'none' })
+    d3.select('#edit-delete').on('click', () => { this.removeNode(group) })
+    d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(group) })
   }
 
   editGroup (groupData) {
-    template.fields.forEach(function (field) {
+    template.fields.forEach((field) => {
       if (field.type === 'text') {
         groupData[field.header] = this.editFieldElements[field.header].value
       } else if (field.type === 'radio') {
-        field.values.forEach(function (value) {
+        field.values.forEach((value) => {
           if (this.editFieldElements[field.header + '-' + value.header].checked) {
             groupData[field.header] = value.header
           }
-        }, this)
+        })
       } else if (field.type === 'checkbox') {
         groupData[field.header] = this.editFieldElements[field.header].checked
       }
-    }, this)
+    })
 
     this.editGroupElement.style.display = 'none'
     this.redraw(template)
@@ -352,73 +349,65 @@ class GenMapper {
 
     // NEW ELEMENTS
     const group = node.enter()
-          .append('g')
-          .attr('class', function (d) {
-            return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
-          })
-          .attr('transform', function (d) {
-            return 'translate(' + d.x + ',' + d.y + ')'
-          })
-          .on('click', function (d) { genmapper.popupEditGroupModal(d) })
+      .append('g')
 
     group.append('title').text('Edit group')
     this.appendRemoveButton(group)
     this.appendAddButton(group)
 
     // append SVG elements without fields
-    Object.keys(template.svg).forEach(function (svgElement) {
+    Object.keys(template.svg).forEach((svgElement) => {
       const svgElementValue = template.svg[svgElement]
       const element = group.append(svgElementValue['type'])
       element.attr('class', 'node-' + svgElement)
     })
 
     // append SVG elements related to fields
-    template.fields.forEach(function (field) {
+    template.fields.forEach((field) => {
       if (field.svg) {
         const element = group.append(field.svg['type'])
         element.attr('class', 'node-' + field.header)
-        Object.keys(field.svg.attributes).forEach(function (attribute) {
+        Object.keys(field.svg.attributes).forEach((attribute) => {
           element.attr(attribute, field.svg.attributes[attribute])
         })
         if (field.svg.style) {
-          Object.keys(field.svg.style).forEach(function (styleKey) {
+          Object.keys(field.svg.style).forEach((styleKey) => {
             element.style(styleKey, field.svg.style[styleKey])
           })
         }
         this.updateSvgForFields(field, element)
       }
-    }, this)
+    })
 
     // UPDATE including NEW
     const nodeWithNew = node.merge(group)
-    const genmapper = this
     nodeWithNew.attr('class', function (d) {
       return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
     })
           .attr('transform', function (d) {
             return 'translate(' + d.x + ',' + d.y + ')'
           })
-          .on('click', function (d) { genmapper.popupEditGroupModal(d) })
+          .on('click', (d) => { this.popupEditGroupModal(d) })
 
     nodeWithNew.select('.removeNode')
-        .on('click', function (d) { genmapper.removeNode(d); d3.event.stopPropagation() })
+        .on('click', (d) => { this.removeNode(d); d3.event.stopPropagation() })
 
     nodeWithNew.select('.addNode')
-        .on('click', function (d) { genmapper.addNode(d); d3.event.stopPropagation() })
+        .on('click', (d) => { this.addNode(d); d3.event.stopPropagation() })
 
     // refresh class and attributes in SVG elements without fields
     // in order to remove any additional classes or settings from inherited fields
-    Object.keys(template.svg).forEach(function (svgElement) {
+    Object.keys(template.svg).forEach((svgElement) => {
       const svgElementValue = template.svg[svgElement]
       const element = nodeWithNew.select('.node-' + svgElement)
         .attr('class', 'node-' + svgElement)
-      Object.keys(svgElementValue.attributes).forEach(function (attribute) {
+      Object.keys(svgElementValue.attributes).forEach((attribute) => {
         element.attr(attribute, svgElementValue.attributes[attribute])
       })
     })
 
     // update node elements which have SVG in template
-    template.fields.forEach(function (field) {
+    template.fields.forEach((field) => {
       if (field.svg) {
         const element = nodeWithNew.select('.node-' + field.header)
         this.updateSvgForFields(field, element)
@@ -468,7 +457,7 @@ class GenMapper {
           }
         }
       }
-    }, this)
+    })
   }
 
   static getFieldValueForRadioType (field, d) {
@@ -540,7 +529,7 @@ class GenMapper {
 
   addNode (d) {
     const newNodeData = {}
-    template.fields.forEach(function (field) {
+    template.fields.forEach((field) => {
       newNodeData[field.header] = field.initial
     })
     newNodeData['id'] = this.findNewId()
@@ -602,7 +591,7 @@ class GenMapper {
       const parsedLine = {}
       parsedLine['id'] = parsedId
       parsedLine['parentId'] = d.parentId !== '' ? parseInt(d.parentId) : ''
-      template.fields.forEach(function (field) {
+      template.fields.forEach((field) => {
         if (field.type === 'checkbox') {
           const fieldValue = d[field.header].toUpperCase()
           parsedLine[field.header] = !!['TRUE', '1'].includes(fieldValue)
@@ -617,7 +606,7 @@ class GenMapper {
   outputCsv () {
     const out = d3.csvFormatRows(this.data.map(function (d, i) {
       const output = []
-      template.fields.forEach(function (field) {
+      template.fields.forEach((field) => {
         if (field.type === 'checkbox') {
           output.push(d[field.header] ? '1' : '0')
         } else {
@@ -645,7 +634,7 @@ class GenMapper {
   }
 
   importFile () {
-    this.importFileFromInput('file-input', function (filedata, filename, genmapper) {
+    this.importFileFromInput('file-input', function (filedata, filename) {
       const parsedCsv = genmapper.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
       genmapper.data = parsedCsv
@@ -657,7 +646,7 @@ class GenMapper {
     if (!window.confirm('Warning: Importing subtreee will overwrite this group (' + d.data.name + ') and all descendants. Do you want to continue?')) {
       return
     }
-    this.importFileFromInput('file-input-subtree', function (filedata, filename, genmapper) {
+    this.importFileFromInput('file-input-subtree', function (filedata, filename) {
       const parsedCsv = genmapper.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
       genmapper.csvIntoNode(d, parsedCsv)
@@ -766,9 +755,9 @@ class GenMapper {
       const file = input.files[0]
       const filename = file.name
       const fr = new FileReader()
-      fr.onload = function () {
+      fr.onload = () => {
         const filedata = fr.result
-        callback(filedata, filename, genmapper)
+        callback(filedata, filename)
       }
       const extension = /(?:\.([^.]+))?$/.exec(filename)[1]
       if (extension === 'csv') {
@@ -799,7 +788,7 @@ class GenMapper {
   }
 
   addFieldsToEditWindow (template) {
-    template.fields.forEach(function (field) {
+    template.fields.forEach((field) => {
       if (field.type) {
         const tr = d3.select('#edit-group-content')
           .select('form')
