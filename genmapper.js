@@ -75,8 +75,8 @@ class GenMapper {
   }
 
   // Beginning of function definitions
-  setKeyboardShorcuts() {
-    document.addEventListener('keyup', function (e) {
+  setKeyboardShorcuts () {
+    document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) {
         if (document.getElementById('alert-message').style.display !== 'none') {
           document.getElementById('alert-message').style.display = 'none'
@@ -348,24 +348,24 @@ class GenMapper {
         .remove()
 
     // NEW ELEMENTS
-    const group = node.enter()
+    const newGroup = node.enter()
       .append('g')
 
-    group.append('title').text('Edit group')
-    this.appendRemoveButton(group)
-    this.appendAddButton(group)
+    newGroup.append('title').text('Edit group')
+    this.appendRemoveButton(newGroup)
+    this.appendAddButton(newGroup)
 
     // append SVG elements without fields
     Object.keys(template.svg).forEach((svgElement) => {
       const svgElementValue = template.svg[svgElement]
-      const element = group.append(svgElementValue['type'])
+      const element = newGroup.append(svgElementValue['type'])
       element.attr('class', 'node-' + svgElement)
     })
 
     // append SVG elements related to fields
     template.fields.forEach((field) => {
       if (field.svg) {
-        const element = group.append(field.svg['type'])
+        const element = newGroup.append(field.svg['type'])
         element.attr('class', 'node-' + field.header)
         Object.keys(field.svg.attributes).forEach((attribute) => {
           element.attr(attribute, field.svg.attributes[attribute])
@@ -375,12 +375,11 @@ class GenMapper {
             element.style(styleKey, field.svg.style[styleKey])
           })
         }
-        this.updateSvgForFields(field, element)
       }
     })
 
     // UPDATE including NEW
-    const nodeWithNew = node.merge(group)
+    const nodeWithNew = node.merge(newGroup)
     nodeWithNew.attr('class', function (d) {
       return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
     })
@@ -414,48 +413,55 @@ class GenMapper {
       }
       if (field.inheritsFrom) {
         const element = nodeWithNew.select('.node-' + field.inheritsFrom)
+        this.updateFieldWithInherit(field, element)
+      }
+    })
+  }
 
-        if (!element.empty()) {
-          if (field.type === 'checkbox') {
-            // add class to the element which the field inherits from
-            if (field.class) {
-              element.attr('class', function (d) {
-                const checked = d.data[field.header]
-                const class_ = checked ? field.class.checkedTrue : field.class.checkedFalse
-                return this.classList.value + ' ' + class_
-              })
-            }
-            if (typeof field.attributes !== 'undefined' &&
-                typeof field.attributes.rx !== 'undefined') {
-              element.attr('rx', function (d) {
-                const checked = d.data[field.header]
-                const rxObj = field.attributes.rx
-                const rx = checked ? rxObj.checkedTrue : rxObj.checkedFalse
-                return String(rx)
-              })
-            }
-          }
-          if (field.type === 'radio') {
-            // add class to the element which the field inherits from
-            element.attr('class', function (d) {
-              const fieldValue = GenMapper.getFieldValueForRadioType(field, d)
-              if (fieldValue.class) {
-                return this.classList.value + ' ' + fieldValue.class
-              } else {
-                return this.classList.value
-              }
-            })
-            element.attr('rx', function (d) {
-              const fieldValue = GenMapper.getFieldValueForRadioType(field, d)
-              if (typeof fieldValue.attributes !== 'undefined' &&
-                  typeof fieldValue.attributes.rx !== 'undefined') {
-                return String(fieldValue.attributes.rx)
-              } else {
-                return this.rx.baseVal.valueAsString
-              }
-            })
-          }
-        }
+  updateFieldWithInherit (field, element) {
+    if (!element.empty()) {
+      if (field.type === 'checkbox') this.updateCheckboxField(field, element)
+      if (field.type === 'radio') this.updateRadioField(field, element)
+    }
+  }
+
+  updateCheckboxField (field, element) {
+    // add class to the element which the field inherits from
+    if (field.class) {
+      element.attr('class', function (d) {
+        const checked = d.data[field.header]
+        const class_ = checked ? field.class.checkedTrue : field.class.checkedFalse
+        return this.classList.value + ' ' + class_
+      })
+    }
+    if (typeof field.attributes !== 'undefined' &&
+        typeof field.attributes.rx !== 'undefined') {
+      element.attr('rx', function (d) {
+        const checked = d.data[field.header]
+        const rxObj = field.attributes.rx
+        const rx = checked ? rxObj.checkedTrue : rxObj.checkedFalse
+        return String(rx)
+      })
+    }
+  }
+
+  updateRadioField (field, element) {
+    // add class to the element which the field inherits from
+    element.attr('class', function (d) {
+      const fieldValue = GenMapper.getFieldValueForRadioType(field, d)
+      if (fieldValue.class) {
+        return this.classList.value + ' ' + fieldValue.class
+      } else {
+        return this.classList.value
+      }
+    })
+    element.attr('rx', function (d) {
+      const fieldValue = GenMapper.getFieldValueForRadioType(field, d)
+      if (typeof fieldValue.attributes !== 'undefined' &&
+          typeof fieldValue.attributes.rx !== 'undefined') {
+        return String(fieldValue.attributes.rx)
+      } else {
+        return this.rx.baseVal.valueAsString
       }
     })
   }
@@ -476,55 +482,29 @@ class GenMapper {
   }
 
   appendRemoveButton (group) {
-    const gRemoveNode = group.append('g')
-        .attr('class', 'removeNode')
-    gRemoveNode.append('rect')
-        .attr('x', boxHeight / 2)
-        .attr('y', 0)
-        .attr('rx', 7)
-        .attr('width', 25)
-        .attr('height', boxHeight / 2)
-        .append('title').text('Remove group & subtree')
-    gRemoveNode.append('line') // top-left diagonal in X sign
-        .attr('x1', boxHeight / 2 + 6)
-        .attr('y1', boxHeight * 0.25 - 6.5)
-        .attr('x2', boxHeight / 2 + 19)
-        .attr('y2', boxHeight * 0.25 + 6.5)
-        .attr('stroke', 'white')
-        .attr('stroke-width', 3)
-    gRemoveNode.append('line') // top-right diagonal in X sign
-        .attr('x1', boxHeight / 2 + 19)
-        .attr('y1', boxHeight * 0.25 - 6.5)
-        .attr('x2', boxHeight / 2 + 6)
-        .attr('y2', boxHeight * 0.25 + 6.5)
-        .attr('stroke', 'white')
-        .attr('stroke-width', 3)
+    group.append('g')
+      .attr('class', 'removeNode')
+      .append('svg')
+      .html(
+        '<rect x="40" y="0" rx="7" width="25" height="40">' +
+          '<title>Remove group &amp; subtree</title>' +
+        '</rect>' +
+        '<line x1="46" y1="13.5" x2="59" y2="26.5" stroke="white" stroke-width="3"></line>' +
+        '<line x1="59" y1="13.5" x2="46" y2="26.5" stroke="white" stroke-width="3"></line>'
+      )
   }
 
   appendAddButton (group) {
-    const gAddNode = group.append('g')
-        .attr('class', 'addNode')
-    gAddNode.append('rect')
-        .attr('x', boxHeight / 2)
-        .attr('y', boxHeight / 2)
-        .attr('rx', 7)
-        .attr('width', 25)
-        .attr('height', boxHeight / 2)
-        .append('title').text('Add child')
-    gAddNode.append('line') // horizontal in plus sign
-        .attr('x1', boxHeight / 2 + 5)
-        .attr('y1', boxHeight * 0.75)
-        .attr('x2', boxHeight / 2 + 20)
-        .attr('y2', boxHeight * 0.75)
-        .attr('stroke', 'white')
-        .attr('stroke-width', 3)
-    gAddNode.append('line') // vertical in plus sign
-        .attr('x1', boxHeight / 2 + 12.5)
-        .attr('y1', boxHeight * 0.75 - 7.5)
-        .attr('x2', boxHeight / 2 + 12.5)
-        .attr('y2', boxHeight * 0.75 + 7.5)
-        .attr('stroke', 'white')
-        .attr('stroke-width', 3)
+    group.append('g')
+      .attr('class', 'addNode')
+      .append('svg')
+      .html(
+        '<rect x="40" y="40" rx="7" width="25" height="40">' +
+          '<title>Add child</title>' +
+        '</rect>' +
+        '<line x1="45" y1="60" x2="60" y2="60" stroke="white" stroke-width="3"></line>' +
+        '<line x1="52.5" y1="52.5" x2="52.5" y2="67.5" stroke="white" stroke-width="3"></line>'
+      )
   }
 
   addNode (d) {
@@ -634,11 +614,11 @@ class GenMapper {
   }
 
   importFile () {
-    this.importFileFromInput('file-input', function (filedata, filename) {
-      const parsedCsv = genmapper.parseAndValidateCsv(filedata, filename)
+    this.importFileFromInput('file-input', (filedata, filename) => {
+      const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
-      genmapper.data = parsedCsv
-      genmapper.redraw(template)
+      this.data = parsedCsv
+      this.redraw(template)
     })
   }
 
@@ -646,12 +626,12 @@ class GenMapper {
     if (!window.confirm('Warning: Importing subtreee will overwrite this group (' + d.data.name + ') and all descendants. Do you want to continue?')) {
       return
     }
-    this.importFileFromInput('file-input-subtree', function (filedata, filename) {
-      const parsedCsv = genmapper.parseAndValidateCsv(filedata, filename)
+    this.importFileFromInput('file-input-subtree', (filedata, filename) => {
+      const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
-      genmapper.csvIntoNode(d, parsedCsv)
-      genmapper.redraw(template)
-      genmapper.editGroupElement.style.display = 'none'
+      this.csvIntoNode(d, parsedCsv)
+      this.redraw(template)
+      this.editGroupElement.style.display = 'none'
     })
   }
 
@@ -790,13 +770,16 @@ class GenMapper {
   addFieldsToEditWindow (template) {
     template.fields.forEach((field) => {
       if (field.type) {
+        // add table row
         const tr = d3.select('#edit-group-content')
           .select('form')
           .select('table')
           .append('tr')
+        // add left column
         tr.append('td')
           .text(field.description + ':')
           .attr('class', 'left-field')
+        // add right column
         const td = tr.append('td')
           .attr('class', 'right-field')
         if (field.type === 'radio') {
@@ -814,7 +797,6 @@ class GenMapper {
           td.append('input')
             .attr('type', field.type)
             .attr('name', field.header)
-            .attr('name', field.header)
             .attr('id', 'edit-' + field.header)
         }
       }
@@ -822,4 +804,4 @@ class GenMapper {
   }
 }
 
-const genmapper = new GenMapper()
+window.genmapper = new GenMapper()
