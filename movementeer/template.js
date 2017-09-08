@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'MOVEMENTeer 0.3',
+  'name': 'MOVEMENTeer 0.4',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -114,7 +114,7 @@ const template = {
         }
       ]
     },
-   {
+    {
       'header': 'place',
       'initial': '',
       'description': 'Place',
