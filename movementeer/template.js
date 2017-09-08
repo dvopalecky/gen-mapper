@@ -427,7 +427,7 @@ const template = {
     },
     {
       'header': 'actionSteps',
-      'initial': '',
+      'initial': 'action',
       'description': 'Action steps for this month',
       'type': 'text'
     }
