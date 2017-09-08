@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'MOVEMENTeer 0.3',
+  'name': 'MOVEMENTeer 0.4',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -115,6 +115,32 @@ const template = {
       ]
     },
     {
+      'header': 'place',
+      'initial': '',
+      'description': 'Place',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': boxHeight + 2 * textHeight
+        }
+      }
+    },
+    {
+      'header': 'date',
+      'initial': '',
+      'description': 'Date started',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': boxHeight + 3 * textHeight
+        }
+      }
+    },
+    {
       'header': 'attenders',
       'initial': 0,
       'description': '# of Attenders',
@@ -163,22 +189,6 @@ const template = {
       }
     },
     {
-      'header': 'newlyBaptized',
-      'initial': 0,
-      'description': '# of New Baptized (since church start)',
-      'type': 'text',
-      'svg': {
-        'type': 'text',
-        'attributes': {
-          'x': boxHeight * 0.39,
-          'y': -0.5 * textMargin
-        },
-        'style': {
-          'text-anchor': 'center'
-        }
-      }
-    },
-    {
       'header': 'church',
       'initial': false,
       'description': 'Is church?',
@@ -188,54 +198,6 @@ const template = {
         'rx': {
           'checkedTrue': 0,
           'checkedFalse': 0.5 * boxHeight
-        }
-      }
-    },
-    {
-      'header': 'trainingUsed',
-      'initial': '',
-      'description': 'Training used',
-      'type': 'text',
-      'svg': {
-        'type': 'text',
-        'attributes': {
-          'x': boxHeight * 0,
-          'y': boxHeight + 4 * textHeight
-        },
-        'style': {
-          'text-anchor': 'end'
-        }
-      }
-    },
-    {
-      'header': 'trainingPhase',
-      'initial': '',
-      'description': 'Training phase',
-      'type': 'text',
-      'svg': {
-        'type': 'text',
-        'attributes': {
-          'x': boxHeight * 0.1,
-          'y': boxHeight + 4 * textHeight
-        },
-        'style': {
-          'text-anchor': 'start'
-        }
-      }
-    },
-    {
-      'header': 'elementBaptism',
-      'initial': false,
-      'description': 'Element: Baptism',
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': -boxHeight * 0.4,
-          'y': boxHeight * 0.1,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/element-baptism.png'
         }
       }
     },
@@ -272,38 +234,6 @@ const template = {
       }
     },
     {
-      'header': 'elementLordsSupper',
-      'initial': false,
-      'description': "Element: Lord's supper",
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': -boxHeight * 0.4,
-          'y': boxHeight * 0.375,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/element-lords-supper.png'
-        }
-      }
-    },
-    {
-      'header': 'elementGive',
-      'initial': false,
-      'description': 'Element: Giving',
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': -boxHeight * 0.125,
-          'y': boxHeight * 0.375,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/element-give.png'
-        }
-      }
-    },
-    {
       'header': 'elementLove',
       'initial': false,
       'description': 'Element: Love',
@@ -336,22 +266,6 @@ const template = {
       }
     },
     {
-      'header': 'elementLeaders',
-      'initial': false,
-      'description': 'Element: Leaders',
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': -boxHeight * 0.125,
-          'y': boxHeight * 0.65,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/element-leaders.png'
-        }
-      }
-    },
-    {
       'header': 'elementMakeDisciples',
       'initial': false,
       'description': 'Element: Make disciples',
@@ -368,34 +282,72 @@ const template = {
       }
     },
     {
-      'header': 'place',
-      'initial': 'Place',
-      'description': 'Place',
-      'type': 'text',
+      'header': 'elementLeaders',
+      'initial': false,
+      'description': 'Element: Leaders',
+      'type': 'checkbox',
       'svg': {
-        'type': 'text',
+        'type': 'image',
         'attributes': {
-          'x': 0,
-          'y': boxHeight + 2 * textHeight
+          'x': -boxHeight * 0.125,
+          'y': boxHeight * 0.65,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/element-leaders.png'
         }
       }
     },
     {
-      'header': 'date',
-      'initial': 'Date',
-      'description': 'Date of Start (Finish)',
-      'type': 'text',
+      'header': 'elementGive',
+      'initial': false,
+      'description': 'Element: Giving',
+      'type': 'checkbox',
       'svg': {
-        'type': 'text',
+        'type': 'image',
         'attributes': {
-          'x': 0,
-          'y': boxHeight + 3 * textHeight
+          'x': -boxHeight * 0.125,
+          'y': boxHeight * 0.375,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/element-give.png'
+        }
+      }
+    },
+    {
+      'header': 'elementLordsSupper',
+      'initial': false,
+      'description': "Element: Lord's supper",
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': -boxHeight * 0.4,
+          'y': boxHeight * 0.375,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/element-lords-supper.png'
+        }
+      }
+    },
+    {
+      'header': 'elementBaptism',
+      'initial': false,
+      'description': 'Element: Baptism',
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': -boxHeight * 0.4,
+          'y': boxHeight * 0.1,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/element-baptism.png'
         }
       }
     },
     {
       'header': 'threeThirds',
-      'initial': 'FBS',
+      'initial': '',
       'description': 'Elements of 3/3 process',
       'type': 'text',
       'svg': {
@@ -413,6 +365,38 @@ const template = {
       }
     },
     {
+      'header': 'trainingUsed',
+      'initial': '',
+      'description': 'Training used',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight + 4 * textHeight
+        },
+        'style': {
+          'text-anchor': 'end'
+        }
+      }
+    },
+    {
+      'header': 'trainingPhase',
+      'initial': '',
+      'description': 'Training phase',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': boxHeight * 0.1,
+          'y': boxHeight + 4 * textHeight
+        },
+        'style': {
+          'text-anchor': 'start'
+        }
+      }
+    },
+    {
       'header': 'active',
       'initial': true,
       'description': 'Active',
@@ -421,7 +405,7 @@ const template = {
     },
     {
       'header': 'actionSteps',
-      'initial': 'action steps',
+      'initial': 'action',
       'description': 'Action steps for this month',
       'type': 'text'
     }
