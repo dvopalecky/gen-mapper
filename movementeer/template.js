@@ -90,6 +90,30 @@ const template = {
         }
       }
     },
+    {
+      'header': 'leaderType',
+      'initial': 'fullTimeMissionary',
+      'description': 'Leader',
+      'type': 'radio',
+      'inheritsFrom': 'church-box',
+      'values': [
+        {
+          'header': 'fullTimeMissionary',
+          'description': 'Full time missionary',
+          'class': 'full-time-missionary'
+        },
+        {
+          'header': 'existingLayBeliever',
+          'description': 'Existing lay believer',
+          'class': 'existing-lay-believer'
+        },
+        {
+          'header': 'leadersDisciple',
+          'description': "Leader's disciple",
+          'class': 'leaders-disciple'
+        }
+      ]
+    },
    {
       'header': 'place',
       'initial': '',
@@ -115,30 +139,6 @@ const template = {
           'y': boxHeight + 3 * textHeight
         }
       }
-    },
-    {
-      'header': 'leaderType',
-      'initial': 'fullTimeMissionary',
-      'description': 'Leader',
-      'type': 'radio',
-      'inheritsFrom': 'church-box',
-      'values': [
-        {
-          'header': 'fullTimeMissionary',
-          'description': 'Full time missionary',
-          'class': 'full-time-missionary'
-        },
-        {
-          'header': 'existingLayBeliever',
-          'description': 'Existing lay believer',
-          'class': 'existing-lay-believer'
-        },
-        {
-          'header': 'leadersDisciple',
-          'description': "Leader's disciple",
-          'class': 'leaders-disciple'
-        }
-      ]
     },
     {
       'header': 'attenders',
@@ -190,7 +190,7 @@ const template = {
     },
     {
       'header': 'multipliers',
-      'initial': 0,
+      'initial': '1',
       'description': '# of Multiplying disciples',
       'type': 'text',
       'svg': {
