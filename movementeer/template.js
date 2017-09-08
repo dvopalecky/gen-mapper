@@ -189,22 +189,6 @@ const template = {
       }
     },
     {
-      'header': 'multipliers',
-      'initial': '1',
-      'description': '# of Multiplying disciples',
-      'type': 'text',
-      'svg': {
-        'type': 'text',
-        'attributes': {
-          'x': boxHeight * 0.39,
-          'y': -0.5 * textMargin
-        },
-        'style': {
-          'text-anchor': 'center'
-        }
-      }
-    },
-    {
       'header': 'church',
       'initial': false,
       'description': 'Is church?',
@@ -411,12 +395,6 @@ const template = {
           'text-anchor': 'start'
         }
       }
-    },
-    {
-      'header': 'contact',
-      'initial': '',
-      'description': 'Contact info',
-      'type': 'text',
     },
     {
       'header': 'active',
