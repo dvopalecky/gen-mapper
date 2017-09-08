@@ -189,9 +189,9 @@ const template = {
       }
     },
     {
-      'header': 'newlyBaptized',
+      'header': 'multipliers',
       'initial': 0,
-      'description': '# of New Baptized (since church start)',
+      'description': '# of Multiplying disciples',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -417,13 +417,6 @@ const template = {
       'initial': '',
       'description': 'Contact info',
       'type': 'text',
-      'svg': {
-        'type': 'text',
-        'attributes': {
-          'x': 0,
-          'y': boxHeight + 2 * textHeight
-        }
-      }
     },
     {
       'header': 'active',
