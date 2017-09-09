@@ -26,7 +26,7 @@ const template = {
     'attenders-image': {
       'type': 'image',
       'attributes': {
-        'x': -boxHeight * 0.5,
+        'x': -boxHeight * 0.45,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
@@ -36,7 +36,7 @@ const template = {
     'believers-image': {
       'type': 'image',
       'attributes': {
-        'x': -boxHeight * 0.25,
+        'x': -boxHeight * 0.125,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
@@ -46,7 +46,7 @@ const template = {
     'baptized-image': {
       'type': 'image',
       'attributes': {
-        'x': boxHeight * 0.1,
+        'x': boxHeight * 0.2,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
@@ -148,7 +148,7 @@ const template = {
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': -boxHeight * 0.39,
+          'x': -boxHeight * 0.325,
           'y': -0.5 * textMargin
         },
         'style': {
@@ -164,7 +164,7 @@ const template = {
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': -boxHeight * 0.13,
+          'x': 0,
           'y': -0.5 * textMargin
         },
         'style': {
@@ -180,7 +180,7 @@ const template = {
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': boxHeight * 0.13,
+          'x': boxHeight * 0.325,
           'y': -0.5 * textMargin
         },
         'style': {
