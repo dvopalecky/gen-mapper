@@ -408,6 +408,12 @@ const template = {
       'initial': 'action',
       'description': 'Action steps for this month',
       'type': 'text'
+    },
+    {
+      'header': 'contact',
+      'initial': 'contact',
+      'description': 'How to contact',
+      'type': 'text'
     }
   ]
 }
