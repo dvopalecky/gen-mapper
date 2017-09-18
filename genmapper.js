@@ -618,6 +618,10 @@ class GenMapper {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
       this.data = parsedCsv
+      const regex = /(.+?)(\.[^.]*$|$)/
+      const filenameNoExtension = regex.exec(filename)[1]
+      this.projectName = filenameNoExtension
+      d3.select('#project-name').text(this.projectName)
       this.redraw(template)
     })
   }
