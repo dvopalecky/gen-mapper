@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'Church circles Czech 0.1',
+  'name': 'Church circles Czech 0.2',
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -49,6 +49,16 @@ const template = {
         'width': boxHeight / 4,
         'height': boxHeight / 4,
         'href': 'icons/element-baptism.png'
+      }
+    },
+    'church-box': {
+      'type': 'rect',
+      'attributes': {
+        'x': -boxHeight / 2,
+        'y': 0,
+        'rx': 0.5 * boxHeight,
+        'width': boxHeight,
+        'height': boxHeight
       }
     }
   },
@@ -131,16 +141,10 @@ const template = {
       'initial': false,
       'description': 'Is church?',
       'type': 'checkbox',
-      'svg': {
-        'type': 'rect',
-        'attributes': {
-          'x': -boxHeight / 2,
-          'y': 0,
-          'rx': boxHeight * 0.5,
-          'width': boxHeight,
-          'height': boxHeight,
-          'stroke-dasharray': '7, 7'
-        }
+      'inheritsFrom': 'church-box',
+      'class': {
+        'checkedTrue': 'is-church',
+        'checkedFalse': 'is-not-church'
       }
     },
     {
