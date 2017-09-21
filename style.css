@@ -74,6 +74,17 @@ aside p{
   font-weight: bold;
 }
 
+select#lang-selector {
+  background-color: steelblue;
+  border: 3px solid #ddd;
+  color: white;
+  text-align: center;
+  width:200px;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 0px;
+}
+
 /**** Modal windows ****/
 #intro, #edit-group, #alert-message {
   position: fixed;

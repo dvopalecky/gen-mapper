@@ -4,6 +4,110 @@ const textMargin = 6
 
 const template = {
   'name': 'Church circles 0.5',
+  'translations': {
+    en: {
+      translation: {
+        'template': {
+          'name': "Leader's Name",
+          'email': 'Email',
+          'link': 'Link',
+          'attenders': '# of Attenders',
+          'believers': '# of Believers',
+          'baptized': '# of Baptized',
+          'newlyBaptized': '# of New Baptized (since church start)',
+          'church': 'Is church?',
+          'churchType': 'Church Type',
+          'legacy': 'Legacy',
+          'existingBelievers': 'Existing Believers',
+          'newBelievers': 'New Believers',
+          'elementBaptism': 'Element: Baptism',
+          'elementWord': "Element: God's Word",
+          'elementPrayer': 'Element: Prayer',
+          'elementLordsSupper': "Element: Lord's supper",
+          'elementGive': 'Element: Giving',
+          'elementLove': 'Element: Love',
+          'elementWorship': 'Element: Worship',
+          'elementLeaders': 'Element: Leaders',
+          'elementMakeDisciples': 'Element: Make disciples',
+          'place': 'Place (City, State, Country)',
+          'date': 'Date of Start (Ex. 2017-01)',
+          'threeThirds': 'Elements of 3/3 process (see help for details)',
+          'active': 'Active',
+          'initialLeadersName': "Leader's Name",
+          'initialPlace': 'Place',
+          'initialDate': 'Date'
+        }
+      }
+    },
+    es: {
+      translation: {
+        'template': {
+          'name': 'Nombre de lider',
+          'initialLeadersName': 'Nombre de lider',
+          'email': 'Email',
+          'link': 'Vínculo',
+          'attenders': '# of assistantes',
+          'believers': '# of creyentes',
+          'baptized': '# of bautizados',
+          'newlyBaptized': '# of nuevos bautizados (desde inicio de iglesia)',
+          'church': 'Iglesia?',
+          'churchType': 'Tipo de Iglesia:',
+          'legacy': 'Tradicional',
+          'existingBelievers': 'Creyentes existentes',
+          'newBelievers': 'Nuevos creyentes',
+          'elementBaptism': 'Elemento: Bautismo',
+          'elementWord': 'Elemento: Biblia',
+          'elementPrayer': 'Elemento: Oración',
+          'elementLordsSupper': 'Elemento: Santa Cena',
+          'elementGive': 'Elemento: Dar/Generosidad',
+          'elementLove': 'Elemento: Amor',
+          'elementWorship': 'Elemento: Adorar',
+          'elementLeaders': 'Elemento: Lider',
+          'elementMakeDisciples': 'Elemento: Hacer discípulos',
+          'place': 'Lugar (Ciudad, Provincia, Pais)',
+          'initialPlace': 'Lugar',
+          'date': 'Fecha de Inicio (Ex. 2017-01):',
+          'initialDate': 'Fecha',
+          'threeThirds': 'Elementos del proceso de 3/3  (Ver ayuda para detalles):',
+          'active': 'Activo'
+        }
+      }
+    },
+    cs: {
+      translation: {
+        'template': {
+          'name': 'Jméno vedoucího',
+          'email': 'Email',
+          'link': 'Odkaz',
+          'attenders': 'Počet účastníků',
+          'believers': 'Počet věřících',
+          'baptized': 'Počet pokřtěných',
+          'newlyBaptized': 'Počet nově pokřtěných (od začátku skupiny)',
+          'church': 'Je církev/Boží rodina?',
+          'churchType': 'Typ církve',
+          'legacy': 'Tradiční',
+          'existingBelievers': 'Existující věřící',
+          'newBelievers': 'Noví věřící',
+          'elementBaptism': 'Prvek: Křest',
+          'elementWord': 'Prvek: Boží Slovo',
+          'elementPrayer': 'Prvek: Modlitba',
+          'elementLordsSupper': 'Prvek: Připomínka Ježíšovy oběti',
+          'elementGive': 'Prvek: Dávání',
+          'elementLove': 'Prvek: Láska',
+          'elementWorship': 'Prvek: Oslava Ježíše',
+          'elementLeaders': 'Prvek: Vedoucí',
+          'elementMakeDisciples': 'Prvek: Činění učedníků',
+          'place': 'Místo',
+          'date': 'Datum začátku (např. 2017-01)',
+          'threeThirds': 'Prvky 3/3 (viz nápovědu pro více info)',
+          'active': 'Aktivní',
+          'initialLeadersName': 'Jméno',
+          'initialPlace': 'Místo',
+          'initialDate': 'Datum'
+        }
+      }
+    }
+  },
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -68,19 +172,16 @@ const template = {
     {
       'header': 'id',
       'initial': 0,
-      'description': 'Id',
       'type': null
     },
     {
       'header': 'parentId',
       'initial': null,
-      'description': 'Parent',
       'type': null
     },
     {
       'header': 'name',
-      'initial': "Leader's Name",
-      'description': "Leader's Name",
+      'initialTranslationCode': 'initialLeadersName',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -93,19 +194,16 @@ const template = {
     {
       'header': 'email',
       'initial': null,
-      'description': 'Email',
       'type': 'text'
     },
     {
       'header': 'link',
       'initial': null,
-      'description': 'Link',
       'type': 'text'
     },
     {
       'header': 'attenders',
       'initial': 0,
-      'description': '# of Attenders',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -121,7 +219,6 @@ const template = {
     {
       'header': 'believers',
       'initial': 0,
-      'description': '# of Believers',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -137,7 +234,6 @@ const template = {
     {
       'header': 'baptized',
       'initial': 0,
-      'description': '# of Baptized',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -153,7 +249,6 @@ const template = {
     {
       'header': 'newlyBaptized',
       'initial': 0,
-      'description': '# of New Baptized (since church start)',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -169,7 +264,6 @@ const template = {
     {
       'header': 'church',
       'initial': false,
-      'description': 'Is church?',
       'type': 'checkbox',
       'inheritsFrom': 'church-box',
       'class': {
@@ -180,13 +274,11 @@ const template = {
     {
       'header': 'churchType',
       'initial': 'newBelievers',
-      'description': 'Church Type',
       'type': 'radio',
       'inheritsFrom': 'church-box',
       'values': [
         {
           'header': 'legacy',
-          'description': 'Legacy',
           'class': 'church-legacy',
           'attributes': {
             'rx': 0
@@ -194,21 +286,18 @@ const template = {
         },
         {
           'header': 'existingBelievers',
-          'description': 'Existing Believers',
           'attributes': {
             'rx': 0
           }
         },
         {
-          'header': 'newBelievers',
-          'description': 'New Believers'
+          'header': 'newBelievers'
         }
       ]
     },
     {
       'header': 'elementBaptism',
       'initial': false,
-      'description': 'Element: Baptism',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -224,7 +313,6 @@ const template = {
     {
       'header': 'elementWord',
       'initial': false,
-      'description': "Element: God's Word",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -240,7 +328,6 @@ const template = {
     {
       'header': 'elementPrayer',
       'initial': false,
-      'description': 'Element: Prayer',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -256,7 +343,6 @@ const template = {
     {
       'header': 'elementLordsSupper',
       'initial': false,
-      'description': "Element: Lord's supper",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -272,7 +358,6 @@ const template = {
     {
       'header': 'elementGive',
       'initial': false,
-      'description': 'Element: Giving',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -288,7 +373,6 @@ const template = {
     {
       'header': 'elementLove',
       'initial': false,
-      'description': 'Element: Love',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -304,7 +388,6 @@ const template = {
     {
       'header': 'elementWorship',
       'initial': false,
-      'description': 'Element: Worship',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -320,7 +403,6 @@ const template = {
     {
       'header': 'elementLeaders',
       'initial': false,
-      'description': 'Element: Leaders',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -336,7 +418,6 @@ const template = {
     {
       'header': 'elementMakeDisciples',
       'initial': false,
-      'description': 'Element: Make disciples',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -351,8 +432,7 @@ const template = {
     },
     {
       'header': 'place',
-      'initial': 'Place',
-      'description': 'Place (City, State, Country)',
+      'initialTranslationCode': 'initialPlace',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -364,8 +444,7 @@ const template = {
     },
     {
       'header': 'date',
-      'initial': 'Date',
-      'description': 'Date of Start (Ex. 2017-01)',
+      'initialTranslationCode': 'initialDate',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -378,7 +457,6 @@ const template = {
     {
       'header': 'threeThirds',
       'initial': '1234567',
-      'description': 'Elements of 3/3 process (see help for details)',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -397,7 +475,6 @@ const template = {
     {
       'header': 'active',
       'initial': true,
-      'description': 'Active',
       'type': 'checkbox'
       // svg defined currently in genmapper.js
     }

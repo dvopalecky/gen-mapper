@@ -1,31 +1,29 @@
 class GenMapper {
-
   // GenMapper
   // App for mapping generations of simple churches
   // https://github.com/dvopalecky/gen-mapper
   // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
 
-  /* global d3, XLSX, saveAs, FileReader, template, _, Blob, boxHeight */
+  /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.11'
-    this.loadHTMLContent()
+    this.appVersion = '0.2.12'
+    i18next.use(window.i18nextBrowserLanguageDetector)
+      .init({
+        fallbackLng: 'en',
+        resources: _.defaultsDeep(translations, template.translations)
+      })
+
+    if (translations[i18next.language]) {
+      this.language = i18next.language
+    } else {
+      this.language = 'en'
+    }
 
     this.margin = {top: 50, right: 30, bottom: 50, left: 30}
+    this.projectName = i18next.t('menu.defaultProjectName')
 
-    this.projectName = 'Untitled project'
-
-    this.addFieldsToEditWindow(template)
-
-    d3.select('#project-name')
-      .text(this.projectName)
-      .on('click', function () {
-        const userInput = window.prompt('Edit Project name', this.projectName).trim()
-        if (userInput === '') { this.displayAlert("Project name can't be empty!") } else {
-          this.projectName = userInput
-          d3.select('#project-name').text(this.projectName)
-        }
-      })
+    this.updateDOMafterLangSwitch()
 
     this.zoom = d3.zoom()
       .scaleExtent([0.15, 2])
@@ -47,7 +45,7 @@ class GenMapper {
       .attr('class', 'group-nodes')
 
     this.csvHeader = template.fields.map(field => field.header).join(',') + '\n'
-    this.initialCsv = this.csvHeader + template.fields.map(field => field.initial).join(',')
+    this.initialCsv = this.csvHeader + template.fields.map(field => this.getInitialValue(field)).join(',')
     this.data = this.parseCsvData(this.initialCsv)
     this.nodes
 
@@ -56,18 +54,6 @@ class GenMapper {
 
     this.alertElement = document.getElementById('alert-message')
     this.editGroupElement = document.getElementById('edit-group')
-    this.editFieldElements = {}
-    template.fields.forEach((field) => {
-      if (field.type === 'radio') {
-        field.values.forEach((value) => {
-          this.editFieldElements[field.header + '-' + value.header] =
-            document.getElementById('edit-' + field.header + '-' + value.header)
-        })
-      } else if (field.type) {
-        this.editFieldElements[field.header] = document.getElementById('edit-' + field.header)
-      }
-    })
-    this.editParentElement = document.getElementById('edit-parent')
 
     this.setKeyboardShorcuts()
 
@@ -106,37 +92,43 @@ class GenMapper {
   }
 
   loadHTMLContent () {
-    document.getElementById('left-menu').innerHTML += '<h1>GenMapper</h1>' +
+    document.getElementById('left-menu').innerHTML = '<h1>' + i18next.t('menu.appName') + '</h1>' +
     '<h2 id="project-name">&nbsp;</h2>' +
-    '<p>Help</p>' +
-    '<button onclick="genmapper.introSwitchVisibility()">Help / About</button>' +
-    '<p>Zooming</p>' +
-    '<button onclick="genmapper.origPosition();">Original Zoom &amp; Position</button>' +
-    '<button onclick="genmapper.zoomIn();">Zoom In</button>' +
-    '<button onclick="genmapper.zoomOut();">Zoom Out</button>' +
-    '<p>Import / Export</p>' +
-    '<button onclick="genmapper.onLoad(\'file-input\')">Import XLXS / CSV</button>' +
+    '<p>Language</p>' +
+    '<select id="lang-selector" onchange="genmapper.switchLanguage()">' +
+    '  <option value="en">English</option>' +
+    '  <option value="es">Español</option>' +
+    '  <option value="cs">Čeština</option>' +
+    '</select>' +
+    '<p>' + i18next.t('menu.help') + '</p>' +
+    '<button onclick="genmapper.introSwitchVisibility()">' + i18next.t('menu.helpAbout') + '</button>' +
+    '<p>' + i18next.t('menu.zooming') + '</p>' +
+    '<button onclick="genmapper.origPosition();">' + i18next.t('menu.originalZoom') + '</button>' +
+    '<button onclick="genmapper.zoomIn();">' + i18next.t('menu.zoomIn') + '</button>' +
+    '<button onclick="genmapper.zoomOut();">' + i18next.t('menu.zoomOut') + '</button>' +
+    '<p>' + i18next.t('menu.importExport') + '</p>' +
+    '<button onclick="genmapper.onLoad(\'file-input\')">' + i18next.t('menu.importXlsxCsv') + '</button>' +
     '<input type="file" id="file-input" onchange="genmapper.importFile()" style="display:none;">' +
-    '<button onclick="genmapper.outputCsv()">Export CSV</button>' +
-    '<p>Printing</p>' +
-    '<button onclick="genmapper.printMap(\'vertical\');">Print Vertical Multipage</button>' +
-    '<button onclick="genmapper.printMap(\'horizontal\');">Print Horizontal One-page</button>'
+    '<button onclick="genmapper.outputCsv()">' + i18next.t('menu.exportCsv') + '</button>' +
+    '<p>' + i18next.t('menu.printing') + '</p>' +
+    '<button onclick="genmapper.printMap(\'vertical\');">' + i18next.t('menu.btnPrintVertical') + '</button>' +
+    '<button onclick="genmapper.printMap(\'horizontal\');">' + i18next.t('menu.btnPrintHorizontal') + '</button>'
 
-    document.getElementById('edit-group').innerHTML += '<div id="edit-group-content">' +
-    '  <h1>Edit group</h1>' +
+    document.getElementById('edit-group').innerHTML = '<div id="edit-group-content">' +
+    '  <h1>' + i18next.t('editGroup.editGroup') + '</h1>' +
     '  <form>' +
     '    <table>' +
     '      <tr>' +
-    '        <td class="left-field">Parent:</td>' +
+    '        <td class="left-field">' + i18next.t('editGroup.elementParent') + '</td>' +
     '        <td class="right-field"><p id="edit-parent"></p></td>' +
     '      </tr>' +
     '    </table>' +
     '  </form>' +
     '  <div id="edit-buttons">' +
-    '    <button id="edit-submit">Submit changes</button>' +
-    '    <button id="edit-cancel">Cancel</button>' +
-    '    <button id="edit-delete">Delete subtree</button>' +
-    '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">Import subtree</button>' +
+    '    <button id="edit-submit">' + i18next.t('editGroup.btnSubmit') + '</button>' +
+    '    <button id="edit-cancel">' + i18next.t('editGroup.btnCancel') + '</button>' +
+    '    <button id="edit-delete">' + i18next.t('editGroup.btnDelete') + '</button>' +
+    '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">' + i18next.t('editGroup.btnImportSubtree') + '</button>' +
     '    <input type="file" id="file-input-subtree" style="display:none;">' +
     '  </div>' +
     '</div>'
@@ -144,10 +136,18 @@ class GenMapper {
     document.getElementById('alert-message').innerHTML =
     '<div id="alert-message-content">' +
     '  <p id="alert-message-text"></p>' +
-    '  <button onclick="genmapper.closeAlert()">OK</button>' +
+    '  <button onclick="genmapper.closeAlert()">' + i18next.t('messages.btnOK') + '</button>' +
     '</div>'
 
     document.getElementById('version').innerHTML = this.appVersion
+  }
+
+  getInitialValue (field) {
+    if (field.initialTranslationCode) {
+      return i18next.t('template.' + field.initialTranslationCode)
+    } else {
+      return field.initial
+    }
   }
 
   zoomIn () {
@@ -189,7 +189,6 @@ class GenMapper {
 
   popupEditGroupModal (d) {
     this.editGroupElement.style.display = 'block'
-
     template.fields.forEach((field) => {
       if (field.type === 'text') {
         this.editFieldElements[field.header].value = d.data[field.header]
@@ -351,7 +350,7 @@ class GenMapper {
     const newGroup = node.enter()
       .append('g')
 
-    newGroup.append('title').text('Edit group')
+    newGroup.append('title').text(i18next.t('editGroup.editGroup'))
     this.appendRemoveButton(newGroup)
     this.appendAddButton(newGroup)
 
@@ -467,9 +466,9 @@ class GenMapper {
   }
 
   static getFieldValueForRadioType (field, d) {
-    let fieldValue = _.where(field.values, {header: d.data[field.header]})[0]
+    let fieldValue = _.filter(field.values, {header: d.data[field.header]})[0]
     if (typeof fieldValue === 'undefined') {
-      fieldValue = _.where(field.values, {header: field.initial})[0]
+      fieldValue = _.filter(field.values, {header: field.initial})[0]
     }
     return fieldValue
   }
@@ -487,7 +486,7 @@ class GenMapper {
       .append('svg')
       .html(
         '<rect x="40" y="0" rx="7" width="25" height="40">' +
-          '<title>Remove group &amp; subtree</title>' +
+          '<title>' + i18next.t('editGroup.hoverDeleteGroupAndSubtree') + '</title>' +
         '</rect>' +
         '<line x1="46" y1="13.5" x2="59" y2="26.5" stroke="white" stroke-width="3"></line>' +
         '<line x1="59" y1="13.5" x2="46" y2="26.5" stroke="white" stroke-width="3"></line>'
@@ -500,7 +499,7 @@ class GenMapper {
       .append('svg')
       .html(
         '<rect x="40" y="40" rx="7" width="25" height="40">' +
-          '<title>Add child</title>' +
+          '<title>' + i18next.t('editGroup.hoverAddChildGroup') + '</title>' +
         '</rect>' +
         '<line x1="45" y1="60" x2="60" y2="60" stroke="white" stroke-width="3"></line>' +
         '<line x1="52.5" y1="52.5" x2="52.5" y2="67.5" stroke="white" stroke-width="3"></line>'
@@ -510,7 +509,7 @@ class GenMapper {
   addNode (d) {
     const newNodeData = {}
     template.fields.forEach((field) => {
-      newNodeData[field.header] = field.initial
+      newNodeData[field.header] = this.getInitialValue(field)
     })
     newNodeData['id'] = this.findNewId()
     newNodeData['parentId'] = d.data.id
@@ -544,17 +543,17 @@ class GenMapper {
 
   removeNode (d) {
     if (!d.parent) {
-      this.displayAlert('Sorry. Deleting root group is not possible.')
+      this.displayAlert(i18next.t('messages.errDeleteRoot'))
     } else {
       let confirmMessage
       if (!d.children) {
-        confirmMessage = 'Do you really want to delete ' + d.data.name + '?'
+        confirmMessage = i18next.t('messages.confirmDeleteGroup', {groupName: d.data.name})
       } else {
-        confirmMessage = 'Do you really want to delete ' + d.data.name + ' and all descendants?'
+        confirmMessage = i18next.t('messages.confirmDeleteGroupWithChildren', {groupName: d.data.name})
       }
       if (window.confirm(confirmMessage)) {
         this.deleteAllDescendants(d)
-        const nodeToDelete = _.where(this.data, {id: d.data.id})
+        const nodeToDelete = _.filter(this.data, {id: d.data.id})
         if (nodeToDelete) {
           this.data = _.without(this.data, nodeToDelete[0])
         }
@@ -598,7 +597,7 @@ class GenMapper {
     const blob = new Blob([this.csvHeader + out], {type: 'text/csv;charset=utf-8'})
     const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
                  navigator.userAgent && !navigator.userAgent.match('CriOS')
-    const promptMessage = isSafari ? 'Save as: \n(Note: Safari browser has issues with export, please see GenMapper -> Help for more info)' : 'Save as:'
+    const promptMessage = isSafari ? i18next.t('messages.saveAsInSafari') : i18next.t('messages.saveAs')
     const saveName = window.prompt(promptMessage, this.projectName + '.csv')
     if (saveName === null) return
     saveAs(blob, saveName)
@@ -627,7 +626,7 @@ class GenMapper {
   }
 
   importFileSubtree (d) {
-    if (!window.confirm('Warning: Importing subtreee will overwrite this group (' + d.data.name + ') and all descendants. Do you want to continue?')) {
+    if (!window.confirm(i18next.t('messages.confirmImportSubtreeOverwrite', {groupName: d.data.name}))) {
       return
     }
     this.importFileFromInput('file-input-subtree', (filedata, filename) => {
@@ -667,11 +666,9 @@ class GenMapper {
 
   displayImportError (err) {
     if (err.toString().includes('>= 0.') || err.toString().includes('Wrong type')) {
-      this.displayAlert('Error when importing file. <br>' + err.toString())
+      this.displayAlert(i18next.t('messages.errImport') + ' <br>' + err.toString())
     } else {
-      this.displayAlert('Error when importing file.<br><br>Please check that the file is in correct format' +
-            '(comma separated values), that the root group has no parent, and that all other' +
-            'relationships make a valid tree.<br><br>Also check that you use the correct version of the App.')
+      this.displayAlert(i18next.t('messages.errImport') + '<br><br>' + i18next.t('messages.errImportWhatToCheck'))
     }
   }
 
@@ -679,10 +676,10 @@ class GenMapper {
     let idsToDelete = _.map(d.children, function (row) { return parseInt(row.id) })
     while (idsToDelete.length > 0) {
       const currentId = idsToDelete.pop()
-      const childrenIdsToDelete = _.map(_.where(this.data, {parentId: currentId}),
+      const childrenIdsToDelete = _.map(_.filter(this.data, {parentId: currentId}),
         function (row) { return row.id })
       idsToDelete = idsToDelete.concat(childrenIdsToDelete)
-      const nodeToDelete = _.where(this.data, {id: currentId})
+      const nodeToDelete = _.filter(this.data, {id: currentId})
       if (nodeToDelete) { this.data = _.without(this.data, nodeToDelete[0]) }
     }
   }
@@ -691,8 +688,8 @@ class GenMapper {
     this.deleteAllDescendants(d)
 
     // replace node by root of imported
-    const nodeToDelete = _.where(this.data, {id: d.data.id})[0]
-    const rowRootOfImported = _.where(parsedCsv, {parentId: ''})[0]
+    const nodeToDelete = _.filter(this.data, {id: d.data.id})[0]
+    const rowRootOfImported = _.filter(parsedCsv, {parentId: ''})[0]
     const mapOldIdToNewId = {}
     mapOldIdToNewId[rowRootOfImported.id] = nodeToDelete.id
     parsedCsv = _.without(parsedCsv, rowRootOfImported)
@@ -734,7 +731,7 @@ class GenMapper {
     } else if (!input.files) {
       this.displayAlert("This browser doesn't seem to support the 'files' property of file inputs.")
     } else if (!input.files[0]) {
-      this.displayAlert('Please select a file')
+      this.displayAlert(i18next.t('messages.selectFile'))
     } else {
       const file = input.files[0]
       const filename = file.name
@@ -764,7 +761,7 @@ class GenMapper {
     } else if (extension === 'csv') {
       csvString = filedata
     } else {
-      throw new Error('Wrong type of file. Please import xls, xlsx or csv files.')
+      throw new Error(i18next.t('messages.errWrongFileType'))
     }
     csvString = csvString.replace(/\r\n?/g, '\n')
     // replace first line with a default one
@@ -780,21 +777,23 @@ class GenMapper {
           .select('table')
           .append('tr')
         // add left column
+        const fieldDesciption = i18next.t('template.' + field.header) + ':'
         tr.append('td')
-          .text(field.description + ':')
+          .text(fieldDesciption)
           .attr('class', 'left-field')
         // add right column
         const td = tr.append('td')
           .attr('class', 'right-field')
         if (field.type === 'radio') {
           for (let value of field.values) {
+            const valueDescription = i18next.t('template.' + value.header)
             td.append('input')
               .attr('type', field.type)
               .attr('name', field.header)
               .attr('value', value.header)
               .attr('id', 'edit-' + field.header + '-' + value.header)
             td.append('span')
-              .html(value.description)
+              .html(valueDescription)
             td.append('br')
           }
         } else {
@@ -805,6 +804,40 @@ class GenMapper {
         }
       }
     })
+  }
+
+  switchLanguage () {
+    this.language = document.getElementById('lang-selector').value
+    i18next.changeLanguage(this.language)
+    this.updateDOMafterLangSwitch()
+    this.redraw(template)
+  }
+
+  updateDOMafterLangSwitch () {
+    this.loadHTMLContent()
+    this.addFieldsToEditWindow(template)
+    document.getElementById('lang-selector').value = this.language
+    d3.select('#project-name')
+      .text(this.projectName)
+      .on('click', function () {
+        const userInput = window.prompt(i18next.t('messages.editProjectName'), this.projectName).trim()
+        if (userInput === '') { this.displayAlert(i18next.t('messages.errProjectNameEmpty')) } else {
+          this.projectName = userInput
+          d3.select('#project-name').text(this.projectName)
+        }
+      })
+    this.editFieldElements = {}
+    template.fields.forEach((field) => {
+      if (field.type === 'radio') {
+        field.values.forEach((value) => {
+          this.editFieldElements[field.header + '-' + value.header] =
+            document.getElementById('edit-' + field.header + '-' + value.header)
+        })
+      } else if (field.type) {
+        this.editFieldElements[field.header] = document.getElementById('edit-' + field.header)
+      }
+    })
+    this.editParentElement = document.getElementById('edit-parent')
   }
 }
 

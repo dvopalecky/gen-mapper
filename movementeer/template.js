@@ -4,6 +4,40 @@ const textMargin = 6
 
 const template = {
   'name': 'MOVEMENTeer 0.4',
+  'translations': {
+    'en': {
+      'translation': {
+        'template': {
+          'name': 'Name of the Leader',
+          'leaderType': 'Leader',
+          'fullTimeMissionary': 'Full time missionary',
+          'existingLayBeliever': 'Existing lay believer',
+          'leadersDisciple': "Leader's disciple",
+          'place': 'Place',
+          'date': 'Date started',
+          'attenders': '# of Attenders',
+          'believers': '# of Believers',
+          'baptized': '# of Baptized',
+          'church': 'Is church?',
+          'elementWord': "Element: God's Word",
+          'elementPrayer': 'Element: Prayer',
+          'elementLove': 'Element: Love',
+          'elementWorship': 'Element: Worship',
+          'elementMakeDisciples': 'Element: Make disciples',
+          'elementLeaders': 'Element: Leaders',
+          'elementGive': 'Element: Giving',
+          'elementLordsSupper': "Element: Lord's supper",
+          'elementBaptism': 'Element: Baptism',
+          'threeThirds': 'Elements of 3/3 process',
+          'trainingUsed': 'Training used',
+          'trainingPhase': 'Training phase',
+          'active': 'Active',
+          'actionSteps': 'Action steps for this month',
+          'contact': 'How to contact'
+        }
+      }
+    }
+  },
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -68,19 +102,16 @@ const template = {
     {
       'header': 'id',
       'initial': 0,
-      'description': 'Id',
       'type': null
     },
     {
       'header': 'parentId',
       'initial': null,
-      'description': 'Parent',
       'type': null
     },
     {
       'header': 'name',
       'initial': "Leader's Name",
-      'description': 'Name of the Leader',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -93,23 +124,19 @@ const template = {
     {
       'header': 'leaderType',
       'initial': 'fullTimeMissionary',
-      'description': 'Leader',
       'type': 'radio',
       'inheritsFrom': 'church-box',
       'values': [
         {
           'header': 'fullTimeMissionary',
-          'description': 'Full time missionary',
           'class': 'full-time-missionary'
         },
         {
           'header': 'existingLayBeliever',
-          'description': 'Existing lay believer',
           'class': 'existing-lay-believer'
         },
         {
           'header': 'leadersDisciple',
-          'description': "Leader's disciple",
           'class': 'leaders-disciple'
         }
       ]
@@ -117,7 +144,6 @@ const template = {
     {
       'header': 'place',
       'initial': '',
-      'description': 'Place',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -130,7 +156,6 @@ const template = {
     {
       'header': 'date',
       'initial': '',
-      'description': 'Date started',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -143,7 +168,6 @@ const template = {
     {
       'header': 'attenders',
       'initial': 0,
-      'description': '# of Attenders',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -159,7 +183,6 @@ const template = {
     {
       'header': 'believers',
       'initial': 0,
-      'description': '# of Believers',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -175,7 +198,6 @@ const template = {
     {
       'header': 'baptized',
       'initial': 0,
-      'description': '# of Baptized',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -191,7 +213,6 @@ const template = {
     {
       'header': 'church',
       'initial': false,
-      'description': 'Is church?',
       'type': 'checkbox',
       'inheritsFrom': 'church-box',
       'attributes': {
@@ -204,7 +225,6 @@ const template = {
     {
       'header': 'elementWord',
       'initial': false,
-      'description': "Element: God's Word",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -220,7 +240,6 @@ const template = {
     {
       'header': 'elementPrayer',
       'initial': false,
-      'description': 'Element: Prayer',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -236,7 +255,6 @@ const template = {
     {
       'header': 'elementLove',
       'initial': false,
-      'description': 'Element: Love',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -252,7 +270,6 @@ const template = {
     {
       'header': 'elementWorship',
       'initial': false,
-      'description': 'Element: Worship',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -268,7 +285,6 @@ const template = {
     {
       'header': 'elementMakeDisciples',
       'initial': false,
-      'description': 'Element: Make disciples',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -284,7 +300,6 @@ const template = {
     {
       'header': 'elementLeaders',
       'initial': false,
-      'description': 'Element: Leaders',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -300,7 +315,6 @@ const template = {
     {
       'header': 'elementGive',
       'initial': false,
-      'description': 'Element: Giving',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -316,7 +330,6 @@ const template = {
     {
       'header': 'elementLordsSupper',
       'initial': false,
-      'description': "Element: Lord's supper",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -332,7 +345,6 @@ const template = {
     {
       'header': 'elementBaptism',
       'initial': false,
-      'description': 'Element: Baptism',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -348,7 +360,6 @@ const template = {
     {
       'header': 'threeThirds',
       'initial': '',
-      'description': 'Elements of 3/3 process',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -367,7 +378,6 @@ const template = {
     {
       'header': 'trainingUsed',
       'initial': '',
-      'description': 'Training used',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -383,7 +393,6 @@ const template = {
     {
       'header': 'trainingPhase',
       'initial': '',
-      'description': 'Training phase',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -399,20 +408,17 @@ const template = {
     {
       'header': 'active',
       'initial': true,
-      'description': 'Active',
       'type': 'checkbox'
       // svg defined currently in genmapper.js
     },
     {
       'header': 'actionSteps',
       'initial': 'action',
-      'description': 'Action steps for this month',
       'type': 'text'
     },
     {
       'header': 'contact',
       'initial': 'contact',
-      'description': 'How to contact',
       'type': 'text'
     }
   ]

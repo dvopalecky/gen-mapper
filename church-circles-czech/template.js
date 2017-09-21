@@ -4,6 +4,62 @@ const textMargin = 6
 
 const template = {
   'name': 'Church circles Czech 0.2',
+  'translations': {
+    en: {
+      translation: {
+        'template': {
+          'name': "Leader's Name",
+          'attenders': '# of Attenders',
+          'believers': '# of Believers',
+          'baptized': '# of Baptized',
+          'church': 'Is church?',
+          'elementBaptism': 'Element: Baptism',
+          'elementWord': "Element: God's Word",
+          'elementPrayer': 'Element: Prayer',
+          'elementLordsSupper': "Element: Lord's supper",
+          'elementGive': 'Element: Giving',
+          'elementLove': 'Element: Love',
+          'elementWorship': 'Element: Worship',
+          'elementLeaders': 'Element: Leaders',
+          'elementMakeDisciples': 'Element: Make disciples',
+          'place': 'Place',
+          'date': 'Date of Start (Finish)',
+          'threeThirds': 'Elements of 3/3 process (see help for details)',
+          'active': 'Active',
+          'initialName': 'Name',
+          'initialPlace': 'Place',
+          'initialDate': 'Date'
+        }
+      }
+    },
+    cs: {
+      translation: {
+        'template': {
+          'name': 'Jméno',
+          'attenders': 'Počet účastníků',
+          'believers': 'Počet věřících',
+          'baptized': 'Počet pokřtěných',
+          'church': 'Je církev/Boží rodina?',
+          'elementBaptism': 'Prvek: Křest',
+          'elementWord': 'Prvek: Boží Slovo',
+          'elementPrayer': 'Prvek: Modlitba',
+          'elementLordsSupper': 'Prvek: Připomínka Ježíšovy oběti',
+          'elementGive': 'Prvek: Dávání',
+          'elementLove': 'Prvek: Láska',
+          'elementWorship': 'Prvek: Oslava Ježíše',
+          'elementLeaders': 'Prvek: Vedoucí',
+          'elementMakeDisciples': 'Prvek: Činění učedníků',
+          'place': 'Místo',
+          'date': 'Datum začátku (popř. konce)',
+          'threeThirds': 'Prvky 3/3 (viz nápovědu pro více info)',
+          'active': 'Aktivní',
+          'initialName': 'Jméno',
+          'initialPlace': 'Místo',
+          'initialDate': 'Datum'
+        }
+      }
+    }
+  },
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
@@ -66,19 +122,16 @@ const template = {
     {
       'header': 'id',
       'initial': 0,
-      'description': 'Id',
       'type': null
     },
     {
       'header': 'parentId',
       'initial': null,
-      'description': 'Parent',
       'type': null
     },
     {
       'header': 'name',
-      'initial': 'Name',
-      'description': 'Name',
+      'initialTranslationCode': 'initialName',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -91,7 +144,6 @@ const template = {
     {
       'header': 'attenders',
       'initial': 0,
-      'description': '# of Attenders',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -107,7 +159,6 @@ const template = {
     {
       'header': 'believers',
       'initial': 0,
-      'description': '# of Believers',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -123,7 +174,6 @@ const template = {
     {
       'header': 'baptized',
       'initial': 0,
-      'description': '# of Baptized',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -139,7 +189,6 @@ const template = {
     {
       'header': 'church',
       'initial': false,
-      'description': 'Is church?',
       'type': 'checkbox',
       'inheritsFrom': 'church-box',
       'class': {
@@ -150,7 +199,6 @@ const template = {
     {
       'header': 'elementBaptism',
       'initial': false,
-      'description': 'Element: Baptism',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -166,7 +214,6 @@ const template = {
     {
       'header': 'elementWord',
       'initial': false,
-      'description': "Element: God's Word",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -182,7 +229,6 @@ const template = {
     {
       'header': 'elementPrayer',
       'initial': false,
-      'description': 'Element: Prayer',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -198,7 +244,6 @@ const template = {
     {
       'header': 'elementLordsSupper',
       'initial': false,
-      'description': "Element: Lord's supper",
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -214,7 +259,6 @@ const template = {
     {
       'header': 'elementGive',
       'initial': false,
-      'description': 'Element: Giving',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -230,7 +274,6 @@ const template = {
     {
       'header': 'elementLove',
       'initial': false,
-      'description': 'Element: Love',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -246,7 +289,6 @@ const template = {
     {
       'header': 'elementWorship',
       'initial': false,
-      'description': 'Element: Worship',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -262,7 +304,6 @@ const template = {
     {
       'header': 'elementLeaders',
       'initial': false,
-      'description': 'Element: Leaders',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -278,7 +319,6 @@ const template = {
     {
       'header': 'elementMakeDisciples',
       'initial': false,
-      'description': 'Element: Make disciples',
       'type': 'checkbox',
       'svg': {
         'type': 'image',
@@ -293,8 +333,7 @@ const template = {
     },
     {
       'header': 'place',
-      'initial': 'Place',
-      'description': 'Place',
+      'initialTranslationCode': 'initialPlace',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -306,8 +345,7 @@ const template = {
     },
     {
       'header': 'date',
-      'initial': 'Date',
-      'description': 'Date of Start (Finish)',
+      'initialTranslationCode': 'initialDate',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -320,7 +358,6 @@ const template = {
     {
       'header': 'threeThirds',
       'initial': '1234567',
-      'description': 'Elements of 3/3 process (see help for details)',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -339,7 +376,6 @@ const template = {
     {
       'header': 'active',
       'initial': true,
-      'description': 'Active',
       'type': 'checkbox'
       // svg defined currently in genmapper.js
     }
