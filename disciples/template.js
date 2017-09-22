@@ -27,6 +27,29 @@ const template = {
           'active': 'Active'
         }
       }
+    },
+    cs: {
+      translation: {
+        'template': {
+          'name': 'Jméno',
+          'date': 'Datum uvěření',
+          'believer': 'Věřící',
+          'baptized': 'Pokřtěný',
+          'word': 'Zůstává v Božím Slovu',
+          'prayer': 'Pravidelně se modlí',
+          'field1': '1. Pole: Oikosová mapa, ',
+          'field2': '2. Pole: Osobní příběh, Boží příběh',
+          'field3': '3. Pole: Krátkodobé učednictví, LTG',
+          'field4': '4. Pole: Součástí Boží rodiny',
+          'field5': 'Trénuje další, Iron-on-iron',
+          'timothy': 'Timoteus (klíčový učedník)',
+          'discipleType': 'Typ učedníka',
+          'individual': 'Jednotlivec',
+          'facilitatesGroup': 'Provází skupinu',
+          'facilitatesChurch': 'Provází Boží rodinu',
+          'active': 'Aktivní'
+        }
+      }
     }
   },
   'settings': {
@@ -81,7 +104,7 @@ const template = {
     },
     {
       'header': 'date',
-      'initial': '2017-01',
+      'initial': null,
       'type': 'text',
       'svg': {
         'type': 'text',
