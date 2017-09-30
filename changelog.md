@@ -1,5 +1,13 @@
 # gen-mapper changelog
 
+## 0.2.13 (2017-09-22)
+- internationalization feature - contact me if you want to help with
+  translations
+- change project name when importing full genmap from file
+
+## 0.2.12 (2017-09-18)
+- put whole app into JS class and further refactoring
+
 ## 0.2.11 (2017-08-19)
 - improved UI of the 'canvas' and edit window
 
@@ -17,8 +25,8 @@
 - delete group deletes also it's descendants
 
 ## 0.2.6 (2017-08-06)
-- fix a bug in Safari that prevented to load the app - JS variable name can't be
-  the same as id in a page
+- fix a bug in Safari that prevented to load the app - JS variable name can't
+  be the same as id in a page
 
 ## 0.2.5 (2017-07-30)
 - Pressing enter allows to submit Edit Group window
@@ -32,7 +40,8 @@
 
 ## 0.2.2 (2017-04-30)
 - exports true/false fields as 1/0 into .csv
-- importing true/false (checkbox) fields: TRUE/true/1 values are considered as TRUE
+- importing true/false (checkbox) fields: TRUE/true/1 values are considered
+  as TRUE
 - Updated templates church-circles and church-circles-czech
 - minor changes in style
 
