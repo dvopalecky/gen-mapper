@@ -12,3 +12,8 @@
 .is-not-church {
   stroke-dasharray: 7,7;
 }
+
+.church-legacy {
+  stroke-width: 4;
+  stroke: green;
+}

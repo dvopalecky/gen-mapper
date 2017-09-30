@@ -3,16 +3,23 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'Church circles Czech 0.2',
+  'name': 'Church Circles Czech 0.3',
   'translations': {
     en: {
       translation: {
         'template': {
-          'name': "Leader's Name",
+          'name': 'Group Name',
+          'leadersName': "Leader's Name",
+          'mentor': 'Mentor',
           'attenders': '# of Attenders',
           'believers': '# of Believers',
           'baptized': '# of Baptized',
+          'newlyBaptized': '# of New Baptized (since church start)',
           'church': 'Is church?',
+          'churchType': 'Church Type',
+          'legacy': 'Legacy',
+          'existingBelievers': 'Existing Believers',
+          'newBelievers': 'New Believers',
           'elementBaptism': 'Element: Baptism',
           'elementWord': "Element: God's Word",
           'elementPrayer': 'Element: Prayer',
@@ -24,9 +31,11 @@ const template = {
           'elementMakeDisciples': 'Element: Make disciples',
           'place': 'Place',
           'date': 'Date of Start (Finish)',
-          'threeThirds': 'Elements of 3/3 process (see help for details)',
+          'threeThirds': 'Elements of 3/3 process (1=Care, 2=Accountability, 3=Worship, 4=Vision, 5=Bible, 6=Practice, 7=Goals and prayer)',
           'active': 'Active',
-          'initialName': 'Name',
+          'note': 'Note',
+          'initialName': 'Group',
+          'initialLeadersName': 'Leader',
           'initialPlace': 'Place',
           'initialDate': 'Date'
         }
@@ -35,11 +44,18 @@ const template = {
     cs: {
       translation: {
         'template': {
-          'name': 'Jméno',
+          'name': 'Jméno skupiny',
+          'leadersName': 'Jméno vedoucího',
+          'mentor': 'Mentor',
           'attenders': 'Počet účastníků',
           'believers': 'Počet věřících',
           'baptized': 'Počet pokřtěných',
+          'newlyBaptized': 'Počet nově pokřtěných (od začátku skupiny)',
           'church': 'Je církev/Boží rodina?',
+          'churchType': 'Typ církve (dle většiny účastníků)',
+          'legacy': 'Sbor',
+          'existingBelievers': 'Existující věřící',
+          'newBelievers': 'Noví věřící',
           'elementBaptism': 'Prvek: Křest',
           'elementWord': 'Prvek: Boží Slovo',
           'elementPrayer': 'Prvek: Modlitba',
@@ -53,7 +69,9 @@ const template = {
           'date': 'Datum začátku (popř. konce)',
           'threeThirds': 'Prvky 3/3 (viz nápovědu pro více info)',
           'active': 'Aktivní',
-          'initialName': 'Jméno',
+          'note': 'Poznámka',
+          'initialName': 'Skupina',
+          'initialLeadersName': 'Vedoucí',
           'initialPlace': 'Místo',
           'initialDate': 'Datum'
         }
@@ -63,11 +81,13 @@ const template = {
   'settings': {
     'nodeSize': {
       'width': boxHeight * 1.5,
-      'height': boxHeight * 2.1
+      'height': boxHeight * 2.6
     }
   },
   'svg': {
     'big-rect': {
+      // Rect with opacity 0, so that one could hover over all the square even
+      // if the visible shape is circle
       'type': 'rect',
       'attributes': {
         'x': -boxHeight / 2,
@@ -80,7 +100,7 @@ const template = {
     'attenders-image': {
       'type': 'image',
       'attributes': {
-        'x': -boxHeight * 0.45,
+        'x': -boxHeight * 0.52,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
@@ -90,7 +110,7 @@ const template = {
     'believers-image': {
       'type': 'image',
       'attributes': {
-        'x': -boxHeight * 0.125,
+        'x': -boxHeight * 0.25,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
@@ -100,11 +120,21 @@ const template = {
     'baptized-image': {
       'type': 'image',
       'attributes': {
-        'x': boxHeight * 0.2,
+        'x': boxHeight * 0,
         'y': -2.5 * textHeight,
         'width': boxHeight / 4,
         'height': boxHeight / 4,
-        'href': 'icons/element-baptism.png'
+        'href': 'icons/baptism.png'
+      }
+    },
+    'new-baptized-image': {
+      'type': 'image',
+      'attributes': {
+        'x': boxHeight * 0.25,
+        'y': -2.5 * textHeight,
+        'width': boxHeight / 4,
+        'height': boxHeight / 4,
+        'href': 'icons/new-baptism.png'
       }
     },
     'church-box': {
@@ -142,13 +172,37 @@ const template = {
       }
     },
     {
+      'header': 'leadersName',
+      'initialTranslationCode': 'initialLeadersName',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': boxHeight + 2 * textHeight
+        }
+      }
+    },
+    {
+      'header': 'mentor',
+      'initialTranslationCode': 'mentor',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': boxHeight + 3 * textHeight
+        }
+      }
+    },
+    {
       'header': 'attenders',
       'initial': 0,
       'type': 'text',
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': -boxHeight * 0.325,
+          'x': -boxHeight * 0.39,
           'y': -0.5 * textMargin
         },
         'style': {
@@ -163,7 +217,7 @@ const template = {
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': 0,
+          'x': -boxHeight * 0.13,
           'y': -0.5 * textMargin
         },
         'style': {
@@ -178,7 +232,22 @@ const template = {
       'svg': {
         'type': 'text',
         'attributes': {
-          'x': boxHeight * 0.325,
+          'x': boxHeight * 0.13,
+          'y': -0.5 * textMargin
+        },
+        'style': {
+          'text-anchor': 'center'
+        }
+      }
+    },
+    {
+      'header': 'newlyBaptized',
+      'initial': 0,
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': boxHeight * 0.39,
           'y': -0.5 * textMargin
         },
         'style': {
@@ -197,6 +266,30 @@ const template = {
       }
     },
     {
+      'header': 'churchType',
+      'initial': 'newBelievers',
+      'type': 'radio',
+      'inheritsFrom': 'church-box',
+      'values': [
+        {
+          'header': 'legacy',
+          'class': 'church-legacy',
+          'attributes': {
+            'rx': 0
+          }
+        },
+        {
+          'header': 'existingBelievers',
+          'attributes': {
+            'rx': 0
+          }
+        },
+        {
+          'header': 'newBelievers'
+        }
+      ]
+    },
+    {
       'header': 'elementBaptism',
       'initial': false,
       'type': 'checkbox',
@@ -207,7 +300,7 @@ const template = {
           'y': boxHeight * 0.1,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/element-baptism.png'
+          'xlink:href': 'icons/baptism.png'
         }
       }
     },
@@ -339,7 +432,7 @@ const template = {
         'type': 'text',
         'attributes': {
           'x': 0,
-          'y': boxHeight + 2 * textHeight
+          'y': boxHeight + 4 * textHeight
         }
       }
     },
@@ -351,7 +444,7 @@ const template = {
         'type': 'text',
         'attributes': {
           'x': 0,
-          'y': boxHeight + 3 * textHeight
+          'y': boxHeight + 5 * textHeight
         }
       }
     },
@@ -378,6 +471,11 @@ const template = {
       'initial': true,
       'type': 'checkbox'
       // svg defined currently in genmapper.js
+    },
+    {
+      'header': 'note',
+      'initial': ' ',
+      'type': 'text'
     }
   ]
 }
