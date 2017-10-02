@@ -39,7 +39,7 @@ const translations = {
         'saveAs': 'Save as:',
         'confirmImportSubtreeOverwrite': 'Warning: Importing subtreee will overwrite this group ({{groupName}}) and all descendants. Do you want to continue?',
         'errImport': 'Error when importing file.',
-        'errImportWhatToCheck': 'Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree. Also check that you use the correct version of the App.',
+        'errImportWhatToCheck': 'Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree.<br>Also check that you use the correct version of the App.',
         'selectFile': 'Please select a file',
         'errWrongFileType': 'Wrong type of file. Please import xls, xlsx or csv files.'
       },
@@ -78,6 +78,7 @@ const translations = {
       'menu': {
         'appName': 'GenMapper',
         'defaultProjectName': 'Proyecto',
+        'language': 'Lengua',
         'help': 'Ayuda',
         'helpAbout': 'Ayuda / Acerca de',
         'zooming': 'Aumentar',
@@ -92,13 +93,55 @@ const translations = {
         'btnPrintHorizontal': 'Horizontal Una página'
       },
       'editGroup': {
+        'editGroup': 'Editar grupo',
         'btnSubmit': 'Presentar Cambios',
-        'btnCancel': 'Cambios',
-        'btnImportSubtree': 'Subárbol  De importaci',
-        'elementParent': 'Discipulador:',
-        'notAvaliable': 'N/A'
+        'btnCancel': 'Cancelar',
+        'btnDelete': 'Eliminar subárbol',
+        'btnImportSubtree': 'Subárbol De importaci',
+        'elementParent': 'Discipulador',
+        'notAvaliable': 'Editar grupo',
+        'hoverDeleteGroupAndSubtree': 'Eliminar grupo y sub-árbol',
+        'hoverAddChildGroup': 'Añadir grupo secundario'
       },
       'messages': {
+        'editProjectName': 'Editar nombre del proyecto',
+        'errProjectNameEmpty': 'Nombre del proyecto no puede estar vacía!',
+        'btnOK': 'Aceptar',
+        'errDeleteRoot': 'Lo siento. Eliminando grupo de raíz no es posible.',
+        'confirmDeleteGroup': '¿De verdad quiere eliminar {{group-name}}?',
+        'confirmDeleteGroupWithChildren': '¿De verdad quiere eliminar {{group-name}} y todos los descendientes?',
+        'saveAsInSafari': 'Guardar como<br>(Nota: el navegador Safari tiene problemas con la exportación, consulte genMapper -> Ayuda para obtener más información)',
+        'saveAs': 'Guardar como:',
+        'confirmImportSubtreeOverwrite': 'Advertencia: La importación de subárbol se sobreponen a este grupo ({{group-name}}) y todos los descendientes. ¿Quieres continuar?',
+        'errImport': 'Error al importar el archivo.',
+        'errImportWhatToCheck': 'Por favor, compruebe que el archivo está en formato correcto (valores separados por comas), que el grupo raíz no tiene padre, y que todas las demás relaciones hacen un árbol válida.<br>También comprueba que utilice la versión correcta de la aplicación.',
+        'selectFile': 'Por favor, seleccione un archivo',
+        'errWrongFileType': 'Tipo Incorrecto de archivo. Por favor importar xls, xlsx o csv.'
+      },
+      'help': {
+        'genmapperHelp': 'Genmapper Ayuda',
+        'introContent': 'Hola, esta aplicación debe servir para las generaciones de mapeo de las iglesias simples. Oro para que le sirve para avanzar el reino de Jesús.',
+        'importExportHeader': 'Importación y exportación',
+        'importExportWarningChangesLost': 'Nota: Si no exporta, todos los cambios se perderán al actualizar la página o cierre.',
+        'importExportContent': 'Puede importar un .xls .xlsx o (MS Excel) o .csv (valores separados por comas) archivos. <br>También puede importar un subárbol haciendo clic en un grupo dado y luego usando el botón \'Importar subárbol\'. <br>Exportación está disponible actualmente sólo para formato .csv.',
+        'exportSafariIssuePart1': 'Nota: Algunas versiones de Safari tienen problemas con la exportación a CSV. Si una nueva pestaña con burbuja se abre en lugar del archivo descargado (véase el ejemplo a continuación)',
+        'exportSafariIssuePart2': 'pulse Comando + S, a continuación, introduzca un nombre de archivo que termina .csv, seleccione Formato: Origen de la página y, por último, haga clic en Guardar.',
+        'exportToPdf': 'Para la exportación a PDF, utilice los botones de impresión y luego guardar como PDF en Chrome o Safari.',
+        'panZoomHeader': 'Traslado / Zoom',
+        'panZoomContent': 'Puede desplazarse por el mapa arrastrando y zoom mediante la rueda del ratón o usando los botones de la izquierda.',
+        'changelogHeader': 'Cambios y información de la versión',
+        'changelogLink': 'Vínculo para registro de cambios',
+        'genmapperVersion': 'Versión genMapper',
+        'templateVersion': 'Versión de la plantilla',
+        'creditsHeader': 'Créditos',
+        'creditsThanks1': 'Gracias a Curtis Sergeant de la idea de genmapper y para proporcionar información útil.',
+        'creditsJavaScriptLibraries': 'Bibliotecas Javascript empleado',
+        'creditsAnd': 'y',
+        'creditsCopyright': 'Copyright (c) 2016-2017 Daniel Vopalecky',
+        'creditsLicense': 'Licencia con el MIT License',
+        'creditsGithub': 'Repositorio de Github',
+        'creditsSuggestions': 'Por favor, enviar sugerencias y errores a daniel.vopalecky@seznam.cz',
+        'btnOKStart': '¡De acuerdo, empecemos!'
       }
     }
   },

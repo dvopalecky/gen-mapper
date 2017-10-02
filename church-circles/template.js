@@ -43,16 +43,17 @@ const template = {
     es: {
       translation: {
         'template': {
+          'helpLegend': '<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Leyenda</h3><p>Cada círculo representa un grupo / iglesia. La línea de puntos significa un grupo. La línea completa significa una iglesia.<br>En la parte superior, los números describen: número de total, número de creyentes, número de bautizados<br>Dentro del círculo son los elementos que se practican en el grupo.<br>A la izquierda hay números del 1 al 7 representan qué elementos de 3/3 proceso se practican:<br>1 - Cuidado mutuo<br>2 - Adoración<br>3 - Rendir cuentas con amor<br>4 - Visión<br>5 - Biblia<br>6 - Práctica<br>7 - Establecer metas y Orar</p><p>Haga clic en el grupo para editarlo.<br>Haga clic en el botón rojo (x) para eliminar el grupo.<br>Haga clic en el botón verde (+) para añadir grupo secundario.</p>',
           'name': 'Nombre de lider',
           'initialLeadersName': 'Nombre de lider',
           'email': 'Email',
           'link': 'Vínculo',
-          'attenders': '# of assistantes',
+          'attenders': '# of participantes',
           'believers': '# of creyentes',
           'baptized': '# of bautizados',
           'newlyBaptized': '# of nuevos bautizados (desde inicio de iglesia)',
           'church': 'Iglesia?',
-          'churchType': 'Tipo de Iglesia:',
+          'churchType': 'Tipo de Iglesia',
           'legacy': 'Tradicional',
           'existingBelievers': 'Creyentes existentes',
           'newBelievers': 'Nuevos creyentes',
@@ -65,9 +66,9 @@ const template = {
           'elementWorship': 'Elemento: Adorar',
           'elementLeaders': 'Elemento: Lider',
           'elementMakeDisciples': 'Elemento: Hacer discípulos',
-          'place': 'Lugar (Ciudad, Provincia, Pais)',
+          'place': 'Lugar (Ciudad, Provincia, Pais):',
           'initialPlace': 'Lugar',
-          'date': 'Fecha de Inicio (Ex. 2017-01):',
+          'date': 'Fecha de Inicio (Ex. 2017-01)',
           'initialDate': 'Fecha',
           'threeThirds': 'Elementos del proceso de 3/3  (Ver ayuda para detalles):',
           'active': 'Activo'
