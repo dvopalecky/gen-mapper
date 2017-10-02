@@ -8,7 +8,7 @@ const template = {
     en: {
       translation: {
         'template': {
-          'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
+          'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the disciple to edit.<br>Click on red (x) button to remove a disciple.<br>Click on green (+) button to add child disciple.</p>',
           'name': 'Name',
           'date': 'Date of start following Christ',
           'believer': 'Is believer?',
@@ -32,6 +32,7 @@ const template = {
     cs: {
       translation: {
         'template': {
+          'helpLegend': '<p>Tato šablona GenMapperu je pro mapování jednotlivých učedníků, ne skupin/církví. Každý obdélník znázorňuje jednoho učedníka.<br><br>Klikni na učedníka pro editaci.<br>Klikni na červené tlačítko (x) pro odstranění učedníka.<br>Klikni na zelené tlačítko (+) pro přidání učedníka.</p>',
           'name': 'Jméno',
           'date': 'Datum uvěření',
           'believer': 'Věřící',

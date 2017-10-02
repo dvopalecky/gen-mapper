@@ -145,6 +145,31 @@ const translations = {
         'errImportWhatToCheck': 'Prosím zkontroluj, jestli je soubor ve správném formátu (hodnoty oddělené čárkou), že mateřská skupina nemá žádného rodiče a že všechny další vztahy vytvářejí platný strom. Také zkontroluj, že máš správnou verzi aplikace.',
         'selectFile': 'Vyber soubor.',
         'errWrongFileType': 'Špatný typ soubor. Prosím importuj soubory xls, xlsx nebo csv.'
+      },
+      'help': {
+        'genmapperHelp': 'GenMapper Nápověda',
+        'introContent': 'Ahoj, tato aplikace má sloužit mapování generací jednoduchých církví. Modlím se, ať slouží k rozvoji Božího království.',
+        'importExportHeader': 'Import / Export',
+        'importExportWarningChangesLost': 'Poznámka: Pokud neklikneš na export, tak se všechny změny ztratí při obnovení nebo zavření stránky.',
+        'importExportContent': 'Můžeš importovat soubory typu .xlsx nebo .xls (MS Excel) nebo .csv (hodnoty oddělené čárkou).<br>Můžeš taky importovat podstrom kliknutím na danou skupinu a potom na tlačítko \'Importovat podstrom\'<br>Export je v tuto chvíli možný pouze do .csv formátu.',
+        'exportSafariIssuePart1': 'Poznámka: Některé verze prohlížeče Safari mají problém s exportem to csv. Pokud se ti otevře nová záložka s blobem místo toho, aby se stáhl soubor (viz příklad níže)',
+        'exportSafariIssuePart2': 'stiskni Cmd + S, potom zadej jméno souboru končíci na .csv, vyber Format: Page Source, a klikni Uložit.',
+        'exportToPdf': 'Pro export do PDF, použij tlačítka k tisku a poté ulož jako PDF v Chromu nebo Safari.',
+        'panZoomHeader': 'Posouvání / Přibližování',
+        'panZoomContent': 'Mapa se posouvá tažením mapy a přiblížení je možné tlačítkem myši nebo použitím tlačítek v levém menu.',
+        'changelogHeader': 'Historie změn a verze',
+        'changelogLink': 'Historie změn',
+        'genmapperVersion': 'Verze Genmapperu',
+        'templateVersion': 'Verze šablony',
+        'creditsHeader': 'Poděkování',
+        'creditsThanks1': 'Díky Curtisu Sergeantovi za myšlenku generačních map a za zpětnou vazbu.',
+        'creditsJavaScriptLibraries': 'Použité JavaScript knihovny',
+        'creditsAnd': 'a',
+        'creditsCopyright': 'Copyright (c) 2016 - 2017 Daniel Vopalecký',
+        'creditsLicense': 'MIT Licence',
+        'creditsGithub': 'Github repo',
+        'creditsSuggestions': 'Podněty a chyby posílej na daniel.vopalecky@seznam.cz',
+        'btnOKStart': 'OK, jdeme na to!'
       }
     }
   }
