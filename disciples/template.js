@@ -8,6 +8,7 @@ const template = {
     en: {
       translation: {
         'template': {
+          'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           'name': 'Name',
           'date': 'Date of start following Christ',
           'believer': 'Is believer?',

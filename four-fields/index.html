@@ -13,52 +13,7 @@
   </aside>
 
   <section id="intro">
-    <div id="intro-content">
-      <h2>GenMapper <span id="version"></span> Help</h2>
-      <p>Hello, this app should serve for mapping generations of simple churches. I pray it serves you to advance Jesus' kingdom.</p>
-
-      <img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend">
-      <h3>Legend</h3>
-      <p>There are 5 squares in the diagram. they stand for:<br>
-        1 - # of unbelievers<br>
-        2 - # of believers<br>
-        3 - # of people in accountability group<br>
-        4 - is the group a church?<br>
-        5 - # of people helping start other groups<br>
-      </p>
-      <p>Click on the group to edit it.<br>
-      Click on red button to remove group.<br>
-      Click on green button to add child group.
-      </p>
-      <h3>Import / Export</h3>
-      <p>
-      Note: If you don't export, all changes will be lost when refreshing or closing page.<br>
-      You can import a .xlsx or .xls (MS Excel) or .csv (Comma separated values) files. Please use this <a href="example-map.xlsx" download>XLSX example spreadsheet</a>.<br>
-      You can also import a subtree by clicking a given group and then using the 'Import Subtree' button.<br>
-      Export is currently available only to .csv format.<br>
-      <strong>Note:</strong> Some versions of Safari have problems with export to csv. If a new tab with blob is opened instead of file downloaded (see example below)
-      <img src="../safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
-      <br>
-      press Cmd + S, then enter a filename ending .csv, select Format: Page Source, and finally click Save.
-      <img src="../safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">
-      <br>
-      For Export to PDF, use the Print buttons and then save as PDF in Chrome or Safari.
-      </p>
-      <h3>Panning / Zooming</h3>
-      <p>You can pan by draging the map and zoom by mouse wheel or using buttons on the left.</p>
-      <h3>Changelog</h3>
-      <p>See <a href="https://github.com/dvopalecky/gen-mapper/blob/master/changelog.md">here</a></p>
-      <h3>Credits</h3>
-      <p>
-        Thanks to Curtis Sergeant for the idea of generational mapping and for providing useful feedback.<br>
-        JavaScript libraries used: <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a> and <a href="http://underscorejs.org/">Underscore.js</a><br><br>
-        Copyright (c) 2016 - 2017 Daniel Vopalecky<br>
-        Licensed with MIT Licence<br>
-        <a href="https://github.com/dvopalecky/gen-mapper">Github repository</a><br>
-        Please send suggestions and bugs to daniel.vopalecky@seznam.cz
-      </p>
-      <button onclick="genmapper.introSwitchVisibility()">OK, let's start!</button>
-    </div>
+    <div id="intro-content"></div>
   </section>
 
   <section id="alert-message">

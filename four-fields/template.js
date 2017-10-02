@@ -8,6 +8,7 @@ const template = {
     en: {
       translation: {
         template: {
+          helpLegend: '<img src="genmapper-node-example.png" style="float:right;margin:10px;margin-left:0px;" alt="legend"><h3>Legend</h3><p>There are 5 squares in the diagram. They stand for:<br>1 - # of unbelievers<br>2 - # of believers<br>3 - # of people in accountability group<br>4 - is the group a church?<br>5 - # of people helping start other groups<br></p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           name: "Leader's Name",
           coach: 'Coach',
           field1: 'Field 1 (# unbelievers)',

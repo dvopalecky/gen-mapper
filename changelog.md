@@ -1,5 +1,8 @@
 # gen-mapper changelog
 
+## 0.2.14 (2017-10-02)
+- internationalization for Help
+
 ## 0.2.13 (2017-09-22)
 - internationalization feature - contact me if you want to help with
   translations

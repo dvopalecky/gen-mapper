@@ -8,6 +8,8 @@ const template = {
     'en': {
       'translation': {
         'template': {
+          'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" width="200" height="106" style="width:100%; text-align: center;" alt="Movementeer logo"></a>',
+          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Circle means group, Square means church.<br>Color of border specifies the leader\'s type<br><ul><li><span style="color:#FD0402;">red</span> &mdash; Full time missionary</li><li><span style="color:#3D7AD3;">blue</span> &mdash; Existing lay believer</li><li><span style="color:#5EA650;">green</span> &mdash; Leader\'s disciple</li></ul>On the top the numbers describe: # total, # believers, # baptized, # newly baptized<br>Inside the circle are the elements that are practiced in the group.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           'name': 'Name of the Leader',
           'leaderType': 'Leader',
           'fullTimeMissionary': 'Full time missionary',

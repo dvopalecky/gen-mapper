@@ -7,7 +7,7 @@ class GenMapper {
   /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.13'
+    this.appVersion = '0.2.14'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
@@ -92,7 +92,9 @@ class GenMapper {
   }
 
   loadHTMLContent () {
-    document.getElementById('left-menu').innerHTML = '<h1>' + i18next.t('menu.appName') + '</h1>' +
+    document.getElementById('left-menu').innerHTML = '<div id="template-logo">' +
+    i18next.t('template.logo', '') +
+    '</div><h1>' + i18next.t('menu.appName') + '</h1>' +
     '<h2 id="project-name">&nbsp;</h2>' +
     '<p>Language</p>' +
     '<select id="lang-selector" onchange="genmapper.switchLanguage()">' +
@@ -133,13 +135,45 @@ class GenMapper {
     '  </div>' +
     '</div>'
 
+    document.getElementById('intro-content').innerHTML = '<h2>' +
+    i18next.t('help.genmapperHelp') + '</h2>' +
+    '<p>' + i18next.t('help.introContent') + '</p>' +
+    i18next.t('template.helpLegend') +
+    '<h3>' + i18next.t('help.importExportHeader') + '</h3>' +
+    '<p><strong style="color:red">' + i18next.t('help.importExportWarningChangesLost') + '</strong><br>' +
+    i18next.t('help.importExportContent') + '<br><br>' +
+    i18next.t('help.exportSafariIssuePart1') +
+    '<img src="../safari-export-issue-0.png" style="margin:10px; margin-left:0px;" alt="safari export issue"><br>' + i18next.t('help.exportSafariIssuePart2') +
+    '<br><img src="../safari-export-issue-1.png" style="margin:10px; margin-left:0px;" alt="safari export issue">' +
+    '<br>' + i18next.t('help.exportToPdf') + '</p>' +
+    '<h3>' + i18next.t('help.panZoomHeader') + '</h3>' +
+    '<p>' + i18next.t('help.panZoomContent') + '</p>' +
+    '<h3>' + i18next.t('help.changelogHeader') + '</h3>' +
+    '<p><a href="https://github.com/dvopalecky/gen-mapper/blob/master/changelog.md">' +
+    i18next.t('help.changelogLink') + '</a><br>' +
+    i18next.t('help.genmapperVersion') + ': <span id="gen-mapper-version"></span><br>' +
+    i18next.t('help.templateVersion') + ': <span id="template-version"></span></p>' +
+    '<h3>' + i18next.t('help.creditsHeader') + '</h3>' +
+    '<p>' + i18next.t('help.creditsThanks1') + '<br>' +
+    i18next.t('help.creditsJavaScriptLibraries') +
+    ': <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a>, ' +
+    '<a href="https://lodash.com">lodash</a> ' +
+    i18next.t('help.creditsAnd') +
+    ' <a href="https://www.i18next.com">i18next</a><br><br>' +
+    i18next.t('help.creditsCopyright') + '<br>' +
+    i18next.t('help.creditsLicense') + '<br>' +
+    '<a href="https://github.com/dvopalecky/gen-mapper">' + i18next.t('help.creditsGithub') + '</a><br>' +
+    i18next.t('help.creditsSuggestions') + '<br></p>' +
+    '<button onclick="genmapper.introSwitchVisibility()">' + i18next.t('help.btnOKStart') + '</button>'
+
     document.getElementById('alert-message').innerHTML =
     '<div id="alert-message-content">' +
     '  <p id="alert-message-text"></p>' +
     '  <button onclick="genmapper.closeAlert()">' + i18next.t('messages.btnOK') + '</button>' +
     '</div>'
 
-    document.getElementById('version').innerHTML = this.appVersion
+    document.getElementById('gen-mapper-version').innerHTML = this.appVersion
+    document.getElementById('template-version').innerHTML = template.name
   }
 
   getInitialValue (field) {
