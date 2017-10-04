@@ -94,27 +94,24 @@ class GenMapper {
   loadHTMLContent () {
     document.getElementById('left-menu').innerHTML = '<div id="template-logo">' +
     i18next.t('template.logo', '') +
-    '</div><h1>' + i18next.t('menu.appName') + '</h1>' +
-    '<h2 id="project-name">&nbsp;</h2>' +
-    '<p>Language</p>' +
-    '<select id="lang-selector" onchange="genmapper.switchLanguage()">' +
+    // '</div><h1>' + i18next.t('menu.appName') + '</h1>' +
+    // '<h2 id="project-name">&nbsp;</h2>' +
+    '<div class="dropdown">' +
+    '<button class="dropbtn" aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
+    '<select id="lang-selector" class="dropdown-content" onchange="genmapper.switchLanguage()" style="display:none">' +
     '  <option value="en">English</option>' +
     '  <option value="es">Español</option>' +
     '  <option value="cs">Čeština</option>' +
-    '</select>' +
-    '<p>' + i18next.t('menu.help') + '</p>' +
-    '<button onclick="genmapper.introSwitchVisibility()">' + i18next.t('menu.helpAbout') + '</button>' +
-    '<p>' + i18next.t('menu.zooming') + '</p>' +
-    '<button onclick="genmapper.origPosition();">' + i18next.t('menu.originalZoom') + '</button>' +
-    '<button onclick="genmapper.zoomIn();">' + i18next.t('menu.zoomIn') + '</button>' +
-    '<button onclick="genmapper.zoomOut();">' + i18next.t('menu.zoomOut') + '</button>' +
-    '<p>' + i18next.t('menu.importExport') + '</p>' +
-    '<button onclick="genmapper.onLoad(\'file-input\')">' + i18next.t('menu.importXlsxCsv') + '</button>' +
+    '</select></div>' +
+    '<button onclick="genmapper.introSwitchVisibility()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.helpAbout') + '"><img src="../icons/266-question.svg"></button>' +
+    '<button onclick="genmapper.origPosition();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.originalZoom') + '"><img src="../icons/135-search.svg"></i></button>' +
+    '<button onclick="genmapper.zoomIn();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.zoomIn') + '"><img src="../icons/136-zoom-in.svg"></i></button>' +
+    '<button onclick="genmapper.zoomOut();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.zoomOut') + '"><img src="../icons/137-zoom-out.svg"></i></button>' +
+    '<button onclick="genmapper.onLoad(\'file-input\')" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.importXlsxCsv') + '"><img src="../icons/098-upload.svg"></button>' +
     '<input type="file" id="file-input" onchange="genmapper.importFile()" style="display:none;">' +
-    '<button onclick="genmapper.outputCsv()">' + i18next.t('menu.exportCsv') + '</button>' +
-    '<p>' + i18next.t('menu.printing') + '</p>' +
-    '<button onclick="genmapper.printMap(\'vertical\');">' + i18next.t('menu.btnPrintVertical') + '</button>' +
-    '<button onclick="genmapper.printMap(\'horizontal\');">' + i18next.t('menu.btnPrintHorizontal') + '</button>'
+    '<button onclick="genmapper.outputCsv()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.exportCsv') + '"><img src="../icons/097-download.svg"></button>' +
+    '<button onclick="genmapper.printMap(\'vertical\');" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.btnPrintVertical') + '"><img src="../icons/print-vertical.svg"></button>' +
+    '<button onclick="genmapper.printMap(\'horizontal\');" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.btnPrintHorizontal') + '"><img src="../icons/print-horizontal.svg"></button>'
 
     document.getElementById('edit-group').innerHTML = '<div id="edit-group-content">' +
     '  <h1>' + i18next.t('editGroup.editGroup') + '</h1>' +
