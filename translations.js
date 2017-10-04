@@ -73,78 +73,6 @@ const translations = {
       }
     }
   },
-  es: {
-    translation: {
-      'menu': {
-        'appName': 'GenMapper',
-        'defaultProjectName': 'Proyecto',
-        'language': 'Lengua',
-        'help': 'Ayuda',
-        'helpAbout': 'Ayuda / Acerca de',
-        'zooming': 'Aumentar',
-        'originalZoom': 'Posición y tamaño original',
-        'zoomIn': 'Aumentar',
-        'zoomOut': 'Quitar aumento',
-        'importExport': 'Importar/Exportar',
-        'importXlsxCsv': 'Importar XLXS / CSV',
-        'exportCsv': 'Exportar CSV',
-        'printing': 'Imprimir',
-        'btnPrintVertical': 'Vertical Varias páginas',
-        'btnPrintHorizontal': 'Horizontal Una página'
-      },
-      'editGroup': {
-        'editGroup': 'Editar grupo',
-        'btnSubmit': 'Presentar Cambios',
-        'btnCancel': 'Cancelar',
-        'btnDelete': 'Eliminar subárbol',
-        'btnImportSubtree': 'Subárbol De importaci',
-        'elementParent': 'Discipulador',
-        'notAvaliable': 'Editar grupo',
-        'hoverDeleteGroupAndSubtree': 'Eliminar grupo y sub-árbol',
-        'hoverAddChildGroup': 'Añadir grupo secundario'
-      },
-      'messages': {
-        'editProjectName': 'Editar nombre del proyecto',
-        'errProjectNameEmpty': 'Nombre del proyecto no puede estar vacía!',
-        'btnOK': 'Aceptar',
-        'errDeleteRoot': 'Lo siento. Eliminando grupo de raíz no es posible.',
-        'confirmDeleteGroup': '¿De verdad quiere eliminar {{group-name}}?',
-        'confirmDeleteGroupWithChildren': '¿De verdad quiere eliminar {{group-name}} y todos los descendientes?',
-        'saveAsInSafari': 'Guardar como<br>(Nota: el navegador Safari tiene problemas con la exportación, consulte genMapper -> Ayuda para obtener más información)',
-        'saveAs': 'Guardar como:',
-        'confirmImportSubtreeOverwrite': 'Advertencia: La importación de subárbol se sobreponen a este grupo ({{group-name}}) y todos los descendientes. ¿Quieres continuar?',
-        'errImport': 'Error al importar el archivo.',
-        'errImportWhatToCheck': 'Por favor, compruebe que el archivo está en formato correcto (valores separados por comas), que el grupo raíz no tiene padre, y que todas las demás relaciones hacen un árbol válida.<br>También comprueba que utilice la versión correcta de la aplicación.',
-        'selectFile': 'Por favor, seleccione un archivo',
-        'errWrongFileType': 'Tipo Incorrecto de archivo. Por favor importar xls, xlsx o csv.'
-      },
-      'help': {
-        'genmapperHelp': 'Genmapper Ayuda',
-        'introContent': 'Hola, esta aplicación debe servir para las generaciones de mapeo de las iglesias simples. Oro para que le sirve para avanzar el reino de Jesús.',
-        'importExportHeader': 'Importación y exportación',
-        'importExportWarningChangesLost': 'Nota: Si no exporta, todos los cambios se perderán al actualizar la página o cierre.',
-        'importExportContent': 'Puede importar un .xls .xlsx o (MS Excel) o .csv (valores separados por comas) archivos. <br>También puede importar un subárbol haciendo clic en un grupo dado y luego usando el botón \'Importar subárbol\'. <br>Exportación está disponible actualmente sólo para formato .csv.',
-        'exportSafariIssuePart1': 'Nota: Algunas versiones de Safari tienen problemas con la exportación a CSV. Si una nueva pestaña con burbuja se abre en lugar del archivo descargado (véase el ejemplo a continuación)',
-        'exportSafariIssuePart2': 'pulse Comando + S, a continuación, introduzca un nombre de archivo que termina .csv, seleccione Formato: Origen de la página y, por último, haga clic en Guardar.',
-        'exportToPdf': 'Para la exportación a PDF, utilice los botones de impresión y luego guardar como PDF en Chrome o Safari.',
-        'panZoomHeader': 'Traslado / Zoom',
-        'panZoomContent': 'Puede desplazarse por el mapa arrastrando y zoom mediante la rueda del ratón o usando los botones de la izquierda.',
-        'changelogHeader': 'Cambios y información de la versión',
-        'changelogLink': 'Vínculo para registro de cambios',
-        'genmapperVersion': 'Versión genMapper',
-        'templateVersion': 'Versión de la plantilla',
-        'creditsHeader': 'Créditos',
-        'creditsThanks1': 'Gracias a Curtis Sergeant de la idea de genmapper y para proporcionar información útil.',
-        'creditsJavaScriptLibraries': 'Bibliotecas Javascript empleado',
-        'creditsAnd': 'y',
-        'creditsCopyright': 'Copyright (c) 2016-2017 Daniel Vopalecky',
-        'creditsLicense': 'Licencia con el MIT License',
-        'creditsGithub': 'Repositorio de Github',
-        'creditsSuggestions': 'Por favor, enviar sugerencias y errores a daniel.vopalecky@seznam.cz',
-        'btnOKStart': '¡De acuerdo, empecemos!'
-      }
-    }
-  },
   cs: {
     translation: {
       'menu': {
@@ -216,6 +144,145 @@ const translations = {
       }
     }
   },
+  es: {
+    translation: {
+      'menu': {
+        'appName': 'GenMapper',
+        'defaultProjectName': 'Proyecto',
+        'language': 'Lengua',
+        'help': 'Ayuda',
+        'helpAbout': 'Ayuda / Acerca de',
+        'zooming': 'Aumentar',
+        'originalZoom': 'Posición y tamaño original',
+        'zoomIn': 'Aumentar',
+        'zoomOut': 'Quitar aumento',
+        'importExport': 'Importar/Exportar',
+        'importXlsxCsv': 'Importar XLXS / CSV',
+        'exportCsv': 'Exportar CSV',
+        'printing': 'Imprimir',
+        'btnPrintVertical': 'Vertical Varias páginas',
+        'btnPrintHorizontal': 'Horizontal Una página'
+      },
+      'editGroup': {
+        'editGroup': 'Editar grupo',
+        'btnSubmit': 'Presentar Cambios',
+        'btnCancel': 'Cancelar',
+        'btnDelete': 'Eliminar subárbol',
+        'btnImportSubtree': 'Subárbol De importaci',
+        'elementParent': 'Discipulador',
+        'notAvaliable': 'Editar grupo',
+        'hoverDeleteGroupAndSubtree': 'Eliminar grupo y sub-árbol',
+        'hoverAddChildGroup': 'Añadir grupo secundario'
+      },
+      'messages': {
+        'editProjectName': 'Editar nombre del proyecto',
+        'errProjectNameEmpty': 'Nombre del proyecto no puede estar vacía!',
+        'btnOK': 'Aceptar',
+        'errDeleteRoot': 'Lo siento. Eliminando grupo de raíz no es posible.',
+        'confirmDeleteGroup': '¿De verdad quiere eliminar {{groupName}}?',
+        'confirmDeleteGroupWithChildren': '¿De verdad quiere eliminar {{groupName}} y todos los descendientes?',
+        'saveAsInSafari': 'Guardar como<br>(Nota: el navegador Safari tiene problemas con la exportación, consulte genMapper -> Ayuda para obtener más información)',
+        'saveAs': 'Guardar como:',
+        'confirmImportSubtreeOverwrite': 'Advertencia: La importación de subárbol se sobreponen a este grupo ({{groupName}}) y todos los descendientes. ¿Quieres continuar?',
+        'errImport': 'Error al importar el archivo.',
+        'errImportWhatToCheck': 'Por favor, compruebe que el archivo está en formato correcto (valores separados por comas), que el grupo raíz no tiene padre, y que todas las demás relaciones hacen un árbol válida.<br>También comprueba que utilice la versión correcta de la aplicación.',
+        'selectFile': 'Por favor, seleccione un archivo',
+        'errWrongFileType': 'Tipo Incorrecto de archivo. Por favor importar xls, xlsx o csv.'
+      },
+      'help': {
+        'genmapperHelp': 'Genmapper Ayuda',
+        'introContent': 'Hola, esta aplicación debe servir para las generaciones de mapeo de las iglesias simples. Oro para que le sirve para avanzar el reino de Jesús.',
+        'importExportHeader': 'Importación y exportación',
+        'importExportWarningChangesLost': 'Nota: Si no exporta, todos los cambios se perderán al actualizar la página o cierre.',
+        'importExportContent': 'Puede importar un .xls .xlsx o (MS Excel) o .csv (valores separados por comas) archivos. <br>También puede importar un subárbol haciendo clic en un grupo dado y luego usando el botón \'Importar subárbol\'. <br>Exportación está disponible actualmente sólo para formato .csv.',
+        'exportSafariIssuePart1': 'Nota: Algunas versiones de Safari tienen problemas con la exportación a CSV. Si una nueva pestaña con burbuja se abre en lugar del archivo descargado (véase el ejemplo a continuación)',
+        'exportSafariIssuePart2': 'pulse Comando + S, a continuación, introduzca un nombre de archivo que termina .csv, seleccione Formato: Origen de la página y, por último, haga clic en Guardar.',
+        'exportToPdf': 'Para la exportación a PDF, utilice los botones de impresión y luego guardar como PDF en Chrome o Safari.',
+        'panZoomHeader': 'Traslado / Zoom',
+        'panZoomContent': 'Puede desplazarse por el mapa arrastrando y zoom mediante la rueda del ratón o usando los botones de la izquierda.',
+        'changelogHeader': 'Cambios y información de la versión',
+        'changelogLink': 'Vínculo para registro de cambios',
+        'genmapperVersion': 'Versión genMapper',
+        'templateVersion': 'Versión de la plantilla',
+        'creditsHeader': 'Créditos',
+        'creditsThanks1': 'Gracias a Curtis Sergeant de la idea de genmapper y para proporcionar información útil.',
+        'creditsJavaScriptLibraries': 'Bibliotecas Javascript empleado',
+        'creditsAnd': 'y',
+        'creditsCopyright': 'Copyright (c) 2016-2017 Daniel Vopalecky',
+        'creditsLicense': 'Licencia con el MIT License',
+        'creditsGithub': 'Repositorio de Github',
+        'creditsSuggestions': 'Por favor, enviar sugerencias y errores a daniel.vopalecky@seznam.cz',
+        'btnOKStart': '¡De acuerdo, empecemos!'
+      }
+    }
+  },
+  ro: {
+    translation: {
+      'menu': {
+        'appName': 'GenMapper',
+        'defaultProjectName': 'Proiect fără titlu',
+        'languageName': 'Română',
+        'language': 'Limba',
+        'help': 'Ajutor',
+        'helpAbout': 'Ajutor / Despre',
+        'zooming': 'Zoom',
+        'originalZoom': 'Zoom iniţial & poziţia',
+        'zoomIn': 'A mări',
+        'zoomOut': 'A micşora',
+        'importExport': 'Import Export',
+        'importXlsxCsv': 'Import XLXS / CSV',
+        'exportCsv': 'Exportați CSV',
+        'printing': 'Tipărire',
+        'btnPrintVertical': 'Tiparire verticală pagini multiple',
+        'btnPrintHorizontal': 'Tipărire orizontală pe o pagină'
+      },
+      'editGroup': {
+        'editGroup': 'Editați grupul',
+        'btnSubmit': 'Faceţi schimbări',
+        'btnCancel': 'Anulare',
+        'btnDelete': 'Ștergeți ramura',
+        'btnImportSubtree': 'Subtree de import',
+        'elementParent': 'Părinte',
+        'notAvaliable': 'N / A',
+        'hoverDeleteGroupAndSubtree': 'Ștergeți grupul & ramura',
+        'hoverAddChildGroup': 'Adăugați grupul de copii'
+      },
+      'messages': {
+        'editProjectName': 'Editați numele proiectului',
+        'errProjectNameEmpty': 'Numele proiectului nu poate fi gol!',
+        'btnOK': 'O.K',
+        'errDeleteRoot': 'Scuze. Ștergerea grupului rădăcină nu este posibilă.',
+        'confirmDeleteGroup': 'Chiar doriți să ștergeți {{groupName}}?',
+        'confirmDeleteGroupWithChildren': 'Chiar doriți să ștergeți {{groupName}} și toți descendenții?',
+        'saveAsInSafari': 'Salvează ca:<br>(Notă: browserul Safari are probleme cu exportul, vă rugăm să consultați GenMapper -> Ajutor pentru mai multe informații)',
+        'saveAs': 'Salvează ca:',
+        'confirmImportSubtreeOverwrite': 'Avertisment: importul ramurii va anula acest grup ({{groupName}}) și toți descendenții. Vrei sa continui?',
+        'errImport': 'Eroare la importul fișierului.',
+        'errImportWhatToCheck': 'Verificați dacă fișierul este în format corect (valori separate prin virgulă), că grupul rădăcină nu are părinte și că toate celelalte relații fac un arbore valid.<br>De asemenea, verificați dacă utilizați versiunea corectă a aplicației. ',
+        'selectFile': 'Selectați un fișier',
+        'errWrongFileType': 'Tip greșit de fișier. Vă rugăm să importați fișiere xls, xlsx sau csv.'
+      },
+      'help': {
+        'genmapperHelp': 'Genmapper Ajutor',
+        'introContent': 'Bună, această aplicaţie at trebui să vă ajute sa faceşi o hartă a generaţiilor unei biserici. Rugăciunea mea e să vă fie de ajutor în avansarea împărăţiei Domnului.',
+        'importExportHeader': 'Import/Export',
+        'importExportWarningChangesLost': 'Observaţie: Dacă nu exportaţi, toate schimbările o să fie pierdute când reîncărcaţi sau închideţi pagina.',
+        'importExportContent': 'Puteţi importa un fişier .xlsx sau .xls (MS Excel) sau .cvs (Virgula separă valorile).<br>Puteţi importa o ramură dând click pe un anumit grup şi apoi flolosiţi butonul "Importaţi Ramura"<br>Exportul este posibil doar in formatul .cvs',
+        'exportSafariIssuePart1': 'Observaţie: Unele versiuni de Safari au probleme cu exportul în .cvs Dacă un alt mesaj se deschide în loc de fişierul încărcat (vezi exemplus de mai jos)',
+        'exportSafariIssuePart2': 'Apăsaţi Cmd + S, apoi introduceţi un nume de fişier care se termină cu .cvs, alegeţi Formatul: Pagina Iniţială, şi in final daţi Salvare',
+        'exportToPdf': 'Pentru exportul in PDF, folosiţi butonul de tipărire şi apoi salvaţi în PDF în Crome sau Safari',
+        'panZoomHeader': 'Glisare/Mărire',
+        'panZoomContent': 'Puteţi glisa prin apasarea butonului de la mouse şi mariţi prin rotiţa mouse-ului sau folosind butoanele din stânga',
+        'changelogHeader': 'Istoricul schimbărilor & versiunea',
+        'changelogLink': 'Linkul pentru istoricul schimbărilor',
+        'genmapperVersion': 'Genmapper versiunea',
+        'templateVersion': 'Versiune modelului',
+        'creditsHeader': 'Merite',
+        'creditsSuggestions': 'Vă rugăm scrieţi problemele cu programul lui daniel.vopalecky@seznam.cz',
+        'btnOKStart': 'Să începem'
+      }
+    }
+  },
   ru: {
     translation: {
       'menu': {
@@ -252,11 +319,11 @@ const translations = {
         'errProjectNameEmpty': 'Нельзя оставить без названия',
         'btnOK': '',
         'errDeleteRoot': 'Извините. Нельзя удалить материнскую группу',
-        'confirmDeleteGroup': 'Хотите удалить группу?',
-        'confirmDeleteGroupWithChildren': 'Хотите удалить группу и все ветки?',
+        'confirmDeleteGroup': 'Хотите удалить группу ({{groupName}})?',
+        'confirmDeleteGroupWithChildren': 'Хотите удалить группу ({{groupName}}) и все ветки?',
         'saveAsInSafari': 'Сохранить как: (Сафари имеет проблемы для экспортирования)',
         'saveAs': 'Сохранить как: (Сафари имеет проблемы для экспортирования)',
-        'confirmImportSubtreeOverwrite': 'Предупреждение. Импортирование поддерева будет перезаписывать эту группу (<имя-группы>) и всех потомков. Вы хотите продолжить?',
+        'confirmImportSubtreeOverwrite': 'Предупреждение. Импортирование поддерева будет перезаписывать эту группу ({{groupName}}) и всех потомков. Вы хотите продолжить?',
         'errImport': 'Ошибка при импорте файла.',
         'errImportWhatToCheck': '«Убедитесь, что файл находится в правильном формате (значения, разделенные запятыми), что корневая группа не имеет родительского элемента и что все остальные отношения создают допустимое дерево.',
         'selectFile': 'Также убедитесь, что вы используете правильную версию приложения ».',
@@ -284,8 +351,66 @@ const translations = {
         'creditsCopyright': 'Copyright (c) 2016 - 2017 гг. Даниэль Вопалецкий',
         'creditsLicense': 'Лицензия на лицензию MIT',
         'creditsGithub': 'Репозиторий Github',
-        'creditsSuggestions': 'Пожалуйста, присылайте предложения и ошибки на daniel.vopalecky@seznam.cz "',
+        'creditsSuggestions': 'Пожалуйста, присылайте предложения и ошибки на daniel.vopalecky@seznam.cz',
         'btnOKStart': 'Хорошо, давайте начнем!'
+      }
+    }
+  },
+  sq: {
+    translation: {
+      'menu': {
+        'appName': 'GenMapper',
+        'defaultProjectName': 'Projekt pa emer',
+        'languageName': 'Shqip',
+        'language': 'Gjuha',
+        'help': 'Ndihme',
+        'helpAbout': 'Ndihme / Rreth',
+        'zooming': 'Zmadhoje',
+        'originalZoom': 'Pozicioni dhe permasat normale',
+        'zoomIn': 'Zmadho',
+        'zoomOut': 'Zvogelo',
+        'importExport': 'Importo/ Eksporto',
+        'importXlsxCsv': 'Importo XLXS/CSV',
+        'exportCsv': 'Eksporto CSV',
+        'printing': 'Printimi',
+        'btnPrintVertical': 'Printo vertikalisht ne disa faqe',
+        'btnPrintHorizontal': 'Printo horizontalisht ne nje faqe'
+      },
+      'editGroup': {
+        'editGroup': 'Modifiko Grupin',
+        'btnSubmit': 'Dergo ndryshimet',
+        'btnCancel': 'Anulo',
+        'btnDelete': 'Fshije nen degen',
+        'btnImportSubtree': 'Importo nen degen',
+        'elementParent': 'Prind',
+        'notAvaliable': 'N/A',
+        'hoverDeleteGroupAndSubtree': 'Fshije grupin dhe degen nen te',
+        'hoverAddChildGroup': 'Shto nje nen grup'
+      },
+      'messages': {
+        'editProjectName': 'Modifiko emrin e Projektit',
+        'errProjectNameEmpty': 'Emri i projektit nuk mund te lihet bosh',
+        'btnOK': 'OK',
+        'errDeleteRoot': 'Na vjen keq. Fshirja e grupit te pare nuk eshte e mundur',
+        'confirmDeleteGroup': 'A je i sigurte se doni ta fshini grupin ({{groupName}})?',
+        'confirmDeleteGroupWithChildren': 'A je i sigurte se doni ta fshini grupin ({{groupName}}) dhe pasardhesit e tij?',
+        'saveAsInSafari': 'Ruaj si:<br>(Verejtje: Shfletuesi Safari ka probleme me eksportimin, prandaj hidhini nje sy GenMapper->Ndihme per me shume informacion',
+        'saveAs': 'Ruaj si:',
+        'confirmImportSubtreeOverwrite': 'Paralajmerim: Importimi i nen deges do te prishe kete grup ({{groupName}}) dhe gjithe pasardhesit e tij. A doni te vazhdoni perpara?',
+        'errImport': 'Error gjate importimit te dokumentit',
+        'errImportWhatToCheck': 'Ju lutemi kontrolloni që skedari është në formatin korrekt (vlera të ndara me presje), që grupi rrënjë nuk ka prind dhe që të gjitha marrëdhëniet e tjera të bëjnë një pemë të vlefshme. Gjithashtu kontrolloni qe perdornin versionin e sakte te aplikacionit',
+        'selectFile': 'Ju lutem zgjidhni nje skedar',
+        'errWrongFileType': 'Lloji i gabuar i skedarit. Ju lutem importoni xls, xlsx or csv files'
+      },
+      'help': {
+        'creditsThanks1': 'Falenderojme Curtis Sergeant per idene e hartes se gjeneratave dhe per sugjerimet e vlefshme.',
+        'creditsJavaScriptLibraries': 'Libraria e Javascript te perdorur:',
+        'creditsAnd': ',',
+        'creditsCopyright': 'Te drejtat e autorit (c) 2016 - 2017 Daniel Vopalecky',
+        'creditsLicense': 'Licensuar me MIT Licence',
+        'creditsGithub': 'Github repository',
+        'creditsSuggestions': 'Ju lutem dergoni sugjerimet dhe problemet teknike tek daniel.vopalecky@seznam.cz',
+        'btnOKStart': 'Ok, le te fillojme'
       }
     }
   }
