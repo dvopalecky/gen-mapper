@@ -100,6 +100,9 @@ class GenMapper {
     '<select id="lang-selector" onchange="genmapper.switchLanguage()">' +
     '  <option value="en">English</option>' +
     '  <option value="es">Español</option>' +
+    '  <option value="ru">Русский</option>' +
+    '  <option value="sq">Shqip</option>' +
+    '  <option value="ro">Română</option>' +
     '  <option value="cs">Čeština</option>' +
     '</select>' +
     '<p>' + i18next.t('menu.help') + '</p>' +
