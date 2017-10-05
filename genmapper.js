@@ -94,15 +94,15 @@ class GenMapper {
   loadHTMLContent () {
     document.getElementById('left-menu').innerHTML = '<div id="template-logo">' +
     i18next.t('template.logo', '') +
-    // '</div><h1>' + i18next.t('menu.appName') + '</h1>' +
-    // '<h2 id="project-name">&nbsp;</h2>' +
+
     '<div class="dropdown">' +
-    '<button class="dropbtn" aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
-    '<select id="lang-selector" class="dropdown-content" onchange="genmapper.switchLanguage()" style="display:none">' +
+    '<button aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
+    '<select id="lang-selector" onchange="genmapper.switchLanguage()" style="display:none">' +
     '  <option value="en">English</option>' +
     '  <option value="es">Español</option>' +
     '  <option value="cs">Čeština</option>' +
     '</select></div>' +
+    '<button id="project-name" class="hint--rounded hint--right" aria-label=""><img src="../icons/039-file-text2.svg"></button>' +
     '<button onclick="genmapper.introSwitchVisibility()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.helpAbout') + '"><img src="../icons/266-question.svg"></button>' +
     '<button onclick="genmapper.origPosition();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.originalZoom') + '"><img src="../icons/135-search.svg"></i></button>' +
     '<button onclick="genmapper.zoomIn();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.zoomIn') + '"><img src="../icons/136-zoom-in.svg"></i></button>' +
@@ -651,7 +651,7 @@ class GenMapper {
       const regex = /(.+?)(\.[^.]*$|$)/
       const filenameNoExtension = regex.exec(filename)[1]
       this.projectName = filenameNoExtension
-      d3.select('#project-name').text(this.projectName)
+      d3.select('#project-name').attr('aria-label', this.projectName)
       this.redraw(template)
     })
   }
@@ -849,12 +849,12 @@ class GenMapper {
     this.addFieldsToEditWindow(template)
     document.getElementById('lang-selector').value = this.language
     d3.select('#project-name')
-      .text(this.projectName)
+      .attr('aria-label', this.projectName)
       .on('click', function () {
         const userInput = window.prompt(i18next.t('messages.editProjectName'), this.projectName).trim()
         if (userInput === '') { this.displayAlert(i18next.t('messages.errProjectNameEmpty')) } else {
           this.projectName = userInput
-          d3.select('#project-name').text(this.projectName)
+          d3.select('#project-name').attr('aria-label', this.projectName)
         }
       })
     this.editFieldElements = {}

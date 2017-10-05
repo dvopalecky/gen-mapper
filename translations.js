@@ -4,6 +4,7 @@ const translations = {
       'menu': {
         'appName': 'GenMapper',
         'defaultProjectName': 'Untitled project',
+        'project': 'Project',
         'help': 'Help',
         'helpAbout': 'Help / About',
         'zooming': 'Zooming',
@@ -78,6 +79,7 @@ const translations = {
       'menu': {
         'appName': 'GenMapper',
         'defaultProjectName': 'Proyecto',
+        'project': 'Proyecto',
         'language': 'Lengua',
         'help': 'Ayuda',
         'helpAbout': 'Ayuda / Acerca de',
@@ -150,6 +152,7 @@ const translations = {
       'menu': {
         'appName': 'GenMapper',
         'defaultProjectName': 'Mapa bez jména',
+        'project': 'Projekt',
         'help': 'Nápověda',
         'helpAbout': 'Nápověda / O aplikaci',
         'zooming': 'Lupa',
