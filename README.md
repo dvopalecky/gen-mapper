@@ -3,7 +3,7 @@ App for mapping generations of simple churches
 
 ## Usage
 The app can be found [here](https://dvopalecky.github.io/gen-mapper).
-For details about usage click the Help / About in the app.
+For details about usage click the Help button (?) in the app.
 
 There are several variants of the App, e.g. [Four Fields](https://dvopalecky.github.io/gen-mapper/four-fields/index.html) or [Church Circles](https://dvopalecky.github.io/gen-mapper/church-circles/index.html).
 These variants use templates so it's relatively easy to create a new variant for specific purpose.
@@ -23,7 +23,6 @@ see [here](changelog.md)
 * Firefox - letter spacing in top-bottom texts
 
 ## Ideas for improvements
-* Hide / unhide the left menu
 * Backend support: Saving work on server, sharing, etc.
 
 ## License
@@ -31,8 +30,12 @@ MIT
 
 ## Credits
 Curtis Sergeant - introduced me to the concept of generational mapping and provided useful feedback for this app
-JavaScript libraries used:
+JavaScript/CSS libraries used:
 * [d3.js](https://d3js.org) - Mike Bostock
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js) - Eli Grey
 * [js-xlsx](https://github.com/SheetJS/js-xlsx) - SheetJS
-* [Underscore.js](http://underscorejs.org) - Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+* [lodash](https://lodash.com) - JS Foundation and other contributors
+* [hint.css](https://github.com/chinchang/hint.css/) - Kushagra Gour
+
+Icons used:
+* [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - Keyamoon

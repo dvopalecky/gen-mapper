@@ -94,19 +94,19 @@ class GenMapper {
   loadHTMLContent () {
     document.getElementById('left-menu').innerHTML = '<div id="template-logo">' +
     i18next.t('template.logo', '') +
-
-    '<div class="dropdown">' +
-    '<button aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
-    '<select id="lang-selector" onchange="genmapper.switchLanguage()" style="display:none">' +
-    '  <option value="en">English</option>' +
-    '  <option value="cs">Čeština</option>' +
-    '  <option value="es">Español</option>' +
-    '  <option value="ro">Română</option>' +
-    '  <option value="ru">Русский</option>' +
-    '  <option value="sq">Shqip</option>' +
-    '</select></div>' +
-    '<button id="project-name" class="hint--rounded hint--right" aria-label=""><img src="../icons/039-file-text2.svg"></button>' +
     '<button onclick="genmapper.introSwitchVisibility()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.helpAbout') + '"><img src="../icons/266-question.svg"></button>' +
+    '<div class="dropdown" id="lang-selector">' +
+    '<button aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
+    '<ul class="dropdown-content">' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-en">English</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-cs">Čeština</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-es">Español</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ro">Română</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ru">Русский</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-sq">Shqip</button></li>' +
+    '</ul>' +
+    '</div>' +
+    '<button id="project-name" class="hint--rounded hint--right" aria-label=""><img src="../icons/039-file-text2.svg"></button>' +
     '<button onclick="genmapper.origPosition();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.originalZoom') + '"><img src="../icons/135-search.svg"></i></button>' +
     '<button onclick="genmapper.zoomIn();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.zoomIn') + '"><img src="../icons/136-zoom-in.svg"></i></button>' +
     '<button onclick="genmapper.zoomOut();" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.zoomOut') + '"><img src="../icons/137-zoom-out.svg"></i></button>' +
@@ -156,10 +156,12 @@ class GenMapper {
     '<h3>' + i18next.t('help.creditsHeader') + '</h3>' +
     '<p>' + i18next.t('help.creditsThanks1') + '<br>' +
     i18next.t('help.creditsJavaScriptLibraries') +
-    ': <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a>, ' +
+    ': <a href="https://github.com/chinchang/hint.css/">hint.css</a>, <a href="https://d3js.org">d3.js</a>, <a href="https://github.com/eligrey/FileSaver.js/">FileSaver.js</a>, <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a>, ' +
     '<a href="https://lodash.com">lodash</a> ' +
     i18next.t('help.creditsAnd') +
-    ' <a href="https://www.i18next.com">i18next</a><br><br>' +
+    ' <a href="https://www.i18next.com">i18next</a><br>' +
+    i18next.t('help.creditsIcons') +
+    ': <a href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a><br><br>' +
     i18next.t('help.creditsCopyright') + '<br>' +
     i18next.t('help.creditsLicense') + '<br>' +
     '<a href="https://github.com/dvopalecky/gen-mapper">' + i18next.t('help.creditsGithub') + '</a><br>' +
@@ -654,7 +656,8 @@ class GenMapper {
       const regex = /(.+?)(\.[^.]*$|$)/
       const filenameNoExtension = regex.exec(filename)[1]
       this.projectName = filenameNoExtension
-      d3.select('#project-name').attr('aria-label', this.projectName)
+      d3.select('#project-name')
+        .attr('aria-label', i18next.t('messages.editProjectName') + ': ' + this.projectName)
       this.redraw(template)
     })
   }
@@ -840,8 +843,8 @@ class GenMapper {
     })
   }
 
-  switchLanguage () {
-    this.language = document.getElementById('lang-selector').value
+  switchLanguage (button) {
+    this.language = button.id.substring(5, 7)
     i18next.changeLanguage(this.language)
     this.updateDOMafterLangSwitch()
     this.redraw(template)
@@ -850,14 +853,17 @@ class GenMapper {
   updateDOMafterLangSwitch () {
     this.loadHTMLContent()
     this.addFieldsToEditWindow(template)
-    document.getElementById('lang-selector').value = this.language
+    document.getElementById('lang-' + this.language).className = 'current-lang'
     d3.select('#project-name')
-      .attr('aria-label', this.projectName)
-      .on('click', function () {
-        const userInput = window.prompt(i18next.t('messages.editProjectName'), this.projectName).trim()
+      .attr('aria-label', i18next.t('messages.editProjectName') + ': ' + this.projectName)
+      .on('click', () => {
+        let userInput = window.prompt(i18next.t('messages.editProjectName'), this.projectName)
+        if (userInput === null) { return }
+        userInput = userInput.trim()
         if (userInput === '') { this.displayAlert(i18next.t('messages.errProjectNameEmpty')) } else {
           this.projectName = userInput
-          d3.select('#project-name').attr('aria-label', this.projectName)
+          d3.select('#project-name')
+            .attr('aria-label', i18next.t('messages.editProjectName') + ': ' + this.projectName)
         }
       })
     this.editFieldElements = {}

@@ -1,31 +1,4 @@
 /* Genmapper CSS */
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 80px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/*.dropdown:focus .dropdown-content {
-    display: block;
-}*/
-
-#lang-selector ul li button {
-  border: 3px solid red;
-  width: 80px;
-}
-
 /**** Basic elements ****/
 body{
   font: 15px sans-serif;
@@ -84,7 +57,10 @@ aside{
 
 aside button{
   width:60px;
-  border: 3px solid #ddd;
+  border-top: 3px solid #ddd;
+  border-left: 3px solid #ddd;
+  border-bottom: 3px solid #bbb;
+  border-right: 3px solid #bbb;
   padding: 10px 10px;
 }
 
@@ -102,6 +78,42 @@ aside p{
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
+  font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 60px;
+    top: 0px;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#lang-selector ul li{
+  display: block;
+}
+
+#lang-selector ul li button {
+  min-width: 100px;
+  padding: 10px 10px 10px 10px;
+}
+
+.current-lang {
+  color: #000;
   font-weight: bold;
 }
 
