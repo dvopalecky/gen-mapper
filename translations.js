@@ -95,7 +95,7 @@ const translations = {
       },
       'editGroup': {
         'editGroup': 'Editace skupiny',
-        'btnSubmit': 'Změnit',
+        'btnSubmit': 'Hotovo',
         'btnCancel': 'Zpět',
         'btnDelete': 'Smazat podstrom',
         'btnImportSubtree': 'Importovat podstrom',
