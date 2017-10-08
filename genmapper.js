@@ -7,7 +7,7 @@ class GenMapper {
   /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.14'
+    this.appVersion = '0.2.15'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
