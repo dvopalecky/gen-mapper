@@ -9,8 +9,9 @@ const template = {
       'translation': {
         'template': {
           'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" width="200" height="106" style="width:100%; text-align: center;" alt="Movementeer logo"></a>',
-          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Circle means group, Square means church.<br>Color of border specifies the leader\'s type<br><ul><li><span style="color:#FD0402;">red</span> &mdash; Full time missionary</li><li><span style="color:#3D7AD3;">blue</span> &mdash; Existing lay believer</li><li><span style="color:#5EA650;">green</span> &mdash; Leader\'s disciple</li></ul>On the top the numbers describe: # total, # believers, # baptized, # newly baptized<br>Inside the circle are the elements that are practiced in the group.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
+          'helpLegend': '<h3><a href="">Further instructions on using Genmapper for Movementeer</a></h3><br><img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Circle means group, Square means church.<br>Color of border specifies the leader\'s type<br><ul><li><span style="color:#FD0402;">red</span> &mdash; Full time missionary</li><li><span style="color:#3D7AD3;">blue</span> &mdash; Existing lay believer</li><li><span style="color:#5EA650;">green</span> &mdash; Leader\'s disciple</li></ul>On the top the numbers describe: # total, # believers, # baptized.<br>Inside the circle are the elements that are practiced in the group.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           'name': 'Name of the Leader',
+          'initialName': "Leader's Name",
           'leaderType': 'Leader',
           'fullTimeMissionary': 'Full time missionary',
           'existingLayBeliever': 'Existing lay believer',
@@ -35,7 +36,104 @@ const template = {
           'trainingPhase': 'Training phase',
           'active': 'Active',
           'actionSteps': 'Action steps for this month',
-          'contact': 'How to contact'
+          'initialActionSteps': 'action',
+          'contact': 'How to contact',
+          'initialContact': 'contact'
+        }
+      }
+    },
+    'ro': {
+      'translation': {
+        'template': {
+          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legendăd</h3><p>Fiecare cerc reprezintă un grup/biserică. Cerc reprezintă grup. Pătrat reprezintă biserică.<br>Culoarea de contur arată tipul de lider.<br><ul><li><span style="color:#FD0402;">Roşu</span> &mdash; misionar</li><li><span style="color:#3D7AD3;">Albastru</span> &mdash; Credincios laic</li><li><span style="color:#5EA650;">Verde</span> &mdash; Liderul ucenicului</li></ul>Deasupra numerele descriu: #total, #credincioşi, #botezaţi<br>Înăuntrul cercului sunt elementele practicate în grup.</p><p>Daţi click pe grup ca să editaţi.<br>Daţi click pe butonul roşu (x) ca să ştergeţi grupul.<br>Daţi click pe butonul verde (+) ca să adăugaţi un grup copil.</p>',
+          'name': 'Numele Liderului',
+          'initialName': 'Numele Liderului',
+          'leaderType': 'Lider',
+          'fullTimeMissionary': 'Misionar cu normă întreagă',
+          'existingLayBeliever': 'Există credincios laic',
+          'leadersDisciple': 'Liderul ucenicului',
+          'place': 'Locul',
+          'date': 'Data începerii:',
+          'attenders': '# de Participanţi',
+          'believers': 'număr de credincioși',
+          'baptized': '# dintre cei botezați',
+          'elementWord': 'Element: Cuvântul lui Dumnezeu',
+          'elementPrayer': 'Element: Rugăciune',
+          'elementLove': 'Element: Iubire frăţească',
+          'elementWorship': 'Element: închinare',
+          'elementMakeDisciples': 'Element: Faceți ucenici',
+          'elementLeaders': 'Element: Lideri',
+          'elementGive': 'Element: Dărnicia',
+          'elementLordsSupper': 'Element: Cina Domnului',
+          'elementBaptism': 'Element: Botezul',
+          'threeThirds': 'Elemente de proces 3/3',
+          'trainingUsed': 'Instruire utilizată',
+          'trainingPhase': 'Faza de instruire',
+          'active': 'Activ',
+          'actionSteps': 'Pașii de acțiune pentru această lună',
+          'initialActionSteps': 'acțiune',
+          'contact': 'Cum să contactați',
+          'initialContact': 'contact telefonic'
+        }
+      }
+    },
+    'ru': {
+      'translation': {
+        'template': {
+          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>легенда</h3><p>«Каждый круг представляет собой группу / церковь. Круг означает группу, Квадрат означает церковь.<br>Цвет границы указывает тип лидера<br><ul><li><span style="color:#FD0402;">красный</span> &mdash; Освобожденный миссионер</li><li><span style="color:#3D7AD3;">синий</span> &mdash; Изначально верующий</li><li><span style="color:#5EA650;">зеленый</span> &mdash; ученик лидера "</li></ul>В верхней части номера описываются: Количество посетителей, # Верующих, # крещеных. <br>Внутри круга находятся элементы, которые практикуются в группе.</p><p>Нажмите на группу, чтобы изменить ее.<br>Нажмите на красную кнопку, чтобы удалить группу.<br>Нажмите зеленую кнопку, чтобы добавить дочернюю группу.</p>',
+          'name': 'Имя лидера',
+          'initialName': 'Имя лидера',
+          'leaderType': 'лидер',
+          'fullTimeMissionary': 'Освобожденный миссионер',
+          'existingLayBeliever': 'Верующий изначально',
+          'leadersDisciple': 'Ученик уверовавший через Лидера',
+          'place': 'Место проведения группы',
+          'date': 'Дата начала группы:',
+          'attenders': 'Количество посетителей',
+          'believers': '# Верующих',
+          'baptized': '# крещеных',
+          'elementWord': 'Элемент: Божье Слово',
+          'elementPrayer': 'Элемент: Молитва',
+          'elementLove': 'Элемент: Любовь',
+          'elementWorship': 'Элемент: Поклонение',
+          'elementMakeDisciples': 'Элемент: Ученичество',
+          'elementLeaders': 'Элемент: Подготовка Лидеров',
+          'elementGive': 'Элемент: Пожертвование',
+          'elementLordsSupper': 'Элемент: Вечеря Господня',
+          'elementBaptism': 'Элемент: Крещение',
+          'threeThirds': 'Элементы: Метод 3 колонок',
+          'trainingUsed': 'Обучение',
+          'trainingPhase': 'Этап обучения',
+          'active': 'активный',
+          'actionSteps': 'Шаги действий в этом месяце',
+          'initialActionSteps': 'действие',
+          'contact': 'Как связаться',
+          'initialContact': 'контакт'
+        }
+      }
+    },
+    'sq': {
+      'translation': {
+        'template': {
+          'name': 'Emri i Drejtuesit',
+          'initialName': 'Emri i Drejtuesit',
+          'leaderType': 'Drejtuesi',
+          'fullTimeMissionary': 'Misionar me kohe te plote',
+          'place': 'Vendodhja',
+          'date': 'Data e fillimit',
+          'attenders': '# i Pjesemarresve',
+          'believers': '# i Besimtareve',
+          'baptized': '# i Te pagezuarve',
+          'church': 'A eshte kishe?',
+          'elementWord': 'Elementet: Fjala e Zotit',
+          'elementPrayer': 'Elementet: Lutja',
+          'elementLove': 'Elementet: Dashuria',
+          'elementWorship': 'Elementet: Adhurimi',
+          'elementMakeDisciples': 'Elementet: Berja e dishepujve',
+          'elementLeaders': 'Elementet: Drejtuesit',
+          'elementGive': 'Elementet: Dhenia',
+          'elementLordsSupper': 'Elementet: Darka e Zotit',
+          'elementBaptism': 'Elementet: Pagezimi'
         }
       }
     }
@@ -113,7 +211,7 @@ const template = {
     },
     {
       'header': 'name',
-      'initial': "Leader's Name",
+      'initialTranslationCode': 'initialName',
       'type': 'text',
       'svg': {
         'type': 'text',
@@ -415,12 +513,12 @@ const template = {
     },
     {
       'header': 'actionSteps',
-      'initial': 'action',
+      'initialTranslationCode': 'initialActionSteps',
       'type': 'text'
     },
     {
       'header': 'contact',
-      'initial': 'contact',
+      'initialTranslationCode': 'initialContact',
       'type': 'text'
     }
   ]

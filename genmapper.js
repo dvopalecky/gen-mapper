@@ -99,8 +99,11 @@ class GenMapper {
     '<button aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
     '<select id="lang-selector" onchange="genmapper.switchLanguage()" style="display:none">' +
     '  <option value="en">English</option>' +
-    '  <option value="es">Español</option>' +
     '  <option value="cs">Čeština</option>' +
+    '  <option value="es">Español</option>' +
+    '  <option value="ro">Română</option>' +
+    '  <option value="ru">Русский</option>' +
+    '  <option value="sq">Shqip</option>' +
     '</select></div>' +
     '<button id="project-name" class="hint--rounded hint--right" aria-label=""><img src="../icons/039-file-text2.svg"></button>' +
     '<button onclick="genmapper.introSwitchVisibility()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.helpAbout') + '"><img src="../icons/266-question.svg"></button>' +
