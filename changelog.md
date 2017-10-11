@@ -1,5 +1,9 @@
 # gen-mapper changelog
 
+## 0.2.15 (2017-10-11)
+- change left menu to icon style
+- add more translations
+
 ## 0.2.14 (2017-10-02)
 - internationalization for Help
 
