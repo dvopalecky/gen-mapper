@@ -58,6 +58,8 @@ class GenMapper {
     this.setKeyboardShorcuts()
 
     document.getElementsByTagName('body')[0].onresize = this.setSvgHeight
+    console.log(this.nodes)
+    console.log(this.data)
   }
 
   // Beginning of function definitions
@@ -122,7 +124,7 @@ class GenMapper {
     '    <table>' +
     '      <tr>' +
     '        <td class="left-field">' + i18next.t('editGroup.elementParent') + '</td>' +
-    '        <td class="right-field"><p id="edit-parent"></p></td>' +
+    '        <td class="right-field"><select id="edit-parent"></select></td>' +
     '      </tr>' +
     '    </table>' +
     '  </form>' +
@@ -132,6 +134,7 @@ class GenMapper {
     '    <button id="edit-delete">' + i18next.t('editGroup.btnDelete') + '</button>' +
     '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">' + i18next.t('editGroup.btnImportSubtree') + '</button>' +
     '    <input type="file" id="file-input-subtree" style="display:none;">' +
+    '    <button id="edit-export-branch">' + i18next.t('editGroup.btnExportBranch') + '</button>' +
     '  </div>' +
     '</div>'
 
@@ -240,13 +243,47 @@ class GenMapper {
     // select first element
     this.editFieldElements[Object.keys(this.editFieldElements)[0]].select()
 
-    this.editParentElement.innerHTML = d.parent ? d.parent.data.name : 'N/A'
+    // this.editParentElement.innerHTML = d.parent ? d.parent.data.name : 'N/A'
+    this.makeSelectForParent()
+
     const groupData = d.data
     const group = d
+    console.log(this.getNames())
     d3.select('#edit-submit').on('click', () => { this.editGroup(groupData) })
     d3.select('#edit-cancel').on('click', () => { this.editGroupElement.style.display = 'none' })
     d3.select('#edit-delete').on('click', () => { this.removeNode(group) })
     d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(group) })
+  }
+
+  makeSelectForParent () {
+    this.editParentElement.innerHTML = ''
+    const names = this.getNames()
+    names.forEach((group) => {
+      console.log(group)
+      const option = document.createElement('option')
+      option.text = group[1]
+      option.value = group[0]
+      this.editParentElement.add(option)
+    })
+  }
+
+  getNames () {
+    const output = []
+    this.nodes.descendants().forEach((node) => {
+      output.push([node.data.id, node.data.name])
+    })
+    output.sort((a, b) => a[1].localeCompare(b[1]))
+    return output
+  }
+
+  getDirectChildrenCount () {
+    const output = {}
+    this.nodes.descendants().forEach((node) => {
+      let count = 0
+      if (node.children) { count = node.children.length }
+      output[node.data.id] = count
+    })
+    return output
   }
 
   editGroup (groupData) {
