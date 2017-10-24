@@ -800,7 +800,7 @@ class GenMapper {
     } else {
       throw new Error(i18next.t('messages.errWrongFileType'))
     }
-    csvString = csvString.replace(/\r\n?/g, '\n')
+    csvString = csvString.replace(/\r{1,2}\n?/g, '\n')
     // replace first line with a default one
     return this.csvHeader + csvString.substring(csvString.indexOf('\n') + 1)
   }
