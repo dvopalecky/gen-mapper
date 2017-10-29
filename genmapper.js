@@ -101,6 +101,7 @@ class GenMapper {
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-en">English</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-cs">Čeština</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-es">Español</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-pl">Polski</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ro">Română</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ru">Русский</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-sq">Shqip</button></li>' +

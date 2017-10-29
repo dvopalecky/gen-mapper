@@ -221,6 +221,80 @@ const translations = {
       }
     }
   },
+  pl: {
+    translation: {
+      'menu': {
+        'appName': 'GenMapper',
+        'defaultProjectName': 'projekt bez tytułu',
+        'languageName': 'Polski',
+        'language': 'Język',
+        'help': 'Pomoc',
+        'helpAbout': 'Pomoc/ Info',
+        'zooming': 'Powiększenie',
+        'originalZoom': 'Oryginalny rozmiar i pozycja',
+        'zoomIn': 'Powiększenie',
+        'zoomOut': 'Pomniejszenie',
+        'importExport': 'Importuj / Eksportuj',
+        'importXlsxCsv': 'Importuj XLXS / CSV',
+        'exportCsv': 'Eksportuj CSV',
+        'printing': 'Drukuj',
+        'btnPrintVertical': 'Drukuj stronę pionowo',
+        'btnPrintHorizontal': 'Drukuj stronę poziomo na jednej kartce'
+      },
+      'editGroup': {
+        'editGroup': 'Edytuj grupę',
+        'btnSubmit': 'Zapisz zmiany',
+        'btnCancel': 'Anuluj',
+        'btnDelete': 'Usuń poddiagram',
+        'btnImportSubtree': 'Dodaj poddiagram',
+        'elementParent': 'Rodzic',
+        'notAvaliable': 'nieosiągalne',
+        'hoverDeleteGroupAndSubtree': 'Usuń grupę i poddiagram',
+        'hoverAddChildGroup': 'Dodaj grupkę córkę'
+      },
+      'messages': {
+        'editProjectName': 'Edytuj nazwę projektu',
+        'errProjectNameEmpty': 'Nazwa projektu nie może być pusta',
+        'btnOK': 'Ok',
+        'errDeleteRoot': 'Sorki. Usunięcie grupy macierzystej nie jest możliwe.',
+        'confirmDeleteGroup': 'Czy rzeczywiście chcesz usunąć {{group-name}}?',
+        'confirmDeleteGroupWithChildren': 'Czy rzeczywiście chcesz usunąć {{group-name}} i wszystko co za nimi idzie?',
+        'saveAsInSafari': 'Zapisz jako:  (Uwaga przeglądarka Safari ma z tym pewne problemy, proszę zobacz GennMapper -> Pomoc)',
+        'saveAs': 'Zapisz jako:',
+        'confirmImportSubtreeOverwrite': 'Ostrzeżenie: Zaimportowanie poddiagramu nadpisze na grupę ({{group-name}}) i wszystko co za nią idzie. Czy chcesz kontynuować?',
+        'errImport': 'Błąd w czasie importowania pliku.',
+        'errImportWhatToCheck': 'Proszę sprawdź czy plik jest we właściwym formacie (przecinek rozdzielający wartości), czy grupa początkowa nie ma rodzica, i że pozostałe powiązania pomiędzy grupami są właściwe. Także sprawdź czy używasz właściwej wersji aplikacji.',
+        'selectFile': 'Proszę wybierz plik',
+        'errWrongFileType': 'Niewłaściwy typ pliku. Proszę zaimportuj xls, xlsx lub csv.'
+      },
+      'help': {
+        'genmapperHelp': 'Genmapper Pomoc',
+        'introContent': 'Witaj, ta aplikacja pomaga tworzyć mapy grup i kościołów. Modlę się, żeby pomagała w rozwoju królestwa Jezusa.',
+        'importExportHeader': 'Importuj / Eksportuj',
+        'importExportWarningChangesLost': 'Uwaga: Jeśli nie wyeksportujesz swojej pracy, wszystkie zmiany zostaną utracone zarówno przy odświeżaniu i zamykaniu tej strony.',
+        'importExportContent': 'Możesz zaimportować pliki .xlsx i .xls (MS Excel) lub .csv (Comma Separated Values = wartości oddzielone przecinkami). <br> Możesz także zaimportować poddiagram klikając na daną grupę a potem na "Zaimportuj poddiagram".<br>',
+        'exportSafariIssuePart1': 'Uwaga: Niektóre wersje przeglądarki Safari mają problem z eksportowaniem plików do formatu csv. Jeśli nowa zakładaka z blob otworzy się zamiast ściągnięcia pliku (zobacz przykład poniżej) ',
+        'exportSafariIssuePart2': 'naciśnij Cmd + S, potem wpisz nazwę pliku kończącą się na .csv, wybierz Format: Page Source, i wtedy naciśnij Save',
+        'exportToPdf': 'Aby wyeksportować do PDF, użyj Drukuj i potem zapisz jako PDF w Chrome czy Safari.',
+        'panZoomHeader': 'Powiększanie/Pomniejszanie',
+        'panZoomContent': 'Możesz powiększać i pomniejszać mapę kręcąc kółkiem myszki lub korzystając z przycisków po lewej.',
+        'changelogHeader': 'Historia zmian i wersje',
+        'changelogLink': 'Historia zmian',
+        'genmapperVersion': 'Wersja Genmapper',
+        'templateVersion': 'Wersja szablonu',
+        'creditsHeader': 'Podziekowanie',
+        'creditsThanks1': 'Dziękujemy Curtisowi Segeantowie za pomysł tworzenia map pokoleń i cenne wskazówki.',
+        'creditsJavaScriptLibraries': 'Biblioteki JavaScript/CSS',
+        'creditsIcons': 'Użyte ikony',
+        'creditsAnd': 'i',
+        'creditsCopyright': 'Copyright (c) 2016-2017 Daniel Vopalecky',
+        'creditsLicense': 'MIT Licence',
+        'creditsGithub': 'Zbiory Github',
+        'creditsSuggestions': 'Sugestie i problemy z działaniem proszę wysyłać do daniel.vopalecky@seznam.cz',
+        'btnOKStart': 'Zapraszamy!'
+      }
+    }
+  },
   ro: {
     translation: {
       'menu': {

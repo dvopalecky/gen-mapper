@@ -42,6 +42,43 @@ const template = {
         }
       }
     },
+    'pl': {
+      'translation': {
+        'template': {
+          'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" style="width:100%; text-align: center; margin:10px 0 5px 0;" alt="Movementeer logo"></a>',
+          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legenda</h3><p>Każde kółko przedstawia grupę / kościół. Kółko oznacza grupę, kwadrat oznacza kościół.<br>Kolor ramki oznacza rodzaj lidera<br><ul><li><span style="color:#FD0402;">czerwony</span> &mdash; pracownik pełnoetatowy</li><li><span style="color:#3D7AD3;">niebieski</span> &mdash; świecka osoba już wcześniej wierząca</li><li><span style="color:#5EA650;">zielony</span> &mdash; uczeń lidera</li></ul>Na górze liczby oznaczają: liczbę całkowitą, liczbę wierzących, liczbę ochrzczonych, liczbę nowoochrzczonych<br>Wewnątrz kółka widzimy elementy praktywkowane przez tę grupę.</p><p>Kliknij na grupę, aby ją edytować.<br>Kliknij na czerwony guzik (x) aby usunąć groupę.<br>Kliknij na zielony guzik (+) aby dodać grupę.</p>',
+          'name': 'Imię lidera',
+          'initialName': 'Imię lidera',
+          'leaderType': 'Lider',
+          'fullTimeMissionary': 'Pełnoetatowy pracownik',
+          'existingLayBeliever': 'Osoba świecka już wcześniej wierząca',
+          'leadersDisciple': 'Uczeń lidera',
+          'place': 'Miejsce',
+          'date': 'Data rozpoczęcia:',
+          'attenders': 'liczba uczestników',
+          'believers': 'liczba wierzących',
+          'baptized': 'liczba ochrzczonych',
+          'church': 'Czy to jest kościół?',
+          'elementWord': 'Element: Słowo Boże',
+          'elementPrayer': 'Element: Modlitwa',
+          'elementLove': 'Element: Miłość',
+          'elementWorship': 'Element: Wielbienie',
+          'elementMakeDisciples': 'Element: Czynienie uczniami',
+          'elementLeaders': 'Element: Liderzy',
+          'elementGive': 'Element: Dawanie',
+          'elementLordsSupper': 'Element: Wieczerza',
+          'elementBaptism': 'Element: Chrzest',
+          'threeThirds': 'Elementy procesu 3/3',
+          'trainingUsed': 'Używane szkolenie',
+          'trainingPhase': 'Faza w szkoleniu',
+          'active': 'Aktywny',
+          'actionSteps': 'Zadania na ten miesiąc',
+          'initialActionSteps': 'Zadanie',
+          'contact': 'Jak się skontaktować',
+          'initialContact': 'Kontakt'
+        }
+      }
+    },
     'ro': {
       'translation': {
         'template': {
