@@ -245,7 +245,7 @@ aside p{
 }
 
 /**** SVG ****/
-#main {
+#genmapper-graph {
   float: right;
   width: calc(100% - 71px);
   height: 100%;

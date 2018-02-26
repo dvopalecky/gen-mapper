@@ -32,7 +32,7 @@ class GenMapper {
       })
 
     this.setSvgHeight()
-    this.svg = d3.select('#main-svg')
+    this.svg = d3.select('#genmapper-graph-svg')
       .call(this.zoom)
       .on('dblclick.zoom', null)
     this.g = this.svg.append('g')
@@ -87,7 +87,7 @@ class GenMapper {
     const windowHeight = document.documentElement.clientHeight
     const leftMenuHeight = document.getElementById('left-menu').clientHeight
     const height = Math.max(windowHeight, leftMenuHeight + 10)
-    d3.select('#main-svg')
+    d3.select('#genmapper-graph-svg')
       .attr('height', height)
   }
 
@@ -197,7 +197,7 @@ class GenMapper {
 
   origPosition () {
     this.zoom.scaleTo(this.svg, 1)
-    const origX = this.margin.left + (document.getElementById('main').clientWidth / 2)
+    const origX = this.margin.left + (document.getElementById('genmapper-graph').clientWidth / 2)
     const origY = this.margin.top
     const parsedTransform = this.parseTransform(this.g.attr('transform'))
     this.zoom.translateBy(this.svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1])
@@ -317,8 +317,8 @@ class GenMapper {
 
     // change CSS for printing
     d3.select('#left-menu').style('display', 'none')
-    d3.select('#main').style('float', 'left')
-    d3.selectAll('#main-svg').style('background', 'white')
+    d3.select('#genmapper-graph').style('float', 'left')
+    d3.selectAll('#genmapper-graph-svg').style('background', 'white')
 
     window.print()
 
@@ -327,8 +327,8 @@ class GenMapper {
       .attr('height', origHeight)
     this.g.attr('transform', origTransform)
     d3.select('#left-menu').style('display', null)
-    d3.select('#main').style('float', null)
-    d3.selectAll('#main-svg').style('background', null)
+    d3.select('#genmapper-graph').style('float', null)
+    d3.selectAll('#genmapper-graph-svg').style('background', null)
   }
 
   redraw (template) {
