@@ -649,6 +649,18 @@ class GenMapper {
     return b
   }
 
+  importJSON (jsonString) {
+    const tree = JSON.parse(jsonString)
+    try {
+      this.validTree(tree)
+    } catch (err) {
+      this.displayImportError(err)
+      return
+    }
+    this.data = tree
+    this.redraw(template)
+  }
+
   importFile () {
     this.importFileFromInput('file-input', (filedata, filename) => {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
