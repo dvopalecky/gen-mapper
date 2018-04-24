@@ -2,12 +2,12 @@ class GenMapper {
   // GenMapper
   // App for mapping generations of simple churches
   // https://github.com/dvopalecky/gen-mapper
-  // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
+  // Copyright (c) 2016-2018 Daniel Vopalecky, MIT license
 
   /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.15'
+    this.appVersion = '0.2.16'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
