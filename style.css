@@ -25,10 +25,6 @@ rect{
   fill:white;
 }
 
-svg{
-  background: whitesmoke;
-}
-
 h2{
   font-size:18px;
 }
@@ -49,13 +45,13 @@ p {
 }
 
 /**** Left menu ****/
-aside{
+#left-menu{
   width:60px;
   float:left;
   margin: 5px;
 }
 
-aside button{
+#left-menu button{
   width:60px;
   border-top: 3px solid #ddd;
   border-left: 3px solid #ddd;
@@ -64,11 +60,11 @@ aside button{
   padding: 10px 10px;
 }
 
-aside button:hover{
+#left-menu button:hover{
   background-color: lightskyblue;
 }
 
-aside p{
+#left-menu p{
   width:60px;
   color: steelblue;
   margin: 5px;
@@ -118,7 +114,7 @@ aside p{
 }
 
 /**** Modal windows ****/
-#intro, #edit-group, #alert-message {
+.intro, .edit-group, .alert-message {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -130,17 +126,32 @@ aside p{
   background-color: rgba(0,0,0,0.7);
 }
 
-#intro {
+.intro {
   display: none;
 }
 
-#edit-group {
+.intro--active{
+  /* must be defined after .intro */
+  display: block;
+}
+
+.edit-group {
   display: none;
 }
 
-#alert-message {
+.edit-group--active {
+  /* must be defined after .edit-group */
+  display: block;
+}
+
+.alert-message {
   display: none;
   z-index: 2;
+}
+
+.alert-message--active {
+  /* must be defined after .alert-message */
+  display: block;
 }
 
 #intro-content, #edit-group-content, #alert-message-content {
@@ -246,10 +257,16 @@ aside p{
 
 /**** SVG ****/
 #genmapper-graph {
-  float: right;
+  float: left;
   width: calc(100% - 71px);
   height: 100%;
 }
+
+#genmapper-graph-svg {
+  background: whitesmoke;
+  height: 100%;
+}
+
 
 .addNode rect{
   fill: #b3ffb3;

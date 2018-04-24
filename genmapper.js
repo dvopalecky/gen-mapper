@@ -64,19 +64,15 @@ class GenMapper {
   setKeyboardShorcuts () {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) {
-        if (document.getElementById('alert-message').style.display !== 'none') {
-          document.getElementById('alert-message').style.display = 'none'
+        if (this.alertElement.classList.contains('alert-message--active')) {
+          this.alertElement.classList.remove('alert-message--active')
         } else {
-          if (document.getElementById('intro').style.display !== 'none') {
-            document.getElementById('intro').style.display = 'none'
-          }
-          if (this.editGroupElement.style.display !== 'none') {
-            this.editGroupElement.style.display = 'none'
-          }
+          document.getElementById('intro').classList.remove('intro--active')
+          this.editGroupElement.classList.remove('edit-group--active')
         }
       } else if (e.keyCode === 13) {
         // hitting enter is like submitting changes in the edit window
-        if (this.editGroupElement.style.display !== 'none') {
+        if (this.editGroupElement.classList.contains('edit-group--active')) {
           document.getElementById('edit-submit').click()
         }
       }
@@ -210,22 +206,21 @@ class GenMapper {
   }
 
   displayAlert (message) {
-    this.alertElement.style.display = 'block'
+    this.alertElement.classList.add('alert-message--active')
     document.getElementById('alert-message-text').innerHTML = message
   }
 
   closeAlert () {
-    this.alertElement.style.display = null
+    this.alertElement.classList.remove('alert-message--active')
     document.getElementById('alert-message-text').innerHTML = null
   }
 
   introSwitchVisibility () {
-    const tmp = d3.select('#intro')
-    if (tmp.style('display') !== 'none') { tmp.style('display', 'none') } else { tmp.style('display', 'block') }
+    document.getElementById('intro').classList.toggle('intro--active')
   }
 
   popupEditGroupModal (d) {
-    this.editGroupElement.style.display = 'block'
+    this.editGroupElement.classList.add('edit-group--active')
     template.fields.forEach((field) => {
       if (field.type === 'text') {
         this.editFieldElements[field.header].value = d.data[field.header]
@@ -245,7 +240,7 @@ class GenMapper {
     const groupData = d.data
     const group = d
     d3.select('#edit-submit').on('click', () => { this.editGroup(groupData) })
-    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.style.display = 'none' })
+    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.classList.remove('edit-group--active') })
     d3.select('#edit-delete').on('click', () => { this.removeNode(group) })
     d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(group) })
   }
@@ -265,7 +260,7 @@ class GenMapper {
       }
     })
 
-    this.editGroupElement.style.display = 'none'
+    this.editGroupElement.classList.remove('edit-group--active')
     this.redraw(template)
   }
 
@@ -596,7 +591,7 @@ class GenMapper {
         }
       }
     }
-    document.getElementById('edit-group').style.display = 'none'
+    this.editGroupElement.classList.remove('edit-group--active')
     this.redraw(template)
   }
 
@@ -684,7 +679,7 @@ class GenMapper {
       if (parsedCsv === null) { return }
       this.csvIntoNode(d, parsedCsv)
       this.redraw(template)
-      this.editGroupElement.style.display = 'none'
+      this.editGroupElement.classList.remove('edit-group--active')
     })
   }
 
