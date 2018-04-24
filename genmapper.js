@@ -54,10 +54,20 @@ class GenMapper {
 
     this.alertElement = document.getElementById('alert-message')
     this.editGroupElement = document.getElementById('edit-group')
+    // if there are unsaved changes give hint to user before he tries to close the browser window
+    this.hasUnsavedChanges = false
 
     this.setKeyboardShorcuts()
 
     document.getElementsByTagName('body')[0].onresize = this.setSvgHeight
+
+    window.addEventListener("beforeunload", function (e) {
+      if (genmapper.hasUnsavedChanges) {
+        e.returnValue = true     // Gecko, Trident, Chrome 34+
+        return true              // Gecko, WebKit, Chrome <34
+      } 
+      return false
+    })
   }
 
   // Beginning of function definitions
@@ -246,6 +256,7 @@ class GenMapper {
   }
 
   editGroup (groupData) {
+    this.hasUnsavedChanges = true
     template.fields.forEach((field) => {
       if (field.type === 'text') {
         groupData[field.header] = this.editFieldElements[field.header].value
@@ -539,6 +550,7 @@ class GenMapper {
   }
 
   addNode (d) {
+    this.hasUnsavedChanges = true
     const newNodeData = {}
     template.fields.forEach((field) => {
       newNodeData[field.header] = this.getInitialValue(field)
@@ -574,6 +586,7 @@ class GenMapper {
   }
 
   removeNode (d) {
+    this.hasUnsavedChanges = true
     if (!d.parent) {
       this.displayAlert(i18next.t('messages.errDeleteRoot'))
     } else {
@@ -633,6 +646,7 @@ class GenMapper {
     const saveName = window.prompt(promptMessage, this.projectName + '.csv')
     if (saveName === null) return
     saveAs(blob, saveName)
+    this.hasUnsavedChanges = false
   }
 
   parseTransform (a) {
@@ -652,6 +666,7 @@ class GenMapper {
       this.displayImportError(err)
       return
     }
+    this.hasUnsavedChanges = false
     this.data = tree
     this.redraw(template)
   }
@@ -660,6 +675,7 @@ class GenMapper {
     this.importFileFromInput('file-input', (filedata, filename) => {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
+      this.hasUnsavedChanges = false
       this.data = parsedCsv
       const regex = /(.+?)(\.[^.]*$|$)/
       const filenameNoExtension = regex.exec(filename)[1]
@@ -674,6 +690,7 @@ class GenMapper {
     if (!window.confirm(i18next.t('messages.confirmImportSubtreeOverwrite', {groupName: d.data.name}))) {
       return
     }
+    this.hasUnsavedChanges = true
     this.importFileFromInput('file-input-subtree', (filedata, filename) => {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
@@ -718,6 +735,7 @@ class GenMapper {
   }
 
   deleteAllDescendants (d) {
+    this.hasUnsavedChanges = true
     let idsToDelete = _.map(d.children, function (row) { return parseInt(row.id) })
     while (idsToDelete.length > 0) {
       const currentId = idsToDelete.pop()
