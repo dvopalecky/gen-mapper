@@ -746,7 +746,7 @@ class GenMapper {
     const ids = idsUnsorted.sort(function (a, b) { return a - b })
     // update ids of other nodes and push into data
     while (parsedCsv.length > 0) {
-      const row = parsedCsv.pop()
+      const row = parsedCsv.shift()
       if (!(row.id in mapOldIdToNewId)) {
         const newId = this.findNewIdFromArray(ids)
         mapOldIdToNewId[row.id] = newId
