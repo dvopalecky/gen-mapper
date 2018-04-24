@@ -9,7 +9,7 @@ const template = {
       'translation': {
         'template': {
           'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" style="width:100%; text-align: center; margin:10px 0 5px 0;" alt="Movementeer logo"></a>',
-          'helpLegend': '<h3><a href="">Further instructions on using Genmapper for Movementeer</a></h3><br><img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Circle means group, Square means church.<br>Color of border specifies the leader\'s type<br><ul><li><span style="color:#FD0402;">red</span> &mdash; Full time missionary</li><li><span style="color:#3D7AD3;">blue</span> &mdash; Existing lay believer</li><li><span style="color:#5EA650;">green</span> &mdash; Leader\'s disciple</li></ul>On the top the numbers describe: # total, # believers, # baptized.<br>Inside the circle are the elements that are practiced in the group.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
+          'helpLegend': '<h3><a href="https://docs.google.com/document/d/1-27v_mjdJHrrN1-UFX8_gTtHVerC1-1e6hSVrXAjNbs/edit?usp=sharing">Further instructions on using Genmapper for Movementeer</a></h3><br><img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Circle means group, Square means church.<br>Color of border specifies the leader\'s type<br><ul><li><span style="color:#FD0402;">red</span> &mdash; Full time missionary</li><li><span style="color:#3D7AD3;">blue</span> &mdash; Existing lay believer</li><li><span style="color:#5EA650;">green</span> &mdash; Leader\'s disciple</li></ul>On the top the numbers describe: # total, # believers, # baptized.<br>Inside the circle are the elements that are practiced in the group.</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           'name': 'Name of the Leader',
           'initialName': "Leader's Name",
           'leaderType': 'Leader',
@@ -39,6 +39,43 @@ const template = {
           'initialActionSteps': 'action',
           'contact': 'How to contact',
           'initialContact': 'contact'
+        }
+      }
+    },
+    'pl': {
+      'translation': {
+        'template': {
+          'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" style="width:100%; text-align: center; margin:10px 0 5px 0;" alt="Movementeer logo"></a>',
+          'helpLegend': '<img src="genmapper-node-example.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legenda</h3><p>Każde kółko przedstawia grupę / kościół. Kółko oznacza grupę, kwadrat oznacza kościół.<br>Kolor ramki oznacza rodzaj lidera<br><ul><li><span style="color:#FD0402;">czerwony</span> &mdash; pracownik pełnoetatowy</li><li><span style="color:#3D7AD3;">niebieski</span> &mdash; świecka osoba już wcześniej wierząca</li><li><span style="color:#5EA650;">zielony</span> &mdash; uczeń lidera</li></ul>Na górze liczby oznaczają: liczbę całkowitą, liczbę wierzących, liczbę ochrzczonych, liczbę nowoochrzczonych<br>Wewnątrz kółka widzimy elementy praktywkowane przez tę grupę.</p><p>Kliknij na grupę, aby ją edytować.<br>Kliknij na czerwony guzik (x) aby usunąć groupę.<br>Kliknij na zielony guzik (+) aby dodać grupę.</p>',
+          'name': 'Imię lidera',
+          'initialName': 'Imię lidera',
+          'leaderType': 'Lider',
+          'fullTimeMissionary': 'Pełnoetatowy pracownik',
+          'existingLayBeliever': 'Osoba świecka już wcześniej wierząca',
+          'leadersDisciple': 'Uczeń lidera',
+          'place': 'Miejsce',
+          'date': 'Data rozpoczęcia:',
+          'attenders': 'liczba uczestników',
+          'believers': 'liczba wierzących',
+          'baptized': 'liczba ochrzczonych',
+          'church': 'Czy to jest kościół?',
+          'elementWord': 'Element: Słowo Boże',
+          'elementPrayer': 'Element: Modlitwa',
+          'elementLove': 'Element: Miłość',
+          'elementWorship': 'Element: Wielbienie',
+          'elementMakeDisciples': 'Element: Czynienie uczniami',
+          'elementLeaders': 'Element: Liderzy',
+          'elementGive': 'Element: Dawanie',
+          'elementLordsSupper': 'Element: Wieczerza',
+          'elementBaptism': 'Element: Chrzest',
+          'threeThirds': 'Elementy procesu 3/3',
+          'trainingUsed': 'Używane szkolenie',
+          'trainingPhase': 'Faza w szkoleniu',
+          'active': 'Aktywny',
+          'actionSteps': 'Zadania na ten miesiąc',
+          'initialActionSteps': 'Zadanie',
+          'contact': 'Jak się skontaktować',
+          'initialContact': 'Kontakt'
         }
       }
     },

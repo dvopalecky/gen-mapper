@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'Church circles 0.5',
+  'name': 'Church circles 0.6',
   'translations': {
     en: {
       translation: {
@@ -11,7 +11,7 @@ const template = {
           'helpLegend': '<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>Each circle represents a group / church. Dashed circle means group, full circle means church.<br>On the top the numbers describe: # total, # believers, # baptized<br>Inside the circle are the elements that are practiced in the group.<br>On the left there numbers 1 to 7 represent which elements of 3/3 process are practised:<br>1 - Personal care<br>2 - Worship<br>3 - Accountability<br>4 - Vision casting<br>5 - Bible study<br>6 - Practice<br>7 - Set goals and prayer</p><p>Click on the group to edit it.<br>Click on red (x) button to remove group.<br>Click on green (+) button to add child group.</p>',
           'name': "Leader's Name",
           'email': 'Email',
-          'link': 'Link',
+          'peopleGroup': 'People Group',
           'attenders': '# of Attenders',
           'believers': '# of Believers',
           'baptized': '# of Baptized',
@@ -47,7 +47,7 @@ const template = {
           'name': 'Nombre de lider',
           'initialLeadersName': 'Nombre de lider',
           'email': 'Email',
-          'link': 'Vínculo',
+          'peopleGroup': 'Etnia',
           'attenders': '# of participantes',
           'believers': '# of creyentes',
           'baptized': '# of bautizados',
@@ -80,7 +80,7 @@ const template = {
         'template': {
           'name': 'Jméno vedoucího',
           'email': 'Email',
-          'link': 'Odkaz',
+          'peopleGroup': 'Etnikum',
           'attenders': 'Počet účastníků',
           'believers': 'Počet věřících',
           'baptized': 'Počet pokřtěných',
@@ -199,7 +199,7 @@ const template = {
       'type': 'text'
     },
     {
-      'header': 'link',
+      'header': 'peopleGroup',
       'initial': null,
       'type': 'text'
     },

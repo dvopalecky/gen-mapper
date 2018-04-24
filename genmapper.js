@@ -2,12 +2,12 @@ class GenMapper {
   // GenMapper
   // App for mapping generations of simple churches
   // https://github.com/dvopalecky/gen-mapper
-  // Copyright (c) 2016-2017 Daniel Vopalecky, MIT license
+  // Copyright (c) 2016-2018 Daniel Vopalecky, MIT license
 
   /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.15'
+    this.appVersion = '0.2.16'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
@@ -32,7 +32,7 @@ class GenMapper {
       })
 
     this.setSvgHeight()
-    this.svg = d3.select('#main-svg')
+    this.svg = d3.select('#genmapper-graph-svg')
       .call(this.zoom)
       .on('dblclick.zoom', null)
     this.g = this.svg.append('g')
@@ -54,31 +54,37 @@ class GenMapper {
 
     this.alertElement = document.getElementById('alert-message')
     this.editGroupElement = document.getElementById('edit-group')
+    // if there are unsaved changes give hint to user before he tries to close the browser window
+    this.hasUnsavedChanges = false
 
     this.setKeyboardShorcuts()
 
     document.getElementsByTagName('body')[0].onresize = this.setSvgHeight
     console.log(this.nodes)
     console.log(this.data)
+
+    window.addEventListener("beforeunload", function (e) {
+      if (genmapper.hasUnsavedChanges) {
+        e.returnValue = true     // Gecko, Trident, Chrome 34+
+        return true              // Gecko, WebKit, Chrome <34
+      } 
+      return false
+    })
   }
 
   // Beginning of function definitions
   setKeyboardShorcuts () {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) {
-        if (document.getElementById('alert-message').style.display !== 'none') {
-          document.getElementById('alert-message').style.display = 'none'
+        if (this.alertElement.classList.contains('alert-message--active')) {
+          this.alertElement.classList.remove('alert-message--active')
         } else {
-          if (document.getElementById('intro').style.display !== 'none') {
-            document.getElementById('intro').style.display = 'none'
-          }
-          if (this.editGroupElement.style.display !== 'none') {
-            this.editGroupElement.style.display = 'none'
-          }
+          document.getElementById('intro').classList.remove('intro--active')
+          this.editGroupElement.classList.remove('edit-group--active')
         }
       } else if (e.keyCode === 13) {
         // hitting enter is like submitting changes in the edit window
-        if (this.editGroupElement.style.display !== 'none') {
+        if (this.editGroupElement.classList.contains('edit-group--active')) {
           document.getElementById('edit-submit').click()
         }
       }
@@ -89,7 +95,7 @@ class GenMapper {
     const windowHeight = document.documentElement.clientHeight
     const leftMenuHeight = document.getElementById('left-menu').clientHeight
     const height = Math.max(windowHeight, leftMenuHeight + 10)
-    d3.select('#main-svg')
+    d3.select('#genmapper-graph-svg')
       .attr('height', height)
   }
 
@@ -103,6 +109,7 @@ class GenMapper {
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-en">English</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-cs">Čeština</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-es">Español</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-pl">Polski</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ro">Română</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ru">Русский</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-sq">Shqip</button></li>' +
@@ -199,7 +206,7 @@ class GenMapper {
 
   origPosition () {
     this.zoom.scaleTo(this.svg, 1)
-    const origX = this.margin.left + (document.getElementById('main').clientWidth / 2)
+    const origX = this.margin.left + (document.getElementById('genmapper-graph').clientWidth / 2)
     const origY = this.margin.top
     const parsedTransform = this.parseTransform(this.g.attr('transform'))
     this.zoom.translateBy(this.svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1])
@@ -212,22 +219,21 @@ class GenMapper {
   }
 
   displayAlert (message) {
-    this.alertElement.style.display = 'block'
+    this.alertElement.classList.add('alert-message--active')
     document.getElementById('alert-message-text').innerHTML = message
   }
 
   closeAlert () {
-    this.alertElement.style.display = null
+    this.alertElement.classList.remove('alert-message--active')
     document.getElementById('alert-message-text').innerHTML = null
   }
 
   introSwitchVisibility () {
-    const tmp = d3.select('#intro')
-    if (tmp.style('display') !== 'none') { tmp.style('display', 'none') } else { tmp.style('display', 'block') }
+    document.getElementById('intro').classList.toggle('intro--active')
   }
 
   popupEditGroupModal (d) {
-    this.editGroupElement.style.display = 'block'
+    this.editGroupElement.classList.add('edit-group--active')
     template.fields.forEach((field) => {
       if (field.type === 'text') {
         this.editFieldElements[field.header].value = d.data[field.header]
@@ -250,7 +256,7 @@ class GenMapper {
     const group = d
     console.log(this.getNames())
     d3.select('#edit-submit').on('click', () => { this.editGroup(groupData) })
-    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.style.display = 'none' })
+    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.classList.remove('edit-group--active') })
     d3.select('#edit-delete').on('click', () => { this.removeNode(group) })
     d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(group) })
   }
@@ -287,6 +293,7 @@ class GenMapper {
   }
 
   editGroup (groupData) {
+    this.hasUnsavedChanges = true
     template.fields.forEach((field) => {
       if (field.type === 'text') {
         groupData[field.header] = this.editFieldElements[field.header].value
@@ -301,7 +308,7 @@ class GenMapper {
       }
     })
 
-    this.editGroupElement.style.display = 'none'
+    this.editGroupElement.classList.remove('edit-group--active')
     this.redraw(template)
   }
 
@@ -353,8 +360,8 @@ class GenMapper {
 
     // change CSS for printing
     d3.select('#left-menu').style('display', 'none')
-    d3.select('#main').style('float', 'left')
-    d3.selectAll('#main-svg').style('background', 'white')
+    d3.select('#genmapper-graph').style('float', 'left')
+    d3.selectAll('#genmapper-graph-svg').style('background', 'white')
 
     window.print()
 
@@ -363,8 +370,8 @@ class GenMapper {
       .attr('height', origHeight)
     this.g.attr('transform', origTransform)
     d3.select('#left-menu').style('display', null)
-    d3.select('#main').style('float', null)
-    d3.selectAll('#main-svg').style('background', null)
+    d3.select('#genmapper-graph').style('float', null)
+    d3.selectAll('#genmapper-graph-svg').style('background', null)
   }
 
   redraw (template) {
@@ -580,6 +587,7 @@ class GenMapper {
   }
 
   addNode (d) {
+    this.hasUnsavedChanges = true
     const newNodeData = {}
     template.fields.forEach((field) => {
       newNodeData[field.header] = this.getInitialValue(field)
@@ -615,6 +623,7 @@ class GenMapper {
   }
 
   removeNode (d) {
+    this.hasUnsavedChanges = true
     if (!d.parent) {
       this.displayAlert(i18next.t('messages.errDeleteRoot'))
     } else {
@@ -632,7 +641,7 @@ class GenMapper {
         }
       }
     }
-    document.getElementById('edit-group').style.display = 'none'
+    this.editGroupElement.classList.remove('edit-group--active')
     this.redraw(template)
   }
 
@@ -674,6 +683,7 @@ class GenMapper {
     const saveName = window.prompt(promptMessage, this.projectName + '.csv')
     if (saveName === null) return
     saveAs(blob, saveName)
+    this.hasUnsavedChanges = false
   }
 
   parseTransform (a) {
@@ -685,10 +695,24 @@ class GenMapper {
     return b
   }
 
+  importJSON (jsonString) {
+    const tree = JSON.parse(jsonString)
+    try {
+      this.validTree(tree)
+    } catch (err) {
+      this.displayImportError(err)
+      return
+    }
+    this.hasUnsavedChanges = false
+    this.data = tree
+    this.redraw(template)
+  }
+
   importFile () {
     this.importFileFromInput('file-input', (filedata, filename) => {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
+      this.hasUnsavedChanges = false
       this.data = parsedCsv
       const regex = /(.+?)(\.[^.]*$|$)/
       const filenameNoExtension = regex.exec(filename)[1]
@@ -703,12 +727,13 @@ class GenMapper {
     if (!window.confirm(i18next.t('messages.confirmImportSubtreeOverwrite', {groupName: d.data.name}))) {
       return
     }
+    this.hasUnsavedChanges = true
     this.importFileFromInput('file-input-subtree', (filedata, filename) => {
       const parsedCsv = this.parseAndValidateCsv(filedata, filename)
       if (parsedCsv === null) { return }
       this.csvIntoNode(d, parsedCsv)
       this.redraw(template)
-      this.editGroupElement.style.display = 'none'
+      this.editGroupElement.classList.remove('edit-group--active')
     })
   }
 
@@ -747,6 +772,7 @@ class GenMapper {
   }
 
   deleteAllDescendants (d) {
+    this.hasUnsavedChanges = true
     let idsToDelete = _.map(d.children, function (row) { return parseInt(row.id) })
     while (idsToDelete.length > 0) {
       const currentId = idsToDelete.pop()
@@ -775,7 +801,7 @@ class GenMapper {
     const ids = idsUnsorted.sort(function (a, b) { return a - b })
     // update ids of other nodes and push into data
     while (parsedCsv.length > 0) {
-      const row = parsedCsv.pop()
+      const row = parsedCsv.shift()
       if (!(row.id in mapOldIdToNewId)) {
         const newId = this.findNewIdFromArray(ids)
         mapOldIdToNewId[row.id] = newId
@@ -837,7 +863,7 @@ class GenMapper {
     } else {
       throw new Error(i18next.t('messages.errWrongFileType'))
     }
-    csvString = csvString.replace(/\r\n?/g, '\n')
+    csvString = csvString.replace(/\r{1,2}\n?/g, '\n')
     // replace first line with a default one
     return this.csvHeader + csvString.substring(csvString.indexOf('\n') + 1)
   }
