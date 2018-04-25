@@ -4,7 +4,7 @@ class GenMapper {
   // https://github.com/dvopalecky/gen-mapper
   // Copyright (c) 2016-2018 Daniel Vopalecky, MIT license
 
-  /* global d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
+  /* global genmapper, d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
 
   constructor () {
     this.appVersion = '0.2.16'
@@ -47,7 +47,7 @@ class GenMapper {
     this.csvHeader = template.fields.map(field => field.header).join(',') + '\n'
     this.initialCsv = this.csvHeader + template.fields.map(field => this.getInitialValue(field)).join(',')
     this.data = this.parseCsvData(this.initialCsv)
-    this.nodes
+    this.nodes = null
 
     this.origPosition()
     this.redraw(template)
@@ -60,14 +60,12 @@ class GenMapper {
     this.setKeyboardShorcuts()
 
     document.getElementsByTagName('body')[0].onresize = this.setSvgHeight
-    console.log(this.nodes)
-    console.log(this.data)
 
-    window.addEventListener("beforeunload", function (e) {
+    window.addEventListener('beforeunload', function (e) {
       if (genmapper.hasUnsavedChanges) {
-        e.returnValue = true     // Gecko, Trident, Chrome 34+
-        return true              // Gecko, WebKit, Chrome <34
-      } 
+        e.returnValue = true // Gecko, Trident, Chrome 34+
+        return true // Gecko, WebKit, Chrome <34
+      }
       return false
     })
   }
@@ -249,33 +247,44 @@ class GenMapper {
     // select first element
     this.editFieldElements[Object.keys(this.editFieldElements)[0]].select()
 
+    const nodeData = d.data
+    const node = d
     // this.editParentElement.innerHTML = d.parent ? d.parent.data.name : 'N/A'
-    this.makeSelectForParent()
+    this.makeSelectForParent(node)
 
-    const groupData = d.data
-    const group = d
-    console.log(this.getNames())
-    d3.select('#edit-submit').on('click', () => { this.editGroup(groupData) })
+    d3.select('#edit-parent').on('change', () => { this.changedSelectParent() })
+    d3.select('#edit-submit').on('click', () => { this.editGroup(nodeData) })
     d3.select('#edit-cancel').on('click', () => { this.editGroupElement.classList.remove('edit-group--active') })
-    d3.select('#edit-delete').on('click', () => { this.removeNode(group) })
-    d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(group) })
+    d3.select('#edit-delete').on('click', () => { this.removeNode(node) })
+    d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(node) })
   }
 
-  makeSelectForParent () {
+  makeSelectForParent (node) {
     this.editParentElement.innerHTML = ''
-    const names = this.getNames()
-    names.forEach((group) => {
-      console.log(group)
+    const names = this.getNames(node)
+    names.forEach((node) => {
       const option = document.createElement('option')
-      option.text = group[1]
-      option.value = group[0]
+      option.text = node[1]
+      option.value = node[0]
       this.editParentElement.add(option)
     })
+    if (node.parent) {
+      this.editParentElement.value = node.parent.id
+    }
   }
 
-  getNames () {
+  changedSelectParent () {
+    this.displayAlert('This group and its subtree will be moved under a new parent after clicking on Submit changes.')
+  }
+
+  getNames (node) {
+    // get Array of [id, name] for all nodes except input node
+    // and its descendants
+    const allNodes = this.nodes.descendants()
+    const nodeAndDescendants = node.descendants()
+    const nodes = _.differenceWith(allNodes, nodeAndDescendants)
     const output = []
-    this.nodes.descendants().forEach((node) => {
+    nodes.forEach((node) => {
       output.push([node.data.id, node.data.name])
     })
     output.sort((a, b) => a[1].localeCompare(b[1]))
@@ -307,6 +316,10 @@ class GenMapper {
         groupData[field.header] = this.editFieldElements[field.header].checked
       }
     })
+
+    let parentIdFromEditWindow = parseInt(this.editParentElement.value)
+    if (isNaN(parentIdFromEditWindow)) parentIdFromEditWindow = ''
+    groupData.parentId = parentIdFromEditWindow
 
     this.editGroupElement.classList.remove('edit-group--active')
     this.redraw(template)
