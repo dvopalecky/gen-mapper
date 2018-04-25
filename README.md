@@ -29,8 +29,14 @@ see [here](changelog.md)
 ## License
 MIT
 
+## Projects / pages which use GenMapper:
+* [NoPlaceLeft](http://noplaceleft.net/genmapper/)
+* [MetaCamp](https://metacamp.org/generational-mapping-software/)
+* [TrainingFuerTrainer.de](https://www.trainingfuertrainer.de/baumzeichner/)
+
 ## Credits
-Curtis Sergeant - introduced me to the concept of generational mapping and provided useful feedback for this app
+Curtis Sergeant - introduced me to the concept of generational mapping and
+  provided useful feedback for this app
 JavaScript/CSS libraries used:
 * [d3.js](https://d3js.org) - Mike Bostock
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js) - Eli Grey

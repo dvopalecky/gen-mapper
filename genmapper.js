@@ -8,7 +8,7 @@ class GenMapper {
      Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.16'
+    this.appVersion = '0.2.17'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
