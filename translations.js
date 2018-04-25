@@ -151,6 +151,84 @@ const translations = {
       }
     }
   },
+  de: {
+    translation: {
+      'menu': {
+        'appName': 'BaumZeichner',
+        'defaultProjectName': 'Unbenannter Gemeinde-Baum',
+        'project': 'Projekt',
+        'help': 'Hilfe',
+        'helpAbout': 'Hilfe / Info',
+        'zooming': 'Zoom',
+        'originalZoom': 'Ansicht zurücksetzen',
+        'zoomIn': 'Vergrößern',
+        'zoomOut': 'Verkleinern',
+        'importExport': 'Import / Export',
+        'importXlsxCsv': 'Import XLSX / CSV',
+        'exportCsv': 'Export CSV',
+        'printing': 'Drucken',
+        'btnPrintVertical': 'Drucken (auf mehreren Seiten im Hochformat)',
+        'btnPrintHorizontal': 'Drucken (auf einer Seite im Querformat)'
+      },
+      'editGroup': {
+        'editGroup': 'Gruppe bearbeiten',
+        'btnSubmit': 'Änderungen speichern',
+        'btnCancel': 'Abbrechen',
+        'btnDelete': 'Zweig löschen',
+        'btnImportSubtree': 'Zweig importieren',
+        'btnExportSubtree': 'Zweig exportieren',
+        'elementParent': 'Muttergemeinde',
+        'notAvailable': 'nicht verfügbar',
+        'notAvaliable': 'nicht verfügbar',
+        'hoverDeleteGroupAndSubtree': 'Gruppe und Zweig löschen',
+        'hoverAddChildGroup': 'Tochtergruppe hinzufügen'
+      },
+      'messages': {
+        'editProjectName': 'Projektname bearbeiten',
+        'errProjectNameEmpty': 'Projektname darf nicht leer sein!',
+        'btnOK': 'Ok',
+        'errDeleteRoot': 'Die Wurzelgruppe kann nicht gelöscht werden.',
+        'confirmDeleteGroup': 'Möchtest du wirklich die Gruppe {{groupName}} löschen?',
+        'confirmDeleteGroupWithChildren': 'Möchtest du wirklich die Gruppe {{groupName}} mit alle nachfolgenden Gruppen löschen?',
+        'saveAsInSafari': 'Speichern unter: (Hinweis: Beim Safari-Browser gibt es Probleme beim Export, siehe GenMapper -> Hilfe für mehr Informationen)',
+        'saveAs': 'Speichern unter:',
+        'confirmImportSubtreeOverwrite': 'Warnung: Das Importieren des Zweiges wird die Gruppe {{group-name}} und alle ihre Nachfolger überschreiben. Möchtest du fortfahren?',
+        'errImport': 'Fehler beim Importieren der Datei.',
+        'errImportWhatToCheck': 'Bitte überprüfe, dass die Datei das richtige Format aufweist (Komma-getrennte Werte), dass die Wurzelgruppe keine Eltern hat und dass alle anderen Beziehungen einen gültigen Baum ergeben. Überprüfe auch, ob du die richtige App-Version verwendest.',
+        'selectFile': 'Bitte wähle eine Datei aus.',
+        'errWrongFileType': 'Falsches Dateiformat. Bitte wähle eine xls, xlsx oder csv-Datei aus.'
+      },
+      'help': {
+        'genmapperHelp': 'Hilfe zum BaumZeichner',
+        'introContent': 'Hallo! Mit dieser Browser-Anwendung kannst du <a href="/gemeindebaeume" target="_blank">Gemeindebäume</a> zeichnen, um Generationen von einfachen Gemeinden grafisch darzustellen. Wir beten, dass sie dir dabei hilft, Gottes Reich zu bauen.',
+        'legendHeader': 'Erklärungen',
+        'legendGroup': 'Jede Figur stellt eine Gruppe / Gemeinde dar. Ein gestrichelte Linie bedeutet Gruppe, eine durchgängige Linie bedeutet Gemeinde. Ein Quadrat bedeutet, dass die Teilnehmer bereits vorher Christen waren. Bei einem Kreis sind die Teilnehmer durch die Gruppe selbst zum Glauben gekommen oder sind noch nicht gläubig.<br>Ganz oben beschreiben die vier Zahlen jeweils die Anzahl Teilnehmer gesamt, die Anzahl der Gläubigen, die Anzahl der Getauften.<br>Im Kreis sind die Elemente zu sehen, die in der Gruppe auch gelebt werden.<br>Die Zahlen von 1 bis 8 links zeigen, welche der Elemente des 3/3-Prozesses regelmäßig vorkommen:<br>1 - Wie geht\'s? 2 - Auswertung 3 - Vision 4 - Lobpreis 5 - Lehre 6 - Üben 7 - Ziele setzen 8 - Gebet',
+        'legendClicking': 'Klicke auf eine Gruppe, um sie zu bearbeiten.<br>Klicke auf die rote (x)-Schaltfläche, um die Gruppe zu löschen.<br>Klicke auf die grüne (+)-Schaltfläche, um eine Tochtergruppe hinzuzufügen.',
+        'importExportHeader': 'Import / Export',
+        'importExportWarningChangesLost': 'Hinweis: Wenn du die Daten nicht exportierst, sind sie verloren, sobald du die Seite schließt oder neu lädst.',
+        'importExportContent': 'Du kannst Dateien der Formate .xlsx, .xls (MS Excel) oder .csv (Komma-getrennte Werte) importieren.<br>Du kannst auch Zweige importieren, indem du eine existierende Gruppe auswählst und auf "Zweig importieren" klickst.<br>Aktuell ist der Export nur in das CSV-Format möglich.',
+        'exportSafariIssuePart1': '<h3>Lösung bei Problemen mit dem CSV-Export im Safari-Browser</h3><p>Einige Versionen des Safari-Browsers haben Probleme mit dem CSV-Export. Dabei öffnet sich ein neuer Tab mit einem Blob anstelle des Datei-Downloads (siehe Beispiel unten)',
+        'exportSafariIssuePart2': 'Strg + S drücken, dann einen Dateinamen mit der Endung .csv eingeben, dann Format: Quelldatei auswählen und zum Schluss auf Speichern klicken.',
+        'exportToPdf': 'Für PDF-Export bitte auf Drucken gehen und dann in Chrome oder Safari "Speichern als PDF" auswählen.',
+        'panZoomHeader': 'Scrollen / Zoomen',
+        'panZoomContent': 'Zum Scrollen die Karte anklicken und verschieben. Zum Zoomen entweder das Mausrad verwenden oder die Schaltflächen links.',
+        'changelogHeader': 'Changelog &amp; Versions-Informationen',
+        'genmapperVersion': 'GenMapper-Version',
+        'templateVersion': 'Template-Version',
+        'changelogLink': 'Link zum Changelog',
+        'creditsHeader': 'Credits',
+        'creditsThanks1': 'Vielen Dank an Daniel Vopalecky, der diese Software ("GenMapper") entwickelt und zur Verfügung gestellt hat!',
+        'creditsJavaScriptLibraries': 'Verwendete JavaScript- und CSS-Bibliotheken',
+        'creditsIcons': 'Verwendete Icons',
+        'creditsAnd': 'und',
+        'creditsCopyright': 'Copyright (c) 2016 - 2018 Daniel Vopalecky',
+        'creditsLicense': 'Lizensiert unter der MIT-Lizenz',
+        'creditsGithub': 'Github-Repository',
+        'creditsSuggestions': 'Hinweise und Bugs bitte an daniel.vopalecky@seznam.cz',
+        'btnOKStart': 'OK, los geht\'s!'
+      }
+    }
+  },
   es: {
     translation: {
       'menu': {

@@ -40,6 +40,41 @@ const template = {
         }
       }
     },
+    de: {
+      translation: {
+        'template': {
+          'helpLegend': '<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Erklärungen</h3><p>Jede Figur stellt eine Gruppe / Gemeinde dar. Eine gestrichelte Linie bedeutet Gruppe, eine durchgehende Linie bedeutet Gemeinde. Ein Quadrat bedeutet, dass die Teilnehmer bereits vorher Christen waren. Bei einem Kreis sind die Teilnehmer durch die Gruppe selbst zum Glauben gekommen oder sind noch nicht gläubig.</p><p>Ganz oben beschreiben die vier Zahlen jeweils die Anzahl der Teilnehmer, davon Anzahl Gläubige, davon Anzahl Getaufte und davon die Anzahl derer, die durch die Gruppe getauft wurden. Die Zahlen dürfen nach rechts hin nie größer werden.</p><p>In der Figur sind die Elemente der <a href="/start-training/lektion5" target="_blank">Definition von Gemeinde</a> zu sehen, die in der Gruppe auch gelebt werden.<br>Die Zahlen von 1 bis 8 links zeigen, welche der Elemente des <a href="/training/drei-drittel-prozess" target="_blank">Drei-Drittel-Prozesses</a> regelmäßig vorkommen:</p><ol><li>Wie geht\'s?</li><li>Auswertung</li><li>Vision</li><li>Lobpreis</li><li>Lehre</li><li>Üben</li><li>Ziele setzen</li><li>Gebet</li></ol><p>Klicke auf eine Gruppe, um sie zu bearbeiten.<br>Klicke auf die rote (x)-Schaltfläche, um die Gruppe zu löschen.<br>Klicke auf die grüne (+)-Schaltfläche, um eine Tochtergruppe hinzuzufügen.</p>',
+          'name': 'Leiter',
+          'email': 'Bemerkungen',
+          'peopleGroup': 'Sprache / Subkultur',
+          'attenders': 'Anzahl Teilnehmer',
+          'believers': 'Anzahl Gläubige',
+          'baptized': 'Anzahl Getaufte',
+          'newlyBaptized': 'Anzahl frisch Getaufte (seit Gemeindestart)',
+          'church': 'Ist Gemeinde?',
+          'churchType': 'Gemeinde-Typ',
+          'legacy': 'Traditionell',
+          'existingBelievers': 'Länger Gläubige',
+          'newBelievers': 'Neue Gläubige',
+          'elementBaptism': 'Element: Taufe',
+          'elementWord': 'Element: Lehre',
+          'elementPrayer': 'Element: Gebet',
+          'elementLordsSupper': 'Element: Abendmahl',
+          'elementGive': 'Element: Geben',
+          'elementLove': 'Element: Gemeinschaft',
+          'elementWorship': 'Element: Lobpreis',
+          'elementLeaders': 'Element: Leiter',
+          'elementMakeDisciples': 'Element: Multiplikation',
+          'place': 'Ort (Stadt, Region, Land)',
+          'date': 'Startdatum (z.B. 2017-01)',
+          'threeThirds': 'Elemente des 3/3-Prozesses (siehe Hilfe für mehr Informationen)',
+          'active': 'aktiv',
+          'initialLeadersName': 'Leiter',
+          'initialPlace': 'Ort',
+          'initialDate': 'Datum'
+        }
+      }
+    },
     es: {
       translation: {
         'template': {
