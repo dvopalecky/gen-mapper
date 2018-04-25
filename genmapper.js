@@ -143,7 +143,7 @@ class GenMapper {
     '    <button id="edit-delete">' + i18next.t('editGroup.btnDelete') + '</button>' +
     '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">' + i18next.t('editGroup.btnImportSubtree') + '</button>' +
     '    <input type="file" id="file-input-subtree" style="display:none;">' +
-    '    <button id="edit-export-branch">' + i18next.t('editGroup.btnExportBranch') + '</button>' +
+    '    <button id="edit-export-subtree">' + i18next.t('editGroup.btnExportSubtree') + '</button>' +
     '  </div>' +
     '</div>'
 
@@ -264,6 +264,7 @@ class GenMapper {
       () => { this.editGroupElement.classList.remove('edit-group--active') })
     d3.select('#edit-delete').on('click', () => { this.removeNode(node) })
     d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(node) })
+    d3.select('#edit-export-subtree').on('click', () => { this.outputCsvSubtree(node) })
   }
 
   makeSelectForParent (node) {
@@ -693,7 +694,14 @@ class GenMapper {
   }
 
   outputCsv () {
-    const out = d3.csvFormatRows(this.data.map(function (d, i) {
+    this.outputCsvSubtree(this.nodes)
+    this.hasUnsavedChanges = false
+  }
+
+  outputCsvSubtree (node) {
+    const tmpData = node.descendants().map(x => x.data)
+    tmpData[0].parentId = ''
+    const out = d3.csvFormatRows(tmpData.map(function (d, i) {
       const output = []
       template.fields.forEach((field) => {
         if (field.type === 'checkbox') {
@@ -713,7 +721,6 @@ class GenMapper {
     const saveName = window.prompt(promptMessage, this.projectName + '.csv')
     if (saveName === null) return
     saveAs(blob, saveName)
-    this.hasUnsavedChanges = false
   }
 
   parseTransform (a) {
