@@ -4,7 +4,8 @@ class GenMapper {
   // https://github.com/dvopalecky/gen-mapper
   // Copyright (c) 2016-2018 Daniel Vopalecky, MIT license
 
-  /* global genmapper, d3, XLSX, saveAs, FileReader, template, translations, _, Blob, boxHeight, i18next */
+  /* global genmapper, d3, XLSX, saveAs, FileReader, template, translations, _,
+     Blob, boxHeight, i18next */
 
   constructor () {
     this.appVersion = '0.2.16'
@@ -45,7 +46,8 @@ class GenMapper {
       .attr('class', 'group-nodes')
 
     this.csvHeader = template.fields.map(field => field.header).join(',') + '\n'
-    this.initialCsv = this.csvHeader + template.fields.map(field => this.getInitialValue(field)).join(',')
+    this.initialCsv = this.csvHeader + template.fields.map(
+      field => this.getInitialValue(field)).join(',')
     this.data = this.parseCsvData(this.initialCsv)
     this.nodes = null
 
@@ -100,7 +102,9 @@ class GenMapper {
   loadHTMLContent () {
     document.getElementById('left-menu').innerHTML = '<div id="template-logo">' +
     i18next.t('template.logo', '') +
-    '<button onclick="genmapper.introSwitchVisibility()" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.helpAbout') + '"><img src="../icons/266-question.svg"></button>' +
+    '<button onclick="genmapper.introSwitchVisibility()"' +
+    'class="hint--rounded hint--right"' + 'aria-label="' + i18next.t('menu.helpAbout') +
+    '"><img src="../icons/266-question.svg"></button>' +
     '<div class="dropdown" id="lang-selector">' +
     '<button aria-label="Language"><img src="../icons/203-earth.svg"></button>' +
     '<ul class="dropdown-content">' +
@@ -204,10 +208,12 @@ class GenMapper {
 
   origPosition () {
     this.zoom.scaleTo(this.svg, 1)
-    const origX = this.margin.left + (document.getElementById('genmapper-graph').clientWidth / 2)
+    const origX = this.margin.left +
+      (document.getElementById('genmapper-graph').clientWidth / 2)
     const origY = this.margin.top
     const parsedTransform = this.parseTransform(this.g.attr('transform'))
-    this.zoom.translateBy(this.svg, origX - parsedTransform.translate[0], origY - parsedTransform.translate[1])
+    this.zoom.translateBy(this.svg, origX - parsedTransform.translate[0],
+      origY - parsedTransform.translate[1])
   }
 
   onLoad (fileInputElementId) {
@@ -254,7 +260,8 @@ class GenMapper {
 
     d3.select('#edit-parent').on('change', () => { this.changedSelectParent() })
     d3.select('#edit-submit').on('click', () => { this.editGroup(nodeData) })
-    d3.select('#edit-cancel').on('click', () => { this.editGroupElement.classList.remove('edit-group--active') })
+    d3.select('#edit-cancel').on('click',
+      () => { this.editGroupElement.classList.remove('edit-group--active') })
     d3.select('#edit-delete').on('click', () => { this.removeNode(node) })
     d3.select('#file-input-subtree').on('change', () => { this.importFileSubtree(node) })
   }
@@ -346,7 +353,8 @@ class GenMapper {
     const origHeight = this.svg.attr('height')
     const origTransform = this.g.attr('transform')
 
-    const totalHeight = Math.max(600, this.margin.top + (maxY - minY) + boxHeight + this.margin.top)
+    const totalHeight = Math.max(
+      600, this.margin.top + (maxY - minY) + boxHeight + this.margin.top)
     const totalWidthLeft = Math.max(500, -minX + boxHeight * 1.5 / 2 + 20)
     const totalWidthRight = Math.max(500, maxX + boxHeight * 1.5 / 2 + 20)
 
@@ -426,10 +434,15 @@ class GenMapper {
       .append('text')
       .merge(linkText)
       .attr('class', function (d) {
-        return 'link-text ' + (d.data.active ? ' link-text--active' : ' link-text--inactive')
+        return 'link-text ' + (
+          d.data.active ? ' link-text--active' : ' link-text--inactive')
       })
-      .attr('x', function (d) { return d.x * (1 - LINK_TEXT_POSITION) + d.parent.x * LINK_TEXT_POSITION })
-      .attr('y', function (d) { return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION })
+      .attr('x', function (d) {
+        return d.x * (1 - LINK_TEXT_POSITION) + d.parent.x * LINK_TEXT_POSITION
+      })
+      .attr('y', function (d) {
+        return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION
+      })
       .text(function (d) { return d.data.coach })
 
     // update nodes
@@ -642,9 +655,11 @@ class GenMapper {
     } else {
       let confirmMessage
       if (!d.children) {
-        confirmMessage = i18next.t('messages.confirmDeleteGroup', {groupName: d.data.name})
+        confirmMessage = i18next.t(
+          'messages.confirmDeleteGroup', {groupName: d.data.name})
       } else {
-        confirmMessage = i18next.t('messages.confirmDeleteGroupWithChildren', {groupName: d.data.name})
+        confirmMessage = i18next.t(
+          'messages.confirmDeleteGroupWithChildren', {groupName: d.data.name})
       }
       if (window.confirm(confirmMessage)) {
         this.deleteAllDescendants(d)
@@ -692,7 +707,9 @@ class GenMapper {
     const blob = new Blob([this.csvHeader + out], {type: 'text/csv;charset=utf-8'})
     const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
                  navigator.userAgent && !navigator.userAgent.match('CriOS')
-    const promptMessage = isSafari ? i18next.t('messages.saveAsInSafari') : i18next.t('messages.saveAs')
+    const promptMessage = isSafari
+      ? i18next.t('messages.saveAsInSafari')
+      : i18next.t('messages.saveAs')
     const saveName = window.prompt(promptMessage, this.projectName + '.csv')
     if (saveName === null) return
     saveAs(blob, saveName)
@@ -737,7 +754,8 @@ class GenMapper {
   }
 
   importFileSubtree (d) {
-    if (!window.confirm(i18next.t('messages.confirmImportSubtreeOverwrite', {groupName: d.data.name}))) {
+    if (!window.confirm(i18next.t(
+      'messages.confirmImportSubtreeOverwrite', {groupName: d.data.name}))) {
       return
     }
     this.hasUnsavedChanges = true
@@ -780,7 +798,8 @@ class GenMapper {
     if (err.toString().includes('>= 0.') || err.toString().includes('Wrong type')) {
       this.displayAlert(i18next.t('messages.errImport') + ' <br>' + err.toString())
     } else {
-      this.displayAlert(i18next.t('messages.errImport') + '<br><br>' + i18next.t('messages.errImportWhatToCheck'))
+      this.displayAlert(i18next.t('messages.errImport') + '<br><br>' +
+      i18next.t('messages.errImportWhatToCheck'))
     }
   }
 
@@ -842,7 +861,8 @@ class GenMapper {
     if (!input) {
       this.displayAlert("Um, couldn't find the fileinput element.")
     } else if (!input.files) {
-      this.displayAlert("This browser doesn't seem to support the 'files' property of file inputs.")
+      this.displayAlert(
+        "This browser doesn't seem to support the 'files' property of file inputs.")
     } else if (!input.files[0]) {
       this.displayAlert(i18next.t('messages.selectFile'))
     } else {
@@ -936,10 +956,13 @@ class GenMapper {
         let userInput = window.prompt(i18next.t('messages.editProjectName'), this.projectName)
         if (userInput === null) { return }
         userInput = userInput.trim()
-        if (userInput === '') { this.displayAlert(i18next.t('messages.errProjectNameEmpty')) } else {
+        if (userInput === '') {
+          this.displayAlert(i18next.t('messages.errProjectNameEmpty'))
+        } else {
           this.projectName = userInput
           d3.select('#project-name')
-            .attr('aria-label', i18next.t('messages.editProjectName') + ': ' + this.projectName)
+            .attr('aria-label', i18next.t(
+              'messages.editProjectName') + ': ' + this.projectName)
         }
       })
     this.editFieldElements = {}
