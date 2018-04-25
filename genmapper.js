@@ -127,7 +127,9 @@ class GenMapper {
     '<button onclick="genmapper.printMap(\'vertical\');" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.btnPrintVertical') + '"><img src="../icons/print-vertical.svg"></button>' +
     '<button onclick="genmapper.printMap(\'horizontal\');" class="hint--rounded hint--right" aria-label="' + i18next.t('menu.btnPrintHorizontal') + '"><img src="../icons/print-horizontal.svg"></button>'
 
-    document.getElementById('edit-group').innerHTML = '<div id="edit-group-content">' +
+    document.getElementById('edit-group').innerHTML =
+    '<div id="edit-group-content">' +
+    '  <button id="edit-cancel">X</button>' +
     '  <h1>' + i18next.t('editGroup.editGroup') + '</h1>' +
     '  <form>' +
     '    <table>' +
@@ -139,7 +141,6 @@ class GenMapper {
     '  </form>' +
     '  <div id="edit-buttons">' +
     '    <button id="edit-submit">' + i18next.t('editGroup.btnSubmit') + '</button>' +
-    '    <button id="edit-cancel">' + i18next.t('editGroup.btnCancel') + '</button>' +
     '    <button id="edit-delete">' + i18next.t('editGroup.btnDelete') + '</button>' +
     '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">' + i18next.t('editGroup.btnImportSubtree') + '</button>' +
     '    <input type="file" id="file-input-subtree" style="display:none;">' +
@@ -147,7 +148,9 @@ class GenMapper {
     '  </div>' +
     '</div>'
 
-    document.getElementById('intro-content').innerHTML = '<h2>' +
+    document.getElementById('intro-content').innerHTML =
+    '<button class="cancel" onclick="genmapper.introSwitchVisibility()">X</button>' +
+    '<h2>' +
     i18next.t('help.genmapperHelp') + '</h2>' +
     '<p>' + i18next.t('help.introContent') + '</p>' +
     i18next.t('template.helpLegend') +
@@ -178,12 +181,12 @@ class GenMapper {
     i18next.t('help.creditsLicense') + '<br>' +
     '<a href="https://github.com/dvopalecky/gen-mapper">' + i18next.t('help.creditsGithub') + '</a><br>' +
     i18next.t('help.creditsSuggestions') + '<br></p>' +
-    '<button onclick="genmapper.introSwitchVisibility()">' + i18next.t('help.btnOKStart') + '</button>'
+    '<button class="ok" onclick="genmapper.introSwitchVisibility()">' + i18next.t('help.btnOKStart') + '</button>'
 
     document.getElementById('alert-message').innerHTML =
     '<div id="alert-message-content">' +
     '  <p id="alert-message-text"></p>' +
-    '  <button onclick="genmapper.closeAlert()">' + i18next.t('messages.btnOK') + '</button>' +
+    '  <button class="close-alert" onclick="genmapper.closeAlert()">' + i18next.t('messages.btnOK') + '</button>' +
     '</div>'
 
     document.getElementById('gen-mapper-version').innerHTML = this.appVersion

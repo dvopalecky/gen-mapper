@@ -29,10 +29,6 @@ h2{
   font-size:18px;
 }
 
-h2:hover{
-  color:#aaa;
-}
-
 h3{
   font-size:16px;
   margin:0;
@@ -42,6 +38,19 @@ h3{
 
 p {
   margin-top:0.3eM;
+}
+
+/**** Main page with templates links ****/
+.box-template {
+  margin: 20px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border: solid black 2px;
+  padding: 10px
+}
+
+.box-template:hover {
+  opacity: 0.6;
 }
 
 /**** Left menu ****/
@@ -204,12 +213,45 @@ p {
   margin: 0 0 7px 0;
 }
 
-#edit-group-content button{
-  width: 20%;
+#edit-group-content button {
+  width: 25%;
   height: 50px;
   border: 3px solid #ddd;
   padding: 5px 5px;
   float: left;
+}
+
+.close-alert {
+  border: 3px solid #ddd;
+}
+
+#edit-group-content button:hover,
+#intro-content button.cancel:hover,
+.close-alert:hover {
+  border: 3px solid #bbb;
+  color: black;
+  opacity: 0.8;
+}
+
+#intro-content button.cancel{
+  border: 3px solid #ddd;
+  padding: 5px 5px;
+}
+
+#edit-group-content button#edit-cancel, #intro-content button.cancel{
+  float: right;
+  background-color: #888;
+  height: 2em;
+  width: 2em;
+  padding: 0;
+}
+
+#intro-content button.ok{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-size: 16px;
 }
 
 #edit-group-content input[type=text] {
@@ -232,23 +274,12 @@ p {
 }
 
 #edit-submit{
-  background-color: steelblue;
-}
-
-#edit-cancel{
-  background-color: #aaa;
+  /* background-color: steelblue; */
+  background-color: #4CAF50;
 }
 
 #edit-delete{
   background-color: red;
-}
-
-#intro-content button{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  font-size: 16px;
 }
 
 /**** SVG ****/
