@@ -390,54 +390,54 @@ class GenMapper {
   redraw (template) {
     // declares a tree layout and assigns the size
     const tree = d3.tree()
-        .nodeSize([template.settings.nodeSize.width,
-          template.settings.nodeSize.height])
-        .separation(function separation (a, b) {
-          return a.parent === b.parent ? 1 : 1.2
-        })
+      .nodeSize([template.settings.nodeSize.width,
+        template.settings.nodeSize.height])
+      .separation(function separation (a, b) {
+        return a.parent === b.parent ? 1 : 1.2
+      })
 
     const stratifiedData = d3.stratify()(this.data)
     this.nodes = tree(stratifiedData)
     // update the links between the nodes
     const link = this.gLinks.selectAll('.link')
-          .data(this.nodes.descendants().slice(1))
+      .data(this.nodes.descendants().slice(1))
 
     link.exit()
-        .remove()
+      .remove()
 
     link.enter()
-        .append('path')
+      .append('path')
       .merge(link)
-          .attr('class', 'link')
-          .attr('d', function (d) {
-            return 'M' + d.x + ',' + d.y +
-               'C' + d.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
-               ' ' + d.parent.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
-               ' ' + d.parent.x + ',' + (d.parent.y + boxHeight)
-          })
+      .attr('class', 'link')
+      .attr('d', function (d) {
+        return 'M' + d.x + ',' + d.y +
+            'C' + d.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
+            ' ' + d.parent.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
+            ' ' + d.parent.x + ',' + (d.parent.y + boxHeight)
+      })
 
     // update the link text between the nodes
     const LINK_TEXT_POSITION = 0.3 // 1 -> parent, 0 -> child
     const linkText = this.gLinksText.selectAll('.link-text')
-          .data(this.nodes.descendants().slice(1))
+      .data(this.nodes.descendants().slice(1))
     linkText.exit()
-        .remove()
+      .remove()
     linkText.enter()
-        .append('text')
+      .append('text')
       .merge(linkText)
-        .attr('class', function (d) {
-          return 'link-text ' + (d.data.active ? ' link-text--active' : ' link-text--inactive')
-        })
-        .attr('x', function (d) { return d.x * (1 - LINK_TEXT_POSITION) + d.parent.x * LINK_TEXT_POSITION })
-        .attr('y', function (d) { return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION })
-        .text(function (d) { return d.data.coach })
+      .attr('class', function (d) {
+        return 'link-text ' + (d.data.active ? ' link-text--active' : ' link-text--inactive')
+      })
+      .attr('x', function (d) { return d.x * (1 - LINK_TEXT_POSITION) + d.parent.x * LINK_TEXT_POSITION })
+      .attr('y', function (d) { return d.y * (1 - LINK_TEXT_POSITION) + (d.parent.y + boxHeight) * LINK_TEXT_POSITION })
+      .text(function (d) { return d.data.coach })
 
     // update nodes
     const node = this.gNodes.selectAll('.node')
-          .data(this.nodes.descendants())
+      .data(this.nodes.descendants())
 
     node.exit()
-        .remove()
+      .remove()
 
     // NEW ELEMENTS
     const newGroup = node.enter()
@@ -475,16 +475,16 @@ class GenMapper {
     nodeWithNew.attr('class', function (d) {
       return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
     })
-          .attr('transform', function (d) {
-            return 'translate(' + d.x + ',' + d.y + ')'
-          })
-          .on('click', (d) => { this.popupEditGroupModal(d) })
+      .attr('transform', function (d) {
+        return 'translate(' + d.x + ',' + d.y + ')'
+      })
+      .on('click', (d) => { this.popupEditGroupModal(d) })
 
     nodeWithNew.select('.removeNode')
-        .on('click', (d) => { this.removeNode(d); d3.event.stopPropagation() })
+      .on('click', (d) => { this.removeNode(d); d3.event.stopPropagation() })
 
     nodeWithNew.select('.addNode')
-        .on('click', (d) => { this.addNode(d); d3.event.stopPropagation() })
+      .on('click', (d) => { this.addNode(d); d3.event.stopPropagation() })
 
     // refresh class and attributes in SVG elements without fields
     // in order to remove any additional classes or settings from inherited fields
