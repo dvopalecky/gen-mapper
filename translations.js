@@ -43,7 +43,8 @@ const translations = {
         'errImport': 'Error when importing file.',
         'errImportWhatToCheck': 'Please check that the file is in correct format (comma separated values), that the root group has no parent, and that all other relationships make a valid tree.<br>Also check that you use the correct version of the App.',
         'selectFile': 'Please select a file',
-        'errWrongFileType': 'Wrong type of file. Please import xls, xlsx or csv files.'
+        'errWrongFileType': 'Wrong type of file. Please import xls, xlsx or csv files.',
+        'changedParent': 'This group and its subtree will be moved under a different parent after clicking on Submit changes.'
       },
       'help': {
         'genmapperHelp': 'GenMapper Help',
@@ -118,7 +119,8 @@ const translations = {
         'errImport': 'Chyba při importu.',
         'errImportWhatToCheck': 'Prosím zkontroluj, jestli je soubor ve správném formátu (hodnoty oddělené čárkou), že mateřská skupina nemá žádného rodiče a že všechny další vztahy vytvářejí platný strom. Také zkontroluj, že máš správnou verzi aplikace.',
         'selectFile': 'Vyber soubor.',
-        'errWrongFileType': 'Špatný typ soubor. Prosím importuj soubory xls, xlsx nebo csv.'
+        'errWrongFileType': 'Špatný typ soubor. Prosím importuj soubory xls, xlsx nebo csv.',
+        'changedParent': 'Tato skupina včetně podstromu bude přesunuta pod jiného rodiče po kliknutí na Hotovo.'
       },
       'help': {
         'genmapperHelp': 'GenMapper Nápověda',

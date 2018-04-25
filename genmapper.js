@@ -281,7 +281,7 @@ class GenMapper {
   }
 
   changedSelectParent () {
-    this.displayAlert('This group and its subtree will be moved under a new parent after clicking on Submit changes.')
+    this.displayAlert(i18next.t('messages.changedParent'))
   }
 
   getNames (node) {
