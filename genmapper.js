@@ -588,7 +588,14 @@ class GenMapper {
   }
 
   updateSvgForFields (field, element) {
-    element.text(function (d) { return d.data[field.header] })
+    element.text(function (d) {
+      // add spaces between each character for Firefox
+      if (field.header === 'threeThirds' && typeof InstallTrigger !== 'undefined') {
+        return d.data[field.header].replace(/(.)/g, '$1 ')
+      } else {
+        return d.data[field.header]
+      }
+    })
     if (field.svg.type === 'image') {
       element.style('display', function (d) { return d.data[field.header] ? 'block' : 'none' })
     }
