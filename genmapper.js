@@ -130,7 +130,7 @@ class GenMapper {
 
     document.getElementById('edit-group').innerHTML =
     '<div id="edit-group-content">' +
-    '  <button id="edit-cancel">X</button>' +
+    '  <button id="edit-cancel" class="hint--rounded hint--bottom" aria-label="' + i18next.t('editGroup.btnCancel') + ' ( Esc )">X</button>' +
     '  <h1>' + i18next.t('editGroup.editGroup') + '</h1>' +
     '  <form>' +
     '    <table>' +
@@ -141,7 +141,8 @@ class GenMapper {
     '    </table>' +
     '  </form>' +
     '  <div id="edit-buttons">' +
-    '    <button id="edit-submit">' + i18next.t('editGroup.btnSubmit') + '</button>' +
+
+    '    <button id="edit-submit" class="hint--rounded hint--bottom" aria-label="( Enter &crarr; )">' + i18next.t('editGroup.btnSubmit') + '</button>' +
     '    <button id="edit-delete">' + i18next.t('editGroup.btnDelete') + '</button>' +
     '    <button onclick="genmapper.onLoad(\'file-input-subtree\')">' + i18next.t('editGroup.btnImportSubtree') + '</button>' +
     '    <input type="file" id="file-input-subtree" style="display:none;">' +
