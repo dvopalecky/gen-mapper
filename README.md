@@ -20,7 +20,6 @@ see [here](changelog.md)
 
 ## Known issues
 * Safari - not displaying some icons
-* Firefox - letter spacing in top-bottom texts
 * Edge/Internet Explorer - wrong display of map
 
 ## Ideas for improvements
