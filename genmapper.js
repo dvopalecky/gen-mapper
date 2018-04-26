@@ -70,6 +70,7 @@ class GenMapper {
       }
       return false
     })
+    this.alertForNonSupportedBrowsers()
   }
 
   // Beginning of function definitions
@@ -998,6 +999,14 @@ class GenMapper {
       }
     })
     this.editParentElement = document.getElementById('edit-parent')
+  }
+
+  alertForNonSupportedBrowsers () {
+    const isIE = /*@cc_on!@*/false || !!document.documentMode
+    const isEdge = !isIE && !!window.StyleMedia
+    if (isIE || isEdge) {
+      this.displayAlert(i18next.t('messages.unsupportedBrowser'))
+    }
   }
 }
 
