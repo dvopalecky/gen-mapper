@@ -164,6 +164,8 @@ class GenMapper {
     '<br>' + i18next.t('help.exportToPdf') + '</p>' +
     '<h3>' + i18next.t('help.panZoomHeader') + '</h3>' +
     '<p>' + i18next.t('help.panZoomContent') + '</p>' +
+    '<h3>' + i18next.t('help.keyboardShortcutsHeader') + '</h3>' +
+    '<p>' + i18next.t('help.keyboardShortcutsContent') + '</p>' +
     '<h3>' + i18next.t('help.changelogHeader') + '</h3>' +
     '<p><a href="https://github.com/dvopalecky/gen-mapper/blob/master/changelog.md">' +
     i18next.t('help.changelogLink') + '</a><br>' +
