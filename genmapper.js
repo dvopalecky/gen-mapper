@@ -8,7 +8,7 @@ class GenMapper {
      Blob, boxHeight, i18next */
 
   constructor () {
-    this.appVersion = '0.2.17'
+    this.appVersion = '0.2.18'
     i18next.use(window.i18nextBrowserLanguageDetector)
       .init({
         fallbackLng: 'en',
@@ -714,7 +714,7 @@ class GenMapper {
   }
 
   outputCsvSubtree (node) {
-    const tmpData = node.descendants().map(x => x.data)
+    const tmpData = _.cloneDeep(node.descendants().map(x => x.data))
     tmpData[0].parentId = ''
     const out = d3.csvFormatRows(tmpData.map(function (d, i) {
       const output = []
