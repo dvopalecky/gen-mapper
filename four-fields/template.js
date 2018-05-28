@@ -20,6 +20,21 @@ const template = {
           active: 'Active'
         }
       }
+    },
+    zh: {
+      translation: {
+        template: {
+          'name': '带领者的名字',
+          'coach': '教练',
+          'field1': '板块1（#非信徒人数）',
+          'field2': '板块2（#信徒人数）',
+          'field3': '板块3（#有监督）',
+          'field4': '板块4（#教会？）',
+          'field5': '板块5（#倍增次数）',
+          'placeDate': '地点&日期',
+          'active': '有活力在发展'
+        }
+      }
     }
   },
   'settings': {

@@ -143,6 +143,41 @@ const template = {
           'initialDate': 'Datum'
         }
       }
+    },
+    zh: {
+      translation: {
+        'template': {
+          'helpLegend': '<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>每个圈代表一个组/一个教会。虚线的圈代表一个组，实线的圈代表一个教会。</p>',
+          'name': '带领者的名字',
+          'initialLeadersName': '带领者的名字',
+          'email': '邮件地址',
+          'link': '链接',
+          'attenders': '#参加者人数',
+          'believers': '#信徒人数',
+          'baptized': '#受过洗礼的人',
+          'newlyBaptized': '#（从教会建立开始）新受洗的人',
+          'church': '是一个教会吗？',
+          'churchType': '教会类型',
+          'legacy': '有历史的教会  ',
+          'existingBelievers': '现有信徒建立的教会',
+          'newBelievers': '新信徒建立的教会',
+          'elementBaptism': '组成部分：受洗',
+          'elementWord': '组成部分：教导神的话',
+          'elementPrayer': '组成部分：祷告',
+          'elementLordsSupper': '组成部分：圣餐',
+          'elementGive': '组成部分：奉献',
+          'elementLove': '组成部分：爱',
+          'elementWorship': '组成部分：敬拜',
+          'elementLeaders': '组成部分：领袖',
+          'elementMakeDisciples': '组成部分：造就门徒',
+          'place': '地点（城市，省，国家）',
+          'initialPlace': '地点',
+          'date': '开始日期（例如，2017年1月）',
+          'initialDate': '日期',
+          'threeThirds': '3/3过程的元素（去到“帮助”查看细节）',
+          'active': '有活力在发展'
+        }
+      }
     }
   },
   'settings': {

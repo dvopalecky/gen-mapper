@@ -582,5 +582,83 @@ const translations = {
         'btnOKStart': 'Ok, le te fillojme'
       }
     }
+  },
+  zh: {
+    translation: {
+      'menu': {
+        'appName': '属灵世代',
+        'languageName': '中文',
+        'language': '语言',
+        'help': '帮助',
+        'helpAbout': '帮助/关于',
+        'zooming': '图像缩放',
+        'originalZoom': '原始大小&位置',
+        'zoomIn': '放大',
+        'zoomOut': '缩小',
+        'importExport': '导入/导出',
+        'importXlsxCsv': '导入XLXS/CSV',
+        'exportCsv': '导出CSV',
+        'printing': '打印',
+        'btnPrintVertical': '多页竖版打印',
+        'btnPrintHorizontal': '一页横向打印'
+      },
+      'editGroup': {
+        'editGroup': '编辑组',
+        'btnSubmit': '提交编辑',
+        'btnCancel': '取消',
+        'btnDelete': '删除“后代”组',
+        'btnImportSubtree': '导入“后代”组',
+        'btnExportSubtree': '导出“后代”组',
+        'elementParent': '初代',
+        'notAvaliable': '不适用',
+        'hoverDeleteGroupAndSubtree': '删除“后代”组',
+        'hoverAddChildGroup': '添加“后代”组'
+      },
+      'messages': {
+        'editProjectName': '编辑项目名称',
+        'errProjectNameEmpty': '项目名称不能为空！',
+        'btnOK': 'OK',
+        'errDeleteRoot': '对不起，不能删除初代组',
+        'confirmDeleteGroup': '你真的想要要删掉{{group-name}}？',
+        'confirmDeleteGroupWithChildren': '你真的想要删掉{{group-name}}和所有的这代门徒吗？',
+        'saveAsInSafari': '存储为：（注意：Safari浏览器不能导出，请看属灵世代->帮助，获取更多信息',
+        'saveAs': '存储为：',
+        'confirmImportSubtreeOverwrite': '警告：导入后代组会覆盖此组{{group-name}}及组里所有的门徒。你要继续吗？',
+        'errImport': '导入文档时出现错误',
+        'errImportWhatToCheck': '请检查文档格式是正确的（逗号分隔值），初代组没有建立者的名字，并且所有其他的关系没有冲突。并且确保你所使用的App版本是正确的。',
+        'selectFile': '请选择一个文档',
+        'errWrongFileType': '文档格式错误。请导入xls,xlsx或者csv的格式。',
+        'changedParent': '点击并提交改变后，此组和及其“后代”组将被移除并挪到另外一个人下面。',
+        'unsupportedBrowser': '你的浏览器不能很好使用属灵世代。考虑使用 Chrome或者Safar浏览器。'
+      },
+      'help': {
+        'genmapperHelp': '属灵世代-帮助',
+        'introContent': '你好，这个应用可以简单绘出几代教会。我祷告这个应用会帮助你加速神国度的进程。',
+        'importExportHeader': '导入/导出',
+        'importExportWarningChangesLost': '注意：如果你不导出，当你更新或关闭网页时将会丢失所有的修改。',
+        'importExportContent': '从左边的菜单可以导入/导出。<br>你可以导入一个xlsx或者xls文档或者csv（逗号分隔值）文档。<br>你也可以通过点击一个已有的组，然后使用\'导入/导出 后代组\' 的按钮来导入/导出一个后代组。<br>导出目前只能生成csv格式。',
+        'exportSafariIssuePart1': '注意：一些Safari版本不能导出csv文档。如果一个新的网页打开，都是乱码，而没有下载就是有问题（看下面的例子）',
+        'exportSafariIssuePart2': '按住Cmd+S，然后输入一个文档名称，以.csv结尾。选择“格式”：原始码（page source)，最后点击“保存”。',
+        'exportToPdf': '使用打印按钮导出PDF，在Chrome或者Safari浏览器上保存PDF版本。',
+        'panZoomHeader': '移动/图像缩放',
+        'panZoomContent': '你可以拖动绘图来移动，并透过鼠标滚轮放大缩小或者使用左边的按钮放大缩小。',
+        'keyboardShortcutsHeader': '关键快捷键',
+        'keyboardShortcutsContent': 'Esc-关闭编辑/帮助/提醒窗口<br>回车 - 提交编辑窗口',
+        'changelogHeader': '版本历史&版本信息',
+        'changelogLink': '版本历史连接',
+        'genmapperVersion': 'Genmapper版本',
+        'templateVersion': '模板版本',
+        'creditsHeader': '鸣谢',
+        'creditsThanks1': '谢谢Curtis Sergeant有这样好的想法，以绘图的方式记录教会的倍增，并给出有用的反馈。',
+        'creditsJavaScriptLibraries': '使用了JavaScript/CSS库',
+        'creditsIcons': '使用了图标',
+        'creditsAnd': '',
+        'creditsCopyright': '版权(c) 2016 - 2018 Daniel Vopalecky',
+        'creditsLicense': 'MIT认证',
+        'creditsGithub': 'Githhb代码库',
+        'creditsSuggestions': '请发送建议和bugs到daniel.vopalecky@seznam.cz',
+        'btnOKStart': '好，我们开始吧！'
+      }
+    }
   }
 }

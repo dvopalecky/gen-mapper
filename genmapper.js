@@ -117,6 +117,7 @@ class GenMapper {
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ro">Română</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-ru">Русский</button></li>' +
     '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-sq">Shqip</button></li>' +
+    '  <li><button onclick="genmapper.switchLanguage(this)" id="lang-zh">中文</button></li>' +
     '</ul>' +
     '</div>' +
     '<button id="project-name" class="hint--rounded hint--right" aria-label=""><img src="../icons/039-file-text2.svg"></button>' +
