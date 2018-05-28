@@ -33,9 +33,14 @@ MIT
 * [MetaCamp](https://metacamp.org/generational-mapping-software/)
 * [TrainingFuerTrainer.de](https://www.trainingfuertrainer.de/baumzeichner/)
 
+## Cooperation
+Contact me if you'd like to help with translating additional languages or
+  improving the app.
+
 ## Credits
 Curtis Sergeant - introduced me to the concept of generational mapping and
   provided useful feedback for this app
+Translators from all over the world that helped with different translations
 JavaScript/CSS libraries used:
 * [d3.js](https://d3js.org) - Mike Bostock
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js) - Eli Grey
