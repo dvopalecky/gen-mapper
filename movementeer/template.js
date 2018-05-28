@@ -173,6 +173,43 @@ const template = {
           'elementBaptism': 'Elementet: Pagezimi'
         }
       }
+    },
+    'zh': {
+      'translation': {
+        'template': {
+          'logo': '<a href="http://movementeer.org/"><img src="http://movementeer.org/movement/wp-content/uploads/2017/08/movementeer-logo.png" style="width:100%; text-align: center; margin:10px 0 5px 0;" alt="Movementeer logo"></a>',
+          'helpLegend': '<h3>Legend</h3><p>每个圈代表一个组/教会。圈代表小组。正方形代表教会。<br>边框的颜色具体代表带领者类型<br><ul><li><span style="color:#FD0402;">红色</span> &mdash; 全时间工人</li>          <li><span style="color:#3D7AD3;">蓝色</span> &mdash; 现有平信徒</li><li><span style="color:#5EA650;">绿色</span> &mdash; 带领者的门徒</li></ul>在上面的数字分别代表：#总人数，#信徒人数，#受过洗礼者的人数，#新受洗者的人数<br>圈里是这个组在做的事情，不同的组成部分。</p><p>点击组来进行编辑。<br>点击红色 (x)按钮，删除组。<br>点击绿色 (+) 按钮，添加后代组。</p>',
+          'name': '带领者的门徒',
+          'initialName': '带领者的门徒',
+          'leaderType': '带领者',
+          'fullTimeMissionary': '全时间工人',
+          'existingLayBeliever': '现有平信徒',
+          'leadersDisciple': '带领者的门徒',
+          'place': '地点',
+          'date': '开始日期：',
+          'attenders': '#参加者人数',
+          'believers': '#信徒人数',
+          'baptized': '#受过洗礼者的人数',
+          'church': '是教会吗？',
+          'elementWord': '组成部分：神的话语',
+          'elementPrayer': '组成部分：祷告',
+          'elementLove': '组成部分：爱',
+          'elementWorship': '组成部分：敬拜',
+          'elementMakeDisciples': '组成部分：造就门徒',
+          'elementLeaders': '组成部分：领袖',
+          'elementGive': '组成部分：奉献',
+          'elementLordsSupper': '组成部分：圣餐',
+          'elementBaptism': '组成部分：受洗',
+          'threeThirds': '3/3过程的要素',
+          'trainingUsed': '使用的训练',
+          'trainingPhase': '训练阶段',
+          'active': '有活力在发展',
+          'actionSteps': '这个月的行动点',
+          'initialActionSteps': '行动',
+          'contact': '如何联系',
+          'initialContact': '联系'
+        }
+      }
     }
   },
   'settings': {
