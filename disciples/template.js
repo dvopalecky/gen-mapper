@@ -3,7 +3,7 @@ const textHeight = 14
 const textMargin = 6
 
 const template = {
-  'name': 'Disciples 0.1',
+  'name': 'Disciples 0.2',
   'translations': {
     en: {
       translation: {
@@ -15,11 +15,10 @@ const template = {
           'baptized': 'Is baptized?',
           'word': 'Abides in Word',
           'prayer': 'Abides in Prayer',
-          'field1': 'Field 1: Go',
-          'field2': 'Field 2: Gospel',
-          'field3': 'Field 3: Grow',
-          'field4': 'Field 4: Gather',
-          'field5': 'Trainer',
+          'shares': 'Shares Jesus',
+          'accountable': 'Is accountable',
+          'discipleship': 'Has discipleship',
+          'inChurch': "Part of God's family",
           'timothy': 'Is Timothy (key disciple)?',
           'discipleType': 'Disciple type',
           'individual': 'Individual',
@@ -39,11 +38,10 @@ const template = {
           'baptized': 'Pokřtěný',
           'word': 'Zůstává v Božím Slovu',
           'prayer': 'Pravidelně se modlí',
-          'field1': '1. Pole: Oikosová mapa, ',
-          'field2': '2. Pole: Osobní příběh, Boží příběh',
-          'field3': '3. Pole: Krátkodobé učednictví, LTG',
-          'field4': '4. Pole: Součástí Boží rodiny',
-          'field5': 'Trénuje další, Iron-on-iron',
+          'shares': 'Sdílí Ježíše',
+          'accountable': 'Je vykazatelný',
+          'discipleship': 'Má učednictví',
+          'inChurch': 'Součástí Boží rodiny',
           'timothy': 'Timoteus (klíčový učedník)',
           'discipleType': 'Typ učedníka',
           'individual': 'Jednotlivec',
@@ -123,7 +121,7 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': -boxHeight * 0.28,
+          'x': boxHeight * -0.28,
           'y': boxHeight * 0,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
@@ -177,77 +175,62 @@ const template = {
       }
     },
     {
-      'header': 'field1',
+      'header': 'shares',
       'initial': false,
       'type': 'checkbox',
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * -0.3,
+          'x': boxHeight * -0.25,
           'y': boxHeight * 0.5,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/field1.png'
+          'xlink:href': 'icons/shares.png'
         }
       }
     },
     {
-      'header': 'field2',
+      'header': 'accountable',
       'initial': false,
       'type': 'checkbox',
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * 0.05,
+          'x': boxHeight * 0,
           'y': boxHeight * 0.5,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/field2.png'
+          'xlink:href': 'icons/accountable.png'
         }
       }
     },
     {
-      'header': 'field3',
+      'header': 'discipleship',
       'initial': false,
       'type': 'checkbox',
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * 0.05,
+          'x': boxHeight * -0.25,
           'y': boxHeight * 0.75,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/field3.png'
+          'xlink:href': 'icons/discipleship.png'
         }
       }
     },
     {
-      'header': 'field4',
+      'header': 'inChurch',
       'initial': false,
       'type': 'checkbox',
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * -0.3,
+          'x': boxHeight * 0,
           'y': boxHeight * 0.75,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/field4.png'
-        }
-      }
-    },
-    {
-      'header': 'field5',
-      'initial': false,
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': boxHeight * -0.1,
-          'y': boxHeight * 0.65,
-          'width': boxHeight * 0.2,
-          'height': boxHeight * 0.2,
-          'xlink:href': 'icons/field5.png'
+          'xlink:href': 'icons/in-church.png'
         }
       }
     },
