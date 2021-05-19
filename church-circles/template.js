@@ -110,6 +110,41 @@ const template = {
         }
       }
     },
+    fr: {
+      translation: {
+        'template': {
+          'helpLegend': `<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Légende</h3><p>Chaque cercle représente un groupe / une église. Le cercle en pointillé signifie le groupe, le cercle complet signifie l'église.<br>Sur le dessus, les chiffres décrivent : # total, # croyants, # baptisés<br>À l'intérieur du cercle se trouvent les éléments qui sont pratiqués dans le groupe. <br>Sur la gauche, les chiffres 1 à 7 représentent quels éléments du processus 3/3 sont pratiqués :<br>1 - Soins personnels<br>2 - Adoration<br>3 - Responsabilité<br>4 - Vision<br>5 - Étude biblique<br>6 - Entraînement<br>7 - Fixation d'objectifs et prière</p><p>Cliquez sur le groupe pour le modifier.<br>Cliquez sur le bouton rouge (x) pour supprimer le groupe.<br>Cliquez sur le bouton vert (+) pour ajouter un groupe enfant.</p>`,
+          'name': 'Nom du responsable',
+          'initialLeadersName': 'Nom du responsable',
+          'email': 'Courriel',
+          'peopleGroup': 'Groupe de personnes',
+          'attenders': 'Nombre de croyants',
+          'believers': 'Nombre de croyants',
+          'baptized': 'Nombre de baptisés',
+          'newlyBaptized': "Nombre de nouveaux baptisés (depuis le début de l'église)",
+          'church': "L'église existe-t-elle?",
+          'churchType': "Type d'église",
+          'legacy': 'Héritage',
+          'existingBelievers': 'Croyants existants',
+          'newBelievers': 'Nouveaux croyants',
+          'elementBaptism': 'Élément : Baptême',
+          'elementWord': 'Élément : La Parole de Dieu',
+          'elementPrayer': 'Élément : Prière',
+          'elementLordsSupper': 'Élément : Le repas du Seigneur',
+          'elementGive': 'Élément : Donner',
+          'elementLove': 'Élément: Amour',
+          'elementWorship': 'Élément: Adoration',
+          'elementLeaders': 'Élément : Leaders',
+          'elementMakeDisciples': 'Élément : Faire des disciples',
+          'place': 'Lieu (ville, état, pays)',
+          'initialPlace': 'Lieu',
+          'date': 'Date',
+          'initialDate': 'Date',
+          'threeThirds': "Éléments du processus 3/3 (voir l'aide pour plus de détails)",
+          'active': 'Actif',
+        }
+      }
+    },
     cs: {
       translation: {
         'template': {
