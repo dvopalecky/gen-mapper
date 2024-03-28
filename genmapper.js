@@ -407,14 +407,39 @@ class GenMapper {
   }
 
   redraw (template) {
-    // declares a tree layout and assigns the size
+    // / Tree layout parameters for top down orientation
+    // const tree = d3.tree()
+    //   .nodeSize([template.settings.nodeSize.width,
+    //     template.settings.nodeSize.height])
+    //   .separation(function separation (a, b) {
+    //     return a.parent === b.parent ? 1 : 1.2
+    //   })
+    // / Tree layout parameters for left to right orientation attempt 1
+    // const tree = d3.tree()
+    //   .nodeSize([template.settings.nodeSize.height, // This now controls the separation between the nodes (in what was the vertical direction)
+    //     template.settings.nodeSize.width]) // This now controls how much space each "layer" of the tree gets (in what was the horizontal direction)
+    //   .separation(function(a, b) {
+    //     return (a.parent == b.parent ? 1 : 1.2) / a.depth;
+    //   });
+    /**--------------------------------------------
+     *               left to right attempt 2
+     *---------------------------------------------**/
+    // const tree = d3.tree()
+    // .nodeSize([
+    //     template.settings.nodeSize.height, // Actual height of the node
+    //     template.settings.nodeSize.width]) // Actual width or horizontal space between layers
+    //     .separation(function(a, b) {
+    //       return 1; // This ensures consistent spacing; adjust as necessary
+    //   });
     const tree = d3.tree()
-      .nodeSize([template.settings.nodeSize.width,
-        template.settings.nodeSize.height])
-      .separation(function separation (a, b) {
-        return a.parent === b.parent ? 1 : 1.2
-      })
-
+      .nodeSize([
+        template.settings.nodeSize.height, // This maintains the desired vertical spacing.
+        300 // Change this value to adjust the horizontal spacing between nodes across generations.
+      ])
+        .separation(function(a, b) {
+          return 1; // This keeps a consistent spacing multiplier; adjust if necessary.
+      });
+    
     const stratifiedData = d3.stratify()(this.data)
     this.nodes = tree(stratifiedData)
     // update the links between the nodes
@@ -428,12 +453,84 @@ class GenMapper {
       .append('path')
       .merge(link)
       .attr('class', 'link')
-      .attr('d', function (d) {
-        return 'M' + d.x + ',' + d.y +
-            'C' + d.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
-            ' ' + d.parent.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
-            ' ' + d.parent.x + ',' + (d.parent.y + boxHeight)
-      })
+      // Top down Link paths
+      // .attr('d', function (d) {
+      //   return 'M' + d.x + ',' + d.y +
+      //       'C' + d.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
+      //       ' ' + d.parent.x + ',' + (d.y + (d.parent.y + boxHeight)) / 2 +
+      //       ' ' + d.parent.x + ',' + (d.parent.y + boxHeight)
+      // })
+      // LEft to right link paths  PROBLEM THE LINES ARE PLACED WRONG
+      // .attr('d', function(d) {
+      //   return "M" + d.y + "," + d.x
+      //          + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+      //          + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+      //          + " " + d.parent.y + "," + d.parent.x;
+      // })
+      /**========================================================================
+       *               lines for left to right proper positioning attempt 1
+       *========================================================================**/
+      // .attr('d', function(d) {
+      //   // Calculate midpoint offset
+      //   var nodeHeight = template.settings.nodeSize.height;
+      //   var startPointY = d.x + nodeHeight / 2; // Adjusted for vertical midpoint
+      //   var endPointY = d.parent.x + nodeHeight / 2; // Adjusted for parent's vertical midpoint
+      
+      //   return "M" + d.y + "," + startPointY
+      //          + "C" + (d.y + d.parent.y) / 2 + "," + startPointY
+      //          + " " + (d.y + d.parent.y) / 2 + "," + endPointY
+      //          + " " + d.parent.y + "," + endPointY;
+      // })
+
+      /**========================================================================
+       *                           left to right lines attempt 2
+       *========================================================================**/
+      // .attr('d', function(d) {
+      //   // Assuming nodeHeight is previously defined correctly
+      //   var nodeHeight = template.settings.nodeSize.height;
+      
+      //   // Calculates the starting Y point at the vertical center of the node
+      //   var startY = d.x + nodeHeight / 2;
+      
+      //   // Calculates the ending Y point at the vertical center of the parent node
+      //   var endY = d.parent.x + nodeHeight / 2;
+      
+      //   return "M" + d.y + "," + startY +
+      //          "C" + (d.y + d.parent.y) / 2 + "," + startY +
+      //          " " + (d.y + d.parent.y) / 2 + "," + endY +
+      //          " " + d.parent.y + "," + endY;
+      // })
+
+    /**------------------------------------------------------------------------
+     *                           attempt 3: left to right lines aligned right
+     *------------------------------------------------------------------------**/
+    // .attr('d', function(d) {
+    //   console.log(d); // Inspect the data object for each link
+    
+    //   var nodeHeight = template.settings.nodeSize.height;
+    //   var startY = d.x + nodeHeight / 2; // Confirm this calculation in console
+    //   var endY = d.parent.x + nodeHeight / 2; // Confirm this calculation in console
+    
+    //   return "M" + d.y + "," + startY + 
+    //          "C" + (d.y + d.parent.y) / 2 + "," + startY +
+    //          " " + (d.y + d.parent.y) / 2 + "," + endY +
+    //          " " + d.parent.y + "," + endY;
+    // })
+    /**------------------------------------------------------------------------
+     *                           attempt 4: left to right lines aligned right
+     *------------------------------------------------------------------------**/
+    .attr('d', function(d) {
+      var nodeHeight = template.settings.nodeSize.height; // Make sure this is the actual height
+      var adjustment = 30;  // Number of pixels to adjust upwards. Increase or decrease as necessary.
+      var startY = d.x + nodeHeight / 2 - adjustment; // Adjusted Y position for the start of the path
+      var endY = d.parent.x + nodeHeight / 2 - adjustment; // Adjusted Y position for the end/start of the path
+      
+      // Generate path "d" attribute
+      return "M" + d.y + "," + startY +
+             "C" + (d.y + d.parent.y) / 2 + "," + startY +
+             " " + (d.y + d.parent.y) / 2 + "," + endY +
+             " " + d.parent.y + "," + endY;
+    })
 
     // update the link text between the nodes
     const LINK_TEXT_POSITION = 0.3 // 1 -> parent, 0 -> child
@@ -499,8 +596,13 @@ class GenMapper {
     nodeWithNew.attr('class', function (d) {
       return 'node' + (d.data.active ? ' node--active' : ' node--inactive')
     })
-      .attr('transform', function (d) {
-        return 'translate(' + d.x + ',' + d.y + ')'
+    // Node positioning top down
+    //   .attr('transform', function (d) {
+    //     return 'translate(' + d.x + ',' + d.y + ')'
+    //   })
+    // Node positioning left to right
+      .attr('transform', function(d) {
+        return "translate(" + d.y + "," + d.x + ")";
       })
       .on('click', (d) => { this.popupEditGroupModal(d) })
 
