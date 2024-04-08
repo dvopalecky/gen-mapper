@@ -2,7 +2,7 @@
 
 .node-box {
   stroke: black;
-  stroke-width: 2;
+  stroke-width: 10;
   fill: white;
 }
 
@@ -11,20 +11,53 @@
 }
 
 .node-timothy {
-  stroke: red;
-  stroke-width: 1;
-  fill: red;
+  stroke-width: 5;
+  stroke: rgb(0, 247, 255);
+  
+  /* fill: rgb(143, 14, 14); */
 }
 
-.disciple-individual {
+.disciple-no-follow-up {
   stroke-dasharray: 7,7;
+  stroke-width: 7;
+  stroke: red;
+  /* fill: red; */
 }
 
-.disciple-facilitates-group {
+.disciple-followed-up-no-meetings {
   stroke-dasharray: 0;
+  stroke: orange;
+  stroke-width: 7;
+  /* fill: orange; */
 }
 
-.disciple-facilitates-church {
+.disciple-followed-up-in-meetings {
   stroke-dasharray: 0;
-  stroke-width: 4;
+  stroke-width: 7;
+  stroke: green;
+  /* stroke-width: 1; */
+  /* fill: green; */
+}
+
+/**------------------------------------------------------------------------
+ *             Fill Nodes with Colors based on Disciple Status
+ *------------------------------------------------------------------------**/
+
+  /* Example CSS for disciples/style.css to change fill color based on specific classes */
+  .reapercommitment {
+    stroke-dasharray: 0;
+    stroke: blue;
+    stroke-width: 7;
+    /* fill: blue; */
+}
+
+.disciplercommitment {
+  stroke-dasharray: 0;
+  stroke: purple;
+  stroke-width: 7;
+  /* fill: purple; */
+}
+
+.no-horizontal-resize {
+  resize: vertical; 
 }

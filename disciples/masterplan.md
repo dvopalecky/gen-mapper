@@ -1,3 +1,111 @@
+To reframe your requirements into a user story and then provide a structured solution concept, let's start with the problem statement:
+
+### User Story Problem Statement
+
+As a user of the GenMapper application,
+I want to have a visual indication of the disciples' commitment levels,
+So that I can quickly identify their ministry engagement and progress at a glance.
+
+Specifically:
+
+1. When I mark a disciple as committed to "soul winning", their associated node should turn blue.
+2. If a disciple is marked as committed to "discipling souls", their node should turn pink.
+3. When a disciple is marked as committed to both "soul winning" and "discipling souls", their node should turn purple.
+4. Distinct follow-up states should have specific colors:
+    - "Followed up? No, go therefore" should turn the node red.
+    - "Yes, no discipleship" turns the node orange.
+    - "Yes, in discipleship" turns the node green.
+5. "Actively devoted to gospel sharing" is blue, and "actively devoted to discipling" turns the node purple. If "actively devoted to gospel sharing" is true (blue), it can override another state to become purple when "actively devoted to discipling" is also true.
+
+### Solution Concept
+
+#### Data and Event Handling
+
+To achieve this, the application must handle checkbox changes and radio button selections dynamically. This could be managed through JavaScript event listeners attached to each input element associated with these states.
+
+#### JavaScript Execution Flow
+
+1. **Listen for changes**: Add event listeners to the checkboxes and radio inputs that correspond to each commitment level and follow-up state.
+
+2. **Determine the Node Color**: When an event is triggered (state change), determine the appropriate color based on the logic defined in your user story. For checkboxes specifically, you'll need to check both "soul winning" and "discipling souls" states to decide if a node should be blue, pink, or purple. For the follow-up statuses, you will directly map statuses to colors as per the logic provided.
+
+3. **Apply the Color**: Once the target color is identified, apply the class or directly set the style on the node element representing the disciple.
+
+#### Example JavaScript Logic
+
+Here is a pseudo-code concept to illustrate the approach:
+
+```javascript
+function updateDiscipleNodeColor(discipleId) {
+  const discipleElement = document.querySelector(`.node[data-id="${discipleId}"]`);
+  const isSoulWinning = document.getElementById(`soul-winning-${discipleId}`).checked;
+  const isDisciplingSouls = document.getElementById(`discipling-souls-${discipleId}`).checked;
+
+  // Reset classes or directly set a default style if required
+
+  if (isSoulWinning && isDisciplingSouls) {
+    // Apply purple
+    discipleElement.classList.add('node-purple');
+  } else if (isSoulWinning) {
+    // Apply blue
+    discipleElement.classList.add('node-blue');
+  } else if (isDisciplingSouls) {
+    // Apply pink
+    discipleElement.classList.add('node-pink');
+  }
+
+  // Example for follow-up status changes
+  const followUpStatus = /* Determine the follow-up status for the disciple */
+  switch(followUpStatus) {
+    case 'no-follow-up':
+      discipleElement.classList.add('node-red');
+      break;
+    case 'follow-up-no-discipleship':
+      discipleElement.classList.add('node-orange');
+      break;
+    case 'in-discipleship':
+      discipleElement.classList.add('node-green');
+      break;
+    // handle other cases
+  }
+}
+
+// Attach event listeners to relevant input elements to call updateDiscipleNodeColor with the correct discipleId on state change
+```
+
+#### CSS Styling
+
+In your `styles.css` under the `disciples` directory, define the color classes:
+
+```css
+.node-blue > rect {
+  fill: blue !important;
+}
+
+.node-pink > rect {
+  fill: pink !important;
+}
+
+.node-purple > rect {
+  fill: purple !important;
+}
+
+.node-red > rect {
+  fill: red !important;
+}
+
+.node-orange > rect {
+  fill: orange !important;
+}
+
+.node-green > rect {
+  fill: green !important;
+}
+```
+
+This structured approach provides a clear mapping between the checkboxes' states or follow-up options with the visual representation of disciples, facilitating instant recognition of their commitment levels and follow-up statuses.// 
+here below is all the code. Is it possible for me to update this code to see the desired feature?
+
 class GenMapper {
   // GenMapper
   // App for mapping generations of simple churches
@@ -245,18 +353,11 @@ class GenMapper {
   introSwitchVisibility () {
     document.getElementById('intro').classList.toggle('intro--active')
   }
-/**========================================================================
- *                           Adding Data to NODES
- *  You've got text, radio, and checkbox fields. Each field has a header
- *  I'm trying to add a new field.type to the nodes called textarea 
- *========================================================================**/
+
   popupEditGroupModal (d) {
     this.editGroupElement.classList.add('edit-group--active')
     template.fields.forEach((field) => {
       if (field.type === 'text') {
-        this.editFieldElements[field.header].value = d.data[field.header]
-      
-      } else if (field.type === 'textarea') {
         this.editFieldElements[field.header].value = d.data[field.header]
       } else if (field.type === 'radio') {
         field.values.forEach((value) => {
@@ -325,23 +426,11 @@ class GenMapper {
     })
     return output
   }
-/**========================================================================
- *                           SAVING DATA TO FIELD TYPES 
- *                          The code below is for each field
- *                            when you click submit. It will 
- *                           update the field with the new data
- *                          and save the date to the node data.
- *                         If you want to add a new field type
- *                        you can add it here. Just make sure to
- *                       add the field type to the template.fields
- *                     and add the field type to the 
- *========================================================================**/
-  editGroup (groupData) { 
+
+  editGroup (groupData) {
     this.hasUnsavedChanges = true
     template.fields.forEach((field) => {
       if (field.type === 'text') {
-        groupData[field.header] = this.editFieldElements[field.header].value
-      } else if (field.type === 'textarea') {
         groupData[field.header] = this.editFieldElements[field.header].value
       } else if (field.type === 'radio') {
         field.values.forEach((value) => {
@@ -648,9 +737,7 @@ class GenMapper {
         '<line x1="52.5" y1="52.5" x2="52.5" y2="67.5" stroke="white" stroke-width="3"></line>'
       )
   }
-/**========================================================================
- *                            Adding nodes
- *========================================================================**/
+
   addNode (d) {
     this.hasUnsavedChanges = true
     const newNodeData = {}
@@ -945,29 +1032,7 @@ class GenMapper {
     // replace first line with a default one
     return this.csvHeader + csvString.substring(csvString.indexOf('\n') + 1)
   }
-//! WARNING: The code below has new field added "textarea" without use of i18next and without use of d3.select. The code works, but is not recommended.
-/**========================================================================
- *                Added Fields to Edit Window "textarea"
- *                Textarea is like a textbox, but it allows for
- *               multiple lines of text. This code adds a textarea
- *             that gives alot more space for the user to input data 
- *            (eg. Notes, addresses, links, etc.) 
- * 
- *  Tutorial: How to add new fields to the edit window
- * 1. Add new field type below (eg. textarea).
- * 2. Add new field type to editGroup (groupData) 
- * 2.1 This will fill in the new field type with the new data
- * 3. Add new field type to { popupEditGroupModal (d)
- * 3.1 When clicking save or submit, this will save your data to the node
- *     you can save the genmap that has the new field type. It works in 
- *     disciple mapper to save the map, and the csv will have the new field  
- *     type as a header, and will store the custom data you input. Each node
- *    will have the new field type. 
- * 4. You will have to update the template.js file to add the new field type
- *    in the values array. You can define its header name, initial value, and
- *    class, etc. In the styles css you can customize the field, and how 
- *   it looks in the edit window.
- *========================================================================**/
+
   addFieldsToEditWindow (template) {
     template.fields.forEach((field) => {
       if (field.type) {
@@ -986,32 +1051,26 @@ class GenMapper {
           .attr('class', 'right-field')
         if (field.type === 'radio') {
           for (let value of field.values) {
-              const valueDescription = i18next.t('template.' + value.header)
-              td.append('input')
-                .attr('type', field.type)
-                .attr('name', field.header)
-                .attr('value', value.header)
-                .attr('id', 'edit-' + field.header + '-' + value.header)
-              td.append('span')
-                .html(valueDescription)
-              td.append('br')
-            }
-        } else if (field.type === 'textarea') {
-          td.append('textarea')
-            .attr('name', field.header)
-            .attr('id', 'edit-' + field.header)
-            .attr('rows', '4')  // Example row size, adjust as necessary
-            .attr('cols', '20')  // Example column size, adjust as necessary
-            .attr('class', 'no-horizontal-resize');
-        } else {
-          td.append('input')
+            const valueDescription = i18next.t('template.' + value.header)
+            td.append('input')
               .attr('type', field.type)
               .attr('name', field.header)
-              .attr('id', 'edit-' + field.header)
+              .attr('value', value.header)
+              .attr('id', 'edit-' + field.header + '-' + value.header)
+            td.append('span')
+              .html(valueDescription)
+            td.append('br')
+          }
+        } else {
+          td.append('input')
+            .attr('type', field.type)
+            .attr('name', field.header)
+            .attr('id', 'edit-' + field.header)
         }
       }
     })
   }
+
   switchLanguage (button) {
     this.language = button.id.substring(5, 7)
     i18next.changeLanguage(this.language)
@@ -1062,3 +1121,550 @@ class GenMapper {
 }
 
 window.genmapper = new GenMapper()
+
+
+// disciples/template.js
+
+const boxHeight = 80
+const textHeight = 14
+const textMargin = 6
+
+const template = {
+  'name': 'Disciples 0.2',
+  'translations': {
+    en: {
+      translation: {
+        'template': {
+          'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the disciple to edit.<br>Click on red (x) button to remove a disciple.<br>Click on green (+) button to add child disciple.</p>',
+          'name': 'Name',
+          'reaper': 'Who led them to Jesus Christ?',
+          'date': 'Date of decision to follow Jesus',
+          'believer': 'Is believer?',
+          'baptized': 'Is baptized?',
+          'word': 'Abides in Word',
+          'prayer': 'Abides in Prayer',
+          'shares': 'Shares Jesus',
+          'accountable': 'Is accountable',
+          'discipleship': 'Has discipleship',
+          'inChurch': "In a Church?",
+          'timothy': 'Is Timothy (key disciple)?',
+          'followupStatus': 'Followed Up? (Yes/No)', // Changed property name
+          'disciple-no-follow-up': 'No, Go Therefore!', // Changed property name and value
+          'disciple-followed-up-no-meetings': 'Yes, no discipleship', // Changed property name and value
+          'disciple-followed-up-in-meetings': 'Yes, in discipleship!', // Changed property name and value
+          'active': 'Wants Discipleship?',
+          'reaperconfidence': 'Is confident in gospel sharing?',
+          'reapercompetence': 'Is competent in gospel sharing?',
+          'reapercommitment': 'Is committed to soul winning?',
+          'disciplerconfidence': 'Is confident in discipling?',
+          'disciplercompetence': 'Is competent in discipling?',
+          'disciplercommitment': 'Is committed to discipling?',
+          'Notes': 'Notes'
+          
+        }
+      }
+    },
+    // ... rest of the object
+    cs: {
+      translation: {
+        'template': {
+          'helpLegend': '<p>Tato šablona GenMapperu je pro mapování jednotlivých učedníků, ne skupin/církví. Každý obdélník znázorňuje jednoho učedníka.<br><br>Klikni na učedníka pro editaci.<br>Klikni na červené tlačítko (x) pro odstranění učedníka.<br>Klikni na zelené tlačítko (+) pro přidání učedníka.</p>',
+          'name': 'Jméno',
+          'date': 'Datum uvěření',
+          'believer': 'Věřící',
+          'baptized': 'Pokřtěný',
+          'word': 'Zůstává v Božím Slovu',
+          'prayer': 'Pravidelně se modlí',
+          'shares': 'Sdílí Ježíše',
+          'accountable': 'Je vykazatelný',
+          'discipleship': 'Má učednictví',
+          'inChurch': 'Součástí Boží rodiny',
+          'timothy': 'Timoteus (klíčový učedník)',
+          'followupStatus': 'Followed Up?',
+          'disciple-no-follow-up': 'Bez následného kontaktu', // Changed property name and value
+          'disciple-followed-up-no-meetings': 'S následným kontaktem, bez setkání', // Changed property name and value
+          'disciple-followed-up-in-meetings': 'S následným kontaktem, se setkáním', // Changed property name and value
+          'active': 'Aktivní'
+        }
+      }
+    }
+  },
+  'settings': {
+    'nodeSize': {
+      'width': boxHeight * 1,
+      'height': boxHeight * 1.8
+    }
+  },
+  'svg': {
+    'big-rect': {
+      'type': 'rect',
+      'attributes': {
+        'x': 0,
+        'y': 0,
+        'width': boxHeight / 2,
+        'height': boxHeight,
+        'opacity': '0'
+      }
+    },
+    'box': {
+      'type': 'rect',
+      'attributes': {
+        'x': -boxHeight * 0.3,
+        'y': 0,
+        'width': boxHeight * 0.6,
+        'height': boxHeight * 1.05
+      }
+    }
+  },
+  'fields': [
+    {
+      'header': 'id',
+      'initial': 0,
+      'type': null
+    },
+    {
+      'header': 'parentId',
+      'initial': null,
+      'type': null
+    },
+    {
+      'header': 'name',
+      'initialTranslationCode': 'name',
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': -textMargin - textHeight
+        }
+      }
+    },
+    {
+      'header': 'reaper',
+      'initial': '',
+      'type': 'text'
+      // Omitting 'svg' since we don't want it to display on the map
+    },
+    {
+      'header': 'date',
+      'initial': null,
+      'type': 'text',
+      'svg': {
+        'type': 'text',
+        'attributes': {
+          'x': 0,
+          'y': -4
+        }
+      }
+    },
+    {
+      'header': 'believer',
+      'initial': true,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * -0.28,
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/believer.png'
+        }
+      }
+    },
+    {
+      'header': 'baptized',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/baptism.png'
+        }
+      }
+    },
+    {
+      'header': 'word',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * -0.28,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/word.png'
+        }
+      }
+    },
+    {
+      'header': 'prayer',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/prayer.png'
+        }
+      }
+    },
+    {
+      'header': 'shares',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * -0.25,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/shares.png'
+        }
+      }
+    },
+    {
+      'header': 'accountable',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/accountable.png'
+        }
+      }
+    },
+    {
+      'header': 'discipleship',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * -0.25,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/discipleship.png'
+        }
+      }
+    },
+    {
+      'header': 'inChurch',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * 0,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/in-church.png'
+        }
+      }
+    },
+    
+    {
+      'header': 'followupStatus',
+      'initial': 'disciple-no-follow-up',
+      'type': 'radio',
+      'inheritsFrom': 'box',
+      'values': [
+        {
+          'header': 'disciple-no-follow-up', // Changed header
+          'class': 'disciple-no-follow-up',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'disciple-followed-up-no-meetings', // Changed header
+          'class': 'disciple-followed-up-no-meetings',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'disciple-followed-up-in-meetings', // Changed header
+          'class': 'disciple-followed-up-in-meetings',
+          'attributes': {
+            'rx': 0
+          }
+        }
+      ]
+    },
+    {
+      'header': 'timothy',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': boxHeight * -0.3,
+          'y': -4 - textHeight,
+          'width': boxHeight * 0.6,
+          'height': 2,
+          'xlink:href': 'icons/redline.png'
+        }
+      }
+    },
+    {
+      'header': 'active',
+      'initial': true,
+      'type': 'checkbox'
+      // svg defined currently in genmapper.js
+    },
+    // Actively Devoted to Winning Souls
+    {
+      'header': 'reaperconfidence',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    {
+      'header': 'reapercompetence',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    {
+      'header': 'reapercommitment',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    // Actively Devoted to Discipling
+    {
+      'header': 'disciplerconfidence',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    {
+      'header': 'disciplercompetence',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    {
+      'header': 'disciplercommitment',
+      'initial': false,
+      'type': 'checkbox'
+    },
+    {
+      'header': 'Notes',
+      'initial': '',
+      'type': 'text'
+      // Omitting 'svg' since we don't want it to display on the map
+    }
+  ]
+}
+
+disciples/style.css
+/* CSS for GenMapper: template specific */
+
+.node-box {
+  stroke: black;
+  stroke-width: 2;
+  fill: white;
+}
+
+.node-date {
+  font-size: 8px;
+}
+
+.node-timothy {
+  stroke: red;
+  stroke-width: 1;
+  fill: red;
+}
+
+.disciple-no-follow-up {
+  stroke-dasharray: 7,7;
+}
+
+.disciple-followed-up-no-meetings {
+  stroke-dasharray: 0;
+}
+
+.disciple-followed-up-in-meetings {
+  stroke-dasharray: 0;
+  stroke-width: 4;
+}
+
+/**------------------------------------------------------------------------
+ *             Fill Nodes with Colors based on Disciple Status
+ *------------------------------------------------------------------------**/
+
+  /* Example CSS for disciples/style.css to change fill color based on specific classes */
+  .node-reapercommitment > rect {
+  fill: blue !important; /* Example fill color for reapercommitment */
+}
+
+.node-disciplercommitment > rect {
+  fill: purple !important; /* Example fill color for disciplercommitment */
+}
+
+To update the GenMapper application code to support the desired feature of color-coding nodes based on disciples' commitments, you must include the logic for handling the 'reapercommitment' and 'disciplercommitment' fields, and ensure the visual representation matches the requirements. Given that the provided code already contains extensive functionality for handling nodes, events, and rendering, the specific updates will focus on handling the disciple commitment levels and their visual representation.
+
+### Key Steps for Implementation:
+
+#### 1. Update `template.js`:
+Add or ensure that the `reapercommitment` and `disciplercommitment` checkboxes are included in the `fields` section of your `template.js`. It seems they are already included based on your given template definition.
+
+#### 2. Update CSS Styling:
+In `disciples/style.css`, you've already defined styles for `.node-reapercommitment` and `.node-disciplercommitment`. You might need to adjust the CSS selectors based on your actual implementation, particularly if nodes can have multiple classes or states that require specific color coding.
+
+#### 3. Implement Color Logic in `genmapper.js`:
+Enhance the `redraw` function or wherever the nodes are being drawn to apply the correct class based on
+
+i made an interesting discovery. 
+
+'header': 'followupStatus',
+      'initial': 'disciple-no-follow-up',
+      'type': 'radio',
+      'inheritsFrom': 'box',
+      'values': [
+        {
+          'header': 'disciple-no-follow-up', // Changed header
+          'class': 'disciple-no-follow-up',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'disciple-followed-up-no-meetings', // Changed header
+          'class': 'disciple-followed-up-no-meetings',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'disciple-followed-up-in-meetings', // Changed header
+          'class': 'disciple-followed-up-in-meetings',
+          'attributes': {
+            'rx': 0
+          }
+        }
+      ]
+    },// this code in template.js
+
+and this code in /disciples/style.css 
+/* .disciple-no-follow-up {
+  stroke-dasharray: 7,7;
+  stroke: red;
+  stroke-width: 1;
+  fill: red;
+}
+
+.disciple-followed-up-no-meetings {
+  stroke-dasharray: 0;
+  stroke: orange;
+  stroke-width: 2;
+  fill: orange;
+}
+
+.disciple-followed-up-in-meetings {
+  stroke-dasharray: 0;
+  stroke-width: 4;
+  stroke: green;
+  stroke-width: 1;
+  fill: green;/
+
+// the above code actually changes the colors of the nodes. It is a drop down menu selection and not a check box, but I can create two new menus in the same format as the above menu. One menu can be called evangelism that contains confidence, competence, and actively commited, confidence and competence will not change the color, but the third option active committed will override the followup menu and will label them as blue, and the third drop down options will be confident in discipling, competent in discipling, and actively commited. if it is selected ALONE and actively committed to evangelism then it will highlight the person as purple, but if they aren't actively commited to evangelism, but are actively commited to discipleship, then they will be pink. 
+Based on your discovery and the idea of utilizing dropdown menus for different commitment levels in evangelism and discipleship, you can effectively manage and display the disciples' engagement state in visual form. This approach leverages the combination of HTML form elements (dropdown menus) and CSS for visual representation.
+
+Here is an outline of how to implement these features:
+
+### 1. Extend the Template
+
+You’ll add two new fields in `template.js`—`evangelismStatus` and `discipleshipStatus`—similar to the `followupStatus` field. This allows for different commitment levels to be selected through dropdown menus.
+
+```javascript
+// example addition to the fields array in your template
+{
+  header: 'evangelismStatus',
+  initial: 'evangelism-not-committed',
+  type: 'radio',
+  values: [
+    { header: 'evangelism-not-committed', class: 'evangelism-not-committed' },
+    { header: 'evangelism-committed', class: 'evangelism-committed' }
+    // No need for additional attributes for this example
+  ]
+},
+{
+  header: 'discipleshipStatus',
+  initial: 'discipleship-not-committed',
+  type: 'radio',
+  values: [
+    { header: 'discipleship-not-committed', class: 'discipleship-not-committed' },
+    { header: 'discipleship-committed', class: 'discipleship-committed' }
+  ]
+}
+```
+
+### 2. Define CSS Styles for New States
+
+Next, you would define additional CSS classes in `/disciples/style.css` to visually represent these new states.
+
+```css
+.evangelism-committed > rect,
+.discipleship-committed.alone > rect {
+  fill: pink !important;
+}
+
+.evangelism-committed.discipleship-committed > rect {
+  fill: purple !important;
+}
+
+.evangelism-committed:not(.discipleship-committed) > rect {
+  fill: blue !important;
+}
+```
+
+Please note: The CSS selectors `.alone` and combinators like `:not()` are used conceptually here. You will need to implement logic that dynamically adds and removes these classes based on the selections made in the dropdowns.
+
+### 3. Implement Logic to Handle Selection Changes
+
+You will need to modify or extend the JavaScript logic that handles dropdown selections (`genmapper.js`). On selection change, assess the combination of `evangelismStatus` and `discipleshipStatus` to apply the correct classes that determine the node's color.
+
+This might involve adding event listeners for changes in those dropdowns, much like how checkboxes or other input elements are currently handled. 
+
+```javascript
+// Pseudo-code to illustrate the approach
+function handleCommitmentChange(discipleId) {
+  var discipleElement = document.querySelector(`.node[data-id="${discipleId}"]`);
+  
+  // Fetch selections
+  var evangelismSelection = document.getElementById(`evangelism-select-${discipleId}`).value;
+  var discipleshipSelection = document.getElementById(`discipleship-select-${discipleId}`).value;
+
+  // Check and apply classes based on logic.
+  discipleElement.classList.remove('evangelism-committed', 'discipleship-committed', 'alone');
+  if (evangelismSelection === 'evangelism-committed') {
+    discipleElement.classList.add('evangelism-committed');
+  }
+  if (discipleshipSelection === 'discipleship-committed') {
+    discipleElement.classList.add('discipleship-committed');
+  }
+  // Further logic to add/remove "alone" class or applying specific logic based on selection combinations
+}
+
+// Simply ensure you add code to attach these handlers when rendering each node.
+```
+
+### Conclusion
+
+While mixing CSS class combinations and utilizing smart event handling in JavaScript, you can dynamically adapt the visual representation of each disciple node based on the different categories of commitment. This system enables a flexible method to visually encode multiple aspects of disciples' engagement in a compact and easily understandable manner.
+
+This overall approach will require additional logic to manage the class state of each node accurately, especially when differing combinations of commitments can lead to a change in the node's color. Remember to test thoroughly to ensure that the visual state always accurately reflects the current selections.
+
