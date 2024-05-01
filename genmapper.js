@@ -1000,7 +1000,7 @@ class GenMapper {
           td.append('textarea')
             .attr('name', field.header)
             .attr('id', 'edit-' + field.header)
-            .attr('rows', '4')  // Example row size, adjust as necessary
+            .attr('rows', '2')  // Example row size, adjust as necessary
             .attr('cols', '20')  // Example column size, adjust as necessary
             .attr('class', 'no-horizontal-resize');
         } else {

@@ -2,12 +2,8 @@
 
 .node-box {
   stroke: black;
-  stroke-width: 10;
+  stroke-width: 5;
   fill: white;
-}
-
-.node-date {
-  font-size: 8px;
 }
 
 .node-timothy {
@@ -17,9 +13,10 @@
   /* fill: rgb(143, 14, 14); */
 }
 
+
 .disciple-no-follow-up {
   stroke-dasharray: 7,7;
-  stroke-width: 7;
+  stroke-width: 5;
   stroke: red;
   /* fill: red; */
 }
@@ -27,13 +24,13 @@
 .disciple-followed-up-no-meetings {
   stroke-dasharray: 0;
   stroke: orange;
-  stroke-width: 7;
+  stroke-width: 5;
   /* fill: orange; */
 }
 
 .disciple-followed-up-in-meetings {
   stroke-dasharray: 0;
-  stroke-width: 7;
+  stroke-width: 5;
   stroke: green;
   /* stroke-width: 1; */
   /* fill: green; */
@@ -44,19 +41,51 @@
  *------------------------------------------------------------------------**/
 
   /* Example CSS for disciples/style.css to change fill color based on specific classes */
-  .reapercommitment {
+  .contactAttemptNeeded {
     stroke-dasharray: 0;
-    stroke: blue;
-    stroke-width: 7;
-    /* fill: blue; */
-}
+    stroke: red;
+    stroke-width: 5;
+  }
 
-.disciplercommitment {
-  stroke-dasharray: 0;
-  stroke: purple;
-  stroke-width: 7;
-  /* fill: purple; */
-}
+  .contactAttempted {
+    stroke-dasharray: 0;
+    stroke: orange;
+    stroke-width: 5;
+  }
+
+  .contactEstablished {
+    stroke-dasharray: 0;
+    stroke: yellow;
+    stroke-width: 5;
+  }
+
+  .firstMeetingScheduled {
+    stroke-dasharray: 0;
+    stroke: lightgreen;
+    stroke-width: 5;
+  }
+
+  .firstMeetingComplete {
+    stroke-dasharray: 0;
+    stroke: green;
+    stroke-width: 5;
+  }
+
+  .ongoingMeetings {
+    stroke-dasharray: 0;
+    stroke: darkgreen;
+    stroke-width: 5;
+  }
+
+  .beingCoached {
+    stroke-dasharray: 0;
+    stroke: lightblue;
+    stroke-width: 5;
+  }
+
+  .no-horizontal-resize {
+    resize: vertical; 
+  }
 
 .no-horizontal-resize {
   resize: vertical; 

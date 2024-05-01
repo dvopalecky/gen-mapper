@@ -1668,3 +1668,72 @@ While mixing CSS class combinations and utilizing smart event handling in JavaSc
 
 This overall approach will require additional logic to manage the class state of each node accurately, especially when differing combinations of commitments can lead to a change in the node's color. Remember to test thoroughly to ensure that the visual state always accurately reflects the current selections.
 
+
+
+/<!--=============================== Adding text areas =====================-->
+
+
+
+Within the provided `GenMapper` class code, there are several places responsible for handling and organizing field data for each node, as well as for exporting that data into a CSV format, where fields serve as headers and entries per field are saved as column data associated with each node ID. Below, I will outline key parts of the code that contribute to these functionalities:
+
+### Isolating Field Data for Each Node
+
+1. **Adding Nodes and Setting Initial Field Values**: The method `addNode(d)` is responsible for adding a new node with fields initialized to their default values. Here, `template.fields.forEach(...)` is used to iterate over all fields defined in the template and initialize them based on their `initial` value or `initialTranslationCode`.
+
+2. **Editing Nodes Field Data**: The method `popupEditGroupModal(d)` is responsible for displaying a modal window where users can edit field values for a specific node. It dynamically generates input elements for each field and pre-populates them with the current values for the selected node. This functionality ensures that field data is isolated and managed on a per-node basis.
+
+3. **Data Binding in `redraw(template)` Method**: The `redraw(template)` method is crucial for drawing and updating the visual representation of nodes. It binds data to SVG elements based on the `template.fields`. Each node's data is applied to create or update graphical elements (rectangles, texts, etc.), ensuring that each field's data is correctly represented and associated with the correct node.
+
+### Saving Fields as Headers in a CSV, and Saving Entries as Column Data per ID
+
+1. **CSV Header Construction**: At the constructor of the `GenMapper` class, there's a line that sets up the `csvHeader` by mapping over `template.fields` to extract headers, then joins these with commas. This ensures that when data is exported, the CSV file will have headers matching the field names defined in the fields array of the template.
+
+    ```javascript
+    this.csvHeader = template.fields.map(field => field.header).join(',') + '\n';
+    ```
+
+2. **Parsing and Exporting CSV Data**: The methods `outputCsv()` and `outputCsvSubtree(node)` are responsible for exporting the node data to a CSV file. In `outputCsvSubtree(node)`, there is a conversion of the node (and optionally its subtree) data into a string format that matches the CSV structure initiated with headers from `csvHeader`. It uses `d3.csvFormatRows(...)` to prepare the rows of data where each field from the nodes is mapped into the corresponding column under the headers.
+
+addFieldsToEditWindow (template) {
+  template.fields.forEach((field) => {
+    if (field.type) {
+      // add table row
+      const tr = d3.select('#edit-group-content')
+        .select('form')
+        .select('table')
+        .append('tr')
+      // add left column
+      const fieldDesciption = i18next.t('template.' + field.header) + ':'
+      tr.append('td')
+        .text(fieldDesciption)
+        .attr('class', 'left-field')
+      // add right column
+      const td = tr.append('td')
+        .attr('class', 'right-field')
+      if (field.type === 'radio') {
+        for (let value of field.values) {
+            const valueDescription = i18next.t('template.' + value.header)
+            td.append('input')
+              .attr('type', field.type)
+              .attr('name', field.header)
+              .attr('value', value.header)
+              .attr('id', 'edit-' + field.header + '-' + value.header)
+            td.append('span')
+              .html(valueDescription)
+            td.append('br')
+          }
+      } else if (field.type === 'textarea') {
+        td.append('textarea')
+          .attr('name', field.header)
+          .attr('id', 'edit-' + field.header)
+          .attr('rows', '4')  // Example row size, adjust as necessary
+          .attr('cols', '50');  // Example column size, adjust as necessary
+      } else {
+        td.append('input')
+            .attr('type', field.type)
+            .attr('name', field.header)
+            .attr('id', 'edit-' + field.header)
+      }
+    }
+  })
+}

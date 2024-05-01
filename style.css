@@ -186,8 +186,9 @@ p {
   padding-top: 10px;
 }
 
+/* edit the size of the menu to give more space for words */
 #edit-group-content {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 #edit-group-content table {

@@ -2,7 +2,7 @@ const translations = {
   en: {
     translation: {
       'menu': {
-        'appName': 'GenMapper',
+        'appName': 'DiscipleMapper',
         'defaultProjectName': 'Untitled project',
         'project': 'Project',
         'help': 'Help',
@@ -25,7 +25,7 @@ const translations = {
         'btnDelete': 'Delete subtree',
         'btnImportSubtree': 'Import subtree',
         'btnExportSubtree': 'Export subtree',
-        'elementParent': 'Parent',
+        'elementParent': 'Discipler',
         'notAvaliable': 'N/A',
         'hoverDeleteGroupAndSubtree': 'Delete group &amp; subtree',
         'hoverAddChildGroup': 'Add child group'
