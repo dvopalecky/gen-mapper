@@ -302,6 +302,8 @@ p {
 
 .addNode {
   display: none;
+  position: relative; /* Add this */
+  z-index: 1; /* Add this */
 }
 
 .addNode:hover rect {

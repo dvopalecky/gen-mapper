@@ -433,6 +433,14 @@ class GenMapper {
       .separation(function separation (a, b) {
         return a.parent === b.parent ? 1 : 1.2
       })
+      // .nodeSize([
+      //   template.settings.nodeSize.height, // This maintains the desired vertical spacing.
+      //   144 // Change this value to adjust the vertical between nodes across generations.
+      // ])
+        .separation(function(a, b) {
+          return 1.2; // This keeps a consistent spacing multiplier; adjust if necessary.
+      });
+      
 
     const stratifiedData = d3.stratify()(this.data)
     this.nodes = tree(stratifiedData)
@@ -648,6 +656,8 @@ class GenMapper {
         '<line x1="52.5" y1="52.5" x2="52.5" y2="67.5" stroke="white" stroke-width="3"></line>'
       )
   }
+    
+  
 /**========================================================================
  *                            Adding nodes
  *========================================================================**/

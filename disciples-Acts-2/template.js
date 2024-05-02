@@ -1,7 +1,7 @@
 const boxHeight = 80
 const textHeight = 14
 const textMargin = 6
-
+const xOffset = 1 // Change this value to move all icons
 const template = {
   'name': 'Disciples 0.2',
   'translations': {
@@ -11,19 +11,57 @@ const template = {
           'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the disciple to edit.<br>Click on red (x) button to remove a disciple.<br>Click on green (+) button to add child disciple.</p>',
           'name': 'Name',
           'date': 'Date of start following Christ',
-          'believer': 'Is believer?',
-          'baptized': 'Is baptized?',
-          'word': 'Abides in Word',
-          'prayer': 'Abides in Prayer',
-          'shares': 'Shares Jesus',
+          /**======================
+           *    Menu items
+           *========================**/
+          'believer': 'Believes in Jesus',
+          'repents': 'Is repenting',
+          'baptized': 'Is baptized',
+          'filled': 'Is filled with the Holy Spirit',
+          'word': 'Devoted to reading the Bible (eg. Daily)',
+          'loves': 'Devoted to loving others',
+          'takesCommunion': 'Devoted to taking Communion',
+          'prayer': 'Devoted to prayer (eg. Daily)',
+          'walksInSignsWonders': 'Walks in signs and wonders',
+          'gives': 'Gives (eg. Needy, Church, Mission)',
+          'worships': 'Praises God regularly',
+          'shares': 'Shares Jesus weekly',
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          /*---- END OF menu items ----*/
+          
+          
           'accountable': 'Is accountable',
           'discipleship': 'Has discipleship',
           'inChurch': "Part of God's family",
-          'timothy': 'Is Timothy (key disciple)?',
+          
+          /**============================================
+           *               FOLLOW-UP STATUS
+           *=============================================**/
+          'followupStatus': 'Follow-up Status',
+          'contactAttemptNeeded': 'Contact Attempt Needed',
+          'contactAttempted': 'Contact Attempted',
+          'contactEstablished': 'Contact Established',
+          'firstMeetingScheduled': 'First Meeting Scheduled',
+          'firstMeetingComplete': 'First Meeting Complete',
+          'ongoingMeetings': 'Ongoing Meetings',
+          'beingCoached': 'Being Coached',
+          'coachingOthers': 'Coaching Others',
+          /**--------------------------------------------
+           *               Disciple Type options
+           *---------------------------------------------**/
           'discipleType': 'Disciple type',
           'individual': 'Individual',
           'facilitatesGroup': 'Facilitates Group',
           'facilitatesChurch': 'Facilitates Church',
+          'timothy': 'Is Timothy (key disciple)?',
           'active': 'Active'
         }
       }
@@ -62,9 +100,9 @@ const template = {
     'big-rect': {
       'type': 'rect',
       'attributes': {
-        'x': 0,
+        'x': -boxHeight * 0.50,
         'y': 0,
-        'width': boxHeight / 2,
+        'width': boxHeight *1,
         'height': boxHeight,
         'opacity': '0'
       }
@@ -72,9 +110,9 @@ const template = {
     'box': {
       'type': 'rect',
       'attributes': {
-        'x': -boxHeight * 0.3,
+        'x': -boxHeight * 0.45,
         'y': 0,
-        'width': boxHeight * 0.6,
+        'width': boxHeight * 0.9,
         'height': boxHeight * 1.05
       }
     }
@@ -114,6 +152,9 @@ const template = {
         }
       }
     },
+    
+
+          /*---1---- Believe and repent -------*/
     {
       'header': 'believer',
       'initial': true,
@@ -121,14 +162,31 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * -0.28,
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9, // Added one column width
           'y': boxHeight * 0,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/believer.png'
+          'xlink:href': 'icons/1.believes.png'
         }
       }
     },
+    /*=======2 Repents =======*/
+    {
+      'header': 'repents',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/2.repents.png'
+        }
+      }
+    },
+    /*=======3 Baptized =======*/
     {
       'header': 'baptized',
       'initial': false,
@@ -136,14 +194,31 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * 0,
-          'y': boxHeight * 0,
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/baptism.png'
+          'xlink:href': 'icons/7.baptized.png'
         }
       }
     },
+    /*=======4 Filled with the Spirit =======*/
+    {
+      'header': 'filled',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/8.filled.png'
+        }
+      }
+    },
+    /*=======5 Reads Word =======*/
     {
       'header': 'word',
       'initial': false,
@@ -151,14 +226,47 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * -0.28,
-          'y': boxHeight * 0.25,
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/word.png'
+          'xlink:href': 'icons/6.readsword.png'
         }
       }
     },
+    /*=======6 Love =======*/
+    {
+      'header': 'loves',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/4.loves.png'
+        }
+      }
+    },
+    /*=======7 Takes Communion =======*/
+    {
+      'header': 'takesCommunion',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/9.takescommunion.png'
+        }
+      }
+    },
+    /*=======8 Prays =======*/
     {
       'header': 'prayer',
       'initial': false,
@@ -166,14 +274,63 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * 0,
-          'y': boxHeight * 0.25,
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.75,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/prayer.png'
+          'xlink:href': 'icons/5.prays.png'
         }
       }
     },
+    /*=======9 Be Awed "Walks in signs and wonders" =======*/
+    {
+      'header': 'walksInSignsWonders',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/12.walkinsignswonders.png'
+        }
+      }
+    },
+    /*=======10 Gives "Is generous" =======*/
+    {
+      'header': 'gives',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/10.gives.png'
+        }
+      }
+    },
+    /*=======11 Worship/Praise =======*/
+    {
+      'header': 'worships',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/11.worships.png'
+        }
+      }
+    },
+    /*=======12 Go and Tell =======*/
     {
       'header': 'shares',
       'initial': false,
@@ -181,58 +338,115 @@ const template = {
       'svg': {
         'type': 'image',
         'attributes': {
-          'x': boxHeight * -0.25,
-          'y': boxHeight * 0.5,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/shares.png'
-        }
-      }
-    },
-    {
-      'header': 'accountable',
-      'initial': false,
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': boxHeight * 0,
-          'y': boxHeight * 0.5,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/accountable.png'
-        }
-      }
-    },
-    {
-      'header': 'discipleship',
-      'initial': false,
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': boxHeight * -0.25,
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
           'y': boxHeight * 0.75,
           'width': boxHeight / 4,
           'height': boxHeight / 4,
-          'xlink:href': 'icons/discipleship.png'
+          'xlink:href': 'icons/3.goandtell.png'
         }
       }
     },
+    
+    /*======= EXTRAS - SUPER IMPORTANT =======*/
+    
+    // THIS WONE IS SOLVED IN THE FOLLOWUP METER
+    // {
+    //   'header': 'discipleship',
+    //   'initial': false,
+    //   'type': 'checkbox',
+    //   'svg': {
+    //     'type': 'image',
+    //     'attributes': {
+    //       'x': boxHeight * -0.25,
+    //       'y': boxHeight * 0.75,
+    //       'width': boxHeight / 4,
+    //       'height': boxHeight / 4,
+    //       'xlink:href': 'icons/discipleship.png'
+    //     }
+    //   }
+    // },
+    // // WHAT IS THIS ONE?
+    // {
+    //   'header': 'accountable',
+    //   'initial': false,
+    //   'type': 'checkbox',
+    //   'svg': {
+    //     'type': 'image',
+    //     'attributes': {
+    //       'x': boxHeight * 0,
+    //       'y': boxHeight * 0.5,
+    //       'width': boxHeight / 4,
+    //       'height': boxHeight / 4,
+    //       'xlink:href': 'icons/accountable.png'
+    //     }
+    //   }
+    // },
+    
+    
+    
     {
-      'header': 'inChurch',
-      'initial': false,
-      'type': 'checkbox',
-      'svg': {
-        'type': 'image',
-        'attributes': {
-          'x': boxHeight * 0,
-          'y': boxHeight * 0.75,
-          'width': boxHeight / 4,
-          'height': boxHeight / 4,
-          'xlink:href': 'icons/in-church.png'
+      'header': 'followupStatus',
+      'initial': 'contactAttemptNeeded',
+      'type': 'radio',
+      'inheritsFrom': 'box',
+      'values': [
+        {
+          'header': 'contactAttemptNeeded',
+          'class': 'contactAttemptNeeded',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'contactAttempted',
+          'class': 'contactAttempted',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'contactEstablished',
+          'class': 'contactEstablished',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'firstMeetingScheduled',
+          'class': 'firstMeetingScheduled',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'firstMeetingComplete',
+          'class': 'firstMeetingComplete',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'ongoingMeetings',
+          'class': 'ongoingMeetings',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'beingCoached',
+          'class': 'beingCoached',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'coachingOthers',
+          'class': 'coachingOthers',
+          'attributes': {
+            'rx': 10
+          }
         }
-      }
+      ]
     },
     {
       'header': 'discipleType',

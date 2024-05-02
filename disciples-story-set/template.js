@@ -11,11 +11,24 @@ const template = {
           'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the disciple to edit.<br>Click on red (x) button to remove a disciple.<br>Click on green (+) button to add child disciple.</p>',
           'name': 'Name',
           'date': 'Date of start following Christ',
-          'believer': 'Is believer?',
-          'baptized': 'Is baptized?',
-          'word': 'Abides in Word',
-          'prayer': 'Abides in Prayer',
-          'shares': 'Shares Jesus',
+          /**======================
+           *    Menu items
+           *========================**/
+          'believer': 'Believes in Jesus',
+          'repents': 'Is repenting',
+          'shares': 'Shares Jesus weekly',
+          'loves': 'Loves others',
+          'prayer': 'Prays regularly',
+          'word': 'Reads the Bible regularly',
+          'baptized': 'Is baptized',
+          'filled': 'Is filled with the Holy Spirit',
+          'takesCommunion': 'Takes Communion regularly',
+          'gives': 'Gives (eg. Needy, Church, Mission)',
+          'worships': 'Praises God regularly',
+          'walksInSignsWonders': 'Walks in signs and wonders',
+          /*---- END OF menu items ----*/
+          
+          
           'accountable': 'Is accountable',
           'discipleship': 'Has discipleship',
           'inChurch': "Part of God's family",
@@ -78,9 +91,9 @@ const template = {
     'big-rect': {
       'type': 'rect',
       'attributes': {
-        'x': 0,
+        'x': -boxHeight * 0.50,
         'y': 0,
-        'width': boxHeight *0.75,
+        'width': boxHeight *1,
         'height': boxHeight,
         'opacity': '0'
       }
@@ -134,197 +147,197 @@ const template = {
 
        /*------- Believe and repent -------*/
 
-{
-  'header': 'believer',
-  'initial': true,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 4, // Added one column width
-      'y': boxHeight * 0,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/1.believes.png'
-    }
-  }
-},
-/*======= Repents =======*/
-{
-  'header': 'repents',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.25,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/2.repents.png'
-    }
-  }
-},
-/*======= Go and Tell =======*/
-{
-  'header': 'shares',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.5,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/3.goandtell.png'
-    }
-  }
-},
-/*======= Love =======*/
-{
-  'header': 'loves',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.75,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/4.loves.png'
-    }
-  }
-},
-/*======= Prays =======*/
-{
-  'header': 'prayer',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/5.prays.png'
-    }
-  }
-},
-/*======= Reads Word =======*/
-{
-  'header': 'word',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.25,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/6.readsword.png'
-    }
-  }
-},
-/*======= Baptized =======*/
-{
-  'header': 'baptized',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.5,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/7.baptized.png'
-    }
-  }
-},
-/*======= Filled with the Spirit =======*/
-{
-  'header': 'filled',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.75,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/8.filled.png'
-    }
-  }
-},
-/*======= Takes Communion =======*/
-{
-  'header': 'takesCommunion',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/9.takescommunion.png'
-    }
-  }
-},
-/*======= Gives "Is generous" =======*/
-{
-  'header': 'gives',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.25,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/10.gives.png'
-    }
-  }
-},
-/*======= Worship/Praise =======*/
-{
-  'header': 'worships',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.5,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/11.worships.png'
-    }
-  }
-},
-/*======= Be Awed "Walks in signs and wonders" =======*/
-{
-  'header': 'walksInSignsWonders',
-  'initial': false,
-  'type': 'checkbox',
-  'svg': {
-    'type': 'image',
-    'attributes': {
-      'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4,
-      'y': boxHeight * 0.75,
-      'width': boxHeight / 4,
-      'height': boxHeight / 4,
-      'xlink:href': 'icons/12.walkinsignswonders.png'
-    }
-  }
-},
+    {
+      'header': 'believer',
+      'initial': true,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9, // Added one column width
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/1.believes.png'
+        }
+      }
+    },
+    /*======= Repents =======*/
+    {
+      'header': 'repents',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/2.repents.png'
+        }
+      }
+    },
+    /*======= Go and Tell =======*/
+    {
+      'header': 'shares',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/3.goandtell.png'
+        }
+      }
+    },
+    /*======= Love =======*/
+    {
+      'header': 'loves',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * -0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/4.loves.png'
+        }
+      }
+    },
+    /*======= Prays =======*/
+    {
+      'header': 'prayer',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/5.prays.png'
+        }
+      }
+    },
+    /*======= Reads Word =======*/
+    {
+      'header': 'word',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/6.readsword.png'
+        }
+      }
+    },
+    /*======= Baptized =======*/
+    {
+      'header': 'baptized',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/7.baptized.png'
+        }
+      }
+    },
+    /*======= Filled with the Spirit =======*/
+    {
+      'header': 'filled',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/8.filled.png'
+        }
+      }
+    },
+    /*======= Takes Communion =======*/
+    {
+      'header': 'takesCommunion',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/9.takescommunion.png'
+        }
+      }
+    },
+    /*======= Gives "Is generous" =======*/
+    {
+      'header': 'gives',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.25,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/10.gives.png'
+        }
+      }
+    },
+    /*======= Worship/Praise =======*/
+    {
+      'header': 'worships',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.5,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/11.worships.png'
+        }
+      }
+    },
+    /*======= Be Awed "Walks in signs and wonders" =======*/
+    {
+      'header': 'walksInSignsWonders',
+      'initial': false,
+      'type': 'checkbox',
+      'svg': {
+        'type': 'image',
+        'attributes': {
+          'x': xOffset + boxHeight * 0.28 - boxHeight / 2 + boxHeight / 4 + boxHeight / 9,
+          'y': boxHeight * 0.75,
+          'width': boxHeight / 4,
+          'height': boxHeight / 4,
+          'xlink:href': 'icons/12.walkinsignswonders.png'
+        }
+      }
+    },
     
     /*======= EXTRAS - SUPER IMPORTANT =======*/
     
