@@ -75,7 +75,7 @@
 
 .disciple-facilitates-group {
   stroke-dasharray: 0;
-  stroke: hotpink; /* Color taken from 'firstMeetingScheduled' in previous CSS */
+  stroke: blue; /* Color taken from 'firstMeetingScheduled' in previous CSS */
   stroke-width: 5;
 }
 
@@ -84,3 +84,21 @@
   stroke: purple; /* Color taken from 'ongoingMeetings' in previous CSS */
   stroke-width: 5;
 }
+
+/* attempt at making checkboxes display left to right */
+.horizontal-checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.horizontal-checkbox-container label {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* spacing between checkboxes */
+}
+
+.checkbox-label {
+  margin-left: 4px;
+}
+/*---- END OF checkbox attempt ----*/
+

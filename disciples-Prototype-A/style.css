@@ -41,51 +41,19 @@
  *------------------------------------------------------------------------**/
 
   /* Example CSS for disciples/style.css to change fill color based on specific classes */
-  .contactAttemptNeeded {
+  .mawlingForOthers {
     stroke-dasharray: 0;
-    stroke: red;
+    stroke: blue;
     stroke-width: 5;
-  }
+    /* fill: blue; */
+}
 
-  .contactAttempted {
-    stroke-dasharray: 0;
-    stroke: orange;
-    stroke-width: 5;
-  }
-
-  .contactEstablished {
-    stroke-dasharray: 0;
-    stroke: yellow;
-    stroke-width: 5;
-  }
-
-  .firstMeetingScheduled {
-    stroke-dasharray: 0;
-    stroke: lightgreen;
-    stroke-width: 5;
-  }
-
-  .firstMeetingComplete {
-    stroke-dasharray: 0;
-    stroke: green;
-    stroke-width: 5;
-  }
-
-  .ongoingMeetings {
-    stroke-dasharray: 0;
-    stroke: darkgreen;
-    stroke-width: 5;
-  }
-
-  .beingCoached {
-    stroke-dasharray: 0;
-    stroke: lightblue;
-    stroke-width: 5;
-  }
-
-  .no-horizontal-resize {
-    resize: vertical; 
-  }
+.disciplercommitment {
+  stroke-dasharray: 0;
+  stroke: purple;
+  stroke-width: 5;
+  /* fill: purple; */
+}
 
 .no-horizontal-resize {
   resize: vertical; 

@@ -18,7 +18,10 @@ const template = {
           'repents': 'Is repenting',
           'baptized': 'Is baptized',
           'filled': 'Is filled with the Holy Spirit',
-          'word': 'Devoted to reading the Bible (eg. Daily)',
+          'word': 'Devoted to reading the Bible ',
+          'example1': '----',
+          'example2': '----',
+          'example3': '----',
           'loves': 'Devoted to loving others',
           'takesCommunion': 'Devoted to taking Communion',
           'prayer': 'Devoted to prayer (eg. Daily)',
@@ -28,7 +31,7 @@ const template = {
           'shares': 'Shares Jesus weekly',
           
           
-          
+          // Sometimes, Weekly, 
           
           
           
@@ -223,6 +226,7 @@ const template = {
       'header': 'word',
       'initial': false,
       'type': 'checkbox',
+      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
       'svg': {
         'type': 'image',
         'attributes': {
@@ -233,6 +237,24 @@ const template = {
           'xlink:href': 'icons/6.readsword.png'
         }
       }
+    },
+    {
+      'header': 'example1',
+      'initial': false,
+      'type': 'checkbox',
+      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
+    },
+    {
+      'header': 'example2',
+      'initial': false,
+      'type': 'checkbox',
+      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
+    },
+    {
+      'header': 'example3',
+      'initial': false,
+      'type': 'checkbox',
+      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
     },
     /*=======6 Love =======*/
     {

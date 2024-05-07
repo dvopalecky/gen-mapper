@@ -145,7 +145,7 @@ const template = {
     },
     
 
-       /*------- Believe and repent -------*/
+       /*1------- Believe and repent -------*/
 
     {
       'header': 'believer',
@@ -162,7 +162,7 @@ const template = {
         }
       }
     },
-    /*======= Repents =======*/
+    /*====2=== Repents =======*/
     {
       'header': 'repents',
       'initial': false,
@@ -178,7 +178,7 @@ const template = {
         }
       }
     },
-    /*======= Go and Tell =======*/
+    /*=====3== Go and Tell =======*/
     {
       'header': 'shares',
       'initial': false,
@@ -194,7 +194,7 @@ const template = {
         }
       }
     },
-    /*======= Love =======*/
+    /*======4= Love =======*/
     {
       'header': 'loves',
       'initial': false,
@@ -210,7 +210,7 @@ const template = {
         }
       }
     },
-    /*======= Prays =======*/
+    /*=======5 Prays =======*/
     {
       'header': 'prayer',
       'initial': false,
@@ -226,7 +226,7 @@ const template = {
         }
       }
     },
-    /*======= Reads Word =======*/
+    /*======= 6Reads Word =======*/
     {
       'header': 'word',
       'initial': false,
@@ -242,7 +242,7 @@ const template = {
         }
       }
     },
-    /*======= Baptized =======*/
+    /*======= 7Baptized =======*/
     {
       'header': 'baptized',
       'initial': false,
@@ -258,7 +258,7 @@ const template = {
         }
       }
     },
-    /*======= Filled with the Spirit =======*/
+    /*=8====== Filled with the Spirit =======*/
     {
       'header': 'filled',
       'initial': false,
@@ -274,7 +274,7 @@ const template = {
         }
       }
     },
-    /*======= Takes Communion =======*/
+    /*==9===== Takes Communion =======*/
     {
       'header': 'takesCommunion',
       'initial': false,
@@ -290,7 +290,7 @@ const template = {
         }
       }
     },
-    /*======= Gives "Is generous" =======*/
+    /*===10==== Gives "Is generous" =======*/
     {
       'header': 'gives',
       'initial': false,
@@ -306,7 +306,7 @@ const template = {
         }
       }
     },
-    /*======= Worship/Praise =======*/
+    /*=====11== Worship/Praise =======*/
     {
       'header': 'worships',
       'initial': false,
@@ -322,7 +322,7 @@ const template = {
         }
       }
     },
-    /*======= Be Awed "Walks in signs and wonders" =======*/
+    /*=======12 Be Awed "Walks in signs and wonders" =======*/
     {
       'header': 'walksInSignsWonders',
       'initial': false,

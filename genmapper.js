@@ -1022,6 +1022,126 @@ class GenMapper {
       }
     })
   }
+  
+  // addFieldsToEditWindow (template) {
+  //   let horizontalContainer; // To hold the container for horizontal checkboxes
+  
+  //   template.fields.forEach((field) => {
+  //     const formTable = d3.select('#edit-group-content form table');
+  
+  //     // Handle horizontally aligned checkboxes
+  //     if (field.type === 'checkbox' && field.class === 'horizontal-checkbox') {
+  //       if (!horizontalContainer) { // Create container if it doesn't exist
+  //         const tr = formTable.append('tr');
+  //         const td = tr.append('td')
+  //           .attr('colspan', 2) // Assuming you have 2 columns, adjust if necessary
+  //           .attr('class', 'horizontal-checkbox-container');
+  //         horizontalContainer = td;
+  //       }
+  //       const label = horizontalContainer.append('label');
+  //       label.append('input')
+  //         .attr('type', 'checkbox')
+  //         .attr('id', 'edit-' + field.header)
+  //         .attr('name', field.header);
+  //       label.append('span')
+  //         .text(i18next.t('template.' + field.header))
+  
+  //     } else { // Other inputs
+  //       horizontalContainer = null; // Reset horizontal container for other types of input
+  //       const tr = formTable.append('tr');
+  //       tr.append('td')
+  //         .text(i18next.t('template.' + field.header) + ':')
+  //         .attr('class', 'left-field');
+  
+  //       const td = tr.append('td')
+  //         .attr('class', 'right-field');
+  
+  //       if (field.type === 'radio') {
+  //         field.values.forEach(value => {
+  //           const label = td.append('label');
+  //           label.append('input')
+  //             .attr('type', field.type)
+  //             .attr('name', field.header)
+  //             .attr('value', value.header)
+  //             .attr('id', 'edit-' + field.header + '-' + value.header);
+  //           label.append('span')
+  //             .text(i18next.t('template.' + value.header));
+  //         });
+  //       } else if (field.type === 'textarea') {
+  //         td.append('textarea')
+  //           .attr('name', field.header)
+  //           .attr('id', 'edit-' + field.header)
+  //           .attr('rows', '2')
+  //           .attr('cols', '20')
+  //           .attr('class', 'no-horizontal-resize');
+  //       } else {
+  //         td.append('input')
+  //           .attr('type', field.type)
+  //           .attr('name', field.header)
+  //           .attr('id', 'edit-' + field.header);
+  //       }
+  //     }
+  //   });
+  // }
+
+  // addFieldsToEditWindow(template) {
+  //   let currentRow;
+    
+  //   template.fields.forEach((field) => {
+  //     const formTable = d3.select('#edit-group-content form table');
+  
+  //     // Decide if a new row is needed
+  //     if (!field.class || field.class !== 'horizontal-checkbox' || !currentRow) {
+  //       currentRow = formTable.append('tr');
+  //     }
+  
+  //     // Define the label text
+  //     const fieldDescription = i18next.t('template.' + field.header) + ':';
+      
+  //     if (field.type === 'checkbox' && field.class === 'horizontal-checkbox') {
+  //       const td = currentRow.append('td')
+  //         .attr('class', 'horizontal-checkbox-container')
+  //         .attr('colspan', 2); // Assuming you have 2 columns, adjust if necessary
+  
+  //       const label = td.append('label');
+  //       label.append('input')
+  //         .attr('type', 'checkbox')
+  //         .attr('id', 'edit-' + field.header)
+  //         .attr('name', field.header);
+  //       label.append('span').text(fieldDescription);
+  //     } else {
+  //       currentRow.append('td')
+  //         .text(fieldDescription)
+  //         .attr('class', 'left-field');
+  
+  //       const td = currentRow.append('td').attr('class', 'right-field');
+  
+  //       if (field.type === 'radio') {
+  //         field.values.forEach(value => {
+  //           const label = td.append('label');
+  //           label.append('input')
+  //             .attr('type', field.type)
+  //             .attr('name', field.header)
+  //             .attr('value', value.header)
+  //             .attr('id', 'edit-' + field.header + '-' + value.header);
+  //           label.append('span').text(i18next.t('template.' + value.header));
+  //         });
+  //       } else if (field.type === 'textarea') {
+  //         td.append('textarea')
+  //           .attr('name', field.header)
+  //           .attr('id', 'edit-' + field.header)
+  //           .attr('rows', '2')
+  //           .attr('cols', '20')
+  //           .attr('class', 'no-horizontal-resize');
+  //       } else { // For normal input and non-horizontal checkboxes
+  //         td.append('input')
+  //           .attr('type', field.type)
+  //           .attr('name', field.header)
+  //           .attr('id', 'edit-' + field.header);
+  //       }
+  //     }
+  //   });
+  // }
   switchLanguage (button) {
     this.language = button.id.substring(5, 7)
     i18next.changeLanguage(this.language)
