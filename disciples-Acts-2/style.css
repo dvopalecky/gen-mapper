@@ -64,8 +64,11 @@
   stroke-width: 5;
 }
 
-.no-horizontal-resize {
+/* .no-horizontal-resize {
   resize: vertical; 
+} */
+.min-width {
+  min-width: 20ch;  // 20ch is approximately 20 characters wide
 }
 
 .disciple-individual {

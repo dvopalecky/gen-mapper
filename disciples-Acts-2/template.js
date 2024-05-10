@@ -10,25 +10,112 @@ const template = {
         'template': {
           'helpLegend': '<p>This version of GenMapper is for mapping individual disciples, not groups/churches. Each rectangle represents a disciple.</p><p>Click on the disciple to edit.<br>Click on red (x) button to remove a disciple.<br>Click on green (+) button to add child disciple.</p>',
           'name': 'Name',
+          'reaper': 'Who led them to Jesus Christ?',
+          'phone': 'Phone Number',
+          'address': 'Address',
           'date': 'Date of start following Christ',
           /**======================
            *    Menu items
            *========================**/
-          'believer': 'Believes in Jesus',
-          'repents': 'Is repenting',
-          'baptized': 'Is baptized',
-          'filled': 'Is filled with the Holy Spirit',
-          'word': 'Devoted to reading the Bible ',
-          'example1': '----',
-          'example2': '----',
-          'example3': '----',
-          'loves': 'Devoted to loving others',
-          'takesCommunion': 'Devoted to taking Communion',
-          'prayer': 'Devoted to prayer (eg. Daily)',
-          'walksInSignsWonders': 'Walks in signs and wonders',
-          'gives': 'Gives (eg. Needy, Church, Mission)',
-          'worships': 'Praises God regularly',
-          'shares': 'Shares Jesus weekly',
+          /*------- Believe and Share -------*/
+          
+          
+          'believer-knows': 'Knows the Jesus Story', // red 
+          'believer': 'Knows the "Gospel" story', // Orange
+          'believer-shares': 'Shares the Gospel', // yellow
+          'believer-shares-monthly': 'monthly', // green
+          'believer-shares-weekly': 'weekly', // blue
+          'believer-shares-daily': 'daily', // purple
+          /*------- Repent -------*/
+        
+          
+          'repents-knows': 'Knows a repentance story', // red
+          'repents': 'Knows the "Believe and Repent" story', // purple
+          /*------- Baptism -------*/
+          
+          
+          'baptism-knows': 'Knows a Baptism story', // red
+          'baptized': 'Knows the "Baptism" story', // blue
+          'baptizing': 'Baptizes others', // purple
+          /*------- Holy Spirit -------*/
+          
+          
+          'filled-knows': 'Knows a Holy Spirit story', // red
+          'filled': 'Knows the "Be Filled" story', // orange
+          'filled-walking': 'Walks in the Holy Spirit', // yellow
+          'filled-monthly': 'Walks in the Holy Spirit monthly', // green
+          'filled-weekly': 'Walks in the Holy Spirit weekly', // blue
+          'filled-daily': 'Walks in the Holy Spirit daily', // purple
+          /*------- Devotion Set -------*/
+          /*------- Devoted to the WORD -------*/
+          
+          'word-knows': 'Knows a story about the Word', // red
+          'word-access': 'Has Bible', //orange
+          'word': 'Knows the "Read the Word" story', // yellow
+          'word-monthly': 'Reads the Bible monthly', // green
+          'word-weekly': 'Reads the Bible weekly', // blue
+          'word-daily': 'Reads the Bible daily', // purple
+
+          /*------- Devoted to Fellowship -------*/
+
+          'loves-knows': 'Knows a story about fellowship', // red
+          'loves-access': 'Has fellowship access', // orange
+          'loves': 'Knows the "Love/Fellowship" story', // yellow
+          'loves-monthly': 'In fellowship monthly', // green
+          'loves-weekly': 'In fellowship weekly', // blue
+          'loves-daily': 'In fellowship daily', // purple
+          
+          /*------- Devoted to Communion -------*/
+          
+          'takesCommunion-knows': 'Knows a story about Communion', // red
+          'takesCommunion-access': 'Knows how to take Communion', // orange
+          'takesCommunion': 'Knows the "Communion" story', // yellow
+          'takesCommunion-monthly': 'Takes Communion monthly', // green
+          'takesCommunion-weekly': 'Takes Communion weekly', // blue
+          'takesCommunion-daily': 'Takes Communion daily', // purple
+
+          /*------- Devoted to Prayer -------*/
+
+          'prayer-knows': 'Knows a story about Prayer', // red
+          'prayer-access': 'Has a secret place', // orange
+          'prayer': 'knows the "Pray" story', // yellow
+          'prayer-monthly': 'Prays monthly', // green
+          'prayer-weekly': 'Prays weekly', // blue
+          'prayer-daily': 'Prays daily', // purple
+          
+          /*------- Walks in Signs and Wonders -------*/
+
+          'walksInSignsWonders-knows': 'Knows a story about Signs and Wonders', // red
+          'walksInSignsWonders-access': 'Believes in Signs and Wonders', // orange
+          'walksInSignsWonders': 'Knows the "Be Awed" story', // yellow
+          'walksInSignsWonders-monthly': 'Experiences Signs and Wonders monthly', // green
+          'walksInSignsWonders-weekly': 'Experiences Signs and Wonders weekly', // blue
+          'walksInSignsWonders-daily': 'Experiences Signs and Wonders daily', // purple
+
+          /*------- Gives -------*/
+          'gives-knows': 'Knows a story about Giving', // red
+
+          'gives': 'Knows the "Give" story', // yellow
+          'gives-monthly': 'Gives monthly', // green
+          'gives-weekly': 'Gives weekly', // blue
+          'gives-daily': 'Gives daily', // purple
+
+          /*------- Worship -------*/
+          'worships-faithful': 'Faithful in Worship', // orange
+          'worships-knows': 'Knows a story about Worship', // red knowledge 
+          'worships': 'Knows the "Worship" story', // yellow practice
+          'worships-shares': 'Teaches others to worship', // yellow sharing
+          'worships-monthly': 'Praises God monthly', // green
+          'worships-weekly': 'Praises God weekly', // blue
+          'worships-daily': 'Praises God daily', // purple
+
+          /*------- Makes Disciples -------*/
+          
+          'shares-knows': 'Knows a story about Making Disciples', // red
+          'shares': 'knows the "Go and Tell" story', // orange
+          'shares-1stGen': 'They win souls', // green
+          'shares-2ndGen': 'Helped new soul win souls ', // blue
+          'shares-3rdGen': 'Helped new soul who was won by new soul to win souls', // purple
           
           
           // Sometimes, Weekly, 
@@ -64,8 +151,16 @@ const template = {
           'individual': 'Individual',
           'facilitatesGroup': 'Facilitates Group',
           'facilitatesChurch': 'Facilitates Church',
-          'timothy': 'Is Timothy (key disciple)?',
-          'active': 'Active'
+          'accountable': 'Is held accountable',
+          'active': 'Active',
+          'notes': 'Notes',
+          'accountablenotes': 'Accountability Notes',
+          'barrierstomultiplying': 'Barriers to multiplying',
+          'writtenprayer': 'Written Prayers for them',
+          'availability': 'Next Availability Time',
+          'writtentestimony': "Write their testimony here",
+          'writtengospel': "Their written gospel presentation",
+          
         }
       }
     },
@@ -144,16 +239,51 @@ const template = {
       }
     },
     {
+      'header': 'reaper',
+      'initial': '',
+      'type': 'text'
+      // Omitting 'svg' since we don't want it to display on the map
+    },
+    /**======================
+   *    Each node has a date
+   * of decision to follow Jesus
+   *========================**/
+  /*================================ Menu Date ==============================*/
+  
+  
+    {
       'header': 'date',
+      'initial': null,
+      'type': 'text'
+      
+    },
+    /**----------------------
+     *  Each node has a phone
+     *  number and address
+     *------------------------**/
+    /*-------------------------------- Menu Phone ------------------------------*/
+    
+    
+    {
+      'header': 'phone',
       'initial': null,
       'type': 'text',
       'svg': {
         'type': 'text',
         'attributes': {
           'x': 0,
-          'y': -4
+          'y': -7,
+          'style': 'font-family: Arial; font-size: 12px; font-weight: bold;'
         }
       }
+    },
+    /*================================ Menu Address ===========================*/
+    
+    
+    {
+      'header': 'address',
+      'initial': null,
+      'type': 'text'
     },
     
 
@@ -238,24 +368,7 @@ const template = {
         }
       }
     },
-    {
-      'header': 'example1',
-      'initial': false,
-      'type': 'checkbox',
-      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
-    },
-    {
-      'header': 'example2',
-      'initial': false,
-      'type': 'checkbox',
-      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
-    },
-    {
-      'header': 'example3',
-      'initial': false,
-      'type': 'checkbox',
-      'class': 'horizontal-checkbox', // custom class to indicate layout preferences
-    },
+    
     /*=======6 Love =======*/
     {
       'header': 'loves',
@@ -499,8 +612,9 @@ const template = {
         }
       ]
     },
+    // was Timothy red line, but now is accountable red line. 
     {
-      'header': 'timothy',
+      'header': 'accountable',
       'initial': false,
       'type': 'checkbox',
       'svg': {
@@ -519,6 +633,55 @@ const template = {
       'initial': true,
       'type': 'checkbox'
       // svg defined currently in genmapper.js
-    }
+    },
+    {
+      'header': 'availability',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    }, 
+    {
+      'header': 'accountablenotes',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    }, 
+    {
+      'header': 'barrierstomultiplying',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    }, 
+    {
+      'header': 'writtenprayer',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    },
+     {
+      'header': 'writtentestimony',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    }, 
+     {
+      'header': 'writtengospel',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    }, 
+    {
+      'header': 'notes',
+      'initial': '',
+      'class': 'no-horizontal-resize min-width',
+      'type': 'textarea'
+    },
+
+    //next availability times -  w-sa after 6, sun after 1, m-t all day
+    //places for meeting - 
+    // testimony -- gospel WRITTEN
+    
+    // Their testimony writtn
+    // // 
   ]
 }

@@ -1011,8 +1011,9 @@ class GenMapper {
             .attr('name', field.header)
             .attr('id', 'edit-' + field.header)
             .attr('rows', '2')  // Example row size, adjust as necessary
-            .attr('cols', '20')  // Example column size, adjust as necessary
-            .attr('class', 'no-horizontal-resize');
+            .attr('cols', '28')  // Example column size, adjust as necessary
+            .attr('class', 'no-horizontal-resize')
+            .attr('class', 'no-horizontal-resize min-width');
         } else {
           td.append('input')
               .attr('type', field.type)
