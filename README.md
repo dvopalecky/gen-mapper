@@ -89,5 +89,6 @@ JavaScript/CSS libraries used:
 Icons used:
 * [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - Keyamoon
 
-
+tech Stack:
+https://stackshare.io/kingdomgits/disciple-mapper
 
