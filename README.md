@@ -76,7 +76,7 @@ MIT
 ## Credits
 I found the app [here](https://dvopalecky.github.io/gen-mapper).
 I forked the app [here](). 
-Curtis Sergeant - introduced me to the concept of generational mapping and
+Curtis Sergeant - introduced the OG programmer to the concept of generational mapping and
   provided useful feedback for this app
 Translators from all over the world that helped with different translations
 JavaScript/CSS libraries used:
