@@ -631,32 +631,31 @@ class GenMapper {
     }
   }
 
-  appendRemoveButton (group) {
-    group.append('g')
-      .attr('class', 'removeNode')
-      .append('svg')
-      .html(
-        '<rect x="40" y="0" rx="7" width="25" height="40">' +
-          '<title>' + i18next.t('editGroup.hoverDeleteGroupAndSubtree') + '</title>' +
-        '</rect>' +
-        '<line x1="46" y1="13.5" x2="59" y2="26.5" stroke="white" stroke-width="3"></line>' +
-        '<line x1="59" y1="13.5" x2="46" y2="26.5" stroke="white" stroke-width="3"></line>'
-      )
-  }
+appendRemoveButton (group) {
+  group.append('g')
+    .attr('class', 'removeNode')
+    .append('svg')
+    .html(
+      '<rect x="38" y="0" rx="7" width="20" height="40">' +
+        '<title>' + i18next.t('editGroup.hoverDeleteGroupAndSubtree') + '</title>' +
+      '</rect>' +
+      '<line x1="41.5" y1="13.5" x2="54.5" y2="26.5" stroke="white" stroke-width="3"></line>' + // Subtract 1 more from the x values
+      '<line x1="54.5" y1="13.5" x2="41.5" y2="26.5" stroke="white" stroke-width="3"></line>' // Subtract 1 more from the x values
+    )
+}
 
-  appendAddButton (group) {
-    group.append('g')
-      .attr('class', 'addNode')
-      .append('svg')
-      .html(
-        '<rect x="40" y="40" rx="7" width="25" height="40">' +
-          '<title>' + i18next.t('editGroup.hoverAddChildGroup') + '</title>' +
-        '</rect>' +
-        '<line x1="45" y1="60" x2="60" y2="60" stroke="white" stroke-width="3"></line>' +
-        '<line x1="52.5" y1="52.5" x2="52.5" y2="67.5" stroke="white" stroke-width="3"></line>'
-      )
-  }
-    
+appendAddButton (group) {
+  group.append('g')
+    .attr('class', 'addNode')
+    .append('svg')
+    .html(
+      '<rect x="38" y="40" rx="7" width="20" height="40">' +
+        '<title>' + i18next.t('editGroup.hoverAddChildGroup') + '</title>' +
+      '</rect>' +
+      '<line x1="40.5" y1="60" x2="55.5" y2="60" stroke="white" stroke-width="3"></line>' + // Subtract 1 more from the x values
+      '<line x1="48" y1="52.5" x2="48" y2="67.5" stroke="white" stroke-width="3"></line>' // Subtract 1 more from the x value
+    )
+}
   
 /**========================================================================
  *                            Adding nodes
@@ -1011,7 +1010,7 @@ class GenMapper {
             .attr('name', field.header)
             .attr('id', 'edit-' + field.header)
             .attr('rows', '2')  // Example row size, adjust as necessary
-            .attr('cols', '28')  // Example column size, adjust as necessary
+            .attr('cols', '27')  // Example column size, adjust as necessary
             .attr('class', 'no-horizontal-resize')
             .attr('class', 'no-horizontal-resize min-width');
         } else {

@@ -9,7 +9,7 @@
     "url": "https://github.com/dvopalecky/gen-mapper"
   },
   "bugs": {
-     "url": "https://github.com/dvopalecky/gen-mapper/issues"
+    "url": "https://github.com/dvopalecky/gen-mapper/issues"
   },
   "keywords": [
     "generation",
@@ -17,6 +17,7 @@
     "tree"
   ],
   "dependencies": {
+    "@supabase/supabase-js": "^2.43.1",
     "d3": "4.10.0"
   },
   "private": true,
