@@ -1,0 +1,115 @@
+.node-box {
+  stroke: black;
+  stroke-width: 3;
+  fill: white;
+}
+
+.node-date {
+  font-size: 8px;
+}
+
+.node-timothy {
+  stroke: red;
+  stroke-width: 4;
+  fill: red;
+}
+.immediatecontactAttemptNeeded {
+  stroke-dasharray: 5;
+  stroke: red;
+  stroke-width: 4;
+  fill: red;
+}
+.contactAttemptNeeded {
+  stroke-dasharray: 5;
+  stroke: hotpink;
+  stroke-width: 4;
+  fill: hotpink;
+}
+
+.contactAttempted {
+  stroke-dasharray: 5;
+  stroke: yellow;
+  stroke-width: 4;
+  fill: yellow;
+}
+
+.contactEstablished {
+  stroke-dasharray: 5;
+  stroke: yellow;
+  stroke-width: 4;
+  fill: yellow;
+}
+
+.firstMeetingScheduled {
+  stroke-dasharray: 5;
+  stroke: yellow;
+  stroke-width: 4;
+  fill: yellow;
+}
+
+.firstMeetingComplete {
+  stroke-dasharray: 5;
+  stroke: green;
+  stroke-width: 4;
+  fill: green;
+
+}
+
+.ongoingMeetings {
+  stroke-dasharray: 5;
+  stroke: green;
+  stroke-width: 4;
+}
+
+.beingCoached {
+  stroke-dasharray: 5;
+  stroke: rgb(2, 192, 255);
+  stroke-width: 4;
+}
+
+.coachingOthers {
+  stroke-dasharray: 5;
+  stroke: blue;
+  stroke-width: 4;
+}
+/* .no-horizontal-resize {
+  resize: vertical; 
+} */
+.min-width {
+  min-width: 20ch;  // 20ch is approximately 20 characters wide
+}
+
+.disciple-individual {
+  stroke-dasharray: 7,7;
+  /* No color specified */
+}
+
+.disciple-facilitates-group {
+  stroke-dasharray: 0;
+  stroke: blue; /* Color taken from 'firstMeetingScheduled' in previous CSS */
+  stroke-width: 5;
+}
+
+.disciple-facilitates-church {
+  stroke-dasharray: 0;
+  stroke: purple; /* Color taken from 'ongoingMeetings' in previous CSS */
+  stroke-width: 5;
+}
+
+/* attempt at making checkboxes display left to right */
+.horizontal-checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.horizontal-checkbox-container label {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* spacing between checkboxes */
+}
+
+.checkbox-label {
+  margin-left: 4px;
+}
+/*---- END OF checkbox attempt ----*/
+

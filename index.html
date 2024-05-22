@@ -12,8 +12,18 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/@supabase/ui/dist/style.min.css">
+  <style>
+    .top-right {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
 </head>
 <body> 
+<div class="top-right">
+  <button onclick="window.open('login/index.html', '_self');">Login / Signup</button>
+</div>
 <div style="text-align: center;">
   <h1>Disciple Mapper</h1>
   <!-- <p>Hello, this app should serve for mapping generations of disciples.<br>
@@ -101,7 +111,7 @@
 </div>
 
 
-<button onclick="window.open('login/index.html', '_blank');">Login / Signup</button>
+
 
 </body>
 </html>
