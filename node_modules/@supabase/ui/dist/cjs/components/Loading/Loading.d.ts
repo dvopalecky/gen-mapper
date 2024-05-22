@@ -1,0 +1,7 @@
+import React from 'react';
+interface Props {
+    children: React.ReactNode;
+    active: boolean;
+}
+export default function Loading({ children, active }: Props): JSX.Element;
+export {};

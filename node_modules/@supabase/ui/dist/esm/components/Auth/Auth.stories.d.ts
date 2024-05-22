@@ -1,0 +1,58 @@
+/// <reference types="react" />
+import { Auth } from './';
+declare const _default: {
+    title: string;
+    component: typeof Auth;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+    };
+};
+export declare const withSocialAuth: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+        providers: string[];
+    };
+};
+export declare const withAllSocialAuth: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+        providers: string[];
+    };
+};
+export declare const withSocialLargeButtons: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+        providers: string[];
+        socialButtonSize: string;
+    };
+};
+export declare const withColouredSocialAuth: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+        socialColors: boolean;
+        providers: string[];
+    };
+};
+export declare const withSocialAuthHorizontal: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+        providers: string[];
+        socialLayout: string;
+    };
+};
+export declare const updatePassword: {
+    (args: any): JSX.Element;
+    args: {
+        supabaseClient: import("@supabase/supabase-js").SupabaseClient;
+    };
+};
+export declare const ChangeViewState: (args: any) => JSX.Element;

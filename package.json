@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "@supabase/supabase-js": "^2.43.1",
+    "@supabase/ui": "^0.36.5",
     "d3": "4.10.0"
   },
   "private": true,

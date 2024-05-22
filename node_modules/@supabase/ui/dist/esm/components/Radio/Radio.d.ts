@@ -1,0 +1,42 @@
+import React from 'react';
+interface InputProps {
+    label: string;
+    afterLabel?: string;
+    beforeLabel?: string;
+    value: string;
+    description?: string;
+    disabled?: boolean;
+    id?: string;
+    name?: string;
+    checked?: boolean;
+    onChange?(x: React.ChangeEvent<HTMLInputElement>): void;
+    onFocus?(x: React.FocusEvent<HTMLInputElement>): void;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+}
+interface GroupProps {
+    allowedValues?: any;
+    checkboxes?: any;
+    id?: any;
+    layout?: 'horizontal' | 'vertical';
+    error?: any;
+    descriptionText?: any;
+    label?: any;
+    afterLabel?: string;
+    beforeLabel?: string;
+    labelOptional?: any;
+    name?: any;
+    type?: any;
+    transform?: any;
+    value?: any;
+    className?: any;
+    children?: React.ReactNode;
+    options?: Array<InputProps>;
+    onChange?(x: React.ChangeEvent<HTMLInputElement>): void;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+}
+declare function RadioGroup({ id, layout, error, descriptionText, label, afterLabel, beforeLabel, labelOptional, children, className, type, options, value, name, onChange, size, }: GroupProps): JSX.Element;
+declare function Radio({ id, disabled, value, label, afterLabel, beforeLabel, description, name, checked, onChange, onFocus, size, }: InputProps): JSX.Element;
+declare namespace Radio {
+    var Group: typeof RadioGroup;
+}
+export default Radio;

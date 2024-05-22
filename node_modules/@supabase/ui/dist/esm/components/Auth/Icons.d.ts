@@ -1,0 +1,11 @@
+/// <reference types="react" />
+export declare const google: () => JSX.Element;
+export declare const facebook: () => JSX.Element;
+export declare const twitter: () => JSX.Element;
+export declare const apple: () => JSX.Element;
+export declare const github: () => JSX.Element;
+export declare const gitlab: () => JSX.Element;
+export declare const bitbucket: () => JSX.Element;
+export declare const discord: () => JSX.Element;
+export declare const azure: () => JSX.Element;
+export declare const twitch: () => JSX.Element;

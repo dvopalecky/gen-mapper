@@ -1,0 +1,118 @@
+/// <reference types="react" />
+import Select from '.';
+declare const _default: {
+    title: string;
+    component: typeof Select;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        disabled: boolean;
+        label: string;
+        className: string;
+        layout: string;
+        children: JSX.Element[];
+    };
+};
+export declare const withCheckboxes: {
+    (args: any): JSX.Element;
+    args: {
+        disabled: boolean;
+        checkboxes: string[];
+        allowedValues: string[];
+        className: string;
+        layout: string;
+    };
+};
+export declare const ErrorState: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        className: string;
+        value: string;
+        error: string;
+        allowedValues: string[];
+        layout: string;
+    };
+};
+export declare const withOptionGroup: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        className: string;
+        value: string;
+        layout: string;
+    };
+};
+export declare const withIcon: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        className: string;
+        value: string;
+        icon: JSX.Element;
+        allowedValues: string[];
+        layout: string;
+    };
+};
+export declare const withOptionLabel: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        className: string;
+        value: string;
+        labelOptional: string;
+        allowedValues: string[];
+        layout: string;
+    };
+};
+export declare const withBeforeAndAfterLabel: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        beforeLabel: string;
+        afterLabel: string;
+        className: string;
+        value: string;
+        labelOptional: string;
+        allowedValues: string[];
+        layout: string;
+    };
+};
+export declare const withDescription: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        className: string;
+        value: string;
+        descriptionText: string;
+        allowedValues: string[];
+        layout: string;
+    };
+};
+export declare const size: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        value: string;
+        descriptionText: string;
+        allowedValues: string[];
+        layout: string;
+        size: string;
+    };
+};

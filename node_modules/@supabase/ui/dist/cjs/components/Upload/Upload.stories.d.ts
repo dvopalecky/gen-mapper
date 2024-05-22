@@ -1,0 +1,8 @@
+/// <reference types="react" />
+import Upload from '.';
+declare const _default: {
+    title: string;
+    component: typeof Upload;
+};
+export default _default;
+export declare const Draggable: () => JSX.Element;

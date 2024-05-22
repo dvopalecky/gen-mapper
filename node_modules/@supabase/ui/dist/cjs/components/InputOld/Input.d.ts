@@ -1,0 +1,18 @@
+export const SIZES: string[];
+export default Input;
+declare function Input({ className, type, size, isError, children, ...props }: {
+    [x: string]: any;
+    className?: string | undefined;
+    type?: string | undefined;
+    size?: string | undefined;
+    isError?: boolean | undefined;
+    children: any;
+}): JSX.Element;
+declare namespace Input {
+    namespace propTypes {
+        const size: PropTypes.Requireable<string>;
+        const isError: PropTypes.Requireable<boolean>;
+        const className: PropTypes.Requireable<string>;
+    }
+}
+import PropTypes from "prop-types";

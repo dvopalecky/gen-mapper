@@ -1,0 +1,50 @@
+/// <reference types="react" />
+import { Toast } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Toast;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        message: string;
+        duration: number;
+    };
+};
+export declare const Success: {
+    (args: any): JSX.Element;
+    args: {
+        message: string;
+        duration: number;
+    };
+};
+export declare const Error: {
+    (args: any): JSX.Element;
+    args: {
+        message: string;
+        duration: number;
+    };
+};
+export declare const Loading: {
+    (args: any): JSX.Element;
+    args: {
+        message: string;
+        duration: number;
+    };
+};
+export declare const withActions: {
+    (args: any): JSX.Element;
+    args: {
+        message: string;
+        duration: number;
+    };
+};
+export declare const UsingToasts: {
+    ({ message, duration, ...rest }: any): JSX.Element;
+    args: {
+        message: string;
+        description: string;
+        duration: number;
+    };
+};

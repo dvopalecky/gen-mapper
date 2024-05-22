@@ -1,0 +1,13 @@
+/// <reference types="react" />
+import { Loading } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Loading;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+    };
+};

@@ -1,0 +1,11 @@
+/// <reference types="react" />
+import { Popover } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Popover;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {};
+};

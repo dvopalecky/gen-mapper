@@ -1,0 +1,58 @@
+/// <reference types="react" />
+import { Toggle } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Toggle;
+    argTypes: {
+        label: {
+            control: string;
+        };
+    };
+};
+export default _default;
+export declare const Primary: {
+    (args: any): JSX.Element;
+    args: {
+        descriptionText: string;
+        disabled: boolean;
+        error: string;
+        label: string;
+        labelOptional: string;
+        name: string;
+        layout: string;
+    };
+};
+export declare const checkedDefault: {
+    (args: any): JSX.Element;
+    args: {
+        defaultChecked: boolean;
+        descriptionText: string;
+        label: string;
+        labelOptional: string;
+    };
+};
+export declare const noLabel: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        disabled: boolean;
+        error: string;
+        name: string;
+        layout: string;
+    };
+};
+export declare const withBeforeAndAfterLabel: {
+    (args: any): JSX.Element;
+    args: {
+        label: string;
+        beforeLabel: string;
+        afterLabel: string;
+    };
+};
+export declare const size: {
+    (args: any): JSX.Element;
+    args: {
+        label: string;
+        size: string;
+    };
+};

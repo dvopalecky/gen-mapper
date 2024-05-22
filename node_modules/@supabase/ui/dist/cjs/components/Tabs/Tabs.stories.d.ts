@@ -1,0 +1,62 @@
+/// <reference types="react" />
+import { Tabs } from './';
+declare const _default: {
+    title: string;
+    component: typeof Tabs;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {};
+};
+export declare const Underlined: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+    };
+};
+export declare const WithIcons: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+    };
+};
+export declare const LargeButtons: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        size: string;
+    };
+};
+export declare const BlockTabs: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        block: boolean;
+    };
+};
+export declare const Scroll: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        block: boolean;
+        scrollable: boolean;
+    };
+};
+export declare const addOnBefore: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        size: string;
+        addOnBefore: JSX.Element;
+    };
+};
+export declare const addOnAfter: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        size: string;
+        addOnAfter: JSX.Element;
+    };
+};
+export declare const OneTab: () => JSX.Element;

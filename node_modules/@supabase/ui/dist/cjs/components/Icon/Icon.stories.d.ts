@@ -1,0 +1,14 @@
+/// <reference types="react" />
+import { IconMail } from './../../index';
+declare const _default: {
+    title: string;
+    component: typeof IconMail;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        size: number;
+        strokeWidth: number;
+    };
+};

@@ -1,0 +1,33 @@
+import React from 'react';
+import { AnimationTailwindClasses } from '../../types';
+interface Props {
+    children?: React.ReactNode;
+    customFooter?: React.ReactNode;
+    closable?: boolean;
+    description?: string;
+    hideFooter?: boolean;
+    alignFooter?: 'right' | 'left';
+    layout?: 'horizontal' | 'vertical';
+    icon?: React.ReactNode;
+    loading?: boolean;
+    onCancel?: any;
+    cancelText?: string;
+    onConfirm?: any;
+    confirmText?: string;
+    showIcon?: boolean;
+    footerBackground?: boolean;
+    title?: string;
+    variant?: 'danger' | 'warning' | 'success';
+    visible: boolean;
+    size?: 'tiny' | 'small' | 'medium' | 'large';
+    style?: React.CSSProperties;
+    overlayStyle?: React.CSSProperties;
+    contentStyle?: React.CSSProperties;
+    className?: string;
+    overlayClassName?: string;
+    transition?: AnimationTailwindClasses;
+    transitionOverlay?: AnimationTailwindClasses;
+    triggerElement?: React.ReactNode;
+}
+declare const Modal: ({ children, customFooter, closable, description, hideFooter, alignFooter, layout, loading, cancelText, onConfirm, onCancel, confirmText, showIcon, title, footerBackground, icon, variant, visible, size, style, overlayStyle, contentStyle, className, overlayClassName, triggerElement, }: Props) => JSX.Element;
+export default Modal;

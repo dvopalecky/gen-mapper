@@ -1,0 +1,35 @@
+/// <reference types="react" />
+import { IconAirplay } from '../Icon/icons/IconAirplay';
+import Avatar from './Avatar';
+declare const _default: {
+    title: string;
+    component: typeof Avatar;
+};
+export default _default;
+export declare const Image: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        src: string;
+    };
+};
+export declare const Text: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        text: string;
+    };
+};
+export declare const Icon: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        Icon: typeof IconAirplay;
+    };
+};
+export declare const Fallback: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+    };
+};

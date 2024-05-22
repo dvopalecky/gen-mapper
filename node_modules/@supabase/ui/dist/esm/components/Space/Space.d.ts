@@ -1,0 +1,3 @@
+/// <reference types="react" />
+declare function Space({ direction, size, className, block, style, minus, children, }: any): JSX.Element;
+export default Space;

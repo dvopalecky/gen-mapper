@@ -1,0 +1,16 @@
+/// <reference types="react" />
+import { Accordion } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Accordion;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {};
+};
+export declare const withMultiple: (args: any) => JSX.Element;
+export declare const withBorder: (args: any) => JSX.Element;
+export declare const withDefaultActive: (args: any) => JSX.Element;
+export declare const withIconLeft: (args: any) => JSX.Element;
+export declare const withCustomIcon: (args: any) => JSX.Element;

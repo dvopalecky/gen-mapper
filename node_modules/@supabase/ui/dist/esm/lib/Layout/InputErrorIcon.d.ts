@@ -1,0 +1,7 @@
+import React from 'react';
+interface Props {
+    style?: React.CSSProperties;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+}
+export default function InputErrorIcon({ style, size }: Props): JSX.Element;
+export {};

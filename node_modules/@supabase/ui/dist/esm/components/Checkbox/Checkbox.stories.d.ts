@@ -1,0 +1,63 @@
+/// <reference types="react" />
+import { Checkbox } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Checkbox;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        label: string;
+        description: string;
+    };
+};
+export declare const withGroup: {
+    (args: any): JSX.Element;
+    args: {
+        id: string;
+        label: string;
+        description: string;
+        disabled: boolean;
+        className: string;
+        layout: string;
+    };
+};
+export declare const withGroupHorizontal: {
+    (args: any): JSX.Element;
+    args: {
+        id: string;
+        label: string;
+        description: string;
+        disabled: boolean;
+        className: string;
+        layout: string;
+    };
+};
+export declare const size: {
+    (args: any): JSX.Element;
+    args: {
+        id: string;
+        label: string;
+        description: string;
+        disabled: boolean;
+        className: string;
+        layout: string;
+        size: string;
+    };
+};
+export declare const withBeforeAndAfterLabels: {
+    (args: any): JSX.Element;
+    args: {
+        label: string;
+        beforeLabel: string;
+        afterLabel: string;
+        options: {
+            label: string;
+            beforeLabel: string;
+            afterLabel: string;
+            description: string;
+        }[];
+        className: string;
+    };
+};

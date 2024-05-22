@@ -1,0 +1,20 @@
+import React from 'react';
+declare type Props = {
+    align?: string;
+    children?: any;
+    className?: string;
+    descriptionText?: string;
+    error?: string;
+    id?: string;
+    label?: string;
+    labelOptional?: string;
+    layout?: 'horizontal' | 'vertical';
+    style?: React.CSSProperties;
+    flex?: boolean;
+    responsive?: boolean;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+    beforeLabel?: string;
+    afterLabel?: string;
+};
+export declare function FormLayout({ align, children, className, descriptionText, error, id, label, labelOptional, layout, style, flex, responsive, size, beforeLabel, afterLabel, }: Props): JSX.Element;
+export {};

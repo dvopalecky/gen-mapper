@@ -1,0 +1,10 @@
+/// <reference types="react" />
+import Typography from '.';
+declare const _default: {
+    title: string;
+    component: typeof Typography;
+};
+export default _default;
+export declare const article: () => JSX.Element;
+export declare const Titles: () => JSX.Element;
+export declare const Texts: () => JSX.Element;

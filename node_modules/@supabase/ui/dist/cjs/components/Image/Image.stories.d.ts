@@ -1,0 +1,39 @@
+/// <reference types="react" />
+import { Image } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Image;
+};
+export default _default;
+export declare const Normal: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        source: string;
+    };
+};
+export declare const Circle: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        type: string;
+        source: string;
+    };
+};
+export declare const Rounded: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        type: string;
+        source: string;
+    };
+};
+export declare const Responsive: {
+    (args: any): JSX.Element;
+    args: {
+        active: boolean;
+        type: string;
+        source: string;
+        responsive: boolean;
+    };
+};

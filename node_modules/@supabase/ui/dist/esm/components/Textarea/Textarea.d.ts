@@ -1,0 +1,17 @@
+export default Textarea;
+declare function Textarea({ className, isError, rows, children, borderless, ...props }: {
+    [x: string]: any;
+    className?: string | undefined;
+    isError?: boolean | undefined;
+    rows?: number | undefined;
+    children: any;
+    borderless?: boolean | undefined;
+}): JSX.Element;
+declare namespace Textarea {
+    namespace propTypes {
+        const isError: PropTypes.Requireable<boolean>;
+        const className: PropTypes.Requireable<string>;
+        const borderless: PropTypes.Requireable<boolean>;
+    }
+}
+import PropTypes from "prop-types";

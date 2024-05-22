@@ -1,0 +1,36 @@
+/// <reference types="react" />
+import { Badge } from './';
+declare const _default: {
+    title: string;
+    component: typeof Badge;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {};
+};
+export declare const withColor: {
+    (args: any): JSX.Element;
+    args: {
+        color: string;
+    };
+};
+export declare const withDot: {
+    (args: any): JSX.Element;
+    args: {
+        dot: boolean;
+    };
+};
+export declare const large: {
+    (args: any): JSX.Element;
+    args: {
+        size: string;
+    };
+};
+export declare const withDotLarge: {
+    (args: any): JSX.Element;
+    args: {
+        size: string;
+        dot: boolean;
+    };
+};

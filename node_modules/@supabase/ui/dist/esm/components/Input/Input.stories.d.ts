@@ -1,0 +1,140 @@
+/// <reference types="react" />
+import { Input } from '.';
+declare const _default: {
+    title: string;
+    component: typeof Input;
+};
+export default _default;
+export declare const Default: {
+    (args: any): JSX.Element;
+    args: {
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        layout: string;
+    };
+};
+export declare const ErrorState: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        error: string;
+    };
+};
+export declare const withIcon: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        icon: any;
+    };
+};
+export declare const withOption: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        labelOptional: string;
+    };
+};
+export declare const withDescription: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        descriptionText: string;
+    };
+};
+export declare const withCustomStyle: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        style: {
+            width: string;
+        };
+    };
+};
+export declare const textArea: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+    };
+};
+export declare const textAreaWithLimit: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        labelOptional: string;
+        rows: number;
+        limit: number;
+    };
+};
+export declare const withRevealAndCopy: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        labelOptional: string;
+        value: string;
+        copy: boolean;
+        reveal: boolean;
+    };
+};
+export declare const withCustomActions: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        labelOptional: string;
+        value: string;
+        actions: JSX.Element[];
+    };
+};
+export declare const withBeforeAndAfterLabel: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        beforeLabel: string;
+        afterLabel: string;
+    };
+};
+export declare const size: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        size: string;
+    };
+};
+export declare const borderless: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        label: string;
+        borderless: boolean;
+        size: string;
+    };
+};
+export declare const date: {
+    (args: any): JSX.Element;
+    args: {
+        type: string;
+        placeholder: string;
+        disabled: boolean;
+        label: string;
+        layout: string;
+    };
+};

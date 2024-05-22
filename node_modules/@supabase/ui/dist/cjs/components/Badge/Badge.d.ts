@@ -1,0 +1,9 @@
+/// <reference types="react" />
+interface Props {
+    color?: 'gray' | 'red' | 'yellow' | 'green' | 'blue' | 'indigo' | 'purple' | 'pink';
+    children: string;
+    size?: 'large' | 'small';
+    dot?: boolean;
+}
+declare function Badge({ color, children, size, dot }: Props): JSX.Element;
+export default Badge;

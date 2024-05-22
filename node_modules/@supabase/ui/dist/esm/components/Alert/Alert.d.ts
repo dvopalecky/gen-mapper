@@ -1,0 +1,11 @@
+import React from 'react';
+interface Props {
+    variant?: 'success' | 'danger' | 'warning' | 'info';
+    className?: string;
+    title: string;
+    withIcon?: boolean;
+    closable?: boolean;
+    children?: React.ReactNode;
+}
+declare const Alert: ({ variant, className, title, withIcon, closable, children, }: Props) => JSX.Element;
+export default Alert;

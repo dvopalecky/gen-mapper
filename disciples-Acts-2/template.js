@@ -31,7 +31,7 @@ const template = {
           /*------- Repent -------*/
         
           
-          'repents-knows': '2. Knows a "Believe and Repent" story', // red
+          'repents-knows': '2. Knows a "Believe & Repent" story', // red
           'repents': '', // purple
           /*------- Baptism -------*/
           
@@ -136,6 +136,8 @@ const template = {
            *               FOLLOW-UP STATUS
            *=============================================**/
           'followupStatus': 'Follow-up Status',
+          'nofollowupneeded': 'No Follow-up Needed',
+          'immediatecontactAttemptNeeded': 'Urgent Contact Attempt Needed',
           'contactAttemptNeeded': 'Contact Attempt Needed',
           'contactAttempted': 'Contact Attempted',
           'contactEstablished': 'Contact Established',
@@ -661,15 +663,26 @@ const template = {
     //     }
     //   }
     // },
-    
-    
-    
-    {
+      {
       'header': 'followupStatus',
-      'initial': 'contactAttemptNeeded',
+      'initial': 'immediatecontactAttemptNeeded',
       'type': 'radio',
       'inheritsFrom': 'box',
       'values': [
+        {
+          'header': 'nofollowupneeded',
+          'class': 'nofollowupneeded',
+          'attributes': {
+            'rx': 10
+          }
+        },
+        {
+          'header': 'immediatecontactAttemptNeeded',
+          'class': 'immediatecontactAttemptNeeded',
+          'attributes': {
+            'rx': 10
+          }
+        },
         {
           'header': 'contactAttemptNeeded',
           'class': 'contactAttemptNeeded',

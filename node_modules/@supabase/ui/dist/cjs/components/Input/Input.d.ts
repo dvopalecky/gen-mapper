@@ -1,0 +1,52 @@
+import React from 'react';
+export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+    copy?: boolean;
+    defaultValue?: string | number;
+    descriptionText?: string;
+    disabled?: boolean;
+    error?: string;
+    icon?: any;
+    inputRef?: string;
+    label?: string;
+    afterLabel?: string;
+    beforeLabel?: string;
+    labelOptional?: string;
+    layout?: 'horizontal' | 'vertical';
+    name?: string;
+    reveal?: boolean;
+    actions?: React.ReactNode;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+    borderless?: boolean;
+}
+declare function Input({ autoComplete, autoFocus, className, copy, defaultValue, descriptionText, disabled, error, icon, id, inputRef, label, afterLabel, beforeLabel, labelOptional, layout, name, onChange, onBlur, onFocus, onKeyDown, placeholder, type, value, style, reveal, actions, size, borderless, ...props }: Props): JSX.Element;
+declare namespace Input {
+    var TextArea: ({ autoComplete, autofocus, className, descriptionText, disabled, error, icon, id, label, afterLabel, beforeLabel, labelOptional, layout, name, onChange, onFocus, onBlur, onKeyDown, placeholder, value, style, rows, limit, size, borderless, }: TextAreaProps) => JSX.Element;
+}
+export interface TextAreaProps {
+    className?: string;
+    autoComplete?: boolean;
+    autofocus?: boolean;
+    descriptionText?: string;
+    disabled?: boolean;
+    error?: string;
+    icon?: any;
+    id?: string;
+    label?: string;
+    afterLabel?: string;
+    beforeLabel?: string;
+    labelOptional?: string;
+    layout?: 'horizontal' | 'vertical';
+    name?: string;
+    onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void;
+    onFocus?(x: React.FocusEvent<HTMLTextAreaElement>): void;
+    onBlur?(x: React.FocusEvent<HTMLTextAreaElement>): void;
+    onKeyDown?(x: React.KeyboardEvent<HTMLTextAreaElement>): void;
+    placeholder?: string;
+    value?: any;
+    style?: React.CSSProperties;
+    rows?: number;
+    limit?: number;
+    size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge';
+    borderless?: boolean;
+}
+export default Input;

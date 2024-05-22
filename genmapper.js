@@ -1010,7 +1010,7 @@ appendAddButton (group) {
             .attr('name', field.header)
             .attr('id', 'edit-' + field.header)
             .attr('rows', '2')  // Example row size, adjust as necessary
-            .attr('cols', '27')  // Example column size, adjust as necessary
+            .attr('cols', '28')  // Example column size, adjust as necessary
             .attr('class', 'no-horizontal-resize')
             .attr('class', 'no-horizontal-resize min-width');
         } else {
@@ -1190,5 +1190,7 @@ appendAddButton (group) {
     }
   }
 }
+
+
 
 window.genmapper = new GenMapper()

@@ -1,0 +1,7 @@
+/// <reference types="react" />
+interface ContextProps {
+    formContextOnChange: any;
+}
+export declare const SelectContextProvider: (props: any) => JSX.Element;
+export declare const useSelectContext: () => ContextProps;
+export {};

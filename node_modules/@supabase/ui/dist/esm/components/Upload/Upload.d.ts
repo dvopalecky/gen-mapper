@@ -1,0 +1,6 @@
+/// <reference types="react" />
+declare function Upload({ label, children }: any): JSX.Element;
+declare namespace Upload {
+    var Dragger: ({ label, afterLabel, beforeLabel, layout, children, files, setFiles, }: any) => JSX.Element;
+}
+export default Upload;

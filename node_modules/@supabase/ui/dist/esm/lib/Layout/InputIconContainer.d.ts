@@ -1,0 +1,2 @@
+/// <reference types="react" />
+export default function InputIconContainer({ icon }: any): JSX.Element;
