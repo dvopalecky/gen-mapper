@@ -10,10 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@latest"></script>
+  
 </head>
 
 <body>
-  
   <div class="section">
     <div class="container">
       <div class="row full-height justify-content-center">
@@ -32,15 +33,17 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Log In</h4>
-                      <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                      </div>  
-                      <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                      </div>
-                      <a href="#" class="btn mt-4">submit</a>
+                      <form id="login-form" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                          <input type="email" name="login-email" class="form-style" placeholder="Your Email" id="login-email" autocomplete="off">
+                          <i class="input-icon uil uil-at"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="password" name="login-password" class="form-style" placeholder="Your Password" id="login-password" autocomplete="off">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div></br>
+                        <button type="submit" class="btn btn-login">submit</button>
+                      </form>
                       <div class="social-login mt-4 text-center">
                         <a href="#" class="social-icon">
                           <i class="fab fa-facebook-f"></i>
@@ -52,9 +55,9 @@
                           <i class="fab fa-github"></i>
                         </a>
                       </div>
-                        <p class="mb-0 mt-4 text-center">
-                          <a href="#0" class="link">Forgot your password?</a>
-                        </p>
+                      <p class="mb-0 mt-4 text-center">
+                        <a href="#0" class="link">Forgot your password?</a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -63,19 +66,24 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Sign Up</h4>
-                      <div class="form-group">
-                        <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
-                        <i class="input-icon uil uil-user"></i>
-                      </div>  
-                      <div class="form-group mt-2">
-                        <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                      </div>  
-                      <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                      </div>
-                      <a href="#" class="btn mt-4">submit</a>
+                      <form id="signup-form" onsubmit="handleSignup(event)">
+                        <div class="form-group">
+                          <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
+                          <i class="input-icon uil uil-user"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="email" name="signup-email" class="form-style" placeholder="Your Email" id="signup-email" autocomplete="off">
+                          <i class="input-icon uil uil-at"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="password" name="signup-password" class="form-style" placeholder="Your Password" id="signup-password" autocomplete="off">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div></br>
+                        <button type="submit" class="btn btn-signup">submit</button>
+                        <button id="signout-button">Sign Out</button>
+                        
+                      </form>
+
                       <div class="social-login mt-4 text-center">
                         <a href="#" class="social-icon">
                           <i class="fab fa-facebook-f"></i>
@@ -87,7 +95,6 @@
                           <i class="fab fa-github"></i>
                         </a>
                       </div>
-                    
                     </div>
                   </div>
                 </div>
@@ -99,5 +106,82 @@
     </div>
   </div>
   
+  <script>
+      let SUPABASE_URL, SUPABASE_ANON_KEY;
+
+      fetch('/api/config')
+        .then(response => response.json())
+        .then(config => {
+          SUPABASE_URL = config.SUPABASE_URL;
+          SUPABASE_ANON_KEY = config.SUPABASE_ANON_KEY;
+
+      const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // hard coded supabase url and key
+      // ! WARNING  security risk use environment variable 
+      // const SUPABASE_URL = 'https://xezfjntagznxsupfwewc.supabase.co'
+      // const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlemZqbnRhZ3pueHN1cGZ3ZXdjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY0MDkzNzEsImV4cCI6MjAzMTk4NTM3MX0.bgqziA5e4oQQnQXuwRbqLyilgLgrfsib2c2TheFmxDA' //! WARNING  security risk use environment variable
+
+      // const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      
+      // Sign in a user send the data to supabase and log the response
+      async function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const { data, error } = await _supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        });
+        if (error) {
+          console.error("Error signing in:", error);
+        } else {
+          console.log("User signed in:", data.user);
+          console.log("Session:", data.session);
+        }
+      }
+      
+      // Sign up a user send the data to supabase and log the response
+      function handleSignup(event) {
+        event.preventDefault();
+        const name = document.getElementById('logname').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const signupData = { email, password };
+        _supabase.auth.signUp(signupData).then(response => {
+          console.log(response);
+        });
+      }
+
+      // Check if a user is logged in or not
+      window.onload = async function() {
+        let { data: session, error } = await _supabase.auth.getSession();
+
+        if (error) {
+          console.error("Error getting session:", error);
+        } else if (session) {
+          const currentTime = Math.floor(Date.now() / 1000);
+          if (session.expires_at < currentTime) {
+            const { data: refreshedSession, error } = await _supabase.auth.refreshSession();
+            if (error) {
+              console.error("Error refreshing session:", error);
+            } else {
+              session = refreshedSession;
+            }
+          }
+          console.log("User is logged in:", session.user);
+        } else {
+          console.log("User is not logged in.");
+        }
+      };
+
+      // Sign out a user javascript is linked to the button in the html
+      document.getElementById('signout-button').addEventListener('click', async function() {
+        const { error } = await _supabase.auth.signOut();
+        if (error) console.error("Error signing out:", error);
+        else console.log("User signed out.");
+      });
+  </script>
+  <!-- <script type="module" src="login.js" ></script> -->
 </body>
 </html>

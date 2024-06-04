@@ -664,10 +664,7 @@ const template = {
     //   }
     // },
     
-    
-    
-    {
-      'header': 'followupStatus',
+    'header': 'followupStatus',
       'initial': 'immediatecontactAttemptNeeded',
       'type': 'radio',
       'inheritsFrom': 'box',

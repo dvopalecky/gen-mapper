@@ -86,6 +86,28 @@ JavaScript/CSS libraries used:
 * [lodash](https://lodash.com) - JS Foundation and other contributors
 * [hint.css](https://github.com/chinchang/hint.css/) - Kushagra Gour
 
+Here's a brief description of each library:
+
+d3.min.js: D3.js (Data-Driven Documents) is a JavaScript library for producing dynamic, interactive data visualizations in web browsers. It makes use of the widely implemented SVG, HTML5, and CSS standards.
+
+FileSaver.min.js: FileSaver.js is a solution for saving files on the client-side, and is perfect for web apps that need to generate files, or for saving sensitive information that shouldn't be sent to an external server.
+
+i18next.min.js: i18next is an internationalization-framework written in and for JavaScript. It provides you with a complete solution to localize your product from web to mobile and desktop.
+
+lodash.min.js: Lodash is a JavaScript utility library that provides helpful methods for manipulation and combination of arrays, objects, and other data types.
+
+xlsx.core.min.js: xlsx.core.js is a library for parsing and writing data in various spreadsheet formats (Excel, CSV, etc.).
+
+As for Supabase, it's a bit different. Supabase is a backend-as-a-service and it provides a RESTful API to interact with your database, so it's not something you would download and serve from your server like a JavaScript library. Instead, you would interact with it using HTTP requests from your client-side JavaScript code.
+
+However, Supabase does provide a JavaScript client library (@supabase/supabase-js) that you can use to make these HTTP requests more easily. This library can be included in your project via a package manager like npm or yarn, or via a CDN.
+
+Here's how you can include it via a CDN:
+
+Remember to replace 1.11.6 with the version of @supabase/supabase-js that you want to use. After including this script, you can use supabase as a global variable in your JavaScript code.
+
+
+
 Icons used:
 * [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - Keyamoon
 

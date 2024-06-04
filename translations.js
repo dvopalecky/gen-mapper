@@ -25,7 +25,7 @@ const translations = {
         'btnDelete': 'Delete subtree',
         'btnImportSubtree': 'Import subtree',
         'btnExportSubtree': 'Export subtree',
-        'elementParent': 'Discipler',
+        'elementParent': 'Key Connection',
         'notAvaliable': 'N/A',
         'hoverDeleteGroupAndSubtree': 'Delete group &amp; subtree',
         'hoverAddChildGroup': 'Add child group'

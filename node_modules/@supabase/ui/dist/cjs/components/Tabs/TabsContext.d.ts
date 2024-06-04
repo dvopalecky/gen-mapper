@@ -1,4 +1,0 @@
-/// <reference types="react" />
-export declare const TabsContext: import("react").Context<{
-    activeId: string;
-}>;

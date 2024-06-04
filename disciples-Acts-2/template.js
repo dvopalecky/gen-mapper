@@ -1,7 +1,11 @@
+
 const boxHeight = 80
 const textHeight = 14
 const textMargin = 6
 const xOffset = 1 // Change this value to move all icons
+
+
+
 const template = {
   'name': 'Disciples 0.2',
   'translations': {
