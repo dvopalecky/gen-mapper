@@ -1,0 +1,113 @@
+Project Proposal: SalvationMapper
+Project Title:
+SalvationMapper: Empowering Mentorship and Community Engagement
+
+Project Overview:
+SalvationMapper is a proposed web application designed to revolutionize mentorship and community development initiatives. By integrating three distinct modules, Oikos, Communities, and Zipmapper, the platform will streamline the user's ability to manage mentoring relationships, engage with communities, and visualize their impact on a map-based interface.
+
+Customer Needs:
+The customer, a business owner, seeks a dynamic website application to enhance their operations. They require a project manager to oversee a team of programmers in developing this application, consisting of three main parts:
+
+Oikos: A tool to help users organize and track their mentoring efforts, allowing them to store specific data about each mentee.
+Communities: A module similar to Oikos but focused on communities, enabling users to map and train communities, and visualize their growth.
+Zipmapper: A mapping application, akin to Google My Maps, allowing users to layer counties, zip codes, and custom pins, integrating with Oikos and Communities to visualize the locations of mentees and communities.
+The customer has existing code for parts one and two, and a recommended tech stack, although it is not mandatory. They also mention the possibility of another project manager for part three, making this proposal a screening process.
+
+Assumptions:
+    The customer recommends a tech stack, and the website is expected to be in Javascript, CSS, and HTML.
+    The project manager will initially cover the costs of building the website, with the customer paying after completion.
+    Existing code for parts one and two can be adapted to meet requirements, but part three will require more development.
+    The customer may opt for a different project manager for part three.
+
+Project Scope:
+    The project scope encompasses creating a website that integrates the three distinct apps into one seamless platform. Oikos will enable users to manage mentoring relationships, Communities will facilitate community training and engagement, and Zipmapper will provide a visual mapping tool.
+
+Deliverables:
+    A fully functional three-part website application.
+    Comprehensive documentation of the development process and final product.
+    User-friendly training materials for administrators and users.
+
+Resources:
+    Project Manager: Overseeing the entire project, coordinating with the team, and ensuring timely delivery.
+    Team of Programmers: Experienced in the required tech stack, responsible for coding and development.
+    Existing Code: Provided by the customer for parts one and two, serving as a foundation.
+    Techstack Resources: Supabase for database and user management, Github for code management, Vercel for hosting, and Namecheap for the domain name.
+
+Schedule:
+Part one: Due in 1 week from project proposal approval (Expected due date: May 17, 2024).
+Part two: Due 1 week after part one's completion (Expected due date: May 24, 2024).
+Part three: Due in 1 year (Expected due date: May 24, 2025).
+Estimated programmer schedule: 2 hours per day, 10-14 hours a week. 
+
+## Project Cost Breakdown
+
+### Part 1 and 2
+- Resources (Supabase and Vercel): $40/month
+- Domain name: $25/year (starting in 2025)
+- Labor:
+    - Project manager: $0 (paid after project completion)
+    - Programmer 1: $20/hour
+        - Week 1: Expected = $280
+            - If delayed by 1 week = $560
+            - Total with contingency = $600
+        - Week 2: Expected = $280
+            - If delayed by 1 week = $560
+            - Total with contingency = $600
+    - Unexpected resources fund:
+        - Week 1: $100
+        - Week 2: $20
+    - Grand total for labor = $1320
+- Customer payout for part 1 and 2 = $2000
+
+### Part 3
+- Customer payout = $5000
+- Resources required:
+    - Custom map layers (counties): $50
+    - Supabase login: $50
+    - List of custom locations: $500
+    - Programmer hours (56 hours): $1120
+    - Resources contingencies: $500
+- Total cost for part 3 = $2220
+
+### Summary
+- Grand total cost for all parts = $1320 (part 1 and 2) + $2220 (part 3) = $3540
+- Total customer payout = $2000 (part 1 and 2) + $5000 (part 3) = $7000
+
+
+
+
+
+    Volunteer Programmer: 0
+
+Risks:
+    Technical difficulties with resources, learning curves, and unforeseen price surges.
+    Scope changes due to customer dissatisfaction.
+    Delays in development, impacting the overall timeline.
+    Security risks, exposing user information to potential hackers.
+
+Risk Mitigation Plan:
+
+    Techstack: Prepare a stakeholder chart of subject matter experts, ensure clear communication with resource providers, and create a centralized repository for how-to videos and project information.
+
+    Learning Curve: Maintain access to subject matter experts, document contacts, and regularly update tutorials for each technology.
+
+    Price Surges: Encourage the team to stick to the chosen tech stack, provide clear expectations, and regularly review resource usage.
+
+    Scope Changes: Implement daily stand-up meetings with the team and customer, ensuring transparency and early detection of potential scope changes.
+
+    Delays: Closely monitor the project schedule, promptly address potential delays, and maintain open communication with stakeholders.
+
+    Security Risks: Implement robust security measures, conduct regular audits, and prioritize data protection.
+
+Expected Benefits:
+Improved business operations through an efficient, integrated web application.
+Potential for partial ownership and future benefits for the project manager, incentivizing long-term commitment.
+
+Project Management Approach:
+As the project manager, I aim to foster a collaborative environment, engaging all stakeholders well in decision-making. My approach is less traditional and more agile hybrid. It is a softare project, but the code for the first two parts is pretty straight forward and doesn't need much change so a more traditional approach of initiation, planning, execution, monitoring progress and concluding part 1 and part 2 of the app works. Part 3 of the app will take a more solid agile approach as it will be much more iterative how we will build it. We have the resources we need to build it, but having to build from the ground up requires multiple sprints and user stories to get to the final outcome in 1 year for part 3. Throughout the three parts of the project, regular meetings are planned to be held to discuss progress, address issues, and adapt strategies. These include breif trterrgtyjukli;op'
+['p/;.lkujbtgrfdsaqs23df4gbhjkdaily standup meetings, and other agile and traditional meetings. The project schedule will be meticulously monitored, and any delays will be promptly addressed. A systematic problem-solving approach will be employed, ensuring effective solutions. Stakeholders will receive regular updates, and their feedback will shape the project's direction.
+
+SalvationMapper aims to empower the customer's mentorship and community engagement initiatives, offering a solution that helps users mentor people, communities, and map visually on a physical map. 
+
+Write a short summary on how you as the project manager would handle decisions, schedule,
+   problem, and stakeholders

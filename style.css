@@ -186,8 +186,9 @@ p {
   padding-top: 10px;
 }
 
+/* edit the size of the menu to give more space for words */
 #edit-group-content {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 #edit-group-content table {
@@ -301,6 +302,8 @@ p {
 
 .addNode {
   display: none;
+  position: relative; /* Add this */
+  z-index: 1; /* Add this */
 }
 
 .addNode:hover rect {
@@ -365,3 +368,32 @@ p {
   fill-opacity:0;
   stroke-opacity:0;
 }
+/**----------------------
+ *    Supabase CSS
+ *------------------------**/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+
+
+/*---- END OF Supabase CSS ----*/
+
+
+

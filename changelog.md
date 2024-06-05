@@ -1,5 +1,9 @@
 # gen-mapper changelog
 
+## 0.2.18 (2018-05-10)
+- Fix bug: when exporting subtree and then exporting whole map created invalid
+  output file which couldn't be imported.
+
 ## 0.2.17 (2018-04-26)
 - Add: export subtree
 - Add: change parent of group (in edit window)

@@ -1,0 +1,60 @@
+/* CSS for GenMapper: template specific */
+
+.node-box {
+  stroke: black;
+  stroke-width: 5;
+  fill: white;
+}
+
+.node-timothy {
+  stroke-width: 5;
+  stroke: rgb(0, 247, 255);
+  
+  /* fill: rgb(143, 14, 14); */
+}
+
+
+.disciple-no-follow-up {
+  stroke-dasharray: 7,7;
+  stroke-width: 5;
+  stroke: red;
+  /* fill: red; */
+}
+
+.disciple-followed-up-no-meetings {
+  stroke-dasharray: 0;
+  stroke: orange;
+  stroke-width: 5;
+  /* fill: orange; */
+}
+
+.disciple-followed-up-in-meetings {
+  stroke-dasharray: 0;
+  stroke-width: 5;
+  stroke: green;
+  /* stroke-width: 1; */
+  /* fill: green; */
+}
+
+/**------------------------------------------------------------------------
+ *             Fill Nodes with Colors based on Disciple Status
+ *------------------------------------------------------------------------**/
+
+  /* Example CSS for disciples/style.css to change fill color based on specific classes */
+  .mawlingForOthers {
+    stroke-dasharray: 0;
+    stroke: blue;
+    stroke-width: 5;
+    /* fill: blue; */
+}
+
+.disciplercommitment {
+  stroke-dasharray: 0;
+  stroke: purple;
+  stroke-width: 5;
+  /* fill: purple; */
+}
+
+.no-horizontal-resize {
+  resize: vertical; 
+}

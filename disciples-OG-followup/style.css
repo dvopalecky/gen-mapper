@@ -1,0 +1,86 @@
+/* CSS for GenMapper: template specific */
+
+.node-box {
+  stroke: black;
+  stroke-width: 2;
+  fill: white;
+}
+
+.node-date {
+  font-size: 8px;
+}
+
+.node-timothy {
+  stroke: red;
+  stroke-width: 2;
+  fill: red;
+}
+
+.contactAttemptNeeded {
+  stroke-dasharray: 5;
+  stroke: red;
+  stroke-width: 5;
+}
+
+.contactAttempted {
+  stroke-dasharray: 5;
+  stroke: orange;
+  stroke-width: 5;
+}
+
+.contactEstablished {
+  stroke-dasharray: 5;
+  stroke: yellow;
+  stroke-width: 5;
+}
+
+.firstMeetingScheduled {
+  stroke-dasharray: 5;
+  stroke: lightgreen;
+  stroke-width: 5;
+}
+
+.firstMeetingComplete {
+  stroke-dasharray: 5;
+  stroke: green;
+  stroke-width: 5;
+}
+
+.ongoingMeetings {
+  stroke-dasharray: 5;
+  stroke: lightblue;
+  stroke-width: 5;
+}
+
+.beingCoached {
+  stroke-dasharray: 5;
+  stroke: rgb(2, 192, 255);
+  stroke-width: 5;
+}
+
+.coachingOthers {
+  stroke-dasharray: 5;
+  stroke: blue;
+  stroke-width: 5;
+}
+
+.no-horizontal-resize {
+  resize: vertical; 
+}
+
+.disciple-individual {
+  stroke-dasharray: 7,7;
+  /* No color specified */
+}
+
+.disciple-facilitates-group {
+  stroke-dasharray: 0;
+  stroke: hotpink; /* Color taken from 'firstMeetingScheduled' in previous CSS */
+  stroke-width: 5;
+}
+
+.disciple-facilitates-church {
+  stroke-dasharray: 0;
+  stroke: purple; /* Color taken from 'ongoingMeetings' in previous CSS */
+  stroke-width: 5;
+}

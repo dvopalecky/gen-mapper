@@ -110,6 +110,41 @@ const template = {
         }
       }
     },
+    fr: {
+      translation: {
+        'template': {
+          'helpLegend': `<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Légende</h3><p>Chaque cercle représente un groupe / une église. Le cercle en pointillé signifie le groupe, le cercle complet signifie l'église.<br>Sur le dessus, les chiffres décrivent : # total, # croyants, # baptisés<br>À l'intérieur du cercle se trouvent les éléments qui sont pratiqués dans le groupe. <br>Sur la gauche, les chiffres 1 à 7 représentent quels éléments du processus 3/3 sont pratiqués :<br>1 - Soins personnels<br>2 - Adoration<br>3 - Responsabilité<br>4 - Vision<br>5 - Étude biblique<br>6 - Entraînement<br>7 - Fixation d'objectifs et prière</p><p>Cliquez sur le groupe pour le modifier.<br>Cliquez sur le bouton rouge (x) pour supprimer le groupe.<br>Cliquez sur le bouton vert (+) pour ajouter un groupe enfant.</p>`,
+          'name': 'Nom du responsable',
+          'initialLeadersName': 'Nom du responsable',
+          'email': 'Courriel',
+          'peopleGroup': 'Groupe de personnes',
+          'attenders': 'Nombre de croyants',
+          'believers': 'Nombre de croyants',
+          'baptized': 'Nombre de baptisés',
+          'newlyBaptized': "Nombre de nouveaux baptisés (depuis le début de l'église)",
+          'church': "L'église existe-t-elle?",
+          'churchType': "Type d'église",
+          'legacy': 'Héritage',
+          'existingBelievers': 'Croyants existants',
+          'newBelievers': 'Nouveaux croyants',
+          'elementBaptism': 'Élément : Baptême',
+          'elementWord': 'Élément : La Parole de Dieu',
+          'elementPrayer': 'Élément : Prière',
+          'elementLordsSupper': 'Élément : Le repas du Seigneur',
+          'elementGive': 'Élément : Donner',
+          'elementLove': 'Élément: Amour',
+          'elementWorship': 'Élément: Adoration',
+          'elementLeaders': 'Élément : Leaders',
+          'elementMakeDisciples': 'Élément : Faire des disciples',
+          'place': 'Lieu (ville, état, pays)',
+          'initialPlace': 'Lieu',
+          'date': 'Date',
+          'initialDate': 'Date',
+          'threeThirds': "Éléments du processus 3/3 (voir l'aide pour plus de détails)",
+          'active': 'Actif',
+        }
+      }
+    },
     cs: {
       translation: {
         'template': {
@@ -141,6 +176,41 @@ const template = {
           'initialLeadersName': 'Jméno',
           'initialPlace': 'Místo',
           'initialDate': 'Datum'
+        }
+      }
+    },
+    zh: {
+      translation: {
+        'template': {
+          'helpLegend': '<img src="genmapper-node-example-church-circles.png" style="float:right;margin:10px; margin-left:0px;" alt="legend"><h3>Legend</h3><p>每个圈代表一个组/一个教会。虚线的圈代表一个组，实线的圈代表一个教会。</p>',
+          'name': '带领者的名字',
+          'initialLeadersName': '带领者的名字',
+          'email': '邮件地址',
+          'link': '链接',
+          'attenders': '#参加者人数',
+          'believers': '#信徒人数',
+          'baptized': '#受过洗礼的人',
+          'newlyBaptized': '#（从教会建立开始）新受洗的人',
+          'church': '是一个教会吗？',
+          'churchType': '教会类型',
+          'legacy': '有历史的教会  ',
+          'existingBelievers': '现有信徒建立的教会',
+          'newBelievers': '新信徒建立的教会',
+          'elementBaptism': '组成部分：受洗',
+          'elementWord': '组成部分：教导神的话',
+          'elementPrayer': '组成部分：祷告',
+          'elementLordsSupper': '组成部分：圣餐',
+          'elementGive': '组成部分：奉献',
+          'elementLove': '组成部分：爱',
+          'elementWorship': '组成部分：敬拜',
+          'elementLeaders': '组成部分：领袖',
+          'elementMakeDisciples': '组成部分：造就门徒',
+          'place': '地点（城市，省，国家）',
+          'initialPlace': '地点',
+          'date': '开始日期（例如，2017年1月）',
+          'initialDate': '日期',
+          'threeThirds': '3/3过程的元素（去到“帮助”查看细节）',
+          'active': '有活力在发展'
         }
       }
     }
