@@ -1,5 +1,5 @@
 # gen-mapper
-App for mapping generations of simple churches
+App for mapping generations of simple churches. This app is not maintained anymore.
 
 ## Usage
 The app can be found [here](https://dvopalecky.github.io/gen-mapper).
@@ -28,10 +28,11 @@ see [here](changelog.md)
 ## License
 MIT
 
-## Projects / pages which use GenMapper:
-* [NoPlaceLeft](http://noplaceleft.net/genmapper/)
+## Projects / forks which use GenMapper:
+* [NoPlaceLeft](https://www.noplaceleft.tools)
 * [MetaCamp](https://metacamp.org/generational-mapping-software/)
 * [TrainingFuerTrainer.de](https://www.trainingfuertrainer.de/baumzeichner/)
+* [GenMapper.com](https://genmapper.com/)
 
 ## Cooperation
 Contact me if you'd like to help with translating additional languages or
